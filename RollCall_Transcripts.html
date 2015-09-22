@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="IRC's Vote Reporter Application">
+    <meta name="author" content="International Roll Call">
+
+    <title>Rollcall Transcript</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/landing-page.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row text-left" style="padding:10px">
+            <button class="btn btn-danger" id="btnPrint"> <i class="fa fa-print"></i> Print Report</button> 
+        </div>
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <h2 id="Status" style="color:#1d7cc1"></h2>
+                <div class="ReportHeader">
+                    <h1>Virginia House of Representatives</h1>
+
+                    <hr class="intro-divider">
+                    <p>Officer Titles</p>
+                    <hr class="intro-divider">
+
+                   
+
+
+                </div>
+             
+            </div>
+        </div>
+        <div id="ReportContentDiv"></div>
+
+    </div> <!--End Container-->
+ 
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            //get calendar items 
+            $("#Status").hide();
+            $(".ReportHeader").hide();
+            $("#Status").text("Getting Report Data...");
+            $("#Status").show();
+        
+            $.ajax({
+
+                type: "POST",
+                url: "WebServices/ReportService.asmx/GetCalendarItems",
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+
+                    $("#Status").text("Building Report...");
+                    //var result = data.d;
+                    //alert(result); //erase alert function after testing
+
+                    // For each calendar id we have, get all necessary related data we need in a web service. Take return
+                    // values and append as HTML in the report.
+
+                    $.ajax({
+
+                        type: "POST",
+                        url: "WebServices/ReportService.asmx/GetCalendarDetails",
+                        data: "{}",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+
+                            //take data and append as list item parameters to be selected by user
+                            var result = data.d;
+                            $("#ReportContentDiv").empty();
+                            $.each(result, function (index, item) {
+                                $("#Status").text("Finalizing...");
+                                var ReportContent = "<div class='row'>" +
+                                        "<h4 class='text-center'>ROLL CALL TRANSCRIPT</h4>" +
+                                        "<p class='text-center'>Tuesday, December 23, 2014<br />2nd Legislative Day</p>" +
+                                        "<hr class='intro-divider'>" +
+                                        "<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'><h5 class='text-left'>" + item.billNbr + "</h5></div>" +
+                                        "<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'><h5 class='text-left'>" + item.Motion + "</h5></div>" +
+                                        "<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'><h5 class='text-left'>" + item.outcome + "</h5></div>" +
+                                        "<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'><h5 class='text-left'>" + item.RCSNbr + "</h5></div>" +
+                                        "</div>" +
+                                        "<div class='row'>" +
+                                        "<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'><h5 class='text-left' style='margin:5px'>Yea:</h5></div>" +
+                                        "</div>" +
+                                        "<div class='row'>" +
+                                        "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>" +
+                                        "<p class='text-left' style='padding-left:20px'>" + item.YEA + "</p>" +
+                                        "</div>" +
+                                        "</div>" +
+
+                                         "<div class='row'>" +
+                                        "<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'><h5 class='text-left' style='margin:5px'>Nay:</h5></div>" +
+                                        "</div>" +
+                                        "<div class='row'>" +
+                                        "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>" +
+                                        "<p class='text-left' style='padding-left:20px'>" + item.NAY + "</p>" +
+                                        "</div>" +
+                                        "</div>" +
+
+                                         "<div class='row'>" +
+                                        "<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'><h5 class='text-left' style='margin:5px'>Not Voting:</h5></div>" +
+                                        "</div>" +
+                                        "<div class='row'>" +
+                                        "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>" +
+                                        "<p class='text-left' style='padding-left:20px'>" + item.NV + "</p>" +
+                                        "</div>" +
+                                        "</div>" +
+
+                                         "<div class='row'>" +
+                                        "<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'><h5 class='text-left' style='margin:5px'>Absent:</h5></div>" +
+                                        "</div>" +
+                                        "<div class='row'>" +
+                                        "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>" +
+                                        "<p class='text-left' style='padding-left:20px'>" + item.ABSENT + "</p>" +
+                                        "</div>" +
+                                        "</div>";
+
+                                $("#Status").fadeOut(500);
+                                $(".ReportHeader").hide().fadeIn(500);
+                                $(ReportContent).hide().appendTo("#ReportContentDiv").fadeIn(2500);
+                             
+                              
+                                
+                            })
+
+                        },
+                        failure: function (msg) {
+                            alert("failure on appending data");
+                        },
+                        error: function (err) {
+                            alert("error on appending data");
+                        }
+                    }) // end second ajax
+
+
+                },
+                failure: function (msg) {
+                    alert("failure on getting cal items");
+                },
+                error: function (err) {
+                    alert("error on getting calendar items");
+                }
+            })
+
+
+            $("#btnPrint").click(function () {
+                $("#btnPrint").hide();
+                window.print();
+                window.close();
+
+            }) 
+
+          
+
+
+        })
+    </script>
+
+
+
+</body>
+
+</html>

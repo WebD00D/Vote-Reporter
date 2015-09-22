@@ -1,0 +1,682 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{6E61F42C-FE2D-4E37-B34E-E6FAB6D2F5B2}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>VoteReporterNEW</RootNamespace>
+    <AssemblyName>VoteReporterNEW</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>VoteReporterNEW.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>VoteReporterNEW.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v14.2.Core, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v14.2, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v14.2, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v14.2.Core, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v14.2.Core, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v14.2.Core, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v14.2.Core, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v14.2.Core, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.ASPxThemes.v14.2, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.v14.2, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v14.2, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v14.2, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v14.2.Core, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v14.2, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v14.2.Web, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration.aspx" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\landing-page.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Default.aspx" />
+    <Content Include="font-awesome\css\font-awesome.css" />
+    <Content Include="font-awesome\css\font-awesome.min.css" />
+    <Content Include="font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="img\banner-bg.jpg" />
+    <Content Include="img\IRC-SINGLE-LINE-DKBLUE.png" />
+    <Content Include="img\IRC-SINGLE-LINE-LTBLUE.png" />
+    <Content Include="img\USAFlag2.jpg" />
+    <Content Include="img\VoteCheck.png" />
+    <Content Include="InitialSetup.aspx" />
+    <Content Include="IRCLogin.aspx" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="main.html" />
+    <Content Include="Login.aspx" />
+    <Content Include="ReportManagementEditor.aspx" />
+    <Content Include="RollCallDetails.aspx" />
+    <Content Include="RollCallSummary.aspx" />
+    <Content Include="RollCallTranscripts.aspx" />
+    <Content Include="RollCall_Transcripts.html" />
+    <Content Include="RV_MemberAttendance.aspx" />
+    <Content Include="RV_RollCallDetails.aspx" />
+    <Content Include="RV_RollCallSummary.aspx" />
+    <Content Include="RV_RollCallTranscript.aspx" />
+    <Content Include="RV_VoterComparison.aspx" />
+    <Content Include="RV_VoterDetails.aspx" />
+    <Content Include="RV_VoterStatistics.aspx" />
+    <Content Include="RV_VoterStatistics_Optional.aspx" />
+    <Content Include="TesteUserControl.ascx" />
+    <Content Include="UserManagementEditor.aspx" />
+    <Content Include="VoterAttendance.aspx" />
+    <Content Include="VoterComparison.aspx" />
+    <Content Include="VoterDetails.aspx" />
+    <Content Include="VoterStatistics.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="WebServices\ReportManagementService.asmx" />
+    <Content Include="WebServices\ReportService.asmx" />
+    <Content Include="WebServices\SessionService.asmx" />
+    <Content Include="WebServices\UserManagementService.asmx" />
+    <Content Include="WebServices\VRConfigurationService.asmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration.aspx.designer.vb">
+      <DependentUpon>Configuration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration.aspx.vb">
+      <DependentUpon>Configuration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content.Master.designer.vb">
+      <DependentUpon>Content.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Content.Master.vb">
+      <DependentUpon>Content.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Data.vb" />
+    <Compile Include="Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InitialSetup.aspx.designer.vb">
+      <DependentUpon>InitialSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InitialSetup.aspx.vb">
+      <DependentUpon>InitialSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IRCLogin.aspx.designer.vb">
+      <DependentUpon>IRCLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IRCLogin.aspx.vb">
+      <DependentUpon>IRCLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWebExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.Web.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Login.aspx.designer.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportData\dummydata.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dummydata.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ReportData\MemberAttendanceDS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MemberAttendanceDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ReportData\RCDetailsDS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RCDetailsDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ReportData\RCSummaryDS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RCSummaryDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ReportData\RCTranscriptDS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RCTranscriptDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ReportData\RollCallDetailsDATA.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RollCallDetailsDATA.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ReportData\VoterComparisonDS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VoterComparisonDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ReportData\VoterDetailsDS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VoterDetailsDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ReportData\VoterStatisticsDS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VoterStatisticsDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ReportManagementEditor.aspx.designer.vb">
+      <DependentUpon>ReportManagementEditor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportManagementEditor.aspx.vb">
+      <DependentUpon>ReportManagementEditor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\XRMemberAttendance.Designer.vb">
+      <DependentUpon>XRMemberAttendance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\XRMemberAttendance.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\XRRollCallDetails.Designer.vb">
+      <DependentUpon>XRRollCallDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\XRRollCallDetails.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\XRRollCallSummary.Designer.vb">
+      <DependentUpon>XRRollCallSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\XRRollCallSummary.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\XRRollCallTranscript.Designer.vb">
+      <DependentUpon>XRRollCallTranscript.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\XRRollCallTranscript.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\XRVoterComparison.Designer.vb">
+      <DependentUpon>XRVoterComparison.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\XRVoterComparison.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\XRVoterDetails.Designer.vb">
+      <DependentUpon>XRVoterDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\XRVoterDetails.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\XRVoterStatistics.Designer.vb">
+      <DependentUpon>XRVoterStatistics.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\XRVoterStatistics.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\XRVoterStatisticsOptional.Designer.vb">
+      <DependentUpon>XRVoterStatisticsOptional.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\XRVoterStatisticsOptional.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RollCallDetails.aspx.designer.vb">
+      <DependentUpon>RollCallDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RollCallDetails.aspx.vb">
+      <DependentUpon>RollCallDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RollCallSummary.aspx.designer.vb">
+      <DependentUpon>RollCallSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RollCallSummary.aspx.vb">
+      <DependentUpon>RollCallSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RollCallTranscripts.aspx.designer.vb">
+      <DependentUpon>RollCallTranscripts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RollCallTranscripts.aspx.vb">
+      <DependentUpon>RollCallTranscripts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RV_MemberAttendance.aspx.designer.vb">
+      <DependentUpon>RV_MemberAttendance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RV_MemberAttendance.aspx.vb">
+      <DependentUpon>RV_MemberAttendance.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="RV_RollCallDetails.aspx.designer.vb">
+      <DependentUpon>RV_RollCallDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RV_RollCallDetails.aspx.vb">
+      <DependentUpon>RV_RollCallDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RV_RollCallSummary.aspx.designer.vb">
+      <DependentUpon>RV_RollCallSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RV_RollCallSummary.aspx.vb">
+      <DependentUpon>RV_RollCallSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RV_RollCallTranscript.aspx.designer.vb">
+      <DependentUpon>RV_RollCallTranscript.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RV_RollCallTranscript.aspx.vb">
+      <DependentUpon>RV_RollCallTranscript.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RV_VoterComparison.aspx.designer.vb">
+      <DependentUpon>RV_VoterComparison.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RV_VoterComparison.aspx.vb">
+      <DependentUpon>RV_VoterComparison.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RV_VoterDetails.aspx.designer.vb">
+      <DependentUpon>RV_VoterDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RV_VoterDetails.aspx.vb">
+      <DependentUpon>RV_VoterDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RV_VoterStatistics.aspx.designer.vb">
+      <DependentUpon>RV_VoterStatistics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RV_VoterStatistics.aspx.vb">
+      <DependentUpon>RV_VoterStatistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RV_VoterStatistics_Optional.aspx.designer.vb">
+      <DependentUpon>RV_VoterStatistics_Optional.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RV_VoterStatistics_Optional.aspx.vb">
+      <DependentUpon>RV_VoterStatistics_Optional.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TesteUserControl.ascx.designer.vb">
+      <DependentUpon>TesteUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="TesteUserControl.ascx.vb">
+      <DependentUpon>TesteUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserManagementEditor.aspx.designer.vb">
+      <DependentUpon>UserManagementEditor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserManagementEditor.aspx.vb">
+      <DependentUpon>UserManagementEditor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VoterAttendance.aspx.designer.vb">
+      <DependentUpon>VoterAttendance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VoterAttendance.aspx.vb">
+      <DependentUpon>VoterAttendance.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="VoterComparison.aspx.designer.vb">
+      <DependentUpon>VoterComparison.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VoterComparison.aspx.vb">
+      <DependentUpon>VoterComparison.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VoterDetails.aspx.designer.vb">
+      <DependentUpon>VoterDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VoterDetails.aspx.vb">
+      <DependentUpon>VoterDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VoterStatistics.aspx.designer.vb">
+      <DependentUpon>VoterStatistics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VoterStatistics.aspx.vb">
+      <DependentUpon>VoterStatistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebServices\ReportManagementService.asmx.vb">
+      <DependentUpon>ReportManagementService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebServices\ReportService.asmx.vb">
+      <DependentUpon>ReportService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebServices\SessionService.asmx.vb">
+      <DependentUpon>SessionService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebServices\UserManagementService.asmx.vb">
+      <DependentUpon>UserManagementService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebServices\VRConfigurationService.asmx.vb">
+      <DependentUpon>VRConfigurationService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\XRMemberAttendance.resx">
+      <DependentUpon>XRMemberAttendance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\XRRollCallDetails.resx">
+      <DependentUpon>XRRollCallDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\XRRollCallSummary.resx">
+      <DependentUpon>XRRollCallSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\XRRollCallTranscript.resx">
+      <DependentUpon>XRRollCallTranscript.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\XRVoterComparison.resx">
+      <DependentUpon>XRVoterComparison.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\XRVoterDetails.resx">
+      <DependentUpon>XRVoterDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\XRVoterStatistics.resx">
+      <DependentUpon>XRVoterStatistics.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\XRVoterStatisticsOptional.resx">
+      <DependentUpon>XRVoterStatisticsOptional.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="font-awesome\less\bordered-pulled.less" />
+    <Content Include="font-awesome\less\core.less" />
+    <Content Include="font-awesome\less\fixed-width.less" />
+    <Content Include="font-awesome\less\font-awesome.less" />
+    <Content Include="font-awesome\less\icons.less" />
+    <Content Include="font-awesome\less\larger.less" />
+    <Content Include="font-awesome\less\list.less" />
+    <Content Include="font-awesome\less\mixins.less" />
+    <Content Include="font-awesome\less\path.less" />
+    <Content Include="font-awesome\less\rotated-flipped.less" />
+    <Content Include="font-awesome\less\spinning.less" />
+    <Content Include="font-awesome\less\stacked.less" />
+    <Content Include="font-awesome\less\variables.less" />
+    <Content Include="font-awesome\scss\font-awesome.scss" />
+    <Content Include="font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="font-awesome\scss\_core.scss" />
+    <Content Include="font-awesome\scss\_fixed-width.scss" />
+    <Content Include="font-awesome\scss\_icons.scss" />
+    <Content Include="font-awesome\scss\_larger.scss" />
+    <Content Include="font-awesome\scss\_list.scss" />
+    <Content Include="font-awesome\scss\_mixins.scss" />
+    <Content Include="font-awesome\scss\_path.scss" />
+    <Content Include="font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="font-awesome\scss\_spinning.scss" />
+    <Content Include="font-awesome\scss\_stacked.scss" />
+    <Content Include="font-awesome\scss\_variables.scss" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content.Master" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="ReportData\RollCallDetailsDATA.xsc">
+      <DependentUpon>RollCallDetailsDATA.xsd</DependentUpon>
+    </Content>
+    <Content Include="ReportData\RCDetailsDS.xsc">
+      <DependentUpon>RCDetailsDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="ReportData\dummydata.xsc">
+      <DependentUpon>dummydata.xsd</DependentUpon>
+    </Content>
+    <None Include="ReportData\dummydata.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dummydata.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="ReportData\dummydata.xss">
+      <DependentUpon>dummydata.xsd</DependentUpon>
+    </Content>
+    <Content Include="ReportData\MemberAttendanceDS.xsc">
+      <DependentUpon>MemberAttendanceDS.xsd</DependentUpon>
+    </Content>
+    <None Include="ReportData\MemberAttendanceDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MemberAttendanceDS.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="ReportData\MemberAttendanceDS.xss">
+      <DependentUpon>MemberAttendanceDS.xsd</DependentUpon>
+    </Content>
+    <None Include="ReportData\RCDetailsDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RCDetailsDS.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="ReportData\RCDetailsDS.xss">
+      <DependentUpon>RCDetailsDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="ReportData\RCSummaryDS.xsc">
+      <DependentUpon>RCSummaryDS.xsd</DependentUpon>
+    </Content>
+    <None Include="ReportData\RCSummaryDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RCSummaryDS.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="ReportData\RCSummaryDS.xss">
+      <DependentUpon>RCSummaryDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="ReportData\RCTranscriptDS.xsc">
+      <DependentUpon>RCTranscriptDS.xsd</DependentUpon>
+    </Content>
+    <None Include="ReportData\RCTranscriptDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RCTranscriptDS.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="ReportData\RCTranscriptDS.xss">
+      <DependentUpon>RCTranscriptDS.xsd</DependentUpon>
+    </Content>
+    <None Include="ReportData\RollCallDetailsDATA.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RollCallDetailsDATA.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="ReportData\RollCallDetailsDATA.xss">
+      <DependentUpon>RollCallDetailsDATA.xsd</DependentUpon>
+    </Content>
+    <Content Include="ReportData\VoterDetailsDS.xsc">
+      <DependentUpon>VoterDetailsDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="ReportData\VoterComparisonDS.xsc">
+      <DependentUpon>VoterComparisonDS.xsd</DependentUpon>
+    </Content>
+    <None Include="ReportData\VoterComparisonDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VoterComparisonDS.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="ReportData\VoterComparisonDS.xss">
+      <DependentUpon>VoterComparisonDS.xsd</DependentUpon>
+    </Content>
+    <None Include="ReportData\VoterDetailsDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VoterDetailsDS.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="ReportData\VoterDetailsDS.xss">
+      <DependentUpon>VoterDetailsDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="ReportData\VoterStatisticsDS.xsc">
+      <DependentUpon>VoterStatisticsDS.xsd</DependentUpon>
+    </Content>
+    <None Include="ReportData\VoterStatisticsDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VoterStatisticsDS.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="ReportData\VoterStatisticsDS.xss">
+      <DependentUpon>VoterStatisticsDS.xsd</DependentUpon>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50835</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50835/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,298 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Content.master.vb" Inherits="VoteReporterNEW.Content" %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="IRC's Vote Reporter Application">
+    <meta name="author" content="International Roll Call">
+    
+   
+
+    <title>IRC's Vote Reporter</title>
+    <link rel="icon" href="favicon.ico" />
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/landing-page.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+     <script type="text/javascript" src="js/jquery.js"></script>
+    <script>
+       <%-- $(document).ready(function () {
+        
+            var isupdate;
+
+            //load session details
+            $.ajax({
+
+                type: "POST",
+                url: "WebServices/SessionService.asmx/LoadSessions",
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+
+                    $("#<%=ddlSession.ClientID%>").empty();
+
+                   $("#<%=ddlSession.ClientID%> option:selected").index(<%=SetSession%>);
+
+                    var result = data.d;
+
+                    $.each(result, function (index, item) {
+
+                        $("#<%=ddlSession.ClientID%>").append($("<option></option>").val(item.SessionID).html(item.SessionCode));
+                      
+                    })
+                },
+                failure: function (msg) {
+                    alert(msg);
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            }) //end ajax 
+
+            $("#<%=ddlSession.ClientID%>").change(function () {
+
+            
+                var selectedOption = $("#<%=ddlSession.ClientID%> option:selected").val();
+                var selectedOptionIndex = $("#<%=ddlSession.ClientID%> option:selected").index();
+
+                //ajax to update current session
+                $.ajax({
+
+                    type: "POST",
+                    url: "WebServices/SessionService.asmx/SetSessionID",
+                    data: "{SessionID:'"+ selectedOption +"',Index:'"+selectedOptionIndex+"'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+
+                        
+                        
+                    },
+                    failure: function (msg) {
+                        alert(msg);
+                    },
+                    error: function (err) {
+                        alert(err);
+                    }
+                }) //end ajax
+                
+                
+            })
+
+
+
+
+        }) // end doc ready --%>
+   </script>
+<body>
+    <form id="NETForm" runat="server">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="default.aspx"><%=SiteTitle%></a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="default.aspx"><i class="fa fa-home"></i> Home</a>
+                        </li>
+                        <li>
+                            <a href="<%=Link1URL%>"><%=Link1Name%></a>
+                        </li>
+                        <li>
+                            <a href="<%=Link2URL%>"><%=Link2Name%></a>
+                        </li>
+                        <li>
+                            <a href="<%=Link3URL%>"><%=Link3Name%></a>
+                        </li>
+                        <li>
+                            
+                            <div class="navbar-form navbar-left" role="search">
+                                
+                                 <div class="input-group margin-bottom-sm">
+                                     <span class="input-group-addon">Session:</span>
+                                      <asp:DropDownList ID="ddlSession"  CssClass="form-control" runat="server">
+                              
+                                      </asp:DropDownList>
+                                 <span class="input-group-addon"><asp:LinkButton OnClick="ddlSession_SelectedIndexChanged" runat="server"><i class="fa fa-refresh"></i></asp:LinkButton></span>
+
+                                 </div>
+                                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-user fa-fw"></i><span class="fa fa-caret-down"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a data-toggle="modal" data-target="#myModal" ><i class="i"></i>Help</a></li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:LinkButton runat="server" ID="linkLogout" ForeColor="#0094FF">Log out  <i class="fa fa-sign-out fa-1x"></i></asp:LinkButton></li>
+
+
+
+
+
+
+
+
+                                </ul>
+
+                            </div>
+                        </li>
+  
+                      
+                        <li class="dropdown">
+                            
+                        </li>
+
+
+
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+
+        <!-- Header -->
+        <div class="ContentArea">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="contentMessage" style="margin-top: 25px">
+                            <h1 style="color:#2c3e50"><asp:ContentPlaceHolder runat="server" ID="PageTitle"></asp:ContentPlaceHolder></h1>
+                            <h3><asp:ContentPlaceHolder runat="server" ID="PageSubTitle"></asp:ContentPlaceHolder></h3>
+                            <h3><%=_CurrentSessionCode%> Session</h3>
+
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /.intro-header -->
+
+        <!-- Page Content -->
+        <div class="content-section-a">
+            <asp:ContentPlaceHolder runat="server" ID="MainContent">
+
+            </asp:ContentPlaceHolder>
+           
+
+        </div>
+        <!-- /.content-section-a -->
+
+
+
+
+
+
+
+        <!-- Footer -->
+        <footer class="text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="list-inline">
+                            <li>
+                                <a href="http://www.roll-call.com">IRC Home</a>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <a href="#about">About</a>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <a href="#services">Contact</a>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <a href="IRCLogin.aspx">Developers</a>
+                            </li>
+                        </ul>
+                        <p class="copyright text-muted small">Copyright &copy; <%=Date.Today.Year%> International Roll Call Corp. All Rights Reserved.</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+           <!--New User Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Need some help?</h4>
+                </div>
+               
+                 
+                  <div>
+                     
+                      <div style="padding: 20px">
+                          <h4>Please direct all questions, comments, or concerns to:</h4>
+                          <address>
+                              <i class="fa fa-user"></i>  Christian Bryant
+                              <br />
+                              <i class="fa fa-envelope-o"></i>  cbryant@roll-call.com
+                              <br />
+                              <i class="fa fa-phone"></i>  804-730-9600
+                          </address>
+                          <img src="img/IRC-SINGLE-LINE-DKBLUE.png" class="img-responsive" />
+                      </div>
+
+   
+                     
+                  </div>   
+                 
+                <div class="modal-footer">
+                    <p id="lblError" style="color:red"></p>
+                
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End New User Modal -->
+
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+
+
+    </form>
+
+
+</body>
+
+</html>
