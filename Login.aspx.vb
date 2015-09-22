@@ -47,53 +47,6 @@ Public Class Skeleton
 
                 Session("VRDBName") = ds.Tables("data").Rows(0).Item(3).ToString()
                 Session("VoteDBName") = ds.Tables("data").Rows(1).Item(3).ToString()
-
-
-                '' Get Report Params
-
-                'With cmd
-                '    .Connection = con
-                '    .Connection.Open()
-                '    .CommandType = CommandType.StoredProcedure
-                '    .CommandText = "sp_VRGetReportConfigParams"
-                '    .Parameters.AddWithValue("@SessionID", 1)
-                '    .ExecuteNonQuery()
-                '    .Connection.Close()
-                'End With
-
-                'da.SelectCommand = cmd
-                'da.Fill(ds, "reports")
-
-                'Session("pGovernmentName") = ds.Tables("reports").Rows(0).Item(0).ToString()
-                'Session("pLegislatureName") = ds.Tables("reports").Rows(0).Item(1).ToString()
-
-                'Session("pLink1Name") = ds.Tables("reports").Rows(0).Item(2).ToString()
-                'Session("pLink1URL") = ds.Tables("reports").Rows(0).Item(3).ToString()
-                'Session("pLink2Name") = ds.Tables("reports").Rows(0).Item(4).ToString()
-                'Session("pLink2URL") = ds.Tables("reports").Rows(0).Item(5).ToString()
-                'Session("pLink3Name") = ds.Tables("reports").Rows(0).Item(6).ToString()
-                'Session("pLink3URL") = ds.Tables("reports").Rows(0).Item(7).ToString()
-
-                'Session("pRCS") = ds.Tables("reports").Rows(0).Item(8).ToString()
-                'Session("pBill") = ds.Tables("reports").Rows(0).Item(9).ToString()
-                'Session("pMotion") = ds.Tables("reports").Rows(0).Item(10).ToString()
-                'Session("pDate") = ds.Tables("reports").Rows(0).Item(11).ToString()
-                'Session("pVoteTotals") = ds.Tables("reports").Rows(0).Item(12).ToString()
-                'Session("pResults") = ds.Tables("reports").Rows(0).Item(13).ToString()
-                'Session("pOutcome") = ds.Tables("reports").Rows(0).Item(14).ToString()
-                'Session("pPartyTotals") = ds.Tables("reports").Rows(0).Item(15).ToString()
-                'Session("pMember") = ds.Tables("reports").Rows(0).Item(16).ToString()
-                'Session("pDistrictName") = ds.Tables("reports").Rows(0).Item(17).ToString()
-                'Session("pDistrictNumber") = ds.Tables("reports").Rows(0).Item(18).ToString()
-                'Session("pPres1Name") = ds.Tables("reports").Rows(0).Item(19).ToString()
-                'Session("pPres1Title") = ds.Tables("reports").Rows(0).Item(20).ToString()
-                'Session("pPres2Name") = ds.Tables("reports").Rows(0).Item(21).ToString()
-                'Session("pPres2Title") = ds.Tables("reports").Rows(0).Item(22).ToString()
-                'Session("pClerkName") = ds.Tables("reports").Rows(0).Item(23).ToString()
-                'Session("pClerkTitle") = ds.Tables("reports").Rows(0).Item(24).ToString()
-                'Session("pMotionData") = ds.Tables("reports").Rows(0).Item(28).ToString()
-
-
                 Response.Redirect("Default.aspx", False)
                 Context.ApplicationInstance.CompleteRequest()
 

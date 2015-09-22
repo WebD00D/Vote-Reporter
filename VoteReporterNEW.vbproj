@@ -103,6 +103,7 @@
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\landing-page.css" />
+    <Content Include="Engine.asmx" />
     <Content Include="favicon.ico" />
     <Content Include="Default.aspx" />
     <Content Include="font-awesome\css\font-awesome.css" />
@@ -171,6 +172,10 @@
     <Compile Include="Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Engine.asmx.vb">
+      <DependentUpon>Engine.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="InitialSetup.aspx.designer.vb">
       <DependentUpon>InitialSetup.aspx</DependentUpon>

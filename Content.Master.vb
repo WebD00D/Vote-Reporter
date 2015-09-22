@@ -12,6 +12,10 @@ Public Class Content
     Public SetSession As Integer
     Public SessionIndex As Integer
     Public _CurrentSessionCode As String
+
+
+
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         If Session("Access") = -1 Then

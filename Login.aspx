@@ -85,7 +85,7 @@
                        
                         <br />
                         <asp:Button runat="server" ID="btnLogin" CssClass="btn btn-lg btn-danger btn-block" Text="Login" />
-
+                        <a href="#" id="btnLogin2" class="btn btn-lg btn-danger btn-block">Login 2</a>
                           <br />
                             <asp:Label runat="server" ForeColor="#ff0000" ID="lblError"></asp:Label>
                         </div>
@@ -103,11 +103,6 @@
 
     <!-- Page Content -->
 
-    
-
-    
-
-    
 
 
     <!-- Footer -->
@@ -140,11 +135,41 @@
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
 
+        $(document).ready(function () {
+
+            $("#btnLogin2").click(function () {
+                //check user, set base class data, and if successful direct to main screen.
+                $.ajax({
+                    type: "POST",
+                    url: "Engine.asmx/GetCartCount",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        var result = data.d;
+
+
+                        $("#cartcount").text(result);
+                        $("#cartcount2").text(result);
+
+                    },
+                    failure: function (msg) {
+                        alert(msg);
+                    },
+                    error: function (err) {
+                        alert(err);
+                    }
+                }) //end ajax
+            })
+
+          
+        })
+
+    </script>
 </body>
-
 </html>
 
