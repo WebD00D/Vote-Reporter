@@ -35,74 +35,48 @@
 </head>
      <script type="text/javascript" src="js/jquery.js"></script>
     <script>
-       <%-- $(document).ready(function () {
-        
-            var isupdate;
-
-            //load session details
+     
+        $(document).ready(function () {
+            
             $.ajax({
-
                 type: "POST",
-                url: "WebServices/SessionService.asmx/LoadSessions",
+                url: "Engine.asmx/GetBaseVoteReporterData",
                 data: "{}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-
-                    $("#<%=ddlSession.ClientID%>").empty();
-
-                   $("#<%=ddlSession.ClientID%> option:selected").index(<%=SetSession%>);
-
                     var result = data.d;
 
                     $.each(result, function (index, item) {
-
-                        $("#<%=ddlSession.ClientID%>").append($("<option></option>").val(item.SessionID).html(item.SessionCode));
-                      
+                        $("#lnkSiteTitle").text(item.siteTitle);
+                        $("#lnk1").attr("href") = item.link1URL;
+                        $("#lnk1").text(item.link1Name);
+                        $("#lnk2").attr("href") = item.link2URL;
+                        $("#lnk2").text(item.link2Name);
+                        $("#lnk3").attr("href") = item.link3URL;
+                        $("#lnk3").text(item.link3Name);
                     })
                 },
                 failure: function (msg) {
-                    alert(msg);
+                        console.log(msg)
                 },
                 error: function (err) {
-                    alert(err);
+                    console.log(msg)
                 }
-            }) //end ajax 
+            }) //end ajax
 
-            $("#<%=ddlSession.ClientID%>").change(function () {
 
-            
-                var selectedOption = $("#<%=ddlSession.ClientID%> option:selected").val();
-                var selectedOptionIndex = $("#<%=ddlSession.ClientID%> option:selected").index();
 
-                //ajax to update current session
-                $.ajax({
-
-                    type: "POST",
-                    url: "WebServices/SessionService.asmx/SetSessionID",
-                    data: "{SessionID:'"+ selectedOption +"',Index:'"+selectedOptionIndex+"'}",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (data) {
-
-                        
-                        
-                    },
-                    failure: function (msg) {
-                        alert(msg);
-                    },
-                    error: function (err) {
-                        alert(err);
-                    }
-                }) //end ajax
-                
-                
-            })
+            // TO DO: Make call to get all available sessions, then append them to ddlSession drop down list
 
 
 
 
-        }) // end doc ready --%>
+
+        })//end doc ready
+
+
+
    </script>
 <body>
     <form id="NETForm" runat="server">
@@ -117,7 +91,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="default.aspx"><%=SiteTitle%></a>
+                    <a id="lnkSiteTitle" class="navbar-brand" href="default.aspx"></a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -126,13 +100,13 @@
                             <a href="default.aspx"><i class="fa fa-home"></i> Home</a>
                         </li>
                         <li>
-                            <a href="<%=Link1URL%>"><%=Link1Name%></a>
+                            <a id="lnk1" href="#"></a>
                         </li>
                         <li>
-                            <a href="<%=Link2URL%>"><%=Link2Name%></a>
+                            <a id="lnk2" href="#"></a>
                         </li>
                         <li>
-                            <a href="<%=Link3URL%>"><%=Link3Name%></a>
+                            <a id="lnk3" href="#"></a>
                         </li>
                         <li>
                             

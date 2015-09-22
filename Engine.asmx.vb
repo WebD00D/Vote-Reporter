@@ -72,6 +72,7 @@ Public Class Engine
                 VR.link2URL = dt.Rows(0).Item("Link2_URL")
                 VR.link3Name = dt.Rows(0).Item("Link3_Name")
                 VR.link3URL = dt.Rows(0).Item("Link3_URL")
+                VR.siteTitle = dt.Rows(0).Item("Government_Name")
 
 
 
@@ -86,6 +87,11 @@ Public Class Engine
 
     End Function
 
+    Public Function GetBaseVoteReporterData()
+
+        Dim VRList As List(Of clsVoteReporter) = Session("clsVoteReporter")
+        Return VRList
+    End Function
     
 
 

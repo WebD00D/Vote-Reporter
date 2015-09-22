@@ -141,20 +141,26 @@
 
         $(document).ready(function () {
 
+  
+
+
             $("#btnLogin2").click(function () {
                 //check user, set base class data, and if successful direct to main screen.
                 $.ajax({
                     type: "POST",
-                    url: "Engine.asmx/GetCartCount",
-                    data: "{}",
+                    url: "Engine.asmx/ValidateUser",
+                    data: "{Username:'" + $("#<%=txtUsername.ClientID%>").val() + "',Password:'" + $("#<%=txtPassword.ClientID%>").val() + "'}",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {
                         var result = data.d;
 
+                        if (result) {
+                            window.location.href="Default.aspx"
+                        } else {
 
-                        $("#cartcount").text(result);
-                        $("#cartcount2").text(result);
+                        }
+
 
                     },
                     failure: function (msg) {
