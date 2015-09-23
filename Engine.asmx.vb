@@ -87,8 +87,8 @@ Public Class Engine
 
     End Function
 
+    <WebMethod(True)> _
     Public Function GetBaseVoteReporterData()
-
         Dim VRList As List(Of clsVoteReporter) = Session("clsVoteReporter")
         Return VRList
     End Function

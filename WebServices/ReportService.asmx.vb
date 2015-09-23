@@ -258,14 +258,11 @@ Imports System.Data.SqlClient
 
     <WebMethod(True)> _
     Public Function LoadCalendarDates()
-
         Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
         Dim da As New SqlDataAdapter
         Dim ds As New DataSet
         Dim dt As New DataTable
-
         Dim SessionCode As String = Session("SessionCode")
-
         Dim cmd As New SqlCommand
         With cmd
             .Connection = con
@@ -274,25 +271,17 @@ Imports System.Data.SqlClient
             .CommandText = "sp_VRGetVoteDates"
             .Parameters.AddWithValue("@sessionCode", SessionCode)
         End With
-
         ds = New DataSet("RCTranscriptData")
         da.SelectCommand = cmd
         da.Fill(ds, "RCTranscriptData")
-
         RollCallTranscriptList.Clear()
-
         For Each Item As DataRow In ds.Tables(0).Rows()
             Dim RCT As New RollCallTranscript()
             RCT.createDate = CStr(Item("VoteDates"))
             RollCallTranscriptList.Add(RCT)
         Next
-
         Return RollCallTranscriptList
-
-
     End Function
-
-
 
 
     <WebMethod(True)> _

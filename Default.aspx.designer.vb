@@ -14,13 +14,31 @@ Option Explicit On
 Partial Public Class _Default
 
     '''<summary>
-    '''ivdet control.
+    '''NETForm control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ivdet As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents NETForm As Global.System.Web.UI.HtmlControls.HtmlForm
+
+    '''<summary>
+    '''ddlSession control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlSession As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''linkLogout control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents linkLogout As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''lnkVoterDetails control.
@@ -32,13 +50,13 @@ Partial Public Class _Default
     Protected WithEvents lnkVoterDetails As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''ivstats control.
+    '''ivdet control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ivstats As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents ivdet As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''lnkVoterStats control.
@@ -50,13 +68,13 @@ Partial Public Class _Default
     Protected WithEvents lnkVoterStats As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''ivcomp control.
+    '''ivstats control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ivcomp As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents ivstats As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''lnkVoterComp control.
@@ -68,13 +86,13 @@ Partial Public Class _Default
     Protected WithEvents lnkVoterComp As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''iAtt control.
+    '''ivcomp control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents iAtt As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents ivcomp As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''lnkMemberAttendance control.
@@ -86,13 +104,13 @@ Partial Public Class _Default
     Protected WithEvents lnkMemberAttendance As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''ircsum control.
+    '''iAtt control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ircsum As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents iAtt As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''lnkRCSum control.
@@ -104,13 +122,13 @@ Partial Public Class _Default
     Protected WithEvents lnkRCSum As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''irctrans control.
+    '''ircsum control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents irctrans As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents ircsum As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''lnkRCTrans control.
@@ -120,6 +138,15 @@ Partial Public Class _Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkRCTrans As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''irctrans control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents irctrans As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''adminSection control.

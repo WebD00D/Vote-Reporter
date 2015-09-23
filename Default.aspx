@@ -1,53 +1,102 @@
-﻿<%@ Page Language="vb" MasterPageFile="~/Content.Master" AutoEventWireup="false" CodeBehind="Default.aspx.vb" Inherits="VoteReporterNEW._Default" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Default.aspx.vb" Inherits="VoteReporterNEW._Default" %>
 
 <%@ Register Assembly="DevExpress.Web.v14.2, Version=14.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
-<asp:Content runat="server" ContentPlaceHolderID="PageTitle">Vote Reporter</asp:Content>
-<asp:Content runat="server" ContentPlaceHolderID="PageSubTitle"></asp:Content>
+<!DOCTYPE html>
+<html lang="en">
 
-<asp:Content runat="server" ContentPlaceHolderID="MainContent">
+<head>
 
-    <script src="js/jquery.js" type="text/javascript"></script>
-    <script>
-        $(document).ready(function () {
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="IRC's Vote Reporter Application">
+    <meta name="author" content="International Roll Call">
+    
+  
+    <title>IRC's Vote Reporter</title>
+    <link rel="icon" href="favicon.ico" />
 
-            if ($("#<%=lnkMemberAttendance.ClientID%>").hasClass("hide")) {
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/landing-page.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
-                $("#<%=iAtt.ClientID%>").addClass("hide");
-            }
+</head>
+<body>
+    <form id="NETForm" runat="server">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
             
-            
-            if ($("#<%=lnkRCSum.ClientID%>").hasClass("hide")) {
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a id="lnkSiteTitle" class="navbar-brand" href="default.aspx"></a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="default.aspx"><i class="fa fa-home"></i> Home</a>
+                        </li>
+                        <li>
+                            <a id="lnk1" href="#"></a>
+                        </li>
+                        <li>
+                            <a id="lnk2" href="#"></a>
+                        </li>
+                        <li>
+                            <a id="lnk3" href="#"></a>
+                        </li>
+                        <li>
+                            <div class="navbar-form navbar-left" role="search">
+                                
+                                 <div class="input-group margin-bottom-sm">
+                                     <span class="input-group-addon">Session:</span>
+                                      <asp:DropDownList ID="ddlSession"  CssClass="form-control" runat="server">
+                              
+                                      </asp:DropDownList>
+                                 <span class="input-group-addon"><asp:LinkButton runat="server"><i class="fa fa-refresh"></i></asp:LinkButton></span>
 
-                $("#<%=ircsum.ClientID%>").addClass("hide");
-            }
+                                 </div>
+                                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-user fa-fw"></i><span class="fa fa-caret-down"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a data-toggle="modal" data-target="#myModal" ><i class="i"></i>Help</a></li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <asp:LinkButton runat="server" ID="linkLogout" ForeColor="#0094FF">Log out  <i class="fa fa-sign-out fa-1x"></i></asp:LinkButton></li>
+                                </ul>
+                            </div>
+                        </li>
+ 
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
 
-            if ($("#<%=lnkRCTrans.ClientID%>").hasClass("hide")) {
-
-                $("#<%=irctrans.ClientID%>").addClass("hide");
-            }
-
-            if ($("#<%=lnkVoterComp.ClientID%>").hasClass("hide")) {
-
-                $("#<%=ivcomp.ClientID%>").addClass("hide");
-            }
-
-            if ($("#<%=lnkVoterDetails.ClientID%>").hasClass("hide")) {
-
-                $("#<%=ivdet.ClientID%>").addClass("hide");
-            }
-
-            if ($("#<%=lnkVoterStats.ClientID%>").hasClass("hide")) {
-
-                $("#<%=ivstats.ClientID%>").addClass("hide");
-            }
-
-
-
-        })
-    </script>
-
-
+        <!-- Header -->
+        <div class="ContentArea">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="contentMessage" style="margin-top: 25px">
+                          <%--  <h1 style="color:#2c3e50"><asp:ContentPlaceHolder runat="server" ID="PageTitle"></asp:ContentPlaceHolder></h1>
+                            <h3><asp:ContentPlaceHolder runat="server" ID="PageSubTitle"></asp:ContentPlaceHolder></h3>--%>
+                          <%--  <h3><%=_CurrentSessionCode%> Session</h3>--%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container -->
+        </div>
+ 
      <div class="container">
          
                 <div class="row">
@@ -125,7 +174,6 @@
 
 
                     <div runat="server" id="adminSection">
-
                         <br />
                         <h2 class="section-heading">Administration
                         </h2>
@@ -151,13 +199,148 @@
                                     Configuration</a></h4>
                             </li>
                         </ul>
-
                     </div>
-
-
                 </div>
 
             </div>
-            <!-- /.container -->
 
-</asp:Content>
+
+          
+        <!-- Footer -->
+        <footer class="text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="list-inline">
+                            <li>
+                                <a href="http://www.roll-call.com">IRC Home</a>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <a href="#about">About</a>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <a href="#services">Contact</a>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <a href="IRCLogin.aspx">Developers</a>
+                            </li>
+                        </ul>
+                        <p class="copyright text-muted small">Copyright &copy; <%=Date.Today.Year%> International Roll Call Corp. All Rights Reserved.</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+   
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Need some help?</h4>
+                </div>
+                  <div>
+                     
+                      <div style="padding: 20px">
+                          <h4>Please direct all questions, comments, or concerns to:</h4>
+                          <address>
+                              <i class="fa fa-user"></i>  Christian Bryant
+                              <br />
+                              <i class="fa fa-envelope-o"></i>  cbryant@roll-call.com
+                              <br />
+                              <i class="fa fa-phone"></i>  804-730-9600
+                          </address>
+                          <img src="img/IRC-SINGLE-LINE-DKBLUE.png" class="img-responsive" />
+                      </div>
+                  </div>   
+                 
+                <div class="modal-footer">
+                    <p id="lblError" style="color:red"></p>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+
+        <script src="js/bootstrap.min.js"></script>
+  
+    <script>
+        $(document).ready(function () {
+
+       
+
+            $.ajax({
+                type: "POST",
+                url: "Engine.asmx/GetBaseVoteReporterData",
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    var result = data.d;
+
+                    $.each(result, function (index, item) {
+                        $("#lnkSiteTitle").text(item.siteTitle);
+                        $("#lnk1").attr("href") = item.link1URL;
+                        $("#lnk1").text(item.link1Name);
+                        $("#lnk2").attr("href") = item.link2URL;
+                        $("#lnk2").text(item.link2Name);
+                        $("#lnk3").attr("href") = item.link3URL;
+                        $("#lnk3").text(item.link3Name);
+                    })
+                }
+                
+            }) //end ajax
+
+
+
+
+
+            if ($("#<%=lnkMemberAttendance.ClientID%>").hasClass("hide")) {
+
+                $("#<%=iAtt.ClientID%>").addClass("hide");
+            }
+
+
+            if ($("#<%=lnkRCSum.ClientID%>").hasClass("hide")) {
+
+                $("#<%=ircsum.ClientID%>").addClass("hide");
+            }
+
+            if ($("#<%=lnkRCTrans.ClientID%>").hasClass("hide")) {
+
+                $("#<%=irctrans.ClientID%>").addClass("hide");
+            }
+
+            if ($("#<%=lnkVoterComp.ClientID%>").hasClass("hide")) {
+
+                $("#<%=ivcomp.ClientID%>").addClass("hide");
+            }
+
+            if ($("#<%=lnkVoterDetails.ClientID%>").hasClass("hide")) {
+
+                $("#<%=ivdet.ClientID%>").addClass("hide");
+            }
+
+            if ($("#<%=lnkVoterStats.ClientID%>").hasClass("hide")) {
+
+                $("#<%=ivstats.ClientID%>").addClass("hide");
+            }
+
+
+
+        })
+    </script>
+
+    </form>
+
+
+</body>
+    </html>
