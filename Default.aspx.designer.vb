@@ -23,15 +23,6 @@ Partial Public Class _Default
     Protected WithEvents NETForm As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''ddlSession control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlSession As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
     '''linkLogout control.
     '''</summary>
     '''<remarks>

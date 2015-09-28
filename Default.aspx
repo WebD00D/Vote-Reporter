@@ -44,33 +44,35 @@
                             <a href="default.aspx"><i class="fa fa-home"></i> Home</a>
                         </li>
                         <li>
-                            <a id="lnk1" href="#"></a>
+                            <a id="lnk1" href="#"><span id="txtLink1"></span></a>
                         </li>
                         <li>
-                            <a id="lnk2" href="#"></a>
+                            <a id="lnk2" href="#"><span id="txtLink2"></span></a>
                         </li>
                         <li>
-                            <a id="lnk3" href="#"></a>
+                            <a id="lnk3" href="#"><span id="txtLink3"></span></a>
                         </li>
                         <li>
                             <div class="navbar-form navbar-left" role="search">
-                                
                                  <div class="input-group margin-bottom-sm">
-                                     <span class="input-group-addon">Session:</span>
-                                      <asp:DropDownList ID="ddlSession"  CssClass="form-control" runat="server">
+                                     <span class="input-group-addon">Current Session:</span>
+
+                                     <select id="ddlSessionSelect" class="form-control">
+                                       
+                                     </select>
+
+
+
+    <%--                                      <asp:DropDownList ID="ddlSession"  CssClass="form-control" runat="server">
                               
-                                      </asp:DropDownList>
-                                 <span class="input-group-addon"><asp:LinkButton runat="server"><i class="fa fa-refresh"></i></asp:LinkButton></span>
+                                      </asp:DropDownList>--%>
+                                 <%--<span class="input-group-addon"><asp:LinkButton runat="server"><i class="fa fa-refresh"></i></asp:LinkButton></span>--%>
 
                                  </div>
-                                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-user fa-fw"></i><span class="fa fa-caret-down"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a data-toggle="modal" data-target="#myModal" ><i class="i"></i>Help</a></li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <asp:LinkButton runat="server" ID="linkLogout" ForeColor="#0094FF">Log out  <i class="fa fa-sign-out fa-1x"></i></asp:LinkButton></li>
-                                </ul>
+                               
+                                    <asp:LinkButton CssClass="btn btn-primary" runat="server" ID="linkLogout" ForeColor="white">Sign out  <i class="fa fa-sign-out fa-1x"></i></asp:LinkButton>
+                             
+                             
                             </div>
                         </li>
  
@@ -80,6 +82,10 @@
             </div>
             <!-- /.container -->
         </nav>
+
+
+
+
 
         <!-- Header -->
         <div class="ContentArea">
@@ -275,29 +281,100 @@
     <script>
         $(document).ready(function () {
 
-       
+            // -----------------BASE PAGE FUNCTIONS START ------------------//
+            
 
-            $.ajax({
-                type: "POST",
-                url: "Engine.asmx/GetBaseVoteReporterData",
-                data: "{}",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
-                    var result = data.d;
+            // 1 ) Get Current Session
+            var _CurrentSession = getCurrentSesssion()
+           
+            function getCurrentSesssion() {
+                // make a call to select the current set session.
+                // On success, call loadAllSession()
+                var result;
+                $.ajax({
+                    type: "POST",
+                    url: "Engine.asmx/getCurrentSession",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        _CurrentSession = data.d;
+                        loadAllSessions();
+                    }
+                })
+            }
 
-                    $.each(result, function (index, item) {
-                        $("#lnkSiteTitle").text(item.siteTitle);
-                        $("#lnk1").attr("href") = item.link1URL;
-                        $("#lnk1").text(item.link1Name);
-                        $("#lnk2").attr("href") = item.link2URL;
-                        $("#lnk2").text(item.link2Name);
-                        $("#lnk3").attr("href") = item.link3URL;
-                        $("#lnk3").text(item.link3Name);
-                    })
-                }
+
+            function loadAllSessions() {
+
+                $.ajax({
+                    type: "POST",
+                    url: "Engine.asmx/LoadSessions",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        var result = data.d;
+                        $.each(result, function (index, item) {
+                            var optiontag = "<option id=" + item.sessionID + " value="+ item.sessionID +">" + item.sessionCode + "</option>";
+                            $(optiontag).appendTo("#ddlSessionSelect");
+                        })
+                        setSessionDropDown();
+                    }
+                })
+            }
+
+          
+            function setSessionDropDown() {
+                //after drop down has been set, call setPageLinks()
+                $("#ddlSessionSelect").val(_CurrentSession);
+                setPageLinks();
                 
-            }) //end ajax
+            }
+
+           
+            function setPageLinks() {
+                $.ajax({ //first call to set nav bar links and titles
+                    type: "POST",
+                    url: "Engine.asmx/GetBaseVoteReporterData",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        var result = data.d;
+                        $.each(result, function (index, item) {
+                            $("#lnkSiteTitle").text(item.siteTitle);
+                            $("#lnk1").attr("href", item.link1URL);
+                            $("#txtLink1").text(item.link1Name);
+                            $("#lnk2").attr("href", item.link2URL);
+                            $("#txtLink2").text(item.link2Name);
+                            $("#lnk3").attr("href", item.link3URL);
+                            $("#txtLink3").text(item.link3Name);
+                        })
+                    }
+                }) //end ajax call to set links
+            }
+
+
+            $("#ddlSessionSelect").change(function () {
+                alert($("#ddlSessionSelect option:selected").attr("value"));
+            })
+
+    
+
+            // -----------------BASE PAGE FUNCTIONS START ------------------//
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

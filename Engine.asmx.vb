@@ -17,6 +17,7 @@ Public Class Engine
     Inherits System.Web.Services.WebService
 
     Public Class clsVoteReporter
+        Public defaultSessionID As Integer 'This is the session ID that is marked current in the database. 
         Public currentSessionID As Integer
         Public currentSessionCode As String
         Public currentSessionName As String
@@ -32,6 +33,13 @@ Public Class Engine
         Public siteTitle As String
     End Class
 
+    Public Class clsLegislativeSession
+        Public sessionID As Integer
+        Public sessionCode As String
+        Public sessionName As String
+        Public isCurrentSession As Boolean
+        Public legislatureName As String
+    End Class
 
 #Region "Vote Reporter Base"
 
@@ -42,6 +50,7 @@ Public Class Engine
         Dim dt As DataTable = ReturnDataTable("SELECT * FROM Users WHERE Username ='" & Username & "'", CommandType.Text, Nothing)
         Dim VRList As New List(Of clsVoteReporter)
         Dim VR As New clsVoteReporter
+
         If dt.Rows.Count = 1 Then
             Dim userMgmtService As New UserManagementService()
             Dim md5Hash As MD5 = MD5.Create()
@@ -53,8 +62,10 @@ Public Class Engine
                 VR.usersAccess = dt.Rows(0).Item("Type")
 
                 dt.Clear()
-                dt = ReturnDataTable("SELECT s.SessionID,sd.SessionCode,sd.SessionName,sd.IsCurrent,s.Legislature Legislature FROM VRSession s INNER JOIN VRSessionDetail sd on s.SessionID = sd.SessionID WHERE IsCurrent = 1", CommandType.Text, Nothing)
 
+                dt = getDefaultSession()
+
+                VR.defaultSessionID = dt.Rows(0).Item("SessionID")
                 VR.currentSessionID = dt.Rows(0).Item("SessionID")
                 VR.currentSessionCode = dt.Rows(0).Item("SessionCode")
                 VR.currentSessionName = dt.Rows(0).Item("SessionName")
@@ -74,8 +85,6 @@ Public Class Engine
                 VR.link3URL = dt.Rows(0).Item("Link3_URL")
                 VR.siteTitle = dt.Rows(0).Item("Government_Name")
 
-
-
                 VRList.Add(VR)
                 Session("clsVoteReporter") = VRList
 
@@ -87,13 +96,63 @@ Public Class Engine
 
     End Function
 
+  
     <WebMethod(True)> _
     Public Function GetBaseVoteReporterData()
         Dim VRList As List(Of clsVoteReporter) = Session("clsVoteReporter")
         Return VRList
     End Function
-    
 
+    <WebMethod(True)> _
+    Public Function LoadSessions()
+        Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
+        Dim dt As New DataTable
+        Using cmd As SqlCommand = con.CreateCommand
+            cmd.Connection = con
+            cmd.Connection.Open()
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.CommandText = "sp_VRGetAvailableSessions"
+            Using da As New SqlDataAdapter
+                da.SelectCommand = cmd
+                da.Fill(dt)
+            End Using
+            cmd.Connection.Close()
+        End Using
+
+        Dim VRSessionList As New List(Of clsLegislativeSession)
+
+        If dt.Rows.Count > 0 Then
+            For Each Item As DataRow In dt.Rows()
+                Dim VRSession As New clsLegislativeSession
+                VRSession.sessionID = Item("SessionID")
+                VRSession.sessionCode = Item("SessionCode")
+                VRSession.sessionName = Item("SessionName")
+                VRSession.legislatureName = Item("Legislature")
+                VRSessionList.Add(VRSession)
+            Next
+        End If
+
+        Return VRSessionList
+
+    End Function
+
+    <WebMethod(True)> _
+    Public Function getDefaultSession()
+
+        Dim dt As New DataTable
+        dt = ReturnDataTable("SELECT s.SessionID,sd.SessionCode,sd.SessionName,sd.IsCurrent,s.Legislature Legislature FROM VRSession s INNER JOIN VRSessionDetail sd on s.SessionID = sd.SessionID WHERE IsCurrent = 1", CommandType.Text, Nothing)
+
+        Return dt
+
+    End Function
+
+    <WebMethod(True)> _
+    Public Function getCurrentSession()
+
+        Dim VRList As List(Of clsVoteReporter) = Session("clsVoteReporter")
+        Return VRList.Item(0).currentSessionID
+
+    End Function
 
 
 #End Region
