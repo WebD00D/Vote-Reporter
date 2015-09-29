@@ -165,6 +165,12 @@ Public Class Engine
     End Function
 
     <WebMethod(True)> _
+    Public Function getCurrentSessionCode()
+        Dim VRList As List(Of clsVoteReporter) = Session("clsVoteReporter")
+        Return VRList.Item(0).currentSessionCode
+    End Function
+
+    <WebMethod(True)> _
     Public Function updateSession(ByVal SessionID As Integer)
 
         'Get all data related to that session ID

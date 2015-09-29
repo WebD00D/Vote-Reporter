@@ -93,9 +93,9 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="contentMessage" style="margin-top: 25px">
-                          <%--  <h1 style="color:#2c3e50"><asp:ContentPlaceHolder runat="server" ID="PageTitle"></asp:ContentPlaceHolder></h1>
-                            <h3><asp:ContentPlaceHolder runat="server" ID="PageSubTitle"></asp:ContentPlaceHolder></h3>--%>
-                          <%--  <h3><%=_CurrentSessionCode%> Session</h3>--%>
+                            <h1 style="color:#2c3e50">Vote Reporter</h1>
+                            <h3 style="color:#2c3e50"><span id="lblsessioncode"></span> Session</h3>
+                         
                         </div>
                     </div>
                 </div>
@@ -212,8 +212,8 @@
 
 
           
-        <!-- Footer -->
-        <footer class="text-center">
+    <%--    <!-- Footer -->
+        <footer class="text-center" style="bottom:0">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -239,7 +239,7 @@
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer>--%>
 
    
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -318,6 +318,7 @@
                         $.each(result, function (index, item) {
                             var optiontag = "<option id=" + item.sessionID + " value="+ item.sessionID +">" + item.sessionCode + "</option>";
                             $(optiontag).appendTo("#ddlSessionSelect");
+
                         })
                         setSessionDropDown();
                     }
@@ -328,6 +329,7 @@
             function setSessionDropDown() {
                 //after drop down has been set, call setPageLinks()
                 $("#ddlSessionSelect").val(_CurrentSession);
+                
                 setPageLinks();
                 
             }
@@ -350,9 +352,28 @@
                             $("#txtLink2").text(item.link2Name);
                             $("#lnk3").attr("href", item.link3URL);
                             $("#txtLink3").text(item.link3Name);
+
+                            setCurrentSessionName();
+                        
                         })
                     }
                 }) //end ajax call to set links
+            }
+
+            function setCurrentSessionName() {
+
+                $.ajax({ 
+                    type: "POST",
+                    url: "Engine.asmx/getCurrentSessionCode",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        var result = data.d;
+                            $("#lblsessioncode").text(result);
+                    }
+                })
+              
             }
 
 
