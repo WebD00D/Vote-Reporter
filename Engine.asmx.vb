@@ -147,6 +147,16 @@ Public Class Engine
     End Function
 
     <WebMethod(True)> _
+    Public Function getSessionDetails(ByVal SessionID As Integer)
+
+        Dim dt As New DataTable
+        dt = ReturnDataTable("SELECT s.SessionID,sd.SessionCode,sd.SessionName,s.Legislature Legislature FROM VRSession s INNER JOIN VRSessionDetail sd on s.SessionID = sd.SessionID WHERE s.SessionID = " & SessionID, CommandType.Text, Nothing)
+        Return dt
+
+    End Function
+
+
+    <WebMethod(True)> _
     Public Function getCurrentSession()
 
         Dim VRList As List(Of clsVoteReporter) = Session("clsVoteReporter")
@@ -154,6 +164,40 @@ Public Class Engine
 
     End Function
 
+    <WebMethod(True)> _
+    Public Function updateSession(ByVal SessionID As Integer)
+
+        'Get all data related to that session ID
+        Try
+            Dim dt As DataTable = getSessionDetails(SessionID)
+            Dim VRList As List(Of clsVoteReporter) = Session("clsVoteReporter")
+            VRList.Item(0).currentSessionID = SessionID
+            VRList.Item(0).currentSessionCode = dt.Rows(0).Item("SessionCode")
+            VRList.Item(0).currentSessionName = dt.Rows(0).Item("SessionName")
+            VRList.Item(0).currentSessionLegislature = dt.Rows(0).Item("Legislature")
+
+            dt.Clear()
+
+            Dim oParmList As List(Of SqlParameter) = New List(Of SqlParameter)
+            oParmList.Add(New SqlParameter("@SessionID", SessionID))
+            dt = ReturnDataTable("sp_VRGetReportConfigParams", CommandType.StoredProcedure, oParmList)
+
+            VRList.Item(0).link1Name = dt.Rows(0).Item("Link1_Name")
+            VRList.Item(0).link1URL = dt.Rows(0).Item("Link1_URL")
+            VRList.Item(0).link2Name = dt.Rows(0).Item("Link2_Name")
+            VRList.Item(0).link2URL = dt.Rows(0).Item("Link2_URL")
+            VRList.Item(0).link3Name = dt.Rows(0).Item("Link3_Name")
+            VRList.Item(0).link3URL = dt.Rows(0).Item("Link3_URL")
+            VRList.Item(0).siteTitle = dt.Rows(0).Item("Government_Name")
+
+            Session("clsVoteReporter") = VRList
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
+       
+    End Function
 
 #End Region
 

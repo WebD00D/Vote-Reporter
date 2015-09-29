@@ -357,8 +357,27 @@
 
 
             $("#ddlSessionSelect").change(function () {
-                alert($("#ddlSessionSelect option:selected").attr("value"));
+                var session = $("#ddlSessionSelect option:selected").attr("value");
+
+                // when the drop down index changes, we need to make a call to update the base vote reporter class
+                // with all new session detail.
+                updateSession( session );
             })
+
+            function updateSession(sessionID) {
+                $.ajax({
+                    type: "POST",
+                    url: "Engine.asmx/updateSession",
+                    data: "{SessionID:" + sessionID + "}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        var result = data.d;
+                        window.location.reload();
+
+                    }
+                })
+            }
 
     
 
