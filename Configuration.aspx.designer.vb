@@ -14,6 +14,24 @@ Option Explicit On
 Partial Public Class Configuration
 
     '''<summary>
+    '''NETForm control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents NETForm As Global.System.Web.UI.HtmlControls.HtmlForm
+
+    '''<summary>
+    '''linkLogout control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents linkLogout As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''GenericErrorLabel control.
     '''</summary>
     '''<remarks>

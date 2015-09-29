@@ -6,12 +6,18 @@ Public Class Configuration
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-
         GenericErrorLabel.InnerText = String.Empty
 
-        If Not Page.IsPostBack Or Session("IsReload") = True Then
+        If Not Page.IsPostBack Then
             Try
                 Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
+
+
+
+
+
+
+
                 Dim cmd As New SqlCommand
                 With cmd
                     .CommandType = CommandType.Text

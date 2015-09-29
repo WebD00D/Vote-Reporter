@@ -1,14 +1,105 @@
-﻿<%@ Page Language="vb" MasterPageFile="~/Content.Master" AutoEventWireup="false" CodeBehind="Configuration.aspx.vb" Inherits="VoteReporterNEW.Configuration" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Configuration.aspx.vb" Inherits="VoteReporterNEW.Configuration" %>
 
 
-<asp:Content runat="server" ContentPlaceHolderID="PageTitle">Configuration</asp:Content>
-<asp:Content runat="server" ContentPlaceHolderID="PageSubTitle"></asp:Content>
 
-<asp:Content runat="server" ContentPlaceHolderID="MainContent">
 
-   
 
-    <div class="container">
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="IRC's Vote Reporter Application">
+    <meta name="author" content="International Roll Call">
+
+
+    <title>IRC's Vote Reporter</title>
+    <link rel="icon" href="favicon.ico" />
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/landing-page.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+</head>
+<body style="background-color:#eeeeee">
+    <form id="NETForm" runat="server">
+   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+            
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a id="lnkSiteTitle" class="navbar-brand" href="default.aspx"></a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="default.aspx"><i class="fa fa-home"></i> Home</a>
+                        </li>
+                        <li>
+                            <a id="lnk1" href="#"><span id="txtLink1"></span></a>
+                        </li>
+                        <li>
+                            <a id="lnk2" href="#"><span id="txtLink2"></span></a>
+                        </li>
+                        <li>
+                            <a id="lnk3" href="#"><span id="txtLink3"></span></a>
+                        </li>
+                        <li>
+                            <div class="navbar-form navbar-left" role="search">
+                                 <div class="input-group margin-bottom-sm">
+                                     <span class="input-group-addon">Current Session:</span>
+
+                                     <select id="ddlSessionSelect" class="form-control">
+                                       
+                                     </select>
+
+
+
+    <%--                                      <asp:DropDownList ID="ddlSession"  CssClass="form-control" runat="server">
+                              
+                                      </asp:DropDownList>--%>
+                                 <%--<span class="input-group-addon"><asp:LinkButton runat="server"><i class="fa fa-refresh"></i></asp:LinkButton></span>--%>
+
+                                 </div>
+                               
+                                    <asp:LinkButton CssClass="btn btn-primary" runat="server" ID="linkLogout" ForeColor="white">Sign out  <i class="fa fa-sign-out fa-1x"></i></asp:LinkButton>
+                             
+                             
+                            </div>
+                        </li>
+ 
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+
+             <div class="ContentArea">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="contentMessage" style="margin-top: 25px">
+                            <h1 style="color:#2c3e50"> Vote Reporter Configuration</h1>
+                            <h3 style="color:#2c3e50"><span id="lblsessioncode"></span> Session</h3>
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container -->
+
+
+                 <div class="container">
 
         <div class="row">
             <div class="col-lg-12">
@@ -74,9 +165,9 @@
                             <script src="js/jquery.js"></script>
                             <script type="text/javascript">
                                 $(document).ready(function () { //image preview code
-                                   
+
                                     $("#<%=imguploader1.ClientID%>").change(function () {
-                                     
+
                                         readURL1(this);
                                     })
 
@@ -90,9 +181,9 @@
                                             var reader1 = new FileReader();
 
                                             reader1.onload = function (e) {
-                                               
-                                               $('#imagePreview1').attr('src', e.target.result);
-                                              
+
+                                                $('#imagePreview1').attr('src', e.target.result);
+
                                             }
 
                                             reader1.readAsDataURL(input.files[0]);
@@ -102,7 +193,7 @@
                                     function readURL2(input) {
                                         if (input.files && input.files[0]) {
                                             var reader1 = new FileReader();
-                                         
+
                                             reader1.onload = function (e) {
                                                 $('#imagePreview2').attr('src', e.target.result);
                                             }
@@ -265,121 +356,6 @@
 
 
 
-                            <%-- <div class="col-lg-12" style="margin-top:15px"><h4>Voter Statistics Columns</h4></div>
-
-                            <table class="table table-striped custab">
-                                     <thead>
-                 
-                                         <tr style="color:#0c4378">
-                                             <th>Column</th>
-                                             <th>Use</th>
-                                             <th>Custom Name</th>
-                                             <th>Sort Order</th>
-                                            
-                                            
-                                         </tr>
-                                     </thead>
-                                     <tr>
-                                         <td>Member</td>
-                                         <td class="text-center"><asp:CheckBox ID="ckUseMember"   runat="server" /></td>
-                                         <td><input class="form-control" runat="server" id="txtVSMember" /></td>
-                                         <td class="text-center"><input class="form-control" type="number" runat="server" id="txtVSMemberSO" /></td>
-                                     </tr>
-
-                                    <tr>
-                                         <td>District</td>
-                                         <td class="text-center"><asp:CheckBox ID="ckUseDistrict"   runat="server" /></td>
-                                         <td><input class="form-control" runat="server" id="txtVSDistrict" /></td>
-                                         <td class="text-center"><input class="form-control" type="number" runat="server" id="VSDistrictSO" /></td>
-                                     </tr>
-
-                                 <tr>
-                                         <td>Total Votes</td>
-                                         <td class="text-center"><asp:CheckBox ID="ckUseTotVotes"   runat="server" /></td>
-                                         <td><input class="form-control" runat="server" id="txtVSTotalVotes" /></td>
-                                         <td class="text-center"><input class="form-control" type="number" runat="server" id="txtTotalVoteSO" /></td>
-                                     </tr>
-                                   
-                                <tr>
-                                         <td>Total Eligible Votes</td>
-                                         <td class="text-center"><asp:CheckBox ID="ckUseTotElig"   runat="server" /></td>
-                                         <td><input class="form-control" runat="server" id="txtVSTotElig" /></td>
-                                         <td class="text-center"><input class="form-control" type="number" runat="server" id="VSTotEligSO" /></td>
-                                     </tr>
-
-                                <tr>
-                                         <td>Member Votes</td>
-                                         <td class="text-center"><asp:CheckBox ID="ckUseMbrVotes"   runat="server" /></td>
-                                         <td><input class="form-control" runat="server" id="txtMbrVotes" /></td>
-                                         <td class="text-center"><input class="form-control" type="number" runat="server" id="MbrVotesSO" /></td>
-                                     </tr>
-
-                                   <tr>
-                                         <td>Member Votes Percentage</td>
-                                         <td class="text-center"><asp:CheckBox ID="ckUseMbrVotesPercent"   runat="server" /></td>
-                                         <td><input class="form-control" runat="server" id="txtMbrVotePercent" /></td>
-                                         <td class="text-center"><input class="form-control" type="number" runat="server" id="MbrVotePercentSO" /></td>
-                                     </tr>
-
-                                <tr>
-                                         <td>W/ Majority</td>
-                                         <td class="text-center"><asp:CheckBox ID="ckUseWMaj"   runat="server" /></td>
-                                         <td><input class="form-control" runat="server" id="txtWMaj" /></td>
-                                         <td class="text-center"><input class="form-control" type="number" runat="server" id="WMajSO" /></td>
-                                     </tr>
-
-                                <tr>
-                                         <td>W/ Majority Percentage</td>
-                                         <td class="text-center"><asp:CheckBox ID="ckUseMajPercent"   runat="server" /></td>
-                                         <td><input class="form-control" runat="server" id="txtMajPercent" /></td>
-                                         <td class="text-center"><input class="form-control" type="number" runat="server" id="MajPercentSO" /></td>
-                                     </tr>
-
-                                <tr>
-                                         <td>Againts Majority</td>
-                                         <td class="text-center"><asp:CheckBox ID="ckUseAgaints"   runat="server" /></td>
-                                         <td><input class="form-control" runat="server" id="txtAgaintsMaj" /></td>
-                                         <td class="text-center"><input class="form-control" type="number" runat="server" id="AgaintsMajSO" /></td>
-                                     </tr>
-                                    
-                                <tr>
-                                         <td>Againts Majority Percentage</td>
-                                         <td class="text-center"><asp:CheckBox ID="ckUseAgaintsPercent"   runat="server" /></td>
-                                         <td><input class="form-control" runat="server" id="txtAgaintsPercent" /></td>
-                                         <td class="text-center"><input class="form-control" type="number" runat="server" id="AgaintsPercentSO" /></td>
-                                     </tr>
-                                      
-                                <tr>
-                                         <td>W/ Party</td>
-                                         <td class="text-center"><asp:CheckBox ID="ckUseWithParty"   runat="server" /></td>
-                                         <td><input class="form-control" runat="server" id="txtWithParty" /></td>
-                                         <td class="text-center"><input class="form-control" type="number" runat="server" id="txtWithPartySO" /></td>
-                                     </tr>  
-
-                                <tr>
-                                         <td>W/ Party Percentage</td>
-                                         <td class="text-center"><asp:CheckBox ID="ckUseWithPartyPercent"   runat="server" /></td>
-                                         <td><input class="form-control" runat="server" id="txtWPartyPercent" /></td>
-                                         <td class="text-center"><input class="form-control" type="number" runat="server" id="WPartyPercentSO" /></td>
-                                     </tr>
-
-                                    <tr>
-                                         <td>Againts Party</td>
-                                         <td class="text-center"><asp:CheckBox ID="ckUseAgaintsParty"   runat="server" /></td>
-                                         <td><input class="form-control" runat="server" id="txtAgaintsParty" /></td>
-                                         <td class="text-center"><input class="form-control" type="number" runat="server" id="AgstPartySO" /></td>
-                                     </tr>
-
-                                <tr>
-                                         <td>Againts Party Percentage</td>
-                                         <td class="text-center"><asp:CheckBox ID="ckUseAgaintsPartyPercent"   runat="server" /></td>
-                                         <td><input class="form-control" runat="server" id="txtAgaintsPArtyPercent" /></td>
-                                         <td class="text-center"><input class="form-control" type="number" runat="server" id="AgstPartyPercentSO" /></td>
-                                     </tr>
-
-                               
-                                     
-                                 </table>--%>
 
 
 
@@ -570,17 +546,149 @@
                                  <script src="js/jquery.js"></script>
                                  <script>
                                      $(document).ready(function () {
+
+
+
+                                         // -----------------BASE PAGE FUNCTIONS START ------------------//
+
+
+                                         // 1 ) Get Current Session
+                                         var _CurrentSession = getCurrentSesssion()
+
+                                         function getCurrentSesssion() {
+                                             // make a call to select the current set session.
+                                             // On success, call loadAllSession()
+                                             var result;
+                                             $.ajax({
+                                                 type: "POST",
+                                                 url: "Engine.asmx/getCurrentSession",
+                                                 data: "{}",
+                                                 contentType: "application/json; charset=utf-8",
+                                                 dataType: "json",
+                                                 success: function (data) {
+                                                     _CurrentSession = data.d;
+                                                     loadAllSessions();
+                                                 }
+                                             })
+                                         }
+
+
+                                         function loadAllSessions() {
+
+                                             $.ajax({
+                                                 type: "POST",
+                                                 url: "Engine.asmx/LoadSessions",
+                                                 data: "{}",
+                                                 contentType: "application/json; charset=utf-8",
+                                                 dataType: "json",
+                                                 success: function (data) {
+                                                     var result = data.d;
+                                                     $.each(result, function (index, item) {
+                                                         var optiontag = "<option id=" + item.sessionID + " value=" + item.sessionID + ">" + item.sessionCode + "</option>";
+                                                         $(optiontag).appendTo("#ddlSessionSelect");
+
+                                                     })
+                                                     setSessionDropDown();
+                                                 }
+                                             })
+                                         }
+
+
+                                         function setSessionDropDown() {
+                                             //after drop down has been set, call setPageLinks()
+                                             $("#ddlSessionSelect").val(_CurrentSession);
+
+                                             setPageLinks();
+
+                                         }
+
+
+                                         function setPageLinks() {
+                                             $.ajax({ //first call to set nav bar links and titles
+                                                 type: "POST",
+                                                 url: "Engine.asmx/GetBaseVoteReporterData",
+                                                 data: "{}",
+                                                 contentType: "application/json; charset=utf-8",
+                                                 dataType: "json",
+                                                 success: function (data) {
+                                                     var result = data.d;
+                                                     $.each(result, function (index, item) {
+                                                         $("#lnkSiteTitle").text(item.siteTitle);
+                                                         $("#lnk1").attr("href", item.link1URL);
+                                                         $("#txtLink1").text(item.link1Name);
+                                                         $("#lnk2").attr("href", item.link2URL);
+                                                         $("#txtLink2").text(item.link2Name);
+                                                         $("#lnk3").attr("href", item.link3URL);
+                                                         $("#txtLink3").text(item.link3Name);
+
+                                                         setCurrentSessionName();
+
+                                                     })
+                                                 }
+                                             }) //end ajax call to set links
+                                         }
+
+                                         function setCurrentSessionName() {
+
+                                             $.ajax({
+                                                 type: "POST",
+                                                 url: "Engine.asmx/getCurrentSessionCode",
+                                                 data: "{}",
+                                                 contentType: "application/json; charset=utf-8",
+                                                 dataType: "json",
+                                                 success: function (data) {
+                                                     var result = data.d;
+                                                     $("#lblsessioncode").text(result);
+                                                 }
+                                             })
+
+                                         }
+
+
+                                         $("#ddlSessionSelect").change(function () {
+                                             var session = $("#ddlSessionSelect option:selected").attr("value");
+
+                                             // when the drop down index changes, we need to make a call to update the base vote reporter class
+                                             // with all new session detail.
+                                             updateSession(session);
+                                         })
+
+                                         function updateSession(sessionID) {
+                                             $.ajax({
+                                                 type: "POST",
+                                                 url: "Engine.asmx/updateSession",
+                                                 data: "{SessionID:" + sessionID + "}",
+                                                 contentType: "application/json; charset=utf-8",
+                                                 dataType: "json",
+                                                 success: function (data) {
+                                                     var result = data.d;
+                                                     window.location.reload();
+
+                                                 }
+                                             })
+                                         }
+
+
+
+                                         // -----------------BASE PAGE FUNCTIONS START ------------------//
+
+
+
+
+
+
+
                                          //Not Voting
                                          $("#<%=ckNV_Enabled.ClientID%>").change(function () {
 
                                              if ($(this).is(':checked')) {
-                                                 
+
                                                  $("#<%=txtNV_Name.ClientID%>").removeAttr("disabled");
                                                  $("#<%=ckNV_IsUsed.ClientID%>").removeAttr("disabled");
                                                  $("#<%=ckNV_IsEnabled.ClientID%>").removeAttr("disabled");
 
                                              } else {
-                                                 
+
                                                  $("#<%=txtNV_Name.ClientID%>").attr("disabled", "disabled");
                                                  $("#<%=ckNV_IsUsed.ClientID%>").prop('checked', false);
                                                  $("#<%=ckNV_IsUsed.ClientID%>").attr("disabled", "disabled");
@@ -677,168 +785,6 @@
         </div>
     </div>
     <!-- /.container -->
-
-     <script src="js/jquery.js"></script>
-
-    
-    <script type="text/javascript">
-
-
-  
-        $(document).ready(function () {
-
-            //Reset all error message values 
-            //$("#dataError").text("");
-            //$("#ReportError").text("");
-            //$("#AccountError").text("");
-
-
-            //$("#btnSaveAccountSettings").click(function () {
-
-            //    var gov = $("#txtGovName").val();
-            //    var leg = $("#txtLegName").val();
-
-            //    //Update Data Config Parameters
-            //    $.ajax({
-
-            //        type: "POST",
-            //        url: "WebServices/VRConfigurationService.asmx/SetAccountSettings",
-            //        data: "{GovName:'" + gov + "',LegBodyName:'" + leg + "'}",
-            //        contentType: "application/json; charset=utf-8",
-            //        dataType: "json",
-            //        success: function (data) {
-            //            var result = data.d;
-
-            //            if (result == true) {
-            //                $("#AccountError").css("color", "#26A65B");
-            //                $("#AccountError").text("Saved Successfully!");
-            //            } else {
-            //                $("#AccountError").css("color", "#E74C3C");
-            //                $("#AccountError").text("Something went wrong while attempting to save changes. Please check error log for further details.");
-            //            }
-
-            //        },
-            //        failure: function (msg) {
-            //            alert(msg);
-            //        },
-            //        error: function (err) {
-            //            alert(err);
-            //        }
-            //    }) //end ajax 
-            //})
-
-
-
-
-            ////Save Account Settings
-            //$("#btnSaveDataSettings").click(function () {
-
-            //    var VRDBName = $("#txtVRDBName").val();
-            //    var VRDBCon = $("#txtVRDBCon").val();
-            //    var VoteDBName = $("#txtVoteDBName").val();
-            //    var VoteDBCon = $("#txtVoteDBName").val();
-
-            //    //Update Data Config Parameters
-            //    $.ajax({
-
-            //        type: "POST",
-            //        url: "WebServices/VRConfigurationService.asmx/SetDataParameters",
-            //        data: "{VRDBName:'" + VRDBName + "',VRDBCon:'" + VRDBCon + "',VoteDBName:'" + VoteDBName + "',VoteDBCon:'" + VoteDBCon + "'}",
-            //        contentType: "application/json; charset=utf-8",
-            //        dataType: "json",
-            //        success: function (data) {
-            //            var result = data.d;
-
-            //            if (result == 1) {
-            //                $("#dataError").css("color", "#26A65B");
-            //                $("#dataError").text("Saved Successfully!");
-            //            } else {
-            //                $("#dataError").css("color", "#E74C3C");
-            //                $("#dataError").text("Something went wrong while attempting to save changes. Please check error log for further details.");
-            //            }
-
-            //        },
-            //        failure: function (msg) {
-            //            alert(msg);
-            //        },
-            //        error: function (err) {
-            //            alert(err);
-            //        }
-            //    }) //end ajax 
-
-            //})
-
-
-
-
-            //$("#btnSaveReportParams").click(function () {
-
-            //    var RCS = $("#txtRCS").val();
-            //    var BillNbr = $("#txtBillNbr").val();
-            //    var Motion = $("#txtMotion").val();
-            //    var DateTime = $("#txtDateTime").val();
-            //    var VoteTot = $("#txtVoteTot").val();
-            //    var Results = $("#txtResults").val();
-            //    var PartyTot = $("#txtPartyTotals").val();
-            //    var Outcome = $("#txtOutcome").val();
-            //    var Member = $("#txtMember").val();
-            //    var DistrictName = $("#txtDistrictName").val();
-            //    var DistrictNumber = $("#txtDistrictNbr").val();
-
-            //    var PresName1 = $("#txtPO1Name").val();
-            //    var PresTitle1 = $("#txtPO1Title").val();
-            //    var PresName2 = $("#txtPO2Name").val();
-            //    var PresTitle2 = $("#txtPO2title").val();
-            //    var ClerkName = $("#txtClerkName").val();
-            //    var ClerkTitle = $("#txtClerkTitle").val();
-
-            //    //Update Report Parameters
-            //    $.ajax({
-
-            //        type: "POST",
-            //        url: "WebServices/VRConfigurationService.asmx/SetReportParameters",
-            //        data: "{RCS:'" + RCS + "',BillNbr:'" + BillNbr + "',Motion:'" + Motion + "',DateTime:'" + DateTime + "',VoteTotals:'" + VoteTot
-            //                + "',Results:'" + Results + "',PartyTotals:'" + PartyTot + "',Outcome:'" + Outcome + "',Member:'" + Member + "',DistrictName:'" + DistrictName
-            //                + "',DistrictNumber:'" + DistrictNumber + "',PresName1:'" + PresName1 + "',PresTitle1:'" + PresTitle1 + "',PresName2:'" + PresName2 + "',PresTitle2:'" + PresTitle2
-            //                + "',ClerkName:'" + ClerkName + "',ClerkTitle:'" + ClerkTitle + "'}",
-
-
-            //        contentType: "application/json; charset=utf-8",
-            //        dataType: "json",
-            //        success: function (data) {
-            //            var result = data.d;
-
-            //            if (result == true) {
-            //                $("#ReportError").css("color", "#26A65B");
-            //                $("#ReportError").text("Saved Successfully!");
-            //            } else {
-            //                $("#ReportError").css("color", "#E74C3C");
-            //                $("#ReportError").text("Something went wrong while attempting to save changes. Please check error log for further details.");
-            //            }
-                        
-            //            window.location.reload(true);
-
-            //        },
-            //        failure: function (msg) {
-            //            alert(msg);
-            //        },
-            //        error: function (err) {
-            //            alert(err);
-            //        }
-            //    }) //end ajax 
-            //}) //end report param function
-
-
-           
-
-
-          
-          
-
-
-
-        }) // end doc ready
-    </script>
     <!--New User Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -891,5 +837,24 @@
         </div>
     </div>
     <!-- End New User Modal -->
-</asp:Content>
+
+        </div>
+
+    </form>
+</body>
+</html>
+
+    
+
+ <script src="js/jquery.js"></script>
+ <script src="js/bootstrap.min.js"></script>
+ <script type="text/javascript">
+
+        $(document).ready(function () {
+
+
+        }) // end doc ready
+    </script>
+
+
 
