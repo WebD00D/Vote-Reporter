@@ -22,7 +22,7 @@
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
 </head>
-    <body>
+    <body style="background-color:#eeeeee">
         <form id="NETForm" runat="server">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -86,13 +86,14 @@
         </div>
 
             
-     <div class="container">
+     <div class="container" >
 
                 <div class="row">
                     <div class="col-lg-12" style="margin-top:10%">
                    
                     <div class="col-lg-5">
                         <h4>Current Users</h4>
+                       <small style="font-style:italic">**Double-click a user to view details.</small>
                          <br />
                         <div id="currentUsers"  style="overflow-y:scroll;height:150px" class="list-group">
                            
@@ -269,7 +270,6 @@
                     }
                 })
             }
-
 
             function loadAllSessions() {
 

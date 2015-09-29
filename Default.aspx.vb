@@ -53,20 +53,20 @@ Public Class _Default
 
 
 
-        Dim VoterStat As Integer = dt.Rows(4).Item(3)
-        Dim VoterDetail As Integer = dt.Rows(3).Item(3)
-        Dim VoterComparison As Integer = dt.Rows(5).Item(3)
-        Dim RCSummary As Integer = dt.Rows(1).Item(3)
-        Dim RCTranscript As Integer = dt.Rows(0).Item(3)
-        Dim RCDetails As Integer = dt.Rows(2).Item(3)
-        Dim MemberAttendance As Integer = dt.Rows(6).Item(3)
+        Dim VoterStat As Integer = dt.Rows(3).Item("AccessLevel")
+        Dim VoterDetail As Integer = dt.Rows(2).Item("AccessLevel")
+        Dim VoterComparison As Integer = dt.Rows(4).Item("AccessLevel")
+        Dim RCHistory As Integer = dt.Rows(1).Item("AccessLevel")
+        Dim RCTranscript As Integer = dt.Rows(0).Item("AccessLevel")
+        ' Dim RCDetails As Integer = dt.Rows(2).Item("AccessLevel")
+        Dim MemberAttendance As Integer = dt.Rows(5).Item("AccessLevel")
 
         lnkVoterStats.Enabled = GetPermission(Permission, VoterStat)
         lnkVoterDetails.Enabled = GetPermission(Permission, VoterDetail)
         lnkVoterComp.Enabled = GetPermission(Permission, VoterComparison)
         '   lnkRCDet.Enabled = GetPermission(Permission, RCDetails)
         lnkRCTrans.Enabled = GetPermission(Permission, RCTranscript)
-        lnkRCSum.Enabled = GetPermission(Permission, RCSummary)
+        lnkRCSum.Enabled = GetPermission(Permission, RCHistory)
         lnkMemberAttendance.Enabled = GetPermission(Permission, MemberAttendance)
 
         If lnkMemberAttendance.Enabled = False Then
@@ -108,13 +108,13 @@ Public Class _Default
 
         'Get Report Names for Main Screen
 
-        _VoterStats = dt.Rows(4).Item(2)
-        _VoterDetails = dt.Rows(3).Item(2)
-        _VoterComparison = dt.Rows(5).Item(2)
+        _VoterStats = dt.Rows(3).Item(2)
+        _VoterDetails = dt.Rows(2).Item(2)
+        _VoterComparison = dt.Rows(4).Item(2)
         _RCSummary = dt.Rows(1).Item(2)
         _RCTranscript = dt.Rows(0).Item(2)
-        _RCDetails = dt.Rows(2).Item(2)
-        _MemberAttendance = dt.Rows(6).Item(2)
+        ' _RCDetails = dt.Rows(2).Item(2)
+        _MemberAttendance = dt.Rows(5).Item(2)
 
 
         Using cmd
@@ -129,7 +129,7 @@ Public Class _Default
         da2.Fill(dt2)
 
 
-        If dt2.Rows(6).Item(4) = 0 Then
+        If dt2.Rows(5).Item(4) = 0 Then
             lnkMemberAttendance.CssClass = "hide"
 
         End If
@@ -151,19 +151,19 @@ Public Class _Default
         'End If
 
 
-        If dt2.Rows(3).Item(4) = 0 Then
+        If dt2.Rows(2).Item(4) = 0 Then
             lnkVoterDetails.CssClass = "hide"
 
         End If
 
 
-        If dt2.Rows(4).Item(4) = 0 Then
+        If dt2.Rows(3).Item(4) = 0 Then
             lnkVoterStats.CssClass = "hide"
             lnkVoterStats.Visible = False
 
         End If
 
-        If dt2.Rows(5).Item(4) = 0 Then
+        If dt2.Rows(4).Item(4) = 0 Then
             lnkVoterComp.CssClass = "hide"
 
         End If
