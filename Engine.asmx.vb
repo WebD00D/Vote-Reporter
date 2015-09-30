@@ -169,101 +169,182 @@ Public Class Engine
                 oParmList.Add(New SqlParameter("@SessionID", VR.currentSessionID))
                 dt = ReturnDataTable("sp_VRGetReportConfigParams", CommandType.StoredProcedure, oParmList)
 
-                VR.link1Name = dt.Rows(0).Item("Link1_Name")
-                VR.link1URL = dt.Rows(0).Item("Link1_URL")
-                VR.link2Name = dt.Rows(0).Item("Link2_Name")
-                VR.link2URL = dt.Rows(0).Item("Link2_URL")
-                VR.link3Name = dt.Rows(0).Item("Link3_Name")
-                VR.link3URL = dt.Rows(0).Item("Link3_URL")
-                VR.siteTitle = dt.Rows(0).Item("Government_Name")
-                VR.governmentName = dt.Rows(0).Item("Government_Name")
-                VR.legislatureName = dt.Rows(0).Item("Legislature_Name")
-                VR.rcsNbrTitle = dt.Rows(0).Item("RSCNumber")
-                VR.billNbrTitle = dt.Rows(0).Item("BillNumber")
-                VR.motionTitle = dt.Rows(0).Item("Government_Name")
-                VR.motionDataField = dt.Rows(0).Item("Motion")
-                VR.subjectDataField1 = dt.Rows(0).Item("SubjectField1")
-                VR.subjectDataField2 = dt.Rows(0).Item("SubjectField2")
-                VR.dateTimeTitle = dt.Rows(0).Item("DateTime")
-                VR.voteTotalTitle = dt.Rows(0).Item("VoteTotals")
-                VR.resultsTitle = dt.Rows(0).Item("Results")
-                VR.outcomeTitle = dt.Rows(0).Item("Outcome")
-                VR.partyTotalsTitle = dt.Rows(0).Item("PartyTotals")
-                VR.memberTitle = dt.Rows(0).Item("Member")
-                VR.districtNameTitle = dt.Rows(0).Item("DistrictName")
-                VR.districtNbrTitle = dt.Rows(0).Item("DistrictNumber")
-                VR.presidingOfficer1Name = dt.Rows(0).Item("Presiding_Name_1")
-                VR.presidingOfficer1Title = dt.Rows(0).Item("Presiding_Title_1")
-                VR.presidingOfficer2Name = dt.Rows(0).Item("Presiding_Name_2")
-                VR.presidingOfficer2Title = dt.Rows(0).Item("Presiding_Title_2")
-                VR.clerkSecretaryName = dt.Rows(0).Item("Clerk_Secretary_Name")
-                VR.clerkSecretaryTitle = dt.Rows(0).Item("Clerk_Secretary_Title")
-                VR.showDistrictName = CBool(dt.Rows(0).Item("showDistrictName"))
-                VR.showDistrictNbr = CBool(dt.Rows(0).Item("showDistrictNbr"))
-                VR.showMajorityStats = CBool(dt.Rows(0).Item("showMajorityStats"))
-                VR.showPartyStats = CBool(dt.Rows(0).Item("ShowPartyStats"))
-                VR.showVotingStats = CBool(dt.Rows(0).Item("ShowVotingStats"))
-                VR.showOptionalAttendance = CBool(dt.Rows(0).Item("ShowOptionalAttendance"))
-                VR.showOptionalStats = CBool(dt.Rows(0).Item("ShowOptionalStats"))
-                VR.includeShortTitle = CBool(dt.Rows(0).Item("IncludeShortTitle"))
-                VR.showOptionalPartyTotals = CBool(dt.Rows(0).Item("ShowOptionalPartyTotals"))
+                If dt.Rows.Count > 0 Then
 
-                dt.Clear()
+                    VR.link1Name = dt.Rows(0).Item("Link1_Name")
+                    VR.link1URL = dt.Rows(0).Item("Link1_URL")
+                    VR.link2Name = dt.Rows(0).Item("Link2_Name")
+                    VR.link2URL = dt.Rows(0).Item("Link2_URL")
+                    VR.link3Name = dt.Rows(0).Item("Link3_Name")
+                    VR.link3URL = dt.Rows(0).Item("Link3_URL")
+                    VR.siteTitle = dt.Rows(0).Item("Government_Name")
+                    VR.governmentName = dt.Rows(0).Item("Government_Name")
+                    VR.legislatureName = dt.Rows(0).Item("Legislature_Name")
+                    VR.rcsNbrTitle = dt.Rows(0).Item("RSCNumber")
+                    VR.billNbrTitle = dt.Rows(0).Item("BillNumber")
+                    VR.motionTitle = dt.Rows(0).Item("Government_Name")
+                    VR.motionDataField = dt.Rows(0).Item("Motion")
+                    VR.subjectDataField1 = dt.Rows(0).Item("SubjectField1")
+                    VR.subjectDataField2 = dt.Rows(0).Item("SubjectField2")
+                    VR.dateTimeTitle = dt.Rows(0).Item("DateTime")
+                    VR.voteTotalTitle = dt.Rows(0).Item("VoteTotals")
+                    VR.resultsTitle = dt.Rows(0).Item("Results")
+                    VR.outcomeTitle = dt.Rows(0).Item("Outcome")
+                    VR.partyTotalsTitle = dt.Rows(0).Item("PartyTotals")
+                    VR.memberTitle = dt.Rows(0).Item("Member")
+                    VR.districtNameTitle = dt.Rows(0).Item("DistrictName")
+                    VR.districtNbrTitle = dt.Rows(0).Item("DistrictNumber")
+                    VR.presidingOfficer1Name = dt.Rows(0).Item("Presiding_Name_1")
+                    VR.presidingOfficer1Title = dt.Rows(0).Item("Presiding_Title_1")
+                    VR.presidingOfficer2Name = dt.Rows(0).Item("Presiding_Name_2")
+                    VR.presidingOfficer2Title = dt.Rows(0).Item("Presiding_Title_2")
+                    VR.clerkSecretaryName = dt.Rows(0).Item("Clerk_Secretary_Name")
+                    VR.clerkSecretaryTitle = dt.Rows(0).Item("Clerk_Secretary_Title")
+                    VR.showDistrictName = CBool(dt.Rows(0).Item("showDistrictName"))
+                    VR.showDistrictNbr = CBool(dt.Rows(0).Item("showDistrictNbr"))
+                    VR.showMajorityStats = CBool(dt.Rows(0).Item("showMajorityStats"))
+                    VR.showPartyStats = CBool(dt.Rows(0).Item("ShowPartyStats"))
+                    VR.showVotingStats = CBool(dt.Rows(0).Item("ShowVotingStats"))
+                    VR.showOptionalAttendance = CBool(dt.Rows(0).Item("ShowOptionalAttendance"))
+                    VR.showOptionalStats = CBool(dt.Rows(0).Item("ShowOptionalStats"))
+                    VR.includeShortTitle = CBool(dt.Rows(0).Item("IncludeShortTitle"))
+                    VR.showOptionalPartyTotals = CBool(dt.Rows(0).Item("ShowOptionalPartyTotals"))
 
-                Dim oParmList2 As List(Of SqlParameter) = New List(Of SqlParameter)
-                oParmList2.Add(New SqlParameter("@SessionID", VR.currentSessionID))
-                dt = ReturnDataTable("sp_VRGetVoteMappings", CommandType.StoredProcedure, oParmList2)
+                    dt.Clear()
 
-                VR.yeaEnabled = CBool(dt.Rows(0).Item("Enabled"))
-                VR.yeaNamesAs = dt.Rows(0).Item("Named_As")
-                VR.yeaIsUsed = CBool(dt.Rows(0).Item("IsUsed"))
-                VR.yeaIsEligible = CBool(dt.Rows(0).Item("isEligible"))
-                VR.yeaHeaderOrder = dt.Rows(0).Item("Header_Order")
+                    Dim oParmList2 As List(Of SqlParameter) = New List(Of SqlParameter)
+                    oParmList2.Add(New SqlParameter("@SessionID", VR.currentSessionID))
+                    dt = ReturnDataTable("sp_VRGetVoteMappings", CommandType.StoredProcedure, oParmList2)
 
-                VR.nayEnabled = CBool(dt.Rows(1).Item("Enabled"))
-                VR.nayNamesAs = dt.Rows(1).Item("Named_As")
-                VR.nayIsUsed = CBool(dt.Rows(1).Item("IsUsed"))
-                VR.nayIsEligible = CBool(dt.Rows(1).Item("isEligible"))
-                VR.nayHeaderOrder = dt.Rows(1).Item("Header_Order")
+                    VR.yeaEnabled = CBool(dt.Rows(0).Item("Enabled"))
+                    VR.yeaNamesAs = dt.Rows(0).Item("Named_As")
+                    VR.yeaIsUsed = CBool(dt.Rows(0).Item("IsUsed"))
+                    VR.yeaIsEligible = CBool(dt.Rows(0).Item("isEligible"))
+                    VR.yeaHeaderOrder = dt.Rows(0).Item("Header_Order")
 
-                VR.abstainEnabled = CBool(dt.Rows(2).Item("Enabled"))
-                VR.abstainNamesAs = dt.Rows(2).Item("Named_As")
-                VR.abstainIsUsed = CBool(dt.Rows(2).Item("IsUsed"))
-                VR.abstainIsEligible = CBool(dt.Rows(2).Item("isEligible"))
-                VR.abstainHeaderOrder = dt.Rows(2).Item("Header_Order")
+                    VR.nayEnabled = CBool(dt.Rows(1).Item("Enabled"))
+                    VR.nayNamesAs = dt.Rows(1).Item("Named_As")
+                    VR.nayIsUsed = CBool(dt.Rows(1).Item("IsUsed"))
+                    VR.nayIsEligible = CBool(dt.Rows(1).Item("isEligible"))
+                    VR.nayHeaderOrder = dt.Rows(1).Item("Header_Order")
 
-                VR.excusedEnabled = CBool(dt.Rows(3).Item("Enabled"))
-                VR.excusedNamesAs = dt.Rows(3).Item("Named_As")
-                VR.excusedIsUsed = CBool(dt.Rows(3).Item("IsUsed"))
-                VR.excusedIsEligible = CBool(dt.Rows(3).Item("isEligible"))
-                VR.excusedHeaderOrder = dt.Rows(3).Item("Header_Order")
+                    VR.abstainEnabled = CBool(dt.Rows(2).Item("Enabled"))
+                    VR.abstainNamesAs = dt.Rows(2).Item("Named_As")
+                    VR.abstainIsUsed = CBool(dt.Rows(2).Item("IsUsed"))
+                    VR.abstainIsEligible = CBool(dt.Rows(2).Item("isEligible"))
+                    VR.abstainHeaderOrder = dt.Rows(2).Item("Header_Order")
 
-                VR.absentEnabled = CBool(dt.Rows(4).Item("Enabled"))
-                VR.absentNamesAs = dt.Rows(4).Item("Named_As")
-                VR.absentIsUsed = CBool(dt.Rows(4).Item("IsUsed"))
-                VR.absentIsEligible = CBool(dt.Rows(4).Item("isEligible"))
-                VR.absentHeaderOrder = dt.Rows(4).Item("Header_Order")
+                    VR.excusedEnabled = CBool(dt.Rows(3).Item("Enabled"))
+                    VR.excusedNamesAs = dt.Rows(3).Item("Named_As")
+                    VR.excusedIsUsed = CBool(dt.Rows(3).Item("IsUsed"))
+                    VR.excusedIsEligible = CBool(dt.Rows(3).Item("isEligible"))
+                    VR.excusedHeaderOrder = dt.Rows(3).Item("Header_Order")
 
-                VR.notVotingEnabled = CBool(dt.Rows(5).Item("Enabled"))
-                VR.notVotingNamesAs = dt.Rows(5).Item("Named_As")
-                VR.notVotingIsUsed = CBool(dt.Rows(5).Item("IsUsed"))
-                VR.notVotingIsEligible = CBool(dt.Rows(5).Item("isEligible"))
-                VR.notVotingHeaderOrder = dt.Rows(5).Item("Header_Order")
-     
-                VRList.Add(VR)
-                Session("clsVoteReporter") = VRList
+                    VR.absentEnabled = CBool(dt.Rows(4).Item("Enabled"))
+                    VR.absentNamesAs = dt.Rows(4).Item("Named_As")
+                    VR.absentIsUsed = CBool(dt.Rows(4).Item("IsUsed"))
+                    VR.absentIsEligible = CBool(dt.Rows(4).Item("isEligible"))
+                    VR.absentHeaderOrder = dt.Rows(4).Item("Header_Order")
+
+                    VR.notVotingEnabled = CBool(dt.Rows(5).Item("Enabled"))
+                    VR.notVotingNamesAs = dt.Rows(5).Item("Named_As")
+                    VR.notVotingIsUsed = CBool(dt.Rows(5).Item("IsUsed"))
+                    VR.notVotingIsEligible = CBool(dt.Rows(5).Item("isEligible"))
+                    VR.notVotingHeaderOrder = dt.Rows(5).Item("Header_Order")
+
+                    VRList.Add(VR)
+                    Session("clsVoteReporter") = VRList
+
+                Else
+                    ' This is the first time the app has been run. We need to set Vote Reporter 
+                    ' properties to a default value.
+
+                    VR.link1Name = "Link 1"
+                    VR.link1URL = "http://www.roll-call.com"
+                    VR.link2Name = "Link 2"
+                    VR.link2URL = "http://www.roll-call.com"
+                    VR.link3Name = "Link 3"
+                    VR.link3URL = "http://www.roll-call.com"
+                    VR.siteTitle = "{{Please Configure}}"
+                    VR.governmentName = "{{Please Configure}}"
+                    VR.legislatureName = "{{Please Configure}}"
+                    VR.rcsNbrTitle = "{{Please Configure}}"
+                    VR.billNbrTitle = "{{Please Configure}}"
+                    VR.motionTitle = "{{Please Configure}}"
+                    VR.motionDataField = 1
+                    VR.subjectDataField1 = 2
+                    VR.subjectDataField2 = 3
+                    VR.dateTimeTitle = "{{Please Configure}}"
+                    VR.voteTotalTitle = "{{Please Configure}}"
+                    VR.resultsTitle = "{{Please Configure}}"
+                    VR.outcomeTitle = "{{Please Configure}}"
+                    VR.partyTotalsTitle = "{{Please Configure}}"
+                    VR.memberTitle = "{{Please Configure}}"
+                    VR.districtNameTitle = "{{Please Configure}}"
+                    VR.districtNbrTitle = "{{Please Configure}}"
+                    VR.presidingOfficer1Name = "{{Please Configure}}"
+                    VR.presidingOfficer1Title = "{{Please Configure}}"
+                    VR.presidingOfficer2Name = "{{Please Configure}}"
+                    VR.presidingOfficer2Title = "{{Please Configure}}"
+                    VR.clerkSecretaryName = "{{Please Configure}}"
+                    VR.clerkSecretaryTitle = "{{Please Configure}}"
+                    VR.showDistrictName = True
+                    VR.showDistrictNbr = True
+                    VR.showMajorityStats = True
+                    VR.showPartyStats = True
+                    VR.showVotingStats = True
+                    VR.showOptionalAttendance = True
+                    VR.showOptionalStats = True
+                    VR.includeShortTitle = True
+                    VR.showOptionalPartyTotals = True
+
+                    VR.yeaEnabled = True
+                    VR.yeaNamesAs = "{{Please Configure}}"
+                    VR.yeaIsUsed = True
+                    VR.yeaIsEligible = True
+                    VR.yeaHeaderOrder = "{{Please Configure}}"
+
+                    VR.nayEnabled = True
+                    VR.nayNamesAs = "{{Please Configure}}"
+                    VR.nayIsUsed = True
+                    VR.nayIsEligible = True
+                    VR.nayHeaderOrder = "{{Please Configure}}"
+
+                    VR.abstainEnabled = True
+                    VR.abstainNamesAs = "{{Please Configure}}"
+                    VR.abstainIsUsed = True
+                    VR.abstainIsEligible = True
+                    VR.abstainHeaderOrder = "{{Please Configure}}"
+
+                    VR.excusedEnabled = True
+                    VR.excusedNamesAs = "{{Please Configure}}"
+                    VR.excusedIsUsed = True
+                    VR.excusedIsEligible = True
+                    VR.excusedHeaderOrder = "{{Please Configure}}"
+
+                    VR.absentEnabled = True
+                    VR.absentNamesAs = "{{Please Configure}}"
+                    VR.absentIsUsed = True
+                    VR.absentIsEligible = True
+                    VR.absentHeaderOrder = "{{Please Configure}}"
+
+                    VR.notVotingEnabled = True
+                    VR.notVotingNamesAs = "{{Please Configure}}"
+                    VR.notVotingIsUsed = True
+                    VR.notVotingIsEligible = True
+                    VR.notVotingHeaderOrder = "{{Please Configure}}"
+
+                    VRList.Add(VR)
+                    Session("clsVoteReporter") = VRList
+
+                End If
+
 
             End If
             Return True
         Else
             Return False
         End If
-
-
-
-
-
-
 
 
     End Function
@@ -360,16 +441,177 @@ Public Class Engine
             oParmList.Add(New SqlParameter("@SessionID", SessionID))
             dt = ReturnDataTable("sp_VRGetReportConfigParams", CommandType.StoredProcedure, oParmList)
 
-            VRList.Item(0).link1Name = dt.Rows(0).Item("Link1_Name")
-            VRList.Item(0).link1URL = dt.Rows(0).Item("Link1_URL")
-            VRList.Item(0).link2Name = dt.Rows(0).Item("Link2_Name")
-            VRList.Item(0).link2URL = dt.Rows(0).Item("Link2_URL")
-            VRList.Item(0).link3Name = dt.Rows(0).Item("Link3_Name")
-            VRList.Item(0).link3URL = dt.Rows(0).Item("Link3_URL")
-            VRList.Item(0).siteTitle = dt.Rows(0).Item("Government_Name")
+            If dt.Rows.Count > 0 Then
+                'session items have been created.
+                VRList.Item(0).link1Name = dt.Rows(0).Item("Link1_Name")
+                VRList.Item(0).link1URL = dt.Rows(0).Item("Link1_URL")
+                VRList.Item(0).link2Name = dt.Rows(0).Item("Link2_Name")
+                VRList.Item(0).link2URL = dt.Rows(0).Item("Link2_URL")
+                VRList.Item(0).link3Name = dt.Rows(0).Item("Link3_Name")
+                VRList.Item(0).link3URL = dt.Rows(0).Item("Link3_URL")
+                VRList.Item(0).siteTitle = dt.Rows(0).Item("Government_Name")
+                VRList.Item(0).governmentName = dt.Rows(0).Item("Government_Name")
+                VRList.Item(0).legislatureName = dt.Rows(0).Item("Legislature_Name")
+                VRList.Item(0).rcsNbrTitle = dt.Rows(0).Item("RSCNumber")
+                VRList.Item(0).billNbrTitle = dt.Rows(0).Item("BillNumber")
+                VRList.Item(0).motionTitle = dt.Rows(0).Item("Government_Name")
+                VRList.Item(0).motionDataField = dt.Rows(0).Item("Motion")
+                VRList.Item(0).subjectDataField1 = dt.Rows(0).Item("SubjectField1")
+                VRList.Item(0).subjectDataField2 = dt.Rows(0).Item("SubjectField2")
+                VRList.Item(0).dateTimeTitle = dt.Rows(0).Item("DateTime")
+                VRList.Item(0).voteTotalTitle = dt.Rows(0).Item("VoteTotals")
+                VRList.Item(0).resultsTitle = dt.Rows(0).Item("Results")
+                VRList.Item(0).outcomeTitle = dt.Rows(0).Item("Outcome")
+                VRList.Item(0).partyTotalsTitle = dt.Rows(0).Item("PartyTotals")
+                VRList.Item(0).memberTitle = dt.Rows(0).Item("Member")
+                VRList.Item(0).districtNameTitle = dt.Rows(0).Item("DistrictName")
+                VRList.Item(0).districtNbrTitle = dt.Rows(0).Item("DistrictNumber")
+                VRList.Item(0).presidingOfficer1Name = dt.Rows(0).Item("Presiding_Name_1")
+                VRList.Item(0).presidingOfficer1Title = dt.Rows(0).Item("Presiding_Title_1")
+                VRList.Item(0).presidingOfficer2Name = dt.Rows(0).Item("Presiding_Name_2")
+                VRList.Item(0).presidingOfficer2Title = dt.Rows(0).Item("Presiding_Title_2")
+                VRList.Item(0).clerkSecretaryName = dt.Rows(0).Item("Clerk_Secretary_Name")
+                VRList.Item(0).clerkSecretaryTitle = dt.Rows(0).Item("Clerk_Secretary_Title")
+                VRList.Item(0).showDistrictName = CBool(dt.Rows(0).Item("showDistrictName"))
+                VRList.Item(0).showDistrictNbr = CBool(dt.Rows(0).Item("showDistrictNbr"))
+                VRList.Item(0).showMajorityStats = CBool(dt.Rows(0).Item("showMajorityStats"))
+                VRList.Item(0).showPartyStats = CBool(dt.Rows(0).Item("ShowPartyStats"))
+                VRList.Item(0).showVotingStats = CBool(dt.Rows(0).Item("ShowVotingStats"))
+                VRList.Item(0).showOptionalAttendance = CBool(dt.Rows(0).Item("ShowOptionalAttendance"))
+                VRList.Item(0).showOptionalStats = CBool(dt.Rows(0).Item("ShowOptionalStats"))
+                VRList.Item(0).includeShortTitle = CBool(dt.Rows(0).Item("IncludeShortTitle"))
+                VRList.Item(0).showOptionalPartyTotals = CBool(dt.Rows(0).Item("ShowOptionalPartyTotals"))
 
-            Session("clsVoteReporter") = VRList
-            Return True
+
+                dt.Clear()
+
+                Dim oParmList2 As List(Of SqlParameter) = New List(Of SqlParameter)
+                oParmList2.Add(New SqlParameter("@SessionID", SessionID))
+                dt = ReturnDataTable("sp_VRGetVoteMappings", CommandType.StoredProcedure, oParmList2)
+
+                VRList.Item(0).yeaEnabled = CBool(dt.Rows(0).Item("Enabled"))
+                VRList.Item(0).yeaNamesAs = dt.Rows(0).Item("Named_As")
+                VRList.Item(0).yeaIsUsed = CBool(dt.Rows(0).Item("IsUsed"))
+                VRList.Item(0).yeaIsEligible = CBool(dt.Rows(0).Item("isEligible"))
+                VRList.Item(0).yeaHeaderOrder = dt.Rows(0).Item("Header_Order")
+
+                VRList.Item(0).nayEnabled = CBool(dt.Rows(1).Item("Enabled"))
+                VRList.Item(0).nayNamesAs = dt.Rows(1).Item("Named_As")
+                VRList.Item(0).nayIsUsed = CBool(dt.Rows(1).Item("IsUsed"))
+                VRList.Item(0).nayIsEligible = CBool(dt.Rows(1).Item("isEligible"))
+                VRList.Item(0).nayHeaderOrder = dt.Rows(1).Item("Header_Order")
+
+                VRList.Item(0).abstainEnabled = CBool(dt.Rows(2).Item("Enabled"))
+                VRList.Item(0).abstainNamesAs = dt.Rows(2).Item("Named_As")
+                VRList.Item(0).abstainIsUsed = CBool(dt.Rows(2).Item("IsUsed"))
+                VRList.Item(0).abstainIsEligible = CBool(dt.Rows(2).Item("isEligible"))
+                VRList.Item(0).abstainHeaderOrder = dt.Rows(2).Item("Header_Order")
+
+                VRList.Item(0).excusedEnabled = CBool(dt.Rows(3).Item("Enabled"))
+                VRList.Item(0).excusedNamesAs = dt.Rows(3).Item("Named_As")
+                VRList.Item(0).excusedIsUsed = CBool(dt.Rows(3).Item("IsUsed"))
+                VRList.Item(0).excusedIsEligible = CBool(dt.Rows(3).Item("isEligible"))
+                VRList.Item(0).excusedHeaderOrder = dt.Rows(3).Item("Header_Order")
+
+                VRList.Item(0).absentEnabled = CBool(dt.Rows(4).Item("Enabled"))
+                VRList.Item(0).absentNamesAs = dt.Rows(4).Item("Named_As")
+                VRList.Item(0).absentIsUsed = CBool(dt.Rows(4).Item("IsUsed"))
+                VRList.Item(0).absentIsEligible = CBool(dt.Rows(4).Item("isEligible"))
+                VRList.Item(0).absentHeaderOrder = dt.Rows(4).Item("Header_Order")
+
+                VRList.Item(0).notVotingEnabled = CBool(dt.Rows(5).Item("Enabled"))
+                VRList.Item(0).notVotingNamesAs = dt.Rows(5).Item("Named_As")
+                VRList.Item(0).notVotingIsUsed = CBool(dt.Rows(5).Item("IsUsed"))
+                VRList.Item(0).notVotingIsEligible = CBool(dt.Rows(5).Item("isEligible"))
+                VRList.Item(0).notVotingHeaderOrder = dt.Rows(5).Item("Header_Order")
+
+
+
+                Session("clsVoteReporter") = VRList
+                Return True
+            Else
+                ' This is the first time the app has been run. We need to set Vote Reporter 
+                ' properties to a default value.
+
+                VRList.Item(0).link1Name = "Link 1"
+                VRList.Item(0).link1URL = "http://www.roll-call.com"
+                VRList.Item(0).link2Name = "Link 2"
+                VRList.Item(0).link2URL = "http://www.roll-call.com"
+                VRList.Item(0).link3Name = "Link 3"
+                VRList.Item(0).link3URL = "http://www.roll-call.com"
+                VRList.Item(0).siteTitle = "{{Please Configure}}"
+                VRList.Item(0).governmentName = "{{Please Configure}}"
+                VRList.Item(0).legislatureName = "{{Please Configure}}"
+                VRList.Item(0).rcsNbrTitle = "{{Please Configure}}"
+                VRList.Item(0).billNbrTitle = "{{Please Configure}}"
+                VRList.Item(0).motionTitle = "{{Please Configure}}"
+                VRList.Item(0).motionDataField = 1
+                VRList.Item(0).subjectDataField1 = 2
+                VRList.Item(0).subjectDataField2 = 3
+                VRList.Item(0).dateTimeTitle = "{{Please Configure}}"
+                VRList.Item(0).voteTotalTitle = "{{Please Configure}}"
+                VRList.Item(0).resultsTitle = "{{Please Configure}}"
+                VRList.Item(0).outcomeTitle = "{{Please Configure}}"
+                VRList.Item(0).partyTotalsTitle = "{{Please Configure}}"
+                VRList.Item(0).memberTitle = "{{Please Configure}}"
+                VRList.Item(0).districtNameTitle = "{{Please Configure}}"
+                VRList.Item(0).districtNbrTitle = "{{Please Configure}}"
+                VRList.Item(0).presidingOfficer1Name = "{{Please Configure}}"
+                VRList.Item(0).presidingOfficer1Title = "{{Please Configure}}"
+                VRList.Item(0).presidingOfficer2Name = "{{Please Configure}}"
+                VRList.Item(0).presidingOfficer2Title = "{{Please Configure}}"
+                VRList.Item(0).clerkSecretaryName = "{{Please Configure}}"
+                VRList.Item(0).clerkSecretaryTitle = "{{Please Configure}}"
+                VRList.Item(0).showDistrictName = True
+                VRList.Item(0).showDistrictNbr = True
+                VRList.Item(0).showMajorityStats = True
+                VRList.Item(0).showPartyStats = True
+                VRList.Item(0).showVotingStats = True
+                VRList.Item(0).showOptionalAttendance = True
+                VRList.Item(0).showOptionalStats = True
+                VRList.Item(0).includeShortTitle = True
+                VRList.Item(0).showOptionalPartyTotals = True
+
+                VRList.Item(0).yeaEnabled = True
+                VRList.Item(0).yeaNamesAs = "{{Please Configure}}"
+                VRList.Item(0).yeaIsUsed = True
+                VRList.Item(0).yeaIsEligible = True
+                VRList.Item(0).yeaHeaderOrder = "{{Please Configure}}"
+
+                VRList.Item(0).nayEnabled = True
+                VRList.Item(0).nayNamesAs = "{{Please Configure}}"
+                VRList.Item(0).nayIsUsed = True
+                VRList.Item(0).nayIsEligible = True
+                VRList.Item(0).nayHeaderOrder = "{{Please Configure}}"
+
+                VRList.Item(0).abstainEnabled = True
+                VRList.Item(0).abstainNamesAs = "{{Please Configure}}"
+                VRList.Item(0).abstainIsUsed = True
+                VRList.Item(0).abstainIsEligible = True
+                VRList.Item(0).abstainHeaderOrder = "{{Please Configure}}"
+
+                VRList.Item(0).excusedEnabled = True
+                VRList.Item(0).excusedNamesAs = "{{Please Configure}}"
+                VRList.Item(0).excusedIsUsed = True
+                VRList.Item(0).excusedIsEligible = True
+                VRList.Item(0).excusedHeaderOrder = "{{Please Configure}}"
+
+                VRList.Item(0).absentEnabled = True
+                VRList.Item(0).absentNamesAs = "{{Please Configure}}"
+                VRList.Item(0).absentIsUsed = True
+                VRList.Item(0).absentIsEligible = True
+                VRList.Item(0).absentHeaderOrder = "{{Please Configure}}"
+
+                VRList.Item(0).notVotingEnabled = True
+                VRList.Item(0).notVotingNamesAs = "{{Please Configure}}"
+                VRList.Item(0).notVotingIsUsed = True
+                VRList.Item(0).notVotingIsEligible = True
+                VRList.Item(0).notVotingHeaderOrder = "{{Please Configure}}"
+
+                Session("clsVoteReporter") = VRList
+                Return True
+            End If
+
         Catch ex As Exception
             Return False
         End Try
