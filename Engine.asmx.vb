@@ -17,13 +17,16 @@ Public Class Engine
     Inherits System.Web.Services.WebService
 
     Public Class clsVoteReporter
+
         Public defaultSessionID As Integer 'This is the session ID that is marked current in the database. 
         Public currentSessionID As Integer
         Public currentSessionCode As String
         Public currentSessionName As String
         Public currentSessionLegislature As String
         Public usersFirstName As String
-        Public usersAccess
+        Public usersAccess As Integer
+
+        ' -- BASE SESSION SETTINGS --
         Public link1Name As String
         Public link1URL As String
         Public link2Name As String
@@ -31,6 +34,95 @@ Public Class Engine
         Public link3Name As String
         Public link3URL As String
         Public siteTitle As String
+        Public governmentName As String
+        Public legislatureName As String
+        Public rcsNbrTitle As String
+        Public billNbrTitle As String
+        Public motionTitle As String
+        Public dateTimeTitle As String
+        Public voteTotalTitle As String
+        Public resultsTitle As String
+        Public outcomeTitle As String
+        Public partyTotalsTitle As String
+        Public memberTitle As String
+        Public districtNameTitle As String
+        Public districtNbrTitle As String
+        Public presidingOfficer1Name As String
+        Public presidingOfficer2Name As String
+        Public presidingOfficer1Title As String
+        Public presidingOfficer2Title As String
+        Public clerkSecretaryName As String
+        Public clerkSecretaryTitle As String
+        Public motionDataField As Integer
+        Public subjectDataField1 As Integer
+        Public subjectDataField2 As Integer
+        Public showDistrictName As Boolean
+        Public showDistrictNbr As Boolean
+        Public showMajorityStats As Boolean
+        Public showPartyStats As Boolean
+        Public showVotingStats As Boolean
+        Public showOptionalAttendance As Boolean
+        Public showOptionalStats As Boolean
+        Public showOptionalPartyTotals As Boolean
+        Public includeShortTitle As Boolean
+
+        '--VOTE MAPPING SETTINGS --
+
+        Public yeaEnabled As Boolean
+        Public yeaNamesAs As Boolean
+        Public yeaIsUsed As Boolean
+        Public yeaIsEligible As Boolean
+        Public yeaVoteValue1 As Integer = 1
+        Public yeaVoteValue2 As Integer = -1
+        Public yeaVoteValue3 As Integer = -1
+        Public yeaHeaderOrder As Integer
+
+        Public nayEnabled As Boolean
+        Public nayNamesAs As Boolean
+        Public nayIsUsed As Boolean
+        Public nayIsEligible As Boolean
+        Public nayVoteValue1 As Integer = 1
+        Public nayVoteValue2 As Integer = -1
+        Public nayVoteValue3 As Integer = -1
+        Public nayHeaderOrder As Integer
+
+        Public abstainEnabled As Boolean
+        Public abstainNamesAs As Boolean
+        Public abstainIsUsed As Boolean
+        Public abstainIsEligible As Boolean
+        Public abstainVoteValue1 As Integer = 1
+        Public abstainVoteValue2 As Integer = -1
+        Public abstainVoteValue3 As Integer = -1
+        Public abstainHeaderOrder As Integer
+
+        Public excusedEnabled As Boolean
+        Public excusedNamesAs As Boolean
+        Public excusedIsUsed As Boolean
+        Public excusedIsEligible As Boolean
+        Public excusedVoteValue1 As Integer = 1
+        Public excusedVoteValue2 As Integer = -1
+        Public excusedVoteValue3 As Integer = -1
+        Public excusedHeaderOrder As Integer
+
+        Public absentEnabled As Boolean
+        Public absentNamesAs As Boolean
+        Public absentIsUsed As Boolean
+        Public absentIsEligible As Boolean
+        Public absentVoteValue1 As Integer = 1
+        Public absentVoteValue2 As Integer = -1
+        Public absentVoteValue3 As Integer = -1
+        Public absentHeaderOrder As Integer
+
+        Public notVotingEnabled As Boolean
+        Public notVotingNamesAs As Boolean
+        Public notVotingIsUsed As Boolean
+        Public notVotingIsEligible As Boolean
+        Public notVotingVoteValue1 As Integer = 1
+        Public notVotingVoteValue2 As Integer = -1
+        Public notVotingVoteValue3 As Integer = -1
+        Public notVotingHeaderOrder As Integer
+
+
     End Class
 
     Public Class clsLegislativeSession
@@ -84,7 +176,80 @@ Public Class Engine
                 VR.link3Name = dt.Rows(0).Item("Link3_Name")
                 VR.link3URL = dt.Rows(0).Item("Link3_URL")
                 VR.siteTitle = dt.Rows(0).Item("Government_Name")
+                VR.governmentName = dt.Rows(0).Item("Government_Name")
+                VR.legislatureName = dt.Rows(0).Item("Legislature_Name")
+                VR.rcsNbrTitle = dt.Rows(0).Item("RSCNumber")
+                VR.billNbrTitle = dt.Rows(0).Item("BillNumber")
+                VR.motionTitle = dt.Rows(0).Item("Government_Name")
+                VR.motionDataField = dt.Rows(0).Item("Motion")
+                VR.subjectDataField1 = dt.Rows(0).Item("SubjectField1")
+                VR.subjectDataField2 = dt.Rows(0).Item("SubjectField2")
+                VR.dateTimeTitle = dt.Rows(0).Item("DateTime")
+                VR.voteTotalTitle = dt.Rows(0).Item("VoteTotals")
+                VR.resultsTitle = dt.Rows(0).Item("Results")
+                VR.outcomeTitle = dt.Rows(0).Item("Outcome")
+                VR.partyTotalsTitle = dt.Rows(0).Item("PartyTotals")
+                VR.memberTitle = dt.Rows(0).Item("Member")
+                VR.districtNameTitle = dt.Rows(0).Item("DistrictName")
+                VR.districtNbrTitle = dt.Rows(0).Item("DistrictNumber")
+                VR.presidingOfficer1Name = dt.Rows(0).Item("Presiding_Name_1")
+                VR.presidingOfficer1Title = dt.Rows(0).Item("Presiding_Title_1")
+                VR.presidingOfficer2Name = dt.Rows(0).Item("Presiding_Name_2")
+                VR.presidingOfficer2Title = dt.Rows(0).Item("Presiding_Title_2")
+                VR.clerkSecretaryName = dt.Rows(0).Item("Clerk_Secretary_Name")
+                VR.clerkSecretaryTitle = dt.Rows(0).Item("Clerk_Secretary_Title")
+                VR.showDistrictName = CBool(dt.Rows(0).Item("showDistrictName"))
+                VR.showDistrictNbr = CBool(dt.Rows(0).Item("showDistrictNbr"))
+                VR.showMajorityStats = CBool(dt.Rows(0).Item("showMajorityStats"))
+                VR.showPartyStats = CBool(dt.Rows(0).Item("ShowPartyStats"))
+                VR.showVotingStats = CBool(dt.Rows(0).Item("ShowVotingStats"))
+                VR.showOptionalAttendance = CBool(dt.Rows(0).Item("ShowOptionalAttendance"))
+                VR.showOptionalStats = CBool(dt.Rows(0).Item("ShowOptionalStats"))
+                VR.includeShortTitle = CBool(dt.Rows(0).Item("IncludeShortTitle"))
+                VR.showOptionalPartyTotals = CBool(dt.Rows(0).Item("ShowOptionalPartyTotals"))
 
+                dt.Clear()
+
+                Dim oParmList2 As List(Of SqlParameter) = New List(Of SqlParameter)
+                oParmList2.Add(New SqlParameter("@SessionID", VR.currentSessionID))
+                dt = ReturnDataTable("sp_VRGetVoteMappings", CommandType.StoredProcedure, oParmList2)
+
+                VR.yeaEnabled = CBool(dt.Rows(0).Item("Enabled"))
+                VR.yeaNamesAs = dt.Rows(0).Item("Named_As")
+                VR.yeaIsUsed = CBool(dt.Rows(0).Item("IsUsed"))
+                VR.yeaIsEligible = CBool(dt.Rows(0).Item("isEligible"))
+                VR.yeaHeaderOrder = dt.Rows(0).Item("Header_Order")
+
+                VR.nayEnabled = CBool(dt.Rows(1).Item("Enabled"))
+                VR.nayNamesAs = dt.Rows(1).Item("Named_As")
+                VR.nayIsUsed = CBool(dt.Rows(1).Item("IsUsed"))
+                VR.nayIsEligible = CBool(dt.Rows(1).Item("isEligible"))
+                VR.nayHeaderOrder = dt.Rows(1).Item("Header_Order")
+
+                VR.abstainEnabled = CBool(dt.Rows(2).Item("Enabled"))
+                VR.abstainNamesAs = dt.Rows(2).Item("Named_As")
+                VR.abstainIsUsed = CBool(dt.Rows(2).Item("IsUsed"))
+                VR.abstainIsEligible = CBool(dt.Rows(2).Item("isEligible"))
+                VR.abstainHeaderOrder = dt.Rows(2).Item("Header_Order")
+
+                VR.excusedEnabled = CBool(dt.Rows(3).Item("Enabled"))
+                VR.excusedNamesAs = dt.Rows(3).Item("Named_As")
+                VR.excusedIsUsed = CBool(dt.Rows(3).Item("IsUsed"))
+                VR.excusedIsEligible = CBool(dt.Rows(3).Item("isEligible"))
+                VR.excusedHeaderOrder = dt.Rows(3).Item("Header_Order")
+
+                VR.absentEnabled = CBool(dt.Rows(4).Item("Enabled"))
+                VR.absentNamesAs = dt.Rows(4).Item("Named_As")
+                VR.absentIsUsed = CBool(dt.Rows(4).Item("IsUsed"))
+                VR.absentIsEligible = CBool(dt.Rows(4).Item("isEligible"))
+                VR.absentHeaderOrder = dt.Rows(4).Item("Header_Order")
+
+                VR.notVotingEnabled = CBool(dt.Rows(5).Item("Enabled"))
+                VR.notVotingNamesAs = dt.Rows(5).Item("Named_As")
+                VR.notVotingIsUsed = CBool(dt.Rows(5).Item("IsUsed"))
+                VR.notVotingIsEligible = CBool(dt.Rows(5).Item("isEligible"))
+                VR.notVotingHeaderOrder = dt.Rows(5).Item("Header_Order")
+     
                 VRList.Add(VR)
                 Session("clsVoteReporter") = VRList
 
@@ -93,6 +258,13 @@ Public Class Engine
         Else
             Return False
         End If
+
+
+
+
+
+
+
 
     End Function
 
@@ -208,6 +380,7 @@ Public Class Engine
 #End Region
 
 #Region "DB Tasks"
+
     <WebMethod(True)> _
     Public Function ReturnDataTable(ByVal cmdtext As String, ByVal cmdType As System.Data.CommandType, ByVal oParm As List(Of SqlParameter))
         Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
