@@ -633,9 +633,7 @@ Public Class Engine
             cmd.CommandType = cmdType
             cmd.CommandText = cmdtext
 
-            If Not IsNothing(oParm) Then
-                cmd.Parameters.AddRange(oParm.ToArray())
-            End If
+            If Not IsNothing(oParm) Then cmd.Parameters.AddRange(oParm.ToArray())
 
             Using da As New SqlDataAdapter
                 da.SelectCommand = cmd
