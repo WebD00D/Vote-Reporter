@@ -223,8 +223,6 @@ Public Class Configuration
 
     Protected Sub btnSaveAllConfigSettings_Click(sender As Object, e As EventArgs) Handles btnSaveAllConfigSettings.Click
 
-        clearInputBorders()
-
         If validateAccountSettings() Then
             If validateReportParameters() Then
                 If Not validateVoteMappings() Then
@@ -242,35 +240,48 @@ Public Class Configuration
 
     End Sub
 
-    Public Function clearInputBorders()
-
-        Return " "
-    End Function
+    
 
 
     Public Function validateAccountSettings()
-
-        Return False
+        Dim hasErrors As Boolean = False
+        If checkifEmpty(txtGovName.Value) Then hasErrors = True
+        If checkifEmpty(txtLegName.Value) Then hasErrors = True
+        Return hasErrors
     End Function
 
     Public Function validateReportParameters()
-        Return False
+        Dim hasErrors As Boolean = False
+        If checkifEmpty(txtRCS.Value) Then hasErrors = True
+        If checkifEmpty(txtBillNbr.Value) Then hasErrors = True
+        If checkifEmpty(txtMotion.Value) Then hasErrors = True
+        If checkifEmpty(txtDateTime.Value) Then hasErrors = True
+        If checkifEmpty(txtVoteTot.Value) Then hasErrors = True
+        If checkifEmpty(txtResults.Value) Then hasErrors = True
+        If checkifEmpty(txtOutcome.Value) Then hasErrors = True
+        If checkifEmpty(txtPartyTotals.Value) Then hasErrors = True
+        If checkifEmpty(txtMember.Value) Then hasErrors = True
+        If checkifEmpty(txtDistrictName.Value) Then hasErrors = True
+        If checkifEmpty(txtDistrictNbr.Value) Then hasErrors = True
+        If ddlMotion1.SelectedValue = "Default" Then hasErrors = True
+        If ddlSubjects1.SelectedValue = "Default" Then hasErrors = True
+        If ddlSubjects2.SelectedValue = "Default" Then hasErrors = True
+        Return hasErrors
     End Function
 
     Public Function validateVoteMappings()
         Return False
     End Function
 
+    Public Function checkifEmpty(ByVal stringToCheck As String)
+        Dim isEmpty As Boolean = False
+        If Trim(stringToCheck) = String.Empty Then isEmpty = True
+        Return isEmpty
+    End Function
 
 
-
-
-
-
-
-
-
-
+                  
+                  
 
     Protected Sub btnSaveUIDetails_Click(sender As Object, e As EventArgs)
 

@@ -71,7 +71,8 @@
 
                                  </div>
                                
-                                    <asp:LinkButton CssClass="btn btn-primary" runat="server" ID="linkLogout" ForeColor="white">Sign out  <i class="fa fa-sign-out fa-1x"></i></asp:LinkButton>
+                                    <asp:LinkButton Visible="false" CssClass="btn btn-primary" runat="server" ID="linkLogout" ForeColor="white">Sign out  <i class="fa fa-sign-out fa-1x"></i></asp:LinkButton>
+                                   
                              
                              
                             </div>
@@ -93,6 +94,7 @@
                             <h3 style="color:#2c3e50"><span id="lblsessioncode"></span> Session</h3>
                             <br />
                             <asp:LinkButton ID="btnSaveAllConfigSettings" runat="server" CssClass="btn btn-lg btn-success"><i class="fa fa-save"></i> Save Settings</asp:LinkButton>
+                            <br />
                             <br />
                             <asp:Label ID="lblConfigurationErrorMessage" runat="server" ForeColor="Red"></asp:Label>
                         </div>
@@ -864,6 +866,13 @@
             })
 
 
+         
+
+
+
+
+
+
          //Not Voting
          $("#<%=ckNV_Enabled.ClientID%>").change(function () {
 
@@ -940,6 +949,8 @@
              }
 
          }) // End Abstain
+
+
 
         }) // end doc ready
     </script>
