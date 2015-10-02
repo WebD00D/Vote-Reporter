@@ -32,6 +32,15 @@ Partial Public Class Configuration
     Protected WithEvents linkLogout As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''btnSaveAllConfigSettings control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSaveAllConfigSettings As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''GenericErrorLabel control.
     '''</summary>
     '''<remarks>
@@ -372,6 +381,33 @@ Partial Public Class Configuration
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ckShowVoteTtl As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''ckOptionalAttendance control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ckOptionalAttendance As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''ckOptionalVoterStats control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ckOptionalVoterStats As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''ckOptionalPartyTotals control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ckOptionalPartyTotals As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''btnSaveReportData control.

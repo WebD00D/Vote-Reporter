@@ -9,208 +9,203 @@ Public Class Configuration
         GenericErrorLabel.InnerText = String.Empty
 
         If Not Page.IsPostBack Then
-            Try
-                Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
+            'Try
+            '    Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
+
+
+            '    Dim cmd As New SqlCommand
+            '    With cmd
+            '        .CommandType = CommandType.Text
+            '        .CommandText = "sp_VRGetDataConnnections"
+            '        .Connection = con
+            '    End With
+            '    Dim da As New SqlDataAdapter(cmd)
+            '    Dim dt As New DataTable
+            '    da.Fill(dt)
+
+            '    txtVRDBServer.Value = dt.Rows(0).Item(2).ToString()
+            '    txtVRDBName.Value = dt.Rows(0).Item(3).ToString()
+            '    txtVRDBUser.Value = dt.Rows(0).Item(4).ToString()
+            '    txtVRDBPass.Value = dt.Rows(0).Item(5).ToString()
+            '    txtVoteDBServer.Value = dt.Rows(1).Item(2).ToString()
+            '    txtVoteDBName.Value = dt.Rows(1).Item(3).ToString()
+            '    txtVoteDBUser.Value = dt.Rows(1).Item(4).ToString()
+            '    txtVoteDBPass.Value = dt.Rows(1).Item(5).ToString()
+            'Catch ex As Exception
+            '    GenericErrorLabel.InnerText = "Error loading custom settings. Please contact support."
+            'End Try
+
+
+            'Try
+            '    Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
+            '    Dim cmd As New SqlCommand
+            '    With cmd
+            '        .CommandType = CommandType.Text
+            '        .CommandText = "sp_VRGetVoteMappings"
+            '        .Connection = con
+            '    End With
+            '    Dim da As New SqlDataAdapter(cmd)
+            '    Dim dt As New DataTable
+            '    da.Fill(dt)
+
+
+            '    Dim ckABSTAIN_enabled As Byte = dt.Rows(2).Item(2)
+            '    If CBool(ckABSTAIN_enabled) = True Then ckABS_Enabled.Checked = True Else ckABS_Enabled.Checked = False
+
+            '    Dim ckEXCUSED_enabled As Byte = dt.Rows(3).Item(2)
+            '    If CBool(ckEXCUSED_enabled) = True Then ckEXC_Enabled.Checked = True Else ckEXC_Enabled.Checked = False
+
+            '    Dim ckbABSENT_enabled As Byte = dt.Rows(4).Item(2)
+            '    If CBool(ckbABSENT_enabled) = True Then ckABSENT_Enabled.Checked = True Else ckABSENT_Enabled.Checked = False
+
+            '    Dim ckbNV_enabled As Byte = dt.Rows(5).Item(2)
+            '    If CBool(ckbNV_enabled) = True Then ckNV_Enabled.Checked = True Else ckNV_Enabled.Checked = False
+
+
+            '    txtYEA_Name.Value = dt.Rows(0).Item(3).ToString()
+            '    txtNAY_Name.Value = dt.Rows(1).Item(3).ToString()
+            '    txtABS_Name.Value = dt.Rows(2).Item(3).ToString()
+            '    txtEXC_Name.Value = dt.Rows(3).Item(3).ToString()
+            '    txtABSENT_Name.Value = dt.Rows(4).Item(3)
+            '    txtNV_Name.Value = dt.Rows(5).Item(3)
+
+
+            '    txtYeaOrder.Value = dt.Rows(0).Item(9).ToString()
+            '    txtNayOrder.Value = dt.Rows(1).Item(9).ToString()
+            '    txtAbstainOrder.Value = dt.Rows(2).Item(9).ToString()
+            '    txtExcOrder.Value = dt.Rows(3).Item(9).ToString()
+            '    txtAbsentOrder.Value = dt.Rows(4).Item(9).ToString()
+            '    txtNVOrder.Value = dt.Rows(5).Item(9).ToString()
+
+
+            '    Dim ckABSTAIN_isUsed As Byte = dt.Rows(2).Item(4)
+            '    If CBool(ckABSTAIN_isUsed) = True Then ckABS_IsUsed.Checked = True Else ckABS_IsUsed.Checked = False
+
+            '    Dim ckEXCUSED_isUsed As Byte = dt.Rows(3).Item(4)
+            '    If CBool(ckEXCUSED_isUsed) = True Then ckEXC_IsUsed.Checked = True Else ckEXC_IsUsed.Checked = False
+
+            '    Dim ckbABSENT_isUsed As Byte = dt.Rows(4).Item(4)
+            '    If CBool(ckbABSENT_isUsed) = True Then ckABSENT_IsUsed.Checked = True Else ckABSENT_IsUsed.Checked = False
+
+            '    Dim ckbNV_isUsed As Byte = dt.Rows(5).Item(4)
+            '    If CBool(ckbNV_isUsed) = True Then ckNV_IsUsed.Checked = True Else ckNV_IsUsed.Checked = False
+
+
+            '    Dim ckABSTAIN_isEligible As Byte = dt.Rows(2).Item(5)
+            '    If CBool(ckABSTAIN_isEligible) = True Then ckABS_IsEligible.Checked = True Else ckABS_IsEligible.Checked = False
+
+            '    Dim ckEXCUSED_isEligible As Byte = dt.Rows(3).Item(5)
+            '    If CBool(ckEXCUSED_isEligible) = True Then ckEXC_IsEligible.Checked = True Else ckEXC_IsEligible.Checked = False
+
+            '    Dim ckbABSENT_isEligible As Byte = dt.Rows(4).Item(5)
+            '    If CBool(ckbABSENT_isEligible) = True Then ckABSENT_IsEligible.Checked = True Else ckABSENT_IsEligible.Checked = False
+
+            '    Dim ckbNV_isEligible As Byte = dt.Rows(5).Item(5)
+            '    If CBool(ckbNV_isEligible) = True Then ckNV_IsEnabled.Checked = True Else ckNV_IsEnabled.Checked = False
+
+
+            '    ' Load Saved Report Parameters
+
+
+            '    Dim con2 As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
+            '    Dim cmd2 As New SqlCommand
+            '    With cmd2
+            '        .Connection = con2
+            '        .CommandType = CommandType.StoredProcedure
+            '        .CommandText = "sp_VRGetReportConfigParams"
+            '        .Connection.Open()
+            '        .ExecuteNonQuery()
+            '        .Connection.Close()
+            '    End With
+
+            '    Dim da2 As New SqlDataAdapter(cmd2)
+            '    Dim dt2 As New DataTable
+            '    da2.Fill(dt2)
+
+            '    txtGovName.Value = dt2.Rows(0).Item(1).ToString()
+            '    txtLegName.Value = dt2.Rows(0).Item(2).ToString()
+
+            '    link1name.Value = dt2.Rows(0).Item(3).ToString()
+            '    link1url.Value = dt2.Rows(0).Item(4).ToString()
+            '    link2name.Value = dt2.Rows(0).Item(5).ToString()
+            '    link2url.Value = dt2.Rows(0).Item(6).ToString()
+            '    link3name.Value = dt2.Rows(0).Item(7).ToString()
+            '    link3url.Value = dt2.Rows(0).Item(8).ToString()
+
+            '    txtRCS.Value = dt2.Rows(0).Item(9).ToString()
+            '    txtBillNbr.Value = dt2.Rows(0).Item(10).ToString()
+            '    txtMotion.Value = dt2.Rows(0).Item(11).ToString()
+            '    txtDateTime.Value = dt2.Rows(0).Item(12).ToString()
+            '    txtVoteTot.Value = dt2.Rows(0).Item(13).ToString()
+            '    txtResults.Value = dt2.Rows(0).Item(14).ToString()
+            '    txtOutcome.Value = dt2.Rows(0).Item(15).ToString()
+            '    txtPartyTotals.Value = dt2.Rows(0).Item(16).ToString()
+            '    txtMember.Value = dt2.Rows(0).Item(17).ToString()
+            '    txtDistrictName.Value = dt2.Rows(0).Item(18).ToString()
+            '    txtDistrictNbr.Value = dt2.Rows(0).Item(19).ToString()
+
+            '    txtPO1Name.Value = dt2.Rows(0).Item(20).ToString()
+            '    txtPO1Title.Value = dt2.Rows(0).Item(21).ToString()
+            '    txtPO2Name.Value = dt2.Rows(0).Item(22).ToString()
+            '    txtPO2title.Value = dt2.Rows(0).Item(23).ToString()
+            '    txtClerkName.Value = dt2.Rows(0).Item(24).ToString()
+            '    txtClerkTitle.Value = dt2.Rows(0).Item(25).ToString()
+
+            '    ddlMotion1.SelectedValue = dt2.Rows(0).Item(28)
+            '    ddlSubjects1.SelectedValue = dt2.Rows(0).Item(35)
+            '    If dt2.Rows(0).Item(36) = 0 Then
+            '        ddlSubjects2.SelectedValue = "Default"
+            '    Else
+            '        ddlSubjects2.SelectedValue = dt2.Rows(0).Item(36)
+            '    End If
+
+            '    Dim img1Byte As Byte() = DirectCast(dt2.Rows(0).Item(26), Byte())
+            '    Dim img2Byte As Byte() = DirectCast(dt2.Rows(0).Item(27), Byte())
+            '    Dim img1String As String = String.Empty
+            '    Dim img2String As String = String.Empty
+
+            '    If dt2.Rows(0).Item(29) = True Then 'Show district name
+
+            '        rbDName.Checked = True
+            '        rbDNbr.Checked = False
+
+            '    Else 'show district Number
+
+            '        rbDName.Checked = False
+            '        rbDNbr.Checked = True
+
+            '    End If
+
+            '    If dt2.Rows(0).Item(32) = True Then
+            '        ckShowMbrStat.Checked = True
+            '    End If
+            '    If dt2.Rows(0).Item(33) = True Then
+            '        ckShowPartyStat.Checked = True
+            '    End If
+            '    If dt2.Rows(0).Item(34) = True Then
+            '        ckShowVoteTtl.Checked = True
+            '    End If
 
 
 
+            'If img1Byte.Length = 0 Then
+            '    imagePreview1.Visible = False
+            'Else
+            '    img1String = Convert.ToBase64String(img1Byte, 0, img1Byte.Length)
+            '    imagePreview1.Src = "data:image/png;base64," & img1String
+            'End If
+
+            'If img2Byte.Length = 0 Then
+            '    imagePreview2.Visible = False
+            'Else
+            '    img2String = Convert.ToBase64String(img2Byte, 0, img2Byte.Length)
+            '    imagePreview2.Src = "data:image/png;base64," & img2String
+            'End If
 
 
-
-
-                Dim cmd As New SqlCommand
-                With cmd
-                    .CommandType = CommandType.Text
-                    .CommandText = "sp_VRGetDataConnnections"
-                    .Connection = con
-                End With
-                Dim da As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
-                da.Fill(dt)
-
-                txtVRDBServer.Value = dt.Rows(0).Item(2).ToString()
-                txtVRDBName.Value = dt.Rows(0).Item(3).ToString()
-                txtVRDBUser.Value = dt.Rows(0).Item(4).ToString()
-                txtVRDBPass.Value = dt.Rows(0).Item(5).ToString()
-                txtVoteDBServer.Value = dt.Rows(1).Item(2).ToString()
-                txtVoteDBName.Value = dt.Rows(1).Item(3).ToString()
-                txtVoteDBUser.Value = dt.Rows(1).Item(4).ToString()
-                txtVoteDBPass.Value = dt.Rows(1).Item(5).ToString()
-            Catch ex As Exception
-                GenericErrorLabel.InnerText = "Error loading custom settings. Please contact support."
-            End Try
-
-
-            Try
-                Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
-                Dim cmd As New SqlCommand
-                With cmd
-                    .CommandType = CommandType.Text
-                    .CommandText = "sp_VRGetVoteMappings"
-                    .Connection = con
-                End With
-                Dim da As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
-                da.Fill(dt)
-
-
-                Dim ckABSTAIN_enabled As Byte = dt.Rows(2).Item(2)
-                If CBool(ckABSTAIN_enabled) = True Then ckABS_Enabled.Checked = True Else ckABS_Enabled.Checked = False
-
-                Dim ckEXCUSED_enabled As Byte = dt.Rows(3).Item(2)
-                If CBool(ckEXCUSED_enabled) = True Then ckEXC_Enabled.Checked = True Else ckEXC_Enabled.Checked = False
-
-                Dim ckbABSENT_enabled As Byte = dt.Rows(4).Item(2)
-                If CBool(ckbABSENT_enabled) = True Then ckABSENT_Enabled.Checked = True Else ckABSENT_Enabled.Checked = False
-
-                Dim ckbNV_enabled As Byte = dt.Rows(5).Item(2)
-                If CBool(ckbNV_enabled) = True Then ckNV_Enabled.Checked = True Else ckNV_Enabled.Checked = False
-
-
-                txtYEA_Name.Value = dt.Rows(0).Item(3).ToString()
-                txtNAY_Name.Value = dt.Rows(1).Item(3).ToString()
-                txtABS_Name.Value = dt.Rows(2).Item(3).ToString()
-                txtEXC_Name.Value = dt.Rows(3).Item(3).ToString()
-                txtABSENT_Name.Value = dt.Rows(4).Item(3)
-                txtNV_Name.Value = dt.Rows(5).Item(3)
-
-
-                txtYeaOrder.Value = dt.Rows(0).Item(9).ToString()
-                txtNayOrder.Value = dt.Rows(1).Item(9).ToString()
-                txtAbstainOrder.Value = dt.Rows(2).Item(9).ToString()
-                txtExcOrder.Value = dt.Rows(3).Item(9).ToString()
-                txtAbsentOrder.Value = dt.Rows(4).Item(9).ToString()
-                txtNVOrder.Value = dt.Rows(5).Item(9).ToString()
-
-
-                Dim ckABSTAIN_isUsed As Byte = dt.Rows(2).Item(4)
-                If CBool(ckABSTAIN_isUsed) = True Then ckABS_IsUsed.Checked = True Else ckABS_IsUsed.Checked = False
-
-                Dim ckEXCUSED_isUsed As Byte = dt.Rows(3).Item(4)
-                If CBool(ckEXCUSED_isUsed) = True Then ckEXC_IsUsed.Checked = True Else ckEXC_IsUsed.Checked = False
-
-                Dim ckbABSENT_isUsed As Byte = dt.Rows(4).Item(4)
-                If CBool(ckbABSENT_isUsed) = True Then ckABSENT_IsUsed.Checked = True Else ckABSENT_IsUsed.Checked = False
-
-                Dim ckbNV_isUsed As Byte = dt.Rows(5).Item(4)
-                If CBool(ckbNV_isUsed) = True Then ckNV_IsUsed.Checked = True Else ckNV_IsUsed.Checked = False
-
-
-                Dim ckABSTAIN_isEligible As Byte = dt.Rows(2).Item(5)
-                If CBool(ckABSTAIN_isEligible) = True Then ckABS_IsEligible.Checked = True Else ckABS_IsEligible.Checked = False
-
-                Dim ckEXCUSED_isEligible As Byte = dt.Rows(3).Item(5)
-                If CBool(ckEXCUSED_isEligible) = True Then ckEXC_IsEligible.Checked = True Else ckEXC_IsEligible.Checked = False
-
-                Dim ckbABSENT_isEligible As Byte = dt.Rows(4).Item(5)
-                If CBool(ckbABSENT_isEligible) = True Then ckABSENT_IsEligible.Checked = True Else ckABSENT_IsEligible.Checked = False
-
-                Dim ckbNV_isEligible As Byte = dt.Rows(5).Item(5)
-                If CBool(ckbNV_isEligible) = True Then ckNV_IsEnabled.Checked = True Else ckNV_IsEnabled.Checked = False
-
-
-                ' Load Saved Report Parameters
-
-
-                Dim con2 As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
-                Dim cmd2 As New SqlCommand
-                With cmd2
-                    .Connection = con2
-                    .CommandType = CommandType.StoredProcedure
-                    .CommandText = "sp_VRGetReportConfigParams"
-                    .Connection.Open()
-                    .ExecuteNonQuery()
-                    .Connection.Close()
-                End With
-
-                Dim da2 As New SqlDataAdapter(cmd2)
-                Dim dt2 As New DataTable
-                da2.Fill(dt2)
-
-                txtGovName.Value = dt2.Rows(0).Item(1).ToString()
-                txtLegName.Value = dt2.Rows(0).Item(2).ToString()
-
-                link1name.Value = dt2.Rows(0).Item(3).ToString()
-                link1url.Value = dt2.Rows(0).Item(4).ToString()
-                link2name.Value = dt2.Rows(0).Item(5).ToString()
-                link2url.Value = dt2.Rows(0).Item(6).ToString()
-                link3name.Value = dt2.Rows(0).Item(7).ToString()
-                link3url.Value = dt2.Rows(0).Item(8).ToString()
-
-                txtRCS.Value = dt2.Rows(0).Item(9).ToString()
-                txtBillNbr.Value = dt2.Rows(0).Item(10).ToString()
-                txtMotion.Value = dt2.Rows(0).Item(11).ToString()
-                txtDateTime.Value = dt2.Rows(0).Item(12).ToString()
-                txtVoteTot.Value = dt2.Rows(0).Item(13).ToString()
-                txtResults.Value = dt2.Rows(0).Item(14).ToString()
-                txtOutcome.Value = dt2.Rows(0).Item(15).ToString()
-                txtPartyTotals.Value = dt2.Rows(0).Item(16).ToString()
-                txtMember.Value = dt2.Rows(0).Item(17).ToString()
-                txtDistrictName.Value = dt2.Rows(0).Item(18).ToString()
-                txtDistrictNbr.Value = dt2.Rows(0).Item(19).ToString()
-
-                txtPO1Name.Value = dt2.Rows(0).Item(20).ToString()
-                txtPO1Title.Value = dt2.Rows(0).Item(21).ToString()
-                txtPO2Name.Value = dt2.Rows(0).Item(22).ToString()
-                txtPO2title.Value = dt2.Rows(0).Item(23).ToString()
-                txtClerkName.Value = dt2.Rows(0).Item(24).ToString()
-                txtClerkTitle.Value = dt2.Rows(0).Item(25).ToString()
-
-                ddlMotion1.SelectedValue = dt2.Rows(0).Item(28)
-                ddlSubjects1.SelectedValue = dt2.Rows(0).Item(35)
-                If dt2.Rows(0).Item(36) = 0 Then
-                    ddlSubjects2.SelectedValue = "Default"
-                Else
-                    ddlSubjects2.SelectedValue = dt2.Rows(0).Item(36)
-                End If
-
-                Dim img1Byte As Byte() = DirectCast(dt2.Rows(0).Item(26), Byte())
-                Dim img2Byte As Byte() = DirectCast(dt2.Rows(0).Item(27), Byte())
-                Dim img1String As String = String.Empty
-                Dim img2String As String = String.Empty
-
-                If dt2.Rows(0).Item(29) = True Then 'Show district name
-
-                    rbDName.Checked = True
-                    rbDNbr.Checked = False
-
-                Else 'show district Number
-
-                    rbDName.Checked = False
-                    rbDNbr.Checked = True
-
-                End If
-
-                If dt2.Rows(0).Item(32) = True Then
-                    ckShowMbrStat.Checked = True
-                End If
-                If dt2.Rows(0).Item(33) = True Then
-                    ckShowPartyStat.Checked = True
-                End If
-                If dt2.Rows(0).Item(34) = True Then
-                    ckShowVoteTtl.Checked = True
-                End If
-
-
-
-                'If img1Byte.Length = 0 Then
-                '    imagePreview1.Visible = False
-                'Else
-                '    img1String = Convert.ToBase64String(img1Byte, 0, img1Byte.Length)
-                '    imagePreview1.Src = "data:image/png;base64," & img1String
-                'End If
-
-                'If img2Byte.Length = 0 Then
-                '    imagePreview2.Visible = False
-                'Else
-                '    img2String = Convert.ToBase64String(img2Byte, 0, img2Byte.Length)
-                '    imagePreview2.Src = "data:image/png;base64," & img2String
-                'End If
-
-
-            Catch ex As Exception
-                GenericErrorLabel.InnerText = "Error loading custom settings. Please contact support."
-            End Try
+            'Catch ex As Exception
+            '    GenericErrorLabel.InnerText = "Error loading custom settings. Please contact support."
+            'End Try
 
             Session("IsReload") = False
 
@@ -223,6 +218,24 @@ Public Class Configuration
 
 
     End Sub
+
+
+
+    Protected Sub btnSaveAllConfigSettings_Click(sender As Object, e As EventArgs) Handles btnSaveAllConfigSettings.Click
+        'Will need to validate all fields in every config section before calling the save procedures.
+
+    End Sub
+
+
+
+
+
+
+
+
+
+
+
 
     Protected Sub btnSaveUIDetails_Click(sender As Object, e As EventArgs)
 
@@ -700,4 +713,6 @@ Public Class Configuration
 
 
     End Sub
+
+    
 End Class

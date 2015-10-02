@@ -69,7 +69,7 @@ Public Class Engine
         '--VOTE MAPPING SETTINGS --
 
         Public yeaEnabled As Boolean
-        Public yeaNamesAs As Boolean
+        Public yeaNamesAs As String
         Public yeaIsUsed As Boolean
         Public yeaIsEligible As Boolean
         Public yeaVoteValue1 As Integer = 1
@@ -78,47 +78,47 @@ Public Class Engine
         Public yeaHeaderOrder As Integer
 
         Public nayEnabled As Boolean
-        Public nayNamesAs As Boolean
+        Public nayNamesAs As String
         Public nayIsUsed As Boolean
         Public nayIsEligible As Boolean
-        Public nayVoteValue1 As Integer = 1
-        Public nayVoteValue2 As Integer = -1
+        Public nayVoteValue1 As Integer = 2
+        Public nayVoteValue2 As Integer = 8
         Public nayVoteValue3 As Integer = -1
         Public nayHeaderOrder As Integer
 
         Public abstainEnabled As Boolean
-        Public abstainNamesAs As Boolean
+        Public abstainNamesAs As String
         Public abstainIsUsed As Boolean
         Public abstainIsEligible As Boolean
-        Public abstainVoteValue1 As Integer = 1
+        Public abstainVoteValue1 As Integer = 3
         Public abstainVoteValue2 As Integer = -1
         Public abstainVoteValue3 As Integer = -1
         Public abstainHeaderOrder As Integer
 
         Public excusedEnabled As Boolean
-        Public excusedNamesAs As Boolean
+        Public excusedNamesAs As String
         Public excusedIsUsed As Boolean
         Public excusedIsEligible As Boolean
-        Public excusedVoteValue1 As Integer = 1
-        Public excusedVoteValue2 As Integer = -1
-        Public excusedVoteValue3 As Integer = -1
+        Public excusedVoteValue1 As Integer = 4
+        Public excusedVoteValue2 As Integer = 7
+        Public excusedVoteValue3 As Integer = 9
         Public excusedHeaderOrder As Integer
 
         Public absentEnabled As Boolean
-        Public absentNamesAs As Boolean
+        Public absentNamesAs As String
         Public absentIsUsed As Boolean
         Public absentIsEligible As Boolean
-        Public absentVoteValue1 As Integer = 1
+        Public absentVoteValue1 As Integer = 5
         Public absentVoteValue2 As Integer = -1
         Public absentVoteValue3 As Integer = -1
         Public absentHeaderOrder As Integer
 
         Public notVotingEnabled As Boolean
-        Public notVotingNamesAs As Boolean
+        Public notVotingNamesAs As String
         Public notVotingIsUsed As Boolean
         Public notVotingIsEligible As Boolean
-        Public notVotingVoteValue1 As Integer = 1
-        Public notVotingVoteValue2 As Integer = -1
+        Public notVotingVoteValue1 As Integer = 0
+        Public notVotingVoteValue2 As Integer = 6
         Public notVotingVoteValue3 As Integer = -1
         Public notVotingHeaderOrder As Integer
 
@@ -182,8 +182,8 @@ Public Class Engine
                     VR.legislatureName = dt.Rows(0).Item("Legislature_Name")
                     VR.rcsNbrTitle = dt.Rows(0).Item("RSCNumber")
                     VR.billNbrTitle = dt.Rows(0).Item("BillNumber")
-                    VR.motionTitle = dt.Rows(0).Item("Government_Name")
-                    VR.motionDataField = dt.Rows(0).Item("Motion")
+                    VR.motionTitle = dt.Rows(0).Item("Motion")
+                    VR.motionDataField = dt.Rows(0).Item("MotionDataField")
                     VR.subjectDataField1 = dt.Rows(0).Item("SubjectField1")
                     VR.subjectDataField2 = dt.Rows(0).Item("SubjectField2")
                     VR.dateTimeTitle = dt.Rows(0).Item("DateTime")
@@ -302,37 +302,37 @@ Public Class Engine
                     VR.yeaNamesAs = "{{Please Configure}}"
                     VR.yeaIsUsed = True
                     VR.yeaIsEligible = True
-                    VR.yeaHeaderOrder = "{{Please Configure}}"
+                    VR.yeaHeaderOrder = 1
 
                     VR.nayEnabled = True
                     VR.nayNamesAs = "{{Please Configure}}"
                     VR.nayIsUsed = True
                     VR.nayIsEligible = True
-                    VR.nayHeaderOrder = "{{Please Configure}}"
+                    VR.nayHeaderOrder = 2
 
                     VR.abstainEnabled = True
                     VR.abstainNamesAs = "{{Please Configure}}"
                     VR.abstainIsUsed = True
                     VR.abstainIsEligible = True
-                    VR.abstainHeaderOrder = "{{Please Configure}}"
+                    VR.abstainHeaderOrder = 3
 
                     VR.excusedEnabled = True
                     VR.excusedNamesAs = "{{Please Configure}}"
                     VR.excusedIsUsed = True
                     VR.excusedIsEligible = True
-                    VR.excusedHeaderOrder = "{{Please Configure}}"
+                    VR.excusedHeaderOrder = 4
 
                     VR.absentEnabled = True
                     VR.absentNamesAs = "{{Please Configure}}"
                     VR.absentIsUsed = True
                     VR.absentIsEligible = True
-                    VR.absentHeaderOrder = "{{Please Configure}}"
+                    VR.absentHeaderOrder = 5
 
                     VR.notVotingEnabled = True
                     VR.notVotingNamesAs = "{{Please Configure}}"
                     VR.notVotingIsUsed = True
                     VR.notVotingIsEligible = True
-                    VR.notVotingHeaderOrder = "{{Please Configure}}"
+                    VR.notVotingHeaderOrder = 6
 
                     VRList.Add(VR)
                     Session("clsVoteReporter") = VRList
@@ -454,8 +454,8 @@ Public Class Engine
                 VRList.Item(0).legislatureName = dt.Rows(0).Item("Legislature_Name")
                 VRList.Item(0).rcsNbrTitle = dt.Rows(0).Item("RSCNumber")
                 VRList.Item(0).billNbrTitle = dt.Rows(0).Item("BillNumber")
-                VRList.Item(0).motionTitle = dt.Rows(0).Item("Government_Name")
-                VRList.Item(0).motionDataField = dt.Rows(0).Item("Motion")
+                VRList.Item(0).motionTitle = dt.Rows(0).Item("Motion")
+                VRList.Item(0).motionDataField = dt.Rows(0).Item("MotionDataField")
                 VRList.Item(0).subjectDataField1 = dt.Rows(0).Item("SubjectField1")
                 VRList.Item(0).subjectDataField2 = dt.Rows(0).Item("SubjectField2")
                 VRList.Item(0).dateTimeTitle = dt.Rows(0).Item("DateTime")
@@ -576,37 +576,37 @@ Public Class Engine
                 VRList.Item(0).yeaNamesAs = "{{Please Configure}}"
                 VRList.Item(0).yeaIsUsed = True
                 VRList.Item(0).yeaIsEligible = True
-                VRList.Item(0).yeaHeaderOrder = "{{Please Configure}}"
+                VRList.Item(0).yeaHeaderOrder = 1
 
                 VRList.Item(0).nayEnabled = True
                 VRList.Item(0).nayNamesAs = "{{Please Configure}}"
                 VRList.Item(0).nayIsUsed = True
                 VRList.Item(0).nayIsEligible = True
-                VRList.Item(0).nayHeaderOrder = "{{Please Configure}}"
+                VRList.Item(0).nayHeaderOrder = 2
 
                 VRList.Item(0).abstainEnabled = True
                 VRList.Item(0).abstainNamesAs = "{{Please Configure}}"
                 VRList.Item(0).abstainIsUsed = True
                 VRList.Item(0).abstainIsEligible = True
-                VRList.Item(0).abstainHeaderOrder = "{{Please Configure}}"
+                VRList.Item(0).abstainHeaderOrder = 3
 
                 VRList.Item(0).excusedEnabled = True
                 VRList.Item(0).excusedNamesAs = "{{Please Configure}}"
                 VRList.Item(0).excusedIsUsed = True
                 VRList.Item(0).excusedIsEligible = True
-                VRList.Item(0).excusedHeaderOrder = "{{Please Configure}}"
+                VRList.Item(0).excusedHeaderOrder = 4
 
                 VRList.Item(0).absentEnabled = True
                 VRList.Item(0).absentNamesAs = "{{Please Configure}}"
                 VRList.Item(0).absentIsUsed = True
                 VRList.Item(0).absentIsEligible = True
-                VRList.Item(0).absentHeaderOrder = "{{Please Configure}}"
+                VRList.Item(0).absentHeaderOrder = 5
 
                 VRList.Item(0).notVotingEnabled = True
                 VRList.Item(0).notVotingNamesAs = "{{Please Configure}}"
                 VRList.Item(0).notVotingIsUsed = True
                 VRList.Item(0).notVotingIsEligible = True
-                VRList.Item(0).notVotingHeaderOrder = "{{Please Configure}}"
+                VRList.Item(0).notVotingHeaderOrder = 6
 
                 Session("clsVoteReporter") = VRList
                 Return True

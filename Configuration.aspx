@@ -84,14 +84,15 @@
             <!-- /.container -->
         </nav>
 
-             <div class="ContentArea">
+             <div class="ContentArea" style="background-color:white;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="contentMessage" style="margin-top: 25px">
                             <h1 style="color:#2c3e50"> Vote Reporter Configuration</h1>
                             <h3 style="color:#2c3e50"><span id="lblsessioncode"></span> Session</h3>
-                         
+                            <br />
+                            <asp:LinkButton ID="btnSaveAllConfigSettings" runat="server" CssClass="btn btn-lg btn-success"><i class="fa fa-save"></i> Save Settings</asp:LinkButton>
                         </div>
                     </div>
                 </div>
@@ -123,7 +124,7 @@
                 <div class="col-lg-8 col-lg-offset-2 text-left" style="margin-top:30px">
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="account">
+                        <div role="tabpanel" class="tab-pane active" id="account" style="color:#2c3e50">
 
                         
                             <div class="col-lg-6"><h4>Government Name</h4><input id="txtGovName" runat="server" class="form-control" /></div>
@@ -140,7 +141,7 @@
 
                             </div>
                         </div>  <!-- End Account -->
-                        <div role="tabpanel" class="tab-pane" id="ui">
+                        <div role="tabpanel" class="tab-pane" id="ui" style="color:#2c3e50">
 
                               <div class="col-lg-12" style="margin-top:15px"><h4>Top Navigation Links</h4></div>
                               <div class="col-lg-6"><h5>Link 1 Title</h5><input id="link1name" runat="server" class="form-control" /></div>
@@ -227,7 +228,7 @@
                             </ul>
                             </div>--%>
 
-                            <div role="tabpanel" class="tab-pane" id="rpt_General">
+                            <div role="tabpanel" class="tab-pane" id="rpt_General" style="color:#2c3e50">
                                 
 
                             <div class="col-lg-12" style="margin-top:15px"><h4>General Report Column Headings</h4></div>
@@ -324,7 +325,7 @@
                             <br />
                             </div> 
 
-                            <div role="tabpanel" class="tab-pane" id="rpt_Transcript">
+                            <div role="tabpanel" class="tab-pane" id="rpt_Transcript" style="color:#2c3e50">
                                 <div class="col-lg-12" style="margin-top:15px"><h4>Transcript Report Column Headings</h4></div>
                             <div class="col-lg-6"><h5>Clerk / Secretary Name</h5><input id="txtClerkName" runat="server" class="form-control" /></div>
                             <div class="col-lg-6"><h5>Clerk / Secretary Title</h5><input id="txtClerkTitle" runat="server" class="form-control" /></div>
@@ -338,7 +339,7 @@
                             </div>
                             
                             
-                              <div role="tabpanel" class="tab-pane" id="rpt_VoteStats">
+                              <div role="tabpanel" class="tab-pane" id="rpt_VoteStats" style="color:#2c3e50">
                                   
                             <div class="col-lg-12" style="margin-top:15px"><h4>Voter Statistic Report Settings</h4></div>
                             <div class="col-lg-12">
@@ -349,17 +350,17 @@
                             </ul>
                             </div>
 
+                                      <div class="col-lg-12" style="margin-top:15px"><h4>Additional Report Settings</h4></div>
+                            <div class="col-lg-12">
+                            <ul class="list-inline">
+                                <li><asp:CheckBox ID="ckOptionalAttendance" runat="server" /><span> Show Optional Attendance Report</span></li>
+                                <li><asp:CheckBox ID="ckOptionalVoterStats" runat="server"  /><span> Show Optional Voter Stats Reports</span></li>
+                                <li><asp:CheckBox ID="ckOptionalPartyTotals" runat="server"  /><span> Show Optional Party Totals </span></li>
+                            </ul>
+                            </div>
+
                               </div>
                             
-
-                       
-
-
-
-
-
-
-
                                <div class="col-lg-12" style="margin-top:15px">
                                    <div class="col-lg-6">
                                       
@@ -472,7 +473,7 @@
 
 
 
-                                 <table class="table table-striped custab">
+                                 <table class="table table-striped custab" style="color:#34495e">
                                      <thead>
                                          <a href="#" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-info-sign"></span> Need Help?</a>
                           
@@ -543,221 +544,7 @@
                                      </tr>
                                  </table>
 
-                                 <script src="js/jquery.js"></script>
-                                 <script>
-                                     $(document).ready(function () {
-
-
-
-                                         // -----------------BASE PAGE FUNCTIONS START ------------------//
-
-
-                                         // 1 ) Get Current Session
-                                         var _CurrentSession = getCurrentSesssion()
-
-                                         function getCurrentSesssion() {
-                                             // make a call to select the current set session.
-                                             // On success, call loadAllSession()
-                                             var result;
-                                             $.ajax({
-                                                 type: "POST",
-                                                 url: "Engine.asmx/getCurrentSession",
-                                                 data: "{}",
-                                                 contentType: "application/json; charset=utf-8",
-                                                 dataType: "json",
-                                                 success: function (data) {
-                                                     _CurrentSession = data.d;
-                                                     loadAllSessions();
-                                                 }
-                                             })
-                                         }
-
-
-                                         function loadAllSessions() {
-
-                                             $.ajax({
-                                                 type: "POST",
-                                                 url: "Engine.asmx/LoadSessions",
-                                                 data: "{}",
-                                                 contentType: "application/json; charset=utf-8",
-                                                 dataType: "json",
-                                                 success: function (data) {
-                                                     var result = data.d;
-                                                     $.each(result, function (index, item) {
-                                                         var optiontag = "<option id=" + item.sessionID + " value=" + item.sessionID + ">" + item.sessionCode + "</option>";
-                                                         $(optiontag).appendTo("#ddlSessionSelect");
-
-                                                     })
-                                                     setSessionDropDown();
-                                                 }
-                                             })
-                                         }
-
-
-                                         function setSessionDropDown() {
-                                             //after drop down has been set, call setPageLinks()
-                                             $("#ddlSessionSelect").val(_CurrentSession);
-
-                                             setPageLinks();
-
-                                         }
-
-
-                                         function setPageLinks() {
-                                             $.ajax({ //first call to set nav bar links and titles
-                                                 type: "POST",
-                                                 url: "Engine.asmx/GetBaseVoteReporterData",
-                                                 data: "{}",
-                                                 contentType: "application/json; charset=utf-8",
-                                                 dataType: "json",
-                                                 success: function (data) {
-                                                     var result = data.d;
-                                                     $.each(result, function (index, item) {
-                                                         $("#lnkSiteTitle").text(item.siteTitle);
-                                                         $("#lnk1").attr("href", item.link1URL);
-                                                         $("#txtLink1").text(item.link1Name);
-                                                         $("#lnk2").attr("href", item.link2URL);
-                                                         $("#txtLink2").text(item.link2Name);
-                                                         $("#lnk3").attr("href", item.link3URL);
-                                                         $("#txtLink3").text(item.link3Name);
-
-                                                         setCurrentSessionName();
-
-                                                     })
-                                                 }
-                                             }) //end ajax call to set links
-                                         }
-
-                                         function setCurrentSessionName() {
-
-                                             $.ajax({
-                                                 type: "POST",
-                                                 url: "Engine.asmx/getCurrentSessionCode",
-                                                 data: "{}",
-                                                 contentType: "application/json; charset=utf-8",
-                                                 dataType: "json",
-                                                 success: function (data) {
-                                                     var result = data.d;
-                                                     $("#lblsessioncode").text(result);
-                                                 }
-                                             })
-
-                                         }
-
-
-                                         $("#ddlSessionSelect").change(function () {
-                                             var session = $("#ddlSessionSelect option:selected").attr("value");
-
-                                             // when the drop down index changes, we need to make a call to update the base vote reporter class
-                                             // with all new session detail.
-                                             updateSession(session);
-                                         })
-
-                                         function updateSession(sessionID) {
-                                             $.ajax({
-                                                 type: "POST",
-                                                 url: "Engine.asmx/updateSession",
-                                                 data: "{SessionID:" + sessionID + "}",
-                                                 contentType: "application/json; charset=utf-8",
-                                                 dataType: "json",
-                                                 success: function (data) {
-                                                     var result = data.d;
-                                                     window.location.reload();
-
-                                                 }
-                                             })
-                                         }
-
-
-
-                                         // -----------------BASE PAGE FUNCTIONS START ------------------//
-
-
-
-
-
-
-
-                                         //Not Voting
-                                         $("#<%=ckNV_Enabled.ClientID%>").change(function () {
-
-                                             if ($(this).is(':checked')) {
-
-                                                 $("#<%=txtNV_Name.ClientID%>").removeAttr("disabled");
-                                                 $("#<%=ckNV_IsUsed.ClientID%>").removeAttr("disabled");
-                                                 $("#<%=ckNV_IsEnabled.ClientID%>").removeAttr("disabled");
-
-                                             } else {
-
-                                                 $("#<%=txtNV_Name.ClientID%>").attr("disabled", "disabled");
-                                                 $("#<%=ckNV_IsUsed.ClientID%>").prop('checked', false);
-                                                 $("#<%=ckNV_IsUsed.ClientID%>").attr("disabled", "disabled");
-                                                 $("#<%=ckNV_IsEnabled.ClientID%>").prop('checked', false);
-                                                 $("#<%=ckNV_IsEnabled.ClientID%>").attr("disabled", "disabled");
-                                             }
-
-                                         }) //end Not Voting Enabled
-
-                                         //Absent 
-                                         $("#<%=ckABSENT_Enabled.ClientID%>").change(function () {
-
-                                             if ($(this).is(':checked')) {
-                                                 $("#<%=txtABSENT_Name.ClientID%>").removeAttr("disabled");
-                                                 $("#<%=ckABSENT_IsUsed.ClientID%>").removeAttr("disabled");
-                                                 $("#<%=ckABSENT_IsEligible.ClientID%>").removeAttr("disabled");
-
-                                             } else {
-                                                 $("#<%=txtABSENT_Name.ClientID%>").attr("disabled", "disabled");
-                                                 $("#<%=ckABSENT_IsUsed.ClientID%>").prop('checked', false);
-                                                 $("#<%=ckABSENT_IsUsed.ClientID%>").attr("disabled", "disabled");
-                                                 $("#<%=ckABSENT_IsEligible.ClientID%>").prop('checked', false);
-                                                 $("#<%=ckABSENT_IsEligible.ClientID%>").attr("disabled", "disabled");
-                                             }
-
-
-                                         }) // end Absent
-
-                                         //Excused
-                                         $("#<%=ckEXC_Enabled.ClientID%>").change(function () {
-
-                                             if ($(this).is(':checked')) {
-                                                 $("#<%=txtEXC_Name.ClientID%>").removeAttr("disabled");
-                                                 $("#<%=ckEXC_IsUsed.ClientID%>").removeAttr("disabled");
-                                                 $("#<%=ckEXC_IsEligible.ClientID%>").removeAttr("disabled");
-
-                                             } else {
-                                                 $("#<%=txtEXC_Name.ClientID%>").attr("disabled", "disabled");
-                                                 $("#<%=ckEXC_IsUsed.ClientID%>").prop('checked', false);
-                                                 $("#<%=ckEXC_IsUsed.ClientID%>").attr("disabled", "disabled");
-                                                 $("#<%=ckEXC_IsEligible.ClientID%>").prop('checked', false);
-                                                 $("#<%=ckEXC_IsEligible.ClientID%>").attr("disabled", "disabled");
-                                             }
-
-
-                                         }) // End Excused
-
-
-                                         //Abstain
-                                         $("#<%=ckABS_Enabled.ClientID%>").change(function () {
-
-                                             if ($(this).is(':checked')) {
-                                                 $("#<%=txtABS_Name.ClientID%>").removeAttr("disabled");
-                                                 $("#<%=ckABS_IsUsed.ClientID%>").removeAttr("disabled");
-                                                 $("#<%=ckABS_IsEligible.ClientID%>").removeAttr("disabled");
-
-                                             } else {
-                                                 $("#<%=txtABS_Name.ClientID%>").attr("disabled", "disabled");
-                                                 $("#<%=ckABS_IsUsed.ClientID%>").prop('checked', false);
-                                                 $("#<%=ckABS_IsUsed.ClientID%>").attr("disabled", "disabled");
-                                                 $("#<%=ckABS_IsEligible.ClientID%>").prop('checked', false);
-                                                 $("#<%=ckABS_IsEligible.ClientID%>").attr("disabled", "disabled");
-                                             }
-
-                                         }) // End Abstain
-
-
-                                     })
-                                 </script>
+                                 
 
                              </div>
 
@@ -786,7 +573,7 @@
     </div>
     <!-- /.container -->
     <!--New User Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="color:#34495e">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -850,8 +637,307 @@
  <script src="js/bootstrap.min.js"></script>
  <script type="text/javascript">
 
-        $(document).ready(function () {
+     $(document).ready(function () {
 
+
+         // -----------------BASE PAGE FUNCTIONS START ------------------//
+
+
+         // 1 ) Get Current Session
+         var _CurrentSession = getCurrentSesssion()
+
+         function getCurrentSesssion() {
+             // make a call to select the current set session.
+             // On success, call loadAllSession()
+             var result;
+             $.ajax({
+                 type: "POST",
+                 url: "Engine.asmx/getCurrentSession",
+                 data: "{}",
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 success: function (data) {
+                     _CurrentSession = data.d;
+                     loadAllSessions();
+                 }
+             })
+         }
+
+
+         function loadAllSessions() {
+
+             $.ajax({
+                 type: "POST",
+                 url: "Engine.asmx/LoadSessions",
+                 data: "{}",
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 success: function (data) {
+                     var result = data.d;
+                     $.each(result, function (index, item) {
+                         var optiontag = "<option id=" + item.sessionID + " value=" + item.sessionID + ">" + item.sessionCode + "</option>";
+                         $(optiontag).appendTo("#ddlSessionSelect");
+
+                     })
+                     setSessionDropDown();
+                 }
+             })
+         }
+
+
+         function setSessionDropDown() {
+             //after drop down has been set, call setPageLinks()
+             $("#ddlSessionSelect").val(_CurrentSession);
+
+             setPageLinks();
+
+         }
+
+
+         function setPageLinks() {
+             $.ajax({ //first call to set nav bar links and titles
+                 type: "POST",
+                 url: "Engine.asmx/GetBaseVoteReporterData",
+                 data: "{}",
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 success: function (data) {
+                     var result = data.d;
+                     $.each(result, function (index, item) {
+                         $("#lnkSiteTitle").text(item.siteTitle);
+                         $("#lnk1").attr("href", item.link1URL);
+                         $("#txtLink1").text(item.link1Name);
+                         $("#lnk2").attr("href", item.link2URL);
+                         $("#txtLink2").text(item.link2Name);
+                         $("#lnk3").attr("href", item.link3URL);
+                         $("#txtLink3").text(item.link3Name);
+
+                         setCurrentSessionName();
+
+                     })
+                 }
+             }) //end ajax call to set links
+         }
+
+         function setCurrentSessionName() {
+
+             $.ajax({
+                 type: "POST",
+                 url: "Engine.asmx/getCurrentSessionCode",
+                 data: "{}",
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 success: function (data) {
+                     var result = data.d;
+                     $("#lblsessioncode").text(result);
+                 }
+             })
+
+         }
+
+
+         $("#ddlSessionSelect").change(function () {
+             var session = $("#ddlSessionSelect option:selected").attr("value");
+
+             // when the drop down index changes, we need to make a call to update the base vote reporter class
+             // with all new session detail.
+             updateSession(session);
+         })
+
+         function updateSession(sessionID) {
+             $.ajax({
+                 type: "POST",
+                 url: "Engine.asmx/updateSession",
+                 data: "{SessionID:" + sessionID + "}",
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 success: function (data) {
+                     var result = data.d;
+                     window.location.reload();
+
+                 }
+             })
+         }
+
+
+
+         // -----------------BASE PAGE FUNCTIONS START ------------------//
+
+
+
+
+            //get current session settings.
+            $.ajax({ //first call to set nav bar links and titles
+                type: "POST",
+                url: "Engine.asmx/GetBaseVoteReporterData",
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    var result = data.d;
+                    $.each(result, function (index, item) {
+                      
+                        $("#<%=txtGovName.ClientID%>").val(item.governmentName);
+                        $("#<%=txtLegName.ClientID%>").val(item.legislatureName);
+
+                        $("#<%=link1name.ClientID%>").val(item.link1Name);
+                        $("#<%=link2name.ClientID%>").val(item.link2Name);
+                        $("#<%=link3name.ClientID%>").val(item.link3Name);
+
+                        $("#<%=link1url.ClientID%>").val(item.link1URL);
+                        $("#<%=link2url.ClientID%>").val(item.link2URL);
+                        $("#<%=link3url.ClientID%>").val(item.link3URL);
+
+                        $("#<%=txtRCS.ClientID%>").val(item.rcsNbrTitle);
+                        $("#<%=txtBillNbr.ClientID%>").val(item.billNbrTitle);
+                        $("#<%=txtMotion.ClientID%>").val(item.motionTitle);
+                        $("#<%=txtDateTime.ClientID%>").val(item.dateTimeTitle);
+                        $("#<%=txtVoteTot.ClientID%>").val(item.voteTotalTitle);
+                        $("#<%=txtResults.ClientID%>").val(item.resultsTitle);
+                        $("#<%=txtOutcome.ClientID%>").val(item.outcomeTitle);
+                        $("#<%=txtPartyTotals.ClientID%>").val(item.partyTotalsTitle);
+                        $("#<%=txtMember.ClientID%>").val(item.memberTitle);
+                        $("#<%=txtDistrictName.ClientID%>").val(item.districtNameTitle);
+                        $("#<%=txtDistrictNbr.ClientID%>").val(item.districtNbrTitle);
+
+                        $("#<%=txtPO1Name.ClientID%>").val(item.presidingOfficer1Name);
+                        $("#<%=txtPO1Title.ClientID%>").val(item.presidingOfficer1Title);
+                        $("#<%=txtPO2Name.ClientID%>").val(item.presidingOfficer2Name);
+                        $("#<%=txtPO2title.ClientID%>").val(item.presidingOfficer2Title);
+                        $("#<%=txtClerkName.ClientID%>").val(item.clerkSecretaryName);
+                        $("#<%=txtClerkTitle.ClientID%>").val(item.clerkSecretaryTitle);
+                        
+                        $("#<%=rbDName.ClientID%>").prop("checked", item.showDistrictName);
+                        $("#<%=rbDNbr.ClientID%>").prop("checked", item.showDistrictNbr);
+                        $("#<%=ckShowMbrStat.ClientID%>").prop("checked", item.showMajorityStats);
+                        $("#<%=ckShowPartyStat.ClientID%>").prop("checked", item.showPartyStats);
+                        $("#<%=ckShowVoteTtl.ClientID%>").prop("checked", item.showVotingStats);
+                        $("#<%=ckOptionalAttendance.ClientID%>").prop("checked", item.showOptionalAttendance);
+                        $("#<%=ckOptionalVoterStats.ClientID%>").prop("checked", item.showOptionalStats);
+                        $("#<%=ckOptionalPartyTotals.ClientID%>").prop("checked", item.showOptionalPartyTotals);
+
+                        $("#<%=ddlMotion1.ClientID%>").val(item.motionDataField);
+                        $("#<%=ddlSubjects1.ClientID%>").val(item.subjectDataField1);
+                        $("#<%=ddlSubjects2.ClientID%>").val(item.subjectDataField2);
+                      
+                        $("#<%=ckYEA_Enabled.ClientID%>").prop("checked",item.yeaEnabled);
+                        $("#<%=txtYEA_Name.ClientID%>").val(item.yeaNamesAs);
+                        $("#<%=ckYEA_IsUsed.ClientID%>").prop("checked",item.yeaIsUsed);
+                        $("#<%=ckYEA_IsEligible.ClientID%>").prop("checked",item.yeaIsEligible);
+                        $("#<%=txtYeaOrder.ClientID%>").val(item.yeaHeaderOrder)
+                        
+                        $("#<%=ckNAY_Enabled.ClientID%>").prop("checked", item.nayEnabled);
+                        $("#<%=txtNAY_Name.ClientID%>").val(item.nayNamesAs);
+                        $("#<%=ckNAY_IsUsed.ClientID%>").prop("checked", item.nayIsUsed);
+                        $("#<%=ckNAY_IsEligible.ClientID%>").prop("checked", item.nayIsEligible);
+                        $("#<%=txtNayOrder.ClientID%>").val(item.nayHeaderOrder)
+
+                        $("#<%=ckABS_Enabled.ClientID%>").prop("checked", item.abstainEnabled);
+                        $("#<%=txtABS_Name.ClientID%>").val(item.abstainNamesAs);
+                        $("#<%=ckABS_IsUsed.ClientID%>").prop("checked", item.abstainIsUsed);
+                        $("#<%=ckABS_IsEligible.ClientID%>").prop("checked", item.abstainIsEligible);
+                        $("#<%=txtAbstainOrder.ClientID%>").val(item.abstainHeaderOrder)
+                       
+                        $("#<%=ckEXC_Enabled.ClientID%>").prop("checked", item.excusedEnabled);
+                        $("#<%=txtEXC_Name.ClientID%>").val(item.excusedNamesAs);
+                        $("#<%=ckEXC_IsUsed.ClientID%>").prop("checked", item.excusedIsUsed);
+                        $("#<%=ckEXC_IsEligible.ClientID%>").prop("checked", item.excusedIsEligible);
+                        $("#<%=txtExcOrder.ClientID%>").val(item.excusedHeaderOrder)
+                       
+                        $("#<%=ckABSENT_Enabled.ClientID%>").prop("checked", item.absentEnabled);
+                        $("#<%=txtABSENT_Name.ClientID%>").val(item.absentNamesAs);
+                        $("#<%=ckABSENT_IsUsed.ClientID%>").prop("checked", item.absentIsUsed);
+                        $("#<%=ckABSENT_IsEligible.ClientID%>").prop("checked", item.absentIsEligible);
+                        $("#<%=txtAbsentOrder.ClientID%>").val(item.absentHeaderOrder)
+
+                        $("#<%=ckNV_Enabled.ClientID%>").prop("checked", item.notVotingEnabled);
+                        $("#<%=txtNV_Name.ClientID%>").val(item.notVotingNamesAs);
+                        $("#<%=ckNV_IsUsed.ClientID%>").prop("checked", item.notVotingIsUsed);
+                        $("#<%=ckNV_IsEnabled.ClientID%>").prop("checked", item.notVotingIsEligible);
+                        $("#<%=txtNVOrder.ClientID%>").val(item.notVotingHeaderOrder)
+
+
+                    })
+                }
+            })
+
+
+         //Not Voting
+         $("#<%=ckNV_Enabled.ClientID%>").change(function () {
+
+             if ($(this).is(':checked')) {
+
+                 $("#<%=txtNV_Name.ClientID%>").removeAttr("disabled");
+                 $("#<%=ckNV_IsUsed.ClientID%>").removeAttr("disabled");
+                 $("#<%=ckNV_IsEnabled.ClientID%>").removeAttr("disabled");
+
+             } else {
+
+                 $("#<%=txtNV_Name.ClientID%>").attr("disabled", "disabled");
+                 $("#<%=ckNV_IsUsed.ClientID%>").prop('checked', false);
+                 $("#<%=ckNV_IsUsed.ClientID%>").attr("disabled", "disabled");
+                 $("#<%=ckNV_IsEnabled.ClientID%>").prop('checked', false);
+                 $("#<%=ckNV_IsEnabled.ClientID%>").attr("disabled", "disabled");
+             }
+
+         }) //end Not Voting Enabled
+
+         //Absent 
+         $("#<%=ckABSENT_Enabled.ClientID%>").change(function () {
+
+             if ($(this).is(':checked')) {
+                 $("#<%=txtABSENT_Name.ClientID%>").removeAttr("disabled");
+                 $("#<%=ckABSENT_IsUsed.ClientID%>").removeAttr("disabled");
+                 $("#<%=ckABSENT_IsEligible.ClientID%>").removeAttr("disabled");
+
+             } else {
+                 $("#<%=txtABSENT_Name.ClientID%>").attr("disabled", "disabled");
+                 $("#<%=ckABSENT_IsUsed.ClientID%>").prop('checked', false);
+                 $("#<%=ckABSENT_IsUsed.ClientID%>").attr("disabled", "disabled");
+                 $("#<%=ckABSENT_IsEligible.ClientID%>").prop('checked', false);
+                 $("#<%=ckABSENT_IsEligible.ClientID%>").attr("disabled", "disabled");
+             }
+
+
+         }) // end Absent
+
+         //Excused
+         $("#<%=ckEXC_Enabled.ClientID%>").change(function () {
+
+             if ($(this).is(':checked')) {
+                 $("#<%=txtEXC_Name.ClientID%>").removeAttr("disabled");
+                 $("#<%=ckEXC_IsUsed.ClientID%>").removeAttr("disabled");
+                 $("#<%=ckEXC_IsEligible.ClientID%>").removeAttr("disabled");
+
+             } else {
+                 $("#<%=txtEXC_Name.ClientID%>").attr("disabled", "disabled");
+                 $("#<%=ckEXC_IsUsed.ClientID%>").prop('checked', false);
+                 $("#<%=ckEXC_IsUsed.ClientID%>").attr("disabled", "disabled");
+                 $("#<%=ckEXC_IsEligible.ClientID%>").prop('checked', false);
+                 $("#<%=ckEXC_IsEligible.ClientID%>").attr("disabled", "disabled");
+             }
+
+
+         }) // End Excused
+
+
+         //Abstain
+         $("#<%=ckABS_Enabled.ClientID%>").change(function () {
+
+             if ($(this).is(':checked')) {
+                 $("#<%=txtABS_Name.ClientID%>").removeAttr("disabled");
+                 $("#<%=ckABS_IsUsed.ClientID%>").removeAttr("disabled");
+                 $("#<%=ckABS_IsEligible.ClientID%>").removeAttr("disabled");
+
+             } else {
+                 $("#<%=txtABS_Name.ClientID%>").attr("disabled", "disabled");
+                 $("#<%=ckABS_IsUsed.ClientID%>").prop('checked', false);
+                 $("#<%=ckABS_IsUsed.ClientID%>").attr("disabled", "disabled");
+                 $("#<%=ckABS_IsEligible.ClientID%>").prop('checked', false);
+                 $("#<%=ckABS_IsEligible.ClientID%>").attr("disabled", "disabled");
+             }
+
+         }) // End Abstain
 
         }) // end doc ready
     </script>
