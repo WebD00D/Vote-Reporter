@@ -93,6 +93,8 @@
                             <h3 style="color:#2c3e50"><span id="lblsessioncode"></span> Session</h3>
                             <br />
                             <asp:LinkButton ID="btnSaveAllConfigSettings" runat="server" CssClass="btn btn-lg btn-success"><i class="fa fa-save"></i> Save Settings</asp:LinkButton>
+                            <br />
+                            <asp:Label ID="lblConfigurationErrorMessage" runat="server" ForeColor="Red"></asp:Label>
                         </div>
                     </div>
                 </div>
@@ -115,7 +117,7 @@
                             <li role="presentation" class="active"><a href="#account" aria-controls="home" role="tab" data-toggle="tab"><h4>Account Settings</h4></a></li>
                             <li role="presentation"><a href="#ui" aria-controls="profile" role="tab" data-toggle="tab"><h4>User Interface</h4></a></li>
                             <li role="presentation"><a href="#rparam" aria-controls="messages" role="tab" data-toggle="tab"><h4>Report Parameters</h4></a></li>
-                            <li role="presentation"><a href="#data" aria-controls="settings" role="tab" data-toggle="tab"><h4>Data Control</h4></a></li>
+                            <li role="presentation"><a href="#data" aria-controls="settings" role="tab" data-toggle="tab"><h4>Vote Mapping</h4></a></li>
                         </ul>
 
                     </div>

@@ -222,9 +222,44 @@ Public Class Configuration
 
 
     Protected Sub btnSaveAllConfigSettings_Click(sender As Object, e As EventArgs) Handles btnSaveAllConfigSettings.Click
-        'Will need to validate all fields in every config section before calling the save procedures.
+
+        clearInputBorders()
+
+        If validateAccountSettings() Then
+            If validateReportParameters() Then
+                If Not validateVoteMappings() Then
+                    lblConfigurationErrorMessage.Text = "Please make sure all fields are completed in 'Vote Mapping'."
+                    Exit Sub
+                End If
+            Else
+                lblConfigurationErrorMessage.Text = "Please make sure all fields are completed in 'Report Parameters'."
+                Exit Sub
+            End If
+        Else
+            lblConfigurationErrorMessage.Text = "Please make sure all fields are completed in 'Account Settings'."
+            Exit Sub
+        End If
 
     End Sub
+
+    Public Function clearInputBorders()
+
+        Return " "
+    End Function
+
+
+    Public Function validateAccountSettings()
+
+        Return False
+    End Function
+
+    Public Function validateReportParameters()
+        Return False
+    End Function
+
+    Public Function validateVoteMappings()
+        Return False
+    End Function
 
 
 
@@ -714,5 +749,5 @@ Public Class Configuration
 
     End Sub
 
-    
+
 End Class
