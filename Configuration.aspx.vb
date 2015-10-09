@@ -223,11 +223,14 @@ Public Class Configuration
 
     Protected Sub btnSaveAllConfigSettings_Click(sender As Object, e As EventArgs) Handles btnSaveAllConfigSettings.Click
 
-        If validateAccountSettings() Then
-            If validateReportParameters() Then
-                If Not validateVoteMappings() Then
-                    lblConfigurationErrorMessage.Text = "Please make sure all fields are completed in 'Vote Mapping'."
+        If Not validateAccountSettings() Then
+            If Not validateReportParameters() Then
+                If validateVoteMappings() Then
+                    lblConfigurationErrorMessage.Text = "Please make sure all fields are completed, and a numerical sort order has been set in 'Vote Mapping'."
                     Exit Sub
+                Else
+                    'everything has been validated so we should be good to save everything
+                    saveConfigurationSettings()
                 End If
             Else
                 lblConfigurationErrorMessage.Text = "Please make sure all fields are completed in 'Report Parameters'."
@@ -240,7 +243,178 @@ Public Class Configuration
 
     End Sub
 
-    
+    Public Sub saveConfigurationSettings()
+
+        Dim VRList As List(Of Engine.clsVoteReporter) = Session("clsVoteReporter")
+
+
+        Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
+        Dim cmd As New SqlCommand
+
+        Try  'Save site settings
+            Using cmd
+                cmd.Connection = con
+                cmd.CommandType = CommandType.StoredProcedure
+                cmd.CommandText = "sp_VRSetAccountParams"
+                cmd.Parameters.AddWithValue("@GovName", txtGovName.Value)
+                cmd.Parameters.AddWithValue("@LegName", txtLegName.Value)
+                cmd.Parameters.AddWithValue("@SessionID", VRList.Item(0).currentSessionID)
+                cmd.Connection.Open()
+                cmd.ExecuteNonQuery()
+                cmd.Connection.Close()
+            End Using
+
+        Catch ex As Exception
+            GenericErrorLabel.InnerText = "Something went wrong while saving 'Account Settings' to the database. Please contact support."
+            Exit Sub
+        End Try
+
+
+        Try 'Save UI
+            Using cmd
+                cmd.Parameters.Clear()
+                cmd.Connection = con
+                cmd.CommandType = CommandType.StoredProcedure
+                cmd.CommandText = "sp_VRSetUIParams"
+                cmd.Parameters.AddWithValue("@MainImage", imguploader2.FileBytes)
+                cmd.Parameters.AddWithValue("@SealImg ", imguploader1.FileBytes)
+                cmd.Parameters.AddWithValue("@Link1Name", link1name.Value)
+                cmd.Parameters.AddWithValue("@Link1URL ", link1url.Value)
+                cmd.Parameters.AddWithValue("@Link2Name", link2name.Value)
+                cmd.Parameters.AddWithValue("@Link2URL ", link2url.Value)
+                cmd.Parameters.AddWithValue("@Link3Name", link3name.Value)
+                cmd.Parameters.AddWithValue("@Link3URL ", link3url.Value)
+                cmd.Parameters.AddWithValue("@SessionID", VRList.Item(0).currentSessionID)
+                cmd.Connection.Open()
+                cmd.ExecuteNonQuery()
+                cmd.Connection.Close()
+            End Using
+
+        Catch ex As Exception
+            GenericErrorLabel.InnerText = "Something went wrong while saving 'User Interface settings' to the database. Please contact support."
+            Exit Sub
+        End Try
+
+        Try 'Save report parameters
+
+            Using cmd
+
+                cmd.Connection = con
+                cmd.Parameters.Clear()
+                cmd.CommandType = CommandType.StoredProcedure
+                cmd.CommandText = "sp_VRSetReportParams"
+                cmd.Parameters.AddWithValue("@RSCNumber", txtRCS.Value)
+                cmd.Parameters.AddWithValue("@BillNumber", txtBillNbr.Value)
+                cmd.Parameters.AddWithValue("@Motion", txtMotion.Value)
+                cmd.Parameters.AddWithValue("@DateTime", txtDateTime.Value)
+                cmd.Parameters.AddWithValue("@VoteTotals", txtVoteTot.Value)
+                cmd.Parameters.AddWithValue("@Results", txtResults.Value)
+                cmd.Parameters.AddWithValue("@Outcome ", txtOutcome.Value)
+                cmd.Parameters.AddWithValue("@PartyTotals", txtPartyTotals.Value)
+                cmd.Parameters.AddWithValue("@Member", txtMember.Value)
+                cmd.Parameters.AddWithValue("@DistrictName", txtDistrictName.Value)
+                cmd.Parameters.AddWithValue("@DistrictNumber", txtDistrictNbr.Value)
+                cmd.Parameters.AddWithValue("@Presiding_Name_1", txtPO1Name.Value)
+                cmd.Parameters.AddWithValue("@Presiding_Title_1", txtPO1Title.Value)
+                cmd.Parameters.AddWithValue("@Presiding_Name_2", txtPO2Name.Value)
+                cmd.Parameters.AddWithValue("@Presiding_Title_2", txtPO2title.Value)
+                cmd.Parameters.AddWithValue("@Clerk_Secretary_Name", txtClerkName.Value)
+                cmd.Parameters.AddWithValue("@Clerk_Secretary_Title", txtClerkTitle.Value)
+                cmd.Parameters.AddWithValue("@showDistrictName", CByte(rbDName.Checked))
+                cmd.Parameters.AddWithValue("@showDistrictNumber", CByte(rbDNbr.Checked))
+                cmd.Parameters.AddWithValue("@showMajorityStats", CByte(ckShowMbrStat.Checked))
+                cmd.Parameters.AddWithValue("@showPartyStats", CByte(ckShowPartyStat.Checked))
+                cmd.Parameters.AddWithValue("@showVotingStats", CByte(ckShowVoteTtl.Checked))
+
+                cmd.Parameters.AddWithValue("@ShowOptionalAttendance", CByte(ckOptionalAttendance.Checked))
+                cmd.Parameters.AddWithValue("@ShowOptionalStats", CByte(ckOptionalVoterStats.Checked))
+                cmd.Parameters.AddWithValue("@ShowOptionalPartyTotals", CByte(ckOptionalPartyTotals.Checked))
+                cmd.Parameters.AddWithValue("@SessionID", VRList.Item(0).currentSessionID)
+
+                If ddlSubjects1.SelectedValue = "Default" Then
+                    GenericErrorLabel.InnerText = "No 'Subject 1 Mapping' selected. Please select, and re-save."
+                    Exit Sub
+                Else
+                    cmd.Parameters.AddWithValue("@SubjectField1", ddlSubjects1.SelectedValue)
+                    Dim Subject2Val As Integer
+                    If ddlSubjects2.SelectedValue = "Default" Then
+                        Subject2Val = 0
+                    Else
+                        Subject2Val = ddlSubjects2.SelectedValue
+                    End If
+                    cmd.Parameters.AddWithValue("@SubjectField2", ddlSubjects2.SelectedValue)
+                End If
+
+                If ddlMotion1.SelectedValue = "Default" Then
+                    GenericErrorLabel.InnerText = "No 'Motion Column Mapping' selected. Please select, and re-save."
+                    Exit Sub
+                Else
+                    cmd.Parameters.AddWithValue("@MotionField", ddlMotion1.SelectedValue.ToString())
+                End If
+
+                cmd.Connection.Open()
+                cmd.ExecuteNonQuery()
+                cmd.Connection.Close()
+            End Using
+
+        Catch ex As Exception
+            GenericErrorLabel.InnerText = "Something went wrong while saving 'Report Parameters' to the database. Please contact support."
+        End Try
+
+        Try 'save vote mapping
+
+            With cmd
+                cmd.Connection = con
+                cmd.CommandType = CommandType.StoredProcedure
+                cmd.CommandText = "sp_VRSetVoteTypeMappings"
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@YEA_name", txtYEA_Name.Value)
+                cmd.Parameters.AddWithValue("@NAY_name", txtNAY_Name.Value)
+
+                cmd.Parameters.AddWithValue("@ABS_enabled", CByte(ckABS_Enabled.Checked))
+                cmd.Parameters.AddWithValue("@ABS_name", txtABS_Name.Value)
+                cmd.Parameters.AddWithValue("@ABS_isUsed", CByte(ckABS_IsUsed.Checked))
+                cmd.Parameters.AddWithValue("@ABS_isEligible", CByte(ckABS_IsEligible.Checked))
+
+                cmd.Parameters.AddWithValue("@EXC_enabled", CByte(ckEXC_Enabled.Checked))
+                cmd.Parameters.AddWithValue("@EXC_name", txtEXC_Name.Value)
+                cmd.Parameters.AddWithValue("@EXC_isUsed", CByte(ckEXC_IsUsed.Checked))
+                cmd.Parameters.AddWithValue("@EXC_isEligible", CByte(ckEXC_IsEligible.Checked))
+
+                cmd.Parameters.AddWithValue("@ABSENT_enabled", CByte(ckABSENT_Enabled.Checked))
+                cmd.Parameters.AddWithValue("@ABSENT_name", txtABSENT_Name.Value)
+                cmd.Parameters.AddWithValue("@ABSENT_isUsed", CByte(ckABSENT_IsUsed.Checked))
+                cmd.Parameters.AddWithValue("@ABSENT_isEligible", CByte(ckABSENT_IsEligible.Checked))
+
+                cmd.Parameters.AddWithValue("@NV_enabled", CByte(ckNV_Enabled.Checked))
+                cmd.Parameters.AddWithValue("@NV_name", txtNV_Name.Value)
+                cmd.Parameters.AddWithValue("@NV_isUsed", CByte(ckNV_IsUsed.Checked))
+                cmd.Parameters.AddWithValue("@NV_isEligible", CByte(ckNV_IsEnabled.Checked))
+
+                cmd.Parameters.AddWithValue("@YeaOrder", txtYeaOrder.Value)
+                cmd.Parameters.AddWithValue("@NayOrder", txtNayOrder.Value)
+                cmd.Parameters.AddWithValue("@AbstainOrder", txtAbstainOrder.Value)
+                cmd.Parameters.AddWithValue("@ExcusedOrder", txtExcOrder.Value)
+                cmd.Parameters.AddWithValue("@AbsentOrder", txtAbsentOrder.Value)
+                cmd.Parameters.AddWithValue("@NotVotingOrder", txtNVOrder.Value)
+                cmd.Parameters.AddWithValue("@SessionID", VRList.Item(0).currentSessionID)
+                cmd.Connection.Open()
+                cmd.ExecuteNonQuery()
+                cmd.Connection.Close()
+
+            End With
+
+        Catch ex As Exception
+            GenericErrorLabel.InnerText = "Something went wrong while saving 'Vote Mappings' to the database. Please contact support."
+        End Try
+
+
+
+        'Response.Redirect("Configuration.aspx", False)
+        'Context.ApplicationInstance.CompleteRequest()
+
+
+    End Sub
 
 
     Public Function validateAccountSettings()
@@ -270,7 +444,48 @@ Public Class Configuration
     End Function
 
     Public Function validateVoteMappings()
-        Return False
+        Dim hasErrors As Boolean = False
+
+        'check for empty fields
+
+        If Trim(txtYeaOrder.Value) = String.Empty Or Trim(txtNayOrder.Value) = String.Empty Or Trim(txtAbstainOrder.Value) = String.Empty Or Trim(txtExcOrder.Value) = String.Empty Or Trim(txtAbsentOrder.Value) = String.Empty Or Trim(txtNVOrder.Value) = String.Empty Then hasErrors = True
+        If Not IsNumeric(txtYeaOrder.Value) Or CInt(txtYeaOrder.Value) > 6 Or CInt(txtYeaOrder.Value) < 1 Then hasErrors = True
+        If Not IsNumeric(txtNayOrder.Value) Or CInt(txtNayOrder.Value) > 6 Or CInt(txtNayOrder.Value) < 1 Then hasErrors = True
+        If Not IsNumeric(txtAbstainOrder.Value) Or CInt(txtAbstainOrder.Value) > 6 Or CInt(txtAbstainOrder.Value) < 1 Then hasErrors = True
+        If Not IsNumeric(txtExcOrder.Value) Or CInt(txtExcOrder.Value) > 6 Or CInt(txtExcOrder.Value) < 1 Then hasErrors = True
+        If Not IsNumeric(txtAbsentOrder.Value) Or CInt(txtAbsentOrder.Value) > 6 Or CInt(txtAbsentOrder.Value) < 1 Then hasErrors = True
+        If Not IsNumeric(txtNVOrder.Value) Or CInt(txtNVOrder.Value) > 6 Or CInt(txtNVOrder.Value) < 1 Then hasErrors = True
+
+        'Check for duplicate sort order numbers
+
+        Dim YeaOrder As Integer = CInt(txtYeaOrder.Value)
+        Dim NayOrder As Integer = CInt(txtNayOrder.Value)
+        Dim AbstainOrder As Integer = CInt(txtAbstainOrder.Value)
+        Dim ExcusedOrder As Integer = CInt(txtExcOrder.Value)
+        Dim AbsentOrder As Integer = CInt(txtAbsentOrder.Value)
+        Dim NotVotingOrder As Integer = CInt(txtNVOrder.Value)
+
+        Dim IsUsed(5) As Integer
+        IsUsed(0) = YeaOrder
+        IsUsed(1) = NayOrder
+        IsUsed(2) = AbstainOrder
+        IsUsed(3) = ExcusedOrder
+        IsUsed(4) = AbsentOrder
+        IsUsed(5) = NotVotingOrder
+
+        Dim hs As New HashSet(Of Integer)
+        hs.Clear()
+        For Each soItem In IsUsed
+            If Not hs.Contains(soItem) Then
+                hs.Add(soItem)
+            Else
+                'duplicate entry 
+                hasErrors = True
+            End If
+        Next
+
+
+        Return hasErrors
     End Function
 
     Public Function checkifEmpty(ByVal stringToCheck As String)
