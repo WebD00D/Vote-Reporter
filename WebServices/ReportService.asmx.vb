@@ -202,36 +202,23 @@ Imports System.Data.SqlClient
     <WebMethod(True)> _
     Public Function LoadMembers()
 
+
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
+
         Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
         Dim cmd As New SqlCommand
-
-        Dim VotingDB As String = String.Empty
-
         Dim da As New SqlDataAdapter
         Dim dt As New DataTable
         Dim ds As New DataSet
 
-        With cmd
-            .Connection = con
-            .Connection.Open()
-            .CommandType = CommandType.StoredProcedure
-            .CommandText = "sp_VRGetDatabaseName"
-            Using da
-                da.SelectCommand = cmd
-                da.Fill(dt)
-            End Using
-            .Connection.Close()
-        End With
-
-        VotingDB = dt.Rows(1).Item(0)
-        Dim SessionCode As String = Session("SessionCode")
-
+  
         With cmd
             .Connection = con
             .Connection.Open()
             .CommandType = CommandType.StoredProcedure
             .CommandText = "sp_VRGetActiveMembers"
-            .Parameters.AddWithValue("@SessionCode", SessionCode)
+            .Parameters.AddWithValue("@SessionCode", VoteReporter.Item(0).currentSessionCode)
 
             Using da
                 da.SelectCommand = cmd
@@ -243,8 +230,6 @@ Imports System.Data.SqlClient
         For Each Item As DataRow In ds.Tables(0).Rows()
             Dim M As New ActiveMembers()
             M.MemberId = Item("MemberId")
-            '  M.FirstName = Item("FirstName")
-            '  M.LastName = CStr(Item("LastName"))
             M.VotingName = CStr(Item("VotingName"))
             M.DistrictName = Item("DistrictName")
             M.DistrictNumber = CStr(Item("DistrictNbr"))
@@ -258,18 +243,22 @@ Imports System.Data.SqlClient
 
     <WebMethod(True)> _
     Public Function LoadCalendarDates()
+
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
+
         Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
         Dim da As New SqlDataAdapter
         Dim ds As New DataSet
         Dim dt As New DataTable
-        Dim SessionCode As String = Session("SessionCode")
+
         Dim cmd As New SqlCommand
         With cmd
             .Connection = con
             .Connection.Open()
             .CommandType = CommandType.StoredProcedure
             .CommandText = "sp_VRGetVoteDates"
-            .Parameters.AddWithValue("@sessionCode", SessionCode)
+            .Parameters.AddWithValue("@sessionCode", VoteReporter.Item(0).currentSessionCode)
         End With
         ds = New DataSet("RCTranscriptData")
         da.SelectCommand = cmd
@@ -290,7 +279,9 @@ Imports System.Data.SqlClient
         ' setting use subject search session to false in case a report was loaded 
         ' previously using search text. We want to clear this so the same bills don't overwrite the new query from the user.
         Session("UseSubjectSearch") = False
-        '  Session("VDSort") = String.Empty
+
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
 
         Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
         Dim da As New SqlDataAdapter
@@ -309,35 +300,25 @@ Imports System.Data.SqlClient
             End Using
             cmdd.Connection.Close()
         End Using
-        Dim VoteDB As String = dt.Rows(1).Item(0)
-        Dim SessionCode As String = Session("SessionCode")
 
-        Dim dt2 As New DataTable
-        Using c As New SqlCommand
-            c.Connection = con
-            c.Connection.Open()
-            c.CommandType = CommandType.StoredProcedure
-            c.CommandText = "sp_VRGetMotionField"
-            c.Parameters.AddWithValue("@SessionID", GetSessionID(SessionCode))
+        'Dim dt2 As New DataTable
+        'Using c As New SqlCommand
+        '    c.Connection = con
+        '    c.Connection.Open()
+        '    c.CommandType = CommandType.StoredProcedure
+        '    c.CommandText = "sp_VRGetMotionField"
+        '    c.Parameters.AddWithValue("@SessionID", VoteReporter.Item(0).motionDataField)
 
-            Using da
-                da.SelectCommand = c
-                da.Fill(dt2)
-            End Using
-            c.Connection.Close()
-        End Using
-
-        Dim MotionField As String = dt2.Rows(0).Item(0)
-
-        '' Get Session Code
-        'Using Command As New SqlCommand
-        '    Command.Connection = con
-        '    Command.CommandType = CommandType.StoredProcedure
-        '    Command.CommandText = ""
+        '    Using da
+        '        da.SelectCommand = c
+        '        da.Fill(dt2)
+        '    End Using
+        '    c.Connection.Close()
         'End Using
 
+        Dim MotionField As String = VoteReporter.Item(0).motionDataField
 
-
+     
         Dim cmd As New SqlCommand
         With cmd
             .Connection = con
@@ -346,7 +327,7 @@ Imports System.Data.SqlClient
             .CommandText = "sp_VRGetVoteResults"
 
             .Parameters.AddWithValue("@motionfield", MotionField)
-            .Parameters.AddWithValue("@sessionCode", SessionCode)
+            .Parameters.AddWithValue("@sessionCode", VoteReporter.Item(0).currentSessionCode)
         End With
 
         ds = New DataSet("RCTranscriptData")
@@ -355,13 +336,9 @@ Imports System.Data.SqlClient
 
         'fill master table
 
-        ' Dim VRStorage As New clsVRStorage
         Dim MasterTable As New DataTable
         da.Fill(MasterTable)
-        'VRStorage.MasterBillList = MasterTable
-        'Session("Storage_MASTER") = VRStorage
-
-
+      
         RollCallTranscriptList.Clear()
 
         For Each Item As DataRow In ds.Tables(0).Rows()

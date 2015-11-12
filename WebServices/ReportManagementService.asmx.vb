@@ -33,6 +33,9 @@ Imports System.Data.SqlClient
     <WebMethod(True)> _
     Public Function CheckSubject(ByVal SearchText As String)
 
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
+
         Dim returnString As String = String.Empty
         Session("UseSubjectSearch") = False
         Session("SearchedBillIDs") = String.Empty
@@ -43,23 +46,7 @@ Imports System.Data.SqlClient
         Dim da As New SqlDataAdapter
         Dim dt As New DataTable
 
-        Using cmd
-            cmd.Connection = con
-            cmd.Connection.Open()
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.CommandText = "sp_VRGetReportConfigParams"
 
-            Using da
-                da.SelectCommand = cmd
-                da.Fill(dt)
-            End Using
-
-            cmd.Connection.Close()
-
-        End Using
-
-        Dim SubField1 As Integer = dt.Rows(0).Item(35)
-        Dim SubField2 As Integer = dt.Rows(0).Item(36)
 
         Dim dt2 As New DataTable
 
@@ -69,9 +56,9 @@ Imports System.Data.SqlClient
             cmd.CommandType = CommandType.StoredProcedure
             cmd.CommandText = "sp_VRSearchSubjectFields"
             cmd.Parameters.AddWithValue("@SearchText", SearchText)
-            cmd.Parameters.AddWithValue("@SessionCode", Session("SessionCode"))
-            cmd.Parameters.AddWithValue("@SubjectField1", SubField1)
-            cmd.Parameters.AddWithValue("@SubjectField2", SubField2)
+            cmd.Parameters.AddWithValue("@SessionCode", VoteReporter.Item(0).currentSessionCode)
+            cmd.Parameters.AddWithValue("@SubjectField1", VoteReporter.Item(0).subjectDataField1)
+            cmd.Parameters.AddWithValue("@SubjectField2", VoteReporter.Item(0).subjectDataField2)
 
             Using da
                 da.SelectCommand = cmd

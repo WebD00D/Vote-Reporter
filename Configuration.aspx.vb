@@ -6,6 +6,8 @@ Public Class Configuration
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        
+
         GenericErrorLabel.InnerText = String.Empty
 
         If Not Page.IsPostBack Then
@@ -210,7 +212,7 @@ Public Class Configuration
             Session("IsReload") = False
 
         End If
-      
+
 
 
 
@@ -219,6 +221,127 @@ Public Class Configuration
 
     End Sub
 
+    Public Function ReturnDataTable(ByVal cmdtext As String, ByVal cmdType As System.Data.CommandType, ByVal oParm As List(Of SqlParameter))
+        Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
+        Dim dt As New DataTable
+        Using cmd As SqlCommand = con.CreateCommand
+            cmd.Connection = con
+            cmd.Connection.Open()
+            cmd.CommandType = cmdType
+            cmd.CommandText = cmdtext
+
+            If Not IsNothing(oParm) Then cmd.Parameters.AddRange(oParm.ToArray())
+
+            Using da As New SqlDataAdapter
+                da.SelectCommand = cmd
+                da.Fill(dt)
+            End Using
+            cmd.Connection.Close()
+        End Using
+        Return dt
+    End Function
+
+    Public Sub UpdateSavedSessionDetails()
+
+        Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
+        Dim dt As New DataTable
+
+
+        Dim CurrentSessionDetails As New Engine.clsVoteReporter
+        Dim SessionDetailsList As New List(Of Engine.clsVoteReporter)
+        SessionDetailsList = Session("clsVoteReporter")
+        Dim CurrentSessionID As Integer = SessionDetailsList.Item(0).currentSessionID
+
+        Dim oParmList As List(Of SqlParameter) = New List(Of SqlParameter)
+        oParmList.Add(New SqlParameter("@SessionID", CurrentSessionID))
+        dt = ReturnDataTable("sp_VRGetReportConfigParams", CommandType.StoredProcedure, oParmList)
+
+        SessionDetailsList.Item(0).link1Name = dt.Rows(0).Item("Link1_Name")
+        SessionDetailsList.Item(0).link1URL = dt.Rows(0).Item("Link1_URL")
+        SessionDetailsList.Item(0).link2Name = dt.Rows(0).Item("Link2_Name")
+        SessionDetailsList.Item(0).link2URL = dt.Rows(0).Item("Link2_URL")
+        SessionDetailsList.Item(0).link3Name = dt.Rows(0).Item("Link3_Name")
+        SessionDetailsList.Item(0).link3URL = dt.Rows(0).Item("Link3_URL")
+        SessionDetailsList.Item(0).siteTitle = dt.Rows(0).Item("Government_Name")
+        SessionDetailsList.Item(0).governmentName = dt.Rows(0).Item("Government_Name")
+        SessionDetailsList.Item(0).legislatureName = dt.Rows(0).Item("Legislature_Name")
+        SessionDetailsList.Item(0).rcsNbrTitle = dt.Rows(0).Item("RSCNumber")
+        SessionDetailsList.Item(0).billNbrTitle = dt.Rows(0).Item("BillNumber")
+        SessionDetailsList.Item(0).motionTitle = dt.Rows(0).Item("Motion")
+        SessionDetailsList.Item(0).motionDataField = dt.Rows(0).Item("MotionDataField")
+        SessionDetailsList.Item(0).subjectDataField1 = dt.Rows(0).Item("SubjectField1")
+        SessionDetailsList.Item(0).subjectDataField2 = dt.Rows(0).Item("SubjectField2")
+        SessionDetailsList.Item(0).dateTimeTitle = dt.Rows(0).Item("DateTime")
+        SessionDetailsList.Item(0).voteTotalTitle = dt.Rows(0).Item("VoteTotals")
+        SessionDetailsList.Item(0).resultsTitle = dt.Rows(0).Item("Results")
+        SessionDetailsList.Item(0).outcomeTitle = dt.Rows(0).Item("Outcome")
+        SessionDetailsList.Item(0).partyTotalsTitle = dt.Rows(0).Item("PartyTotals")
+        SessionDetailsList.Item(0).memberTitle = dt.Rows(0).Item("Member")
+        SessionDetailsList.Item(0).districtNameTitle = dt.Rows(0).Item("DistrictName")
+        SessionDetailsList.Item(0).districtNbrTitle = dt.Rows(0).Item("DistrictNumber")
+        SessionDetailsList.Item(0).presidingOfficer1Name = dt.Rows(0).Item("Presiding_Name_1")
+        SessionDetailsList.Item(0).presidingOfficer1Title = dt.Rows(0).Item("Presiding_Title_1")
+        SessionDetailsList.Item(0).presidingOfficer2Name = dt.Rows(0).Item("Presiding_Name_2")
+        SessionDetailsList.Item(0).presidingOfficer2Title = dt.Rows(0).Item("Presiding_Title_2")
+        SessionDetailsList.Item(0).clerkSecretaryName = dt.Rows(0).Item("Clerk_Secretary_Name")
+        SessionDetailsList.Item(0).clerkSecretaryTitle = dt.Rows(0).Item("Clerk_Secretary_Title")
+        SessionDetailsList.Item(0).showDistrictName = CBool(dt.Rows(0).Item("showDistrictName"))
+        SessionDetailsList.Item(0).showDistrictNbr = CBool(dt.Rows(0).Item("showDistrictNbr"))
+        SessionDetailsList.Item(0).showMajorityStats = CBool(dt.Rows(0).Item("showMajorityStats"))
+        SessionDetailsList.Item(0).showPartyStats = CBool(dt.Rows(0).Item("ShowPartyStats"))
+        SessionDetailsList.Item(0).showVotingStats = CBool(dt.Rows(0).Item("ShowVotingStats"))
+        SessionDetailsList.Item(0).showOptionalAttendance = CBool(dt.Rows(0).Item("ShowOptionalAttendance"))
+        SessionDetailsList.Item(0).showOptionalStats = CBool(dt.Rows(0).Item("ShowOptionalStats"))
+        ' SessionDetailsList.Item(0).includeShortTitle = CBool(dt.Rows(0).Item("IncludeShortTitle"))
+        SessionDetailsList.Item(0).showOptionalPartyTotals = CBool(dt.Rows(0).Item("ShowOptionalPartyTotals"))
+
+        dt.Clear()
+
+        Dim oParmList2 As List(Of SqlParameter) = New List(Of SqlParameter)
+        oParmList2.Add(New SqlParameter("@SessionID", CurrentSessionID))
+        dt = ReturnDataTable("sp_VRGetVoteMappings", CommandType.StoredProcedure, oParmList2)
+
+        SessionDetailsList.Item(0).yeaEnabled = CBool(dt.Rows(0).Item("Enabled"))
+        SessionDetailsList.Item(0).yeaNamesAs = dt.Rows(0).Item("Named_As")
+        SessionDetailsList.Item(0).yeaIsUsed = CBool(dt.Rows(0).Item("IsUsed"))
+        SessionDetailsList.Item(0).yeaIsEligible = CBool(dt.Rows(0).Item("isEligible"))
+        SessionDetailsList.Item(0).yeaHeaderOrder = dt.Rows(0).Item("Header_Order")
+
+        SessionDetailsList.Item(0).nayEnabled = CBool(dt.Rows(1).Item("Enabled"))
+        SessionDetailsList.Item(0).nayNamesAs = dt.Rows(1).Item("Named_As")
+        SessionDetailsList.Item(0).nayIsUsed = CBool(dt.Rows(1).Item("IsUsed"))
+        SessionDetailsList.Item(0).nayIsEligible = CBool(dt.Rows(1).Item("isEligible"))
+        SessionDetailsList.Item(0).nayHeaderOrder = dt.Rows(1).Item("Header_Order")
+
+        SessionDetailsList.Item(0).abstainEnabled = CBool(dt.Rows(2).Item("Enabled"))
+        SessionDetailsList.Item(0).abstainNamesAs = dt.Rows(2).Item("Named_As")
+        SessionDetailsList.Item(0).abstainIsUsed = CBool(dt.Rows(2).Item("IsUsed"))
+        SessionDetailsList.Item(0).abstainIsEligible = CBool(dt.Rows(2).Item("isEligible"))
+        SessionDetailsList.Item(0).abstainHeaderOrder = dt.Rows(2).Item("Header_Order")
+
+        SessionDetailsList.Item(0).excusedEnabled = CBool(dt.Rows(3).Item("Enabled"))
+        SessionDetailsList.Item(0).excusedNamesAs = dt.Rows(3).Item("Named_As")
+        SessionDetailsList.Item(0).excusedIsUsed = CBool(dt.Rows(3).Item("IsUsed"))
+        SessionDetailsList.Item(0).excusedIsEligible = CBool(dt.Rows(3).Item("isEligible"))
+        SessionDetailsList.Item(0).excusedHeaderOrder = dt.Rows(3).Item("Header_Order")
+
+        SessionDetailsList.Item(0).absentEnabled = CBool(dt.Rows(4).Item("Enabled"))
+        SessionDetailsList.Item(0).absentNamesAs = dt.Rows(4).Item("Named_As")
+        SessionDetailsList.Item(0).absentIsUsed = CBool(dt.Rows(4).Item("IsUsed"))
+        SessionDetailsList.Item(0).absentIsEligible = CBool(dt.Rows(4).Item("isEligible"))
+        SessionDetailsList.Item(0).absentHeaderOrder = dt.Rows(4).Item("Header_Order")
+
+        SessionDetailsList.Item(0).notVotingEnabled = CBool(dt.Rows(5).Item("Enabled"))
+        SessionDetailsList.Item(0).notVotingNamesAs = dt.Rows(5).Item("Named_As")
+        SessionDetailsList.Item(0).notVotingIsUsed = CBool(dt.Rows(5).Item("IsUsed"))
+        SessionDetailsList.Item(0).notVotingIsEligible = CBool(dt.Rows(5).Item("isEligible"))
+        SessionDetailsList.Item(0).notVotingHeaderOrder = dt.Rows(5).Item("Header_Order")
+
+
+        Session("clsVoteReporter") = SessionDetailsList
+
+    
+    End Sub
 
 
     Protected Sub btnSaveAllConfigSettings_Click(sender As Object, e As EventArgs) Handles btnSaveAllConfigSettings.Click
@@ -231,6 +354,10 @@ Public Class Configuration
                 Else
                     'everything has been validated so we should be good to save everything
                     saveConfigurationSettings()
+                    'update session information
+                    UpdateSavedSessionDetails()
+                    Response.Redirect("Default.aspx")
+                    ' Context.ApplicationInstance.CompleteRequest()
                 End If
             Else
                 lblConfigurationErrorMessage.Text = "Please make sure all fields are completed in 'Report Parameters'."
@@ -263,6 +390,10 @@ Public Class Configuration
                 cmd.ExecuteNonQuery()
                 cmd.Connection.Close()
             End Using
+
+            VRList.Item(0).governmentName = txtGovName.Value
+            VRList.Item(0).legislatureName = txtLegName.Value
+            Session("clsVoteReporter") = VRList
 
         Catch ex As Exception
             GenericErrorLabel.InnerText = "Something went wrong while saving 'Account Settings' to the database. Please contact support."
@@ -410,8 +541,7 @@ Public Class Configuration
 
 
 
-        'Response.Redirect("Configuration.aspx", False)
-        'Context.ApplicationInstance.CompleteRequest()
+      
 
 
     End Sub
