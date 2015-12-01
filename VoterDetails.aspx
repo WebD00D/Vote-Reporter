@@ -25,7 +25,7 @@
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
 </head>
-    <body>
+    <body style="background-color:#eeeeee">
         <form id="NETForm" runat="server">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="container">
@@ -76,8 +76,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="contentMessage" style="margin-top: 25px">
-                                <h1 style="color: #2c3e50">Vote Reporter</h1>
-                                <h3 style="color: #2c3e50"><span id="lblsessioncode"></span> Session</h3>
+                                <h1 style="color: #2c3e50">Voter History </h1>
+                                <h3 style="color: #2c3e50"><span id="lblsessioncode"></span>Session</h3>
 
                             </div>
                         </div>
@@ -85,127 +85,142 @@
                 </div>
             </div>
 
-             <div class="container">
-     <asp:HiddenField ID="calitem" runat="server" />
-         <div class="row">
-            <div class="col-lg-12">
+            <div class="container">
+                <asp:HiddenField ID="calitem" runat="server" />
+                <div class="row">
 
-                <div class="col-lg-2"></div>
-
-                <div class="col-lg-4">
-                     <h4>Available Members</h4>
-                    <p style="color:#ff6a00" id="loadingMembers">Loading Members...</p>
-                    <ul class="list-unstyled">
-                        <li><asp:CheckBox runat="server" ID="ckAllMembers" CssClass="checkbox-inline" Text="Select All" /></li>
-                    </ul>
-                    <div id="MemberList" class="list-group" style="overflow-y: scroll; height: 250px"> </div>
-                    
-
-                    <h4>Available Bills</h4>
-                     <p  style="color:#ff6a00"  id="loadingBills">Loading Bills...</p>
-                    <ul class="list-inline">
-                        <li><asp:CheckBox runat="server" ID="ckAllBills" CssClass="checkbox-inline" Text="Select All" /></li>
-                    </ul>
-                     <div id="BillList" class="list-group" style="overflow-y: scroll; height: 265px"> </div>
-                </div>
-              
-                <div class="col-lg-4">
-                    
-                    
-
-                   <h4>Members to Report <span id="lblAllMem" style="color:#1f7048">(All)</span></h4>
-                     <ul class="list-unstyled">
-                       
-                        <li><a href="#" class="label label-danger" id="clearAllMembers"> Clear Selection </a></li>
-                    </ul>
-                    <div id="selectedMemberList" class="list-group" style="overflow-y:scroll;height:250px">
-                       
-                    </div> 
+                    <div class="col-lg-8 col-lg-offset-2" style="background-color: white; margin-top: 30px; border-radius: 7px">
 
 
-                    <h4 style="padding-top:37px">Bills to Report  <span id="lblAllBills" style="color:#1f7048">(All)</span></h4>
-                      <ul class="list-unstyled">
-                       
-                        <li><a href="#" class="label label-danger" id="clearAllBills"> Clear Selection </a></li>
-                    </ul>
-                    <div id="selectedBillsList" class="list-group" style="overflow-y:scroll;height:250px">
-                       
-                    </div> 
-
-                </div>
-
-
-
-                <div class="col-lg-2"></div>
-
-                
-
-                <div class="col-lg-12">
-                    <div class="col-lg-4 col-lg-offset-2">
-
-
-                        <div id="Votes" style="height:265px">
-                     
-                         <h4>Votes to Report</h4>
-                        <ul class="list-unstyled">
-                            <li id="l1" runat="server"><asp:CheckBox runat="server" ID="ckYea"/><%=_YeaName%></li>
-                             <li id="l2" runat="server"><asp:CheckBox runat="server" ID="ckNay"/><%=_NayName%></li>
-                             <li id="l3" runat="server"><asp:CheckBox runat="server" ID="ckAbstain"/><%=_AbstainName%></li>
-                             <li id="l4" runat="server"><asp:CheckBox runat="server" ID="ckExc"/><%=_ExcName%></li>
-                             <li id="l5" runat="server"><asp:CheckBox runat="server" ID="ckAbsent"/><%=_AbsentName%></li>
-                             <li id="l6" runat="server"><asp:CheckBox runat="server" ID="ckNV"/><%=_NVName%></li>
-                        </ul>
-                      
-                       
-                    </div> 
-
-
-                        <ul class="list-inline">
-                            <li><button id="btnDoReport" class="btn btn-sm btn-primary pull-left"><i class="fa fa-book"></i>  Generate Report</button></li>
-            
+                        <div class="col-lg-6">
+                            <h4>Available Members</h4>
+                            <p style="color: #ff6a00" id="loadingMembers">Loading Members...</p>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <asp:CheckBox runat="server" ID="ckAllMembers" CssClass="checkbox-inline" Text="Select All" /></li>
                             </ul>
-                         
+                            <div id="MemberList" class="list-group" style="overflow-y: scroll; height: 250px"></div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <h4>Members to Report <span id="lblAllMem" style="color: #1f7048">(All)</span></h4>
+                            <ul class="list-unstyled">
+
+                                <li><a href="#" class="label label-danger" id="clearAllMembers">Clear Selection </a></li>
+                            </ul>
+                            <div id="selectedMemberList" class="list-group" style="overflow-y: scroll; height: 250px">
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="col-lg-4">
-                          <h4>Subject Search</h4>
-                        <asp:TextBox runat="server" ID="txtSearchSubject"  CssClass="form-control"></asp:TextBox>
-                        
+
+
+                    <div class="col-lg-8 col-lg-offset-2" style="background-color: white; margin-top: 30px; border-radius: 7px">
+
+                        <div class="col-lg-6">
+                            <h4>Available Bills</h4>
+                            <p style="color: #ff6a00" id="loadingBills">Loading Bills...</p>
+                            <ul class="list-inline">
+                                <li>
+                                    <asp:CheckBox runat="server" ID="ckAllBills" CssClass="checkbox-inline" Text="Select All" /></li>
+                            </ul>
+                            <div id="BillList" class="list-group" style="overflow-y: scroll; height: 265px"></div>
+
+
+
+                        </div>
+                        <div class="col-lg-6">
+                            <h4>Bills to Report  <span id="lblAllBills" style="color: #1f7048">(All)</span></h4>
+                            <ul class="list-unstyled">
+
+                                <li><a href="#" class="label label-danger" id="clearAllBills">Clear Selection </a></li>
+                            </ul>
+                            <div id="selectedBillsList" class="list-group" style="overflow-y: scroll; height: 250px">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-8 col-lg-offset-2" style="background-color: white; margin-top: 30px; border-radius: 7px">
+
+                        <h4>Subject Search</h4>
+                        <asp:TextBox runat="server" ID="txtSearchSubject" CssClass="form-control"></asp:TextBox>
                         <label id="lblSearchResults"></label>
 
-                        
+                        <h4>Motion Filter</h4>
+                        <select id="ddlMotionfilter" class="form-control"></select>
+
+
+                        <br />
+                        <h4>Votes to Report</h4>
                         <ul class="list-inline">
-                            <li><h4>Begin Date </h4>
+                            <li id="l1" runat="server">
+                                <asp:CheckBox runat="server" ID="ckYea" /><%=_YeaName%></li>
+                            <li id="l2" runat="server">
+                                <asp:CheckBox runat="server" ID="ckNay" /><%=_NayName%></li>
+                            <li id="l3" runat="server">
+                                <asp:CheckBox runat="server" ID="ckAbstain" /><%=_AbstainName%></li>
+                            <li id="l4" runat="server">
+                                <asp:CheckBox runat="server" ID="ckExc" /><%=_ExcName%></li>
+                            <li id="l5" runat="server">
+                                <asp:CheckBox runat="server" ID="ckAbsent" /><%=_AbsentName%></li>
+                            <li id="l6" runat="server">
+                                <asp:CheckBox runat="server" ID="ckNV" /><%=_NVName%></li>
+                        </ul>
+
+                        <br />
+                        <ul class="list-inline">
+                            <li>
+                                <h4>Begin Date </h4>
                                 <asp:DropDownList CssClass="form-control" runat="server" ID="ddlBeginDate">
-                                     
                                 </asp:DropDownList>
                             </li>
-                             <li><h4>End Date</h4>
+                            <li>
+                                <h4>End Date</h4>
                                 <asp:DropDownList CssClass="form-control" runat="server" ID="ddlEndDate"></asp:DropDownList>
                             </li>
                         </ul>
                         <br />
-
-                        <h4>Sort By</h4> 
+                        <h4>Sort By</h4>
                         <ul class="list-inline">
-                            <li><asp:CheckBox runat="server" ID="ckRCSSort" /> RCS Number</li>
-                             <li><asp:CheckBox runat="server" ID="ckLegSort" />  Doc Number</li>
+                            <li>
+                                <asp:CheckBox runat="server" ID="ckRCSSort" />
+                                RCS Number</li>
+                            <li>
+                                <asp:CheckBox runat="server" ID="ckLegSort" />
+                                Doc Number</li>
+                             
+                             
                         </ul>
-                    </div>  
+                        <br />
+                         <h4>Extra Options</h4>
+                        <ul class="list-inline">
+                             <li>
+                                <asp:CheckBox runat="server" ID="ckShowShortTitle" />
+                                Show Short Title</li>
+                               <li>
+                                <asp:CheckBox runat="server" ID="ckShowPartyTotals" />
+                                Show Party Totals</li>
+                        </ul>
+
+                        <br />
+                        <ul class="list-inline">
+                            <li>
+                                <button id="btnDoReport" class="btn btn-lg btn-danger pull-left"><i class="fa fa-book"></i> Run Report</button></li>
+                        </ul>
 
 
+
+                    </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-lg-12 text-center" style="padding: 20px">
+                        <h4 id="errorMsg" style="color: #c9302c"></h4>
+                    </div>
+                </div>
 
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12 text-center" style="padding:20px">
-               <h4 id="errorMsg" style="color:#c9302c"></h4>
-            </div>
-        </div>
-
-    </div>
            
 
 
@@ -281,6 +296,38 @@
                 setPageLinks();
 
             }
+
+            //Load Motions
+            $.ajax({
+
+                type: "POST",
+                url: "WebServices/ReportService.asmx/LoadMotions",
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+
+                    //take data and append as list item parameters to be selected by user
+                    var result = data.d;
+                    $("#ddlMotionfilter").empty();
+                    var emtpyoption = "<option val='NOTHING'> </option>";
+                    $(emtpyoption).appendTo("#ddlMotionfilter");
+                    $.each(result, function (index, item) {
+
+                        var content = "<option>" + item.Motion + "</option>";
+                        $(content).appendTo("#ddlMotionfilter");
+                    })
+
+                },
+                failure: function (msg) {
+                    console.log(msg);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            }) //end ajax Motions Load
+
+
 
 
             function setPageLinks() {
@@ -712,16 +759,26 @@
                     SortBy = "RCSNbr ASC"
                 }
               
-                alert(BillsArray);
-                alert(MemberArray);
-           
-                //load members
+               
+                var motionFilter = $("#ddlMotionfilter option:selected").text();
+
+                var showShort = false;
+                if ($("#<%=ckShowShortTitle.ClientID%>").is(':checked')) {
+                    showShort = true
+                }
+                var showParty = false;
+                if ($("#<%=ckShowPartyTotals.ClientID%>").is(':checked')) {
+                    showParty = true;
+                }
+               
+
                 $.ajax({
 
                     type: "POST",
                     url: "WebServices/ReportService.asmx/SetVoterHistoryData",
                     data: "{Members:'" + MemberArray + "',Bills:'" + BillsArray + "',useYeas:'"+ ckYES +"',useNays:'"+ ckNO +"',useAbstain:'"+ ckABSTAIN
-                           + "',useExcused:'" + ckEXC + "',useAbsent:'" + ckABSENT + "',useNV:'" + ckNV + "',BeginDate:'" + beginDate + "',EndDate:'" + endDate + "',SortBy:'" + SortBy + "',IsAll:'"+ isAllBills +"'}",
+                           + "',useExcused:'" + ckEXC + "',useAbsent:'" + ckABSENT + "',useNV:'" + ckNV + "',BeginDate:'" + beginDate + "',EndDate:'" + endDate + "',SortBy:'" + SortBy + "',IsAll:'"+ isAllBills 
+                           +"',ShowShort:'"+ showShort +"',ShowPartyTotals:'"+ showParty +"', MotionFilter:'"+ motionFilter +"'}",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {

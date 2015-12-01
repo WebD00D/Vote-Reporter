@@ -59,6 +59,15 @@ Partial Public Class VoterDetails
     Protected WithEvents ckAllBills As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
+    '''txtSearchSubject control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSearchSubject As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''l1 control.
     '''</summary>
     '''<remarks>
@@ -167,15 +176,6 @@ Partial Public Class VoterDetails
     Protected WithEvents ckNV As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''txtSearchSubject control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtSearchSubject As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''ddlBeginDate control.
     '''</summary>
     '''<remarks>
@@ -210,4 +210,22 @@ Partial Public Class VoterDetails
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ckLegSort As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''ckShowShortTitle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ckShowShortTitle As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''ckShowPartyTotals control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ckShowPartyTotals As Global.System.Web.UI.WebControls.CheckBox
 End Class

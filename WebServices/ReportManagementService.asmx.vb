@@ -46,8 +46,6 @@ Imports System.Data.SqlClient
         Dim da As New SqlDataAdapter
         Dim dt As New DataTable
 
-
-
         Dim dt2 As New DataTable
 
         Using cmd

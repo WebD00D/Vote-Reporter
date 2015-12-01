@@ -32,6 +32,9 @@ Public Class RV_VoterDetails
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
+
         Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString())
         Dim cmd As New SqlCommand
         Dim da As New SqlDataAdapter
@@ -53,6 +56,7 @@ Public Class RV_VoterDetails
             cmd.Connection.Open()
             cmd.CommandType = CommandType.StoredProcedure
             cmd.CommandText = "sp_VRGetReportConfigParams"
+            cmd.Parameters.AddWithValue("@SessionID", VoteReporter.Item(0).currentSessionID)
 
             Using da
                 da.SelectCommand = cmd
@@ -60,6 +64,7 @@ Public Class RV_VoterDetails
             End Using
 
             cmd.Connection.Close()
+            cmd.Parameters.Clear()
 
         End Using
 
@@ -76,12 +81,14 @@ Public Class RV_VoterDetails
             cmd.Connection.Open()
             cmd.CommandType = CommandType.StoredProcedure
             cmd.CommandText = "sp_VRGetVoteMappings"
+            cmd.Parameters.AddWithValue("@SessionID", VoteReporter.Item(0).currentSessionID)
 
             Using da
                 da.SelectCommand = cmd
                 da.Fill(ds, "sp_VRGetVoteMappings")
             End Using
             cmd.Connection.Close()
+            cmd.Parameters.Clear()
         End Using
 
         Dim UseDistrictName As Boolean = ds.Tables(0).Rows(0).Item(29)
@@ -253,10 +260,13 @@ Public Class RV_VoterDetails
 
     Private Function CreateReport(ByVal ds As DataSet, ByVal YeaOrder As Integer, ByVal NayOrder As Integer, ByVal AbstainOrder As Integer, ByVal ExcusedOrder As Integer, ByVal AbsentOrder As Integer, ByVal NVOrder As Integer) As XRVoterDetails
 
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
+
         Dim report As New XRVoterDetails()
         report.DataSource = ds
 
-        report.lblSessionPeriod.Text = "Session: " & Session("SessionCode").ToString()
+        report.lblSessionPeriod.Text = "Session: " & VoteReporter.Item(0).currentSessionCode
         report.lblPrintDate.Text = Date.Now.ToString()
 
         If Session("BeginDate").ToString = String.Empty Then
@@ -289,6 +299,10 @@ Public Class RV_VoterDetails
             report.lblBills.Text = "ALL"
         Else
             report.lblBills.Text = _sBills
+        End If
+
+        If Session("vhShowPartyTotals") = False Then
+            report.Landscape = False
         End If
 
 

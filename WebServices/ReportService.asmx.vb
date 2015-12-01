@@ -399,13 +399,15 @@ Imports System.Data.SqlClient
         Dim VoteCon As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
         Dim cmd As New SqlCommand
 
-        Dim SessionCode As String = Session("SessionCode")
+
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
 
         Using cmd
             cmd.Connection = VoteCon
             cmd.CommandType = CommandType.StoredProcedure
             cmd.CommandText = "sp_VRGetAllMotions"
-            cmd.Parameters.AddWithValue("@Session", SessionCode)
+            cmd.Parameters.AddWithValue("@Session", VoteReporter.Item(0).currentSessionCode)
         End Using
 
         Dim da As New SqlDataAdapter(cmd)

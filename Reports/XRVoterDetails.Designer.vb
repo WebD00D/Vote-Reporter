@@ -933,7 +933,6 @@ Partial Public Class XRVoterDetails
         'XRVoterDetails
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.GroupHeader1, Me.PageFooter})
-        Me.DataAdapter = Me.Sp_Report_GetTypeDetailsTableAdapter
         Me.DataMember = "sp_Report_VoterDetails"
         Me.DataSource = Me.VoterDetailsDS1
         Me.Landscape = True
