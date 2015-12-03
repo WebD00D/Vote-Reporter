@@ -70,6 +70,9 @@ Public Class RV_VoterDetails
 
         Dim DistrictNameHeader As String = ds.Tables(0).Rows(0).Item(18)
         Dim DistrictNbrHeader As String = ds.Tables(0).Rows(0).Item(19)
+
+
+
         Dim MotionData As String = ds.Tables(0).Rows(0).Item(28)
         Dim SubField1 As Integer = ds.Tables(0).Rows(0).Item(35)
         Dim SubField2 As Integer = ds.Tables(0).Rows(0).Item(36)
@@ -100,6 +103,7 @@ Public Class RV_VoterDetails
         Dim ExcusedOrder As Integer = ds.Tables(1).Rows(3).Item(9)
         Dim AbsentOrder As Integer = ds.Tables(1).Rows(4).Item(9)
         Dim NotVotingOrder As Integer = ds.Tables(1).Rows(5).Item(9)
+
 
 
         nYea = ds.Tables(1).Rows(0).Item(3)
@@ -169,12 +173,12 @@ Public Class RV_VoterDetails
             cmd.Parameters.AddWithValue("@BeginDate", strStartDate)
             cmd.Parameters.AddWithValue("@EndDate", strEndDate)
 
-            cmd.Parameters.AddWithValue("@oYea", YeaOrder)
-            cmd.Parameters.AddWithValue("@oNay", NayOrder)
-            cmd.Parameters.AddWithValue("@oAbstain", AbstainOrder)
-            cmd.Parameters.AddWithValue("@oExc", ExcusedOrder)
-            cmd.Parameters.AddWithValue("@oAbsent", AbsentOrder)
-            cmd.Parameters.AddWithValue("@oNV", NotVotingOrder)
+            cmd.Parameters.AddWithValue("@oYea", VoteReporter.Item(0).yeaHeaderOrder)
+            cmd.Parameters.AddWithValue("@oNay", VoteReporter.Item(0).nayHeaderOrder)
+            cmd.Parameters.AddWithValue("@oAbstain", VoteReporter.Item(0).abstainHeaderOrder)
+            cmd.Parameters.AddWithValue("@oExc", VoteReporter.Item(0).excusedHeaderOrder)
+            cmd.Parameters.AddWithValue("@oAbsent", VoteReporter.Item(0).absentHeaderOrder)
+            cmd.Parameters.AddWithValue("@oNV", VoteReporter.Item(0).notVotingHeaderOrder)
 
             cmd.Parameters.AddWithValue("@uYea", CByte(UseYea))
             cmd.Parameters.AddWithValue("@uNay", CByte(UseNay))
@@ -190,9 +194,9 @@ Public Class RV_VoterDetails
             cmd.Parameters.AddWithValue("@nAbsent", nAbsent)
             cmd.Parameters.AddWithValue("@nNV", nNV)
 
-            cmd.Parameters.AddWithValue("@ShowDistrict", CByte(UseDistrictName))
-            cmd.Parameters.AddWithValue("@DistrictNameHeader", DistrictNameHeader)
-            cmd.Parameters.AddWithValue("@DistrictNbrHeader", DistrictNbrHeader)
+            cmd.Parameters.AddWithValue("@ShowDistrict", CByte(VoteReporter.Item(0).showDistrictName))
+            cmd.Parameters.AddWithValue("@DistrictNameHeader", VoteReporter.Item(0).districtNameTitle)
+            cmd.Parameters.AddWithValue("@DistrictNbrHeader", VoteReporter.Item(0).districtNbrTitle)
 
             Using da
                 da.SelectCommand = cmd
@@ -266,7 +270,7 @@ Public Class RV_VoterDetails
         Dim report As New XRVoterDetails()
         report.DataSource = ds
 
-        report.lblSessionPeriod.Text = "Session: " & VoteReporter.Item(0).currentSessionCode
+        report.lblSessionPeriod.Text = VoteReporter.Item(0).currentSessionLegislature
         report.lblPrintDate.Text = Date.Now.ToString()
 
         If Session("BeginDate").ToString = String.Empty Then
@@ -303,10 +307,20 @@ Public Class RV_VoterDetails
 
         If Session("vhShowPartyTotals") = False Then
             report.Landscape = False
+            'hide party total columns
+            report.XrLabel21.Visible = False
+            report.XrLabel22.Visible = False
+            report.XrLabel23.Visible = False
+            report.XrLabel27.Visible = False
+            report.XrLabel28.Visible = False
+            report.XrLabel29.Visible = False
+            report.XrLabel30.Visible = False
+            report.XrLabel31.Visible = False
+            report.XrLabel32.Visible = False
+            report.XrLabel33.Visible = False
+            report.XrLabel34.Visible = False
+            report.XrLabel35.Visible = False
         End If
-
-
-
 
         Dim votesUsed As New StringBuilder
 

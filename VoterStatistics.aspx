@@ -15,8 +15,6 @@
             $("#lblAllMem").hide();
             $("#lblAllBills").hide();
 
-
-
             //Load Calendar Dates 
             $.ajax({
 
@@ -403,7 +401,7 @@
 
                     type: "POST",
                     url: "WebServices/ReportService.asmx/SetVoterStatsData",
-                    data: "{Members:'" + MemberArray + "',Bills:'" + BillsArray + "',StartDate:'"+ StartDate +"',EndDate:'"+ EndDate +"'}",
+                    data: "{IsAllBills:'" + isAllBills + "',Members:'" + MemberArray + "',Bills:'" + BillsArray + "',StartDate:'" + StartDate + "',EndDate:'" + EndDate + "'}",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {
