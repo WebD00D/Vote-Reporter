@@ -30,6 +30,7 @@ Public Class RV_VoterDetails
 
 
 
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Dim VoteReporter As New List(Of Engine.clsVoteReporter)
@@ -202,19 +203,43 @@ Public Class RV_VoterDetails
                 da.SelectCommand = cmd
 
                 Dim SORTBY As String = Session("VDSort")
+                Dim motionFilter As String = Session("vhMotionFilter")
                 If Not SORTBY = String.Empty Then
                     Dim FilterTable As New DataTable("sp_Report_VoterDetails")
                     da.Fill(FilterTable)
 
                     Dim Filter As New DataView(FilterTable)
+                    'check for motion filter
+
+                    If Not Trim(motionFilter) = String.Empty Then
+                        Filter.RowFilter = "Motion = '" + motionFilter + "'"
+                    End If
+
                     Filter.Sort = SORTBY
                     FilterTable = Filter.ToTable()
                     ds.Tables.Add(FilterTable)
 
                 Else
-                    da.Fill(ds, "sp_Report_VoterDetails")
+
+                    'check for motion filter
+
+                    If Not Trim(motionFilter) = String.Empty Then
+                        Dim FilterTable As New DataTable("sp_Report_VoterDetails")
+                        da.Fill(FilterTable)
+                        Dim Filter As New DataView(FilterTable)
+                        Filter.RowFilter = "Motion = '" + motionFilter + "'"
+                        FilterTable = Filter.ToTable()
+                        ds.Tables.Add(FilterTable)
+                    Else
+                        da.Fill(ds, "sp_Report_VoterDetails")
+                    End If
+
+
 
                 End If
+
+
+
 
                 If ds.Tables("sp_Report_VoterDetails").Rows.Count = 0 Then
                     Dim drEmptyRow As DataRow = ds.Tables("sp_Report_VoterDetails").NewRow

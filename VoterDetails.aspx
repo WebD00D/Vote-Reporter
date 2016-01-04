@@ -77,7 +77,7 @@
                         <div class="col-lg-12">
                             <div class="contentMessage" style="margin-top: 25px">
                                 <h1 style="color: #2c3e50">Voter History </h1>
-                                <h3 style="color: #2c3e50"><span id="lblsessioncode"></span>Session</h3>
+                                <h3 style="color: #2c3e50"><span id="lblsessioncode"></span> Session</h3>
 
                             </div>
                         </div>
@@ -245,6 +245,13 @@
             $("#loadingMembers").show();
             $("#loadingBills").show();
             // -----------------BASE PAGE FUNCTIONS START ------------------//
+            var isAllMembers = 1;
+            var isAllBills = 1;
+
+           
+
+            $("#<%=ckAllBills.ClientID%>").attr("checked", "checked");
+            $("#<%=ckAllMembers.ClientID%>").attr("checked", "checked");
 
 
             // 1 ) Get Current Session
@@ -325,7 +332,8 @@
                 error: function (err) {
                     console.log(err);
                 }
-            }) //end ajax Motions Load
+            }) //end ajax Motions Load
+
 
 
 
@@ -464,6 +472,10 @@
                         $(content).hide().appendTo("#BillList").fadeIn();
                     })
                     $("#loadingBills").hide();
+                    
+                    $(".calitem").addClass('active');
+                    $(".calitem").data("selected", 1);
+                    $("#lblAllBills").show();
 
                 },
                 failure: function (msg) {
@@ -495,6 +507,9 @@
                     })
 
                     $("#loadingMembers").hide();
+                    $(".mbritem").addClass('active');
+                    $(".mbritem").data("selected", 1);
+                    $("#lblAllMem").show();
 
                 },
                 failure: function (msg) {
@@ -509,6 +524,11 @@
             $("#MemberList").delegate(".mbritem", "click", function (e) {
 
                 e.preventDefault();
+
+                if (isAllMembers) {
+                    alert("To select individual members, please uncheck 'Select All'.");
+                    return;
+                }               
 
                 if ($(this).data("selected") == 1) {
                     $(this).removeClass('active');
@@ -544,7 +564,7 @@
                 
             })
 
-            var isAllMembers = 0;
+         
 
             $("#clearAllMembers").click(function (e) {
                 e.preventDefault();
@@ -553,6 +573,8 @@
                 isAllMembers = 0;
                 $(".mbritem").data("selected", 0);
                 $("#<%=ckAllMembers.ClientID%>").attr("checked", false);
+                
+                $("#lblAllMem").hide();
 
             })
  
@@ -581,6 +603,13 @@
             $("#BillList").delegate(".calitem", "click", function (e) {
 
                 e.preventDefault();
+
+
+                if (isAllBills) {
+                    alert("To select individual bills, please uncheck 'Select All'.");
+                    return;
+                }
+
                 var bill = $(this).text()
                 var billIdentify = $(this).attr('id');
 
@@ -617,7 +646,7 @@
 
             })
 
-            var isAllBills = 0;
+            
             $("#clearAllBills").click(function (e) {
 
                 e.preventDefault();
@@ -626,10 +655,16 @@
                 isAllBills = 0;
                 $(".calitem").data("selected", 0);
                 $("#<%=ckAllBills.ClientID%>").attr('checked', false);
+                $("#lblAllBills").hide();
 
             })
 
+
+            
+
             $("#<%=ckAllBills.ClientID%>").change(function () {
+
+             
 
                 if (isAllBills == 0) {
                     $(".calitem").addClass('active');
