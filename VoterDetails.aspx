@@ -468,7 +468,7 @@
                     $("#BillList").empty();
                     $.each(result, function (index, item) {
 
-                        var content = "<a href='#' data-who='" + item.calendarItemID + "' id='" + item.calendarItemID + "' data-selected='0' class='list-group-item calitem'>" + item.billPrefix + " " + item.legislationNbr + " | " + item.Motion + "</a>";
+                        var content = "<a href='#' data-who='" + item.calendarItemID + "' id='" + item.calendarItemID + "' data-selected='0' class='list-group-item calitem'>" + item.billPrefix + " " + item.legislationNbr + "</a>";
                         $(content).hide().appendTo("#BillList").fadeIn();
                     })
                     $("#loadingBills").hide();
@@ -528,7 +528,8 @@
                 if (isAllMembers) {
                     alert("To select individual members, please uncheck 'Select All'.");
                     return;
-                }               
+                }
+               
 
                 if ($(this).data("selected") == 1) {
                     $(this).removeClass('active');

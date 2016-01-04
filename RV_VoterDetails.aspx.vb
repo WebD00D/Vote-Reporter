@@ -231,7 +231,15 @@ Public Class RV_VoterDetails
                         FilterTable = Filter.ToTable()
                         ds.Tables.Add(FilterTable)
                     Else
-                        da.Fill(ds, "sp_Report_VoterDetails")
+                        Dim FilterTable As New DataTable("sp_Report_VoterDetails")
+                        da.Fill(FilterTable)
+                        Dim Filter As New DataView(FilterTable)
+
+                        Filter.RowFilter = "BillNbr <> '0'"
+                        FilterTable = Filter.ToTable()
+                        ds.Tables.Add(FilterTable)
+
+                        'da.Fill(ds, "sp_Report_VoterDetails")
                     End If
 
 
@@ -345,8 +353,8 @@ Public Class RV_VoterDetails
             report.XrLabel33.Visible = False
             report.XrLabel34.Visible = False
             report.XrLabel35.Visible = False
-            report.XrLine1.WidthF = 658.15
-            report.XrLine2.WidthF = 658.15
+            report.XrLine1.WidthF = 640
+            report.XrLine2.WidthF = 640
         End If
 
         If Session("vhShowShort") = True Then
