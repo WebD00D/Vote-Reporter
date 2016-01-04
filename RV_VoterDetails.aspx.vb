@@ -345,6 +345,14 @@ Public Class RV_VoterDetails
             report.XrLabel33.Visible = False
             report.XrLabel34.Visible = False
             report.XrLabel35.Visible = False
+            report.XrLine1.WidthF = 658.15
+            report.XrLine2.WidthF = 658.15
+        End If
+
+        If Session("vhShowShort") = True Then
+            report.XrLabel2.Visible = True
+        Else
+            report.XrLabel2.Visible = False
         End If
 
         Dim votesUsed As New StringBuilder

@@ -520,6 +520,7 @@ Imports System.Data.SqlClient
         Session("vhShowShortTitle") = False
         Session("vhShowPartyTotals") = False
         Session("vhMotionFilter") = MotionFilter
+        Session("vhShowShort") = ShowShort
 
         Session("vstatBills") = Bills
         If useYeas = True Then Session("vhYES") = True
