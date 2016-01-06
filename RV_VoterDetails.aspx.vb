@@ -231,15 +231,15 @@ Public Class RV_VoterDetails
                         FilterTable = Filter.ToTable()
                         ds.Tables.Add(FilterTable)
                     Else
-                        Dim FilterTable As New DataTable("sp_Report_VoterDetails")
-                        da.Fill(FilterTable)
-                        Dim Filter As New DataView(FilterTable)
+                        'Dim FilterTable As New DataTable("sp_Report_VoterDetails")
+                        'da.Fill(FilterTable)
+                        'Dim Filter As New DataView(FilterTable)
 
-                        Filter.RowFilter = "BillNbr <> '0'"
-                        FilterTable = Filter.ToTable()
-                        ds.Tables.Add(FilterTable)
+                        'Filter.RowFilter = "BillNbr <> '0'"
+                        'FilterTable = Filter.ToTable()
+                        'ds.Tables.Add(FilterTable)
 
-                        'da.Fill(ds, "sp_Report_VoterDetails")
+                        da.Fill(ds, "sp_Report_VoterDetails")
                     End If
 
 

@@ -111,11 +111,16 @@ Public Class RV_VoterStatistics
         End Using
 
 
+        Dim VRList As New List(Of Engine.clsVoteReporter)
+        VRList = Session("clsVoteReporter")
+
+
         ' Get Report Configuration Details
         Using cmd As New SqlCommand
             cmd.Connection = con
             cmd.Connection.Open()
             cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.AddWithValue("@SessionID", VRList.Item(0).currentSessionID)
             cmd.CommandText = "sp_VRGetReportConfigParams"
 
             Using da
@@ -155,6 +160,7 @@ Public Class RV_VoterStatistics
             cmd.Connection = con
             cmd.Connection.Open()
             cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.AddWithValue("@SessionID", VRList.Item(0).currentSessionID)
             cmd.CommandText = "sp_VRGetVoteMappings"
 
             Using da
@@ -349,7 +355,10 @@ Public Class RV_VoterStatistics
         Dim report As New XRVoterStatistics()
         report.DataSource = ds
 
-        report.lblSession.Text = "Session: " & Session("SessionCode")
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
+
+        report.lblSession.Text = VoteReporter.Item(0).currentSessionLegislature
         report.lblPrintedOn.Text = Date.Now.ToString()
 
         If Session("vstatStartDate") = String.Empty Then
@@ -369,11 +378,13 @@ Public Class RV_VoterStatistics
             report.lblSubjects.Text = "ALL"
         End If
 
-        If Session("VDIsAllBills") = 1 Then
+        If Session("vstatIsAll") = 1 Then
             report.lblBills.Text = "ALL"
         Else
             report.lblBills.Text = _sBills
         End If
+
+
 
         Dim votesUsed As New StringBuilder
 
