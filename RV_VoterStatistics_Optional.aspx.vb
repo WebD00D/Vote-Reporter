@@ -26,6 +26,9 @@ Public Class RV_VoterStatistics_Optional
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
 
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
+
         Dim Members As String = Session("vstatMember")
         Dim Bills As String = Session("vstatBills")
         Dim SessionCode As String = Session("SessionCode")
@@ -116,6 +119,7 @@ Public Class RV_VoterStatistics_Optional
             cmd.Connection = con
             cmd.Connection.Open()
             cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.AddWithValue("@SessionID", VoteReporter.Item(0).currentSessionID)
             cmd.CommandText = "sp_VRGetReportConfigParams"
 
             Using da
@@ -155,6 +159,7 @@ Public Class RV_VoterStatistics_Optional
             cmd.Connection = con
             cmd.Connection.Open()
             cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.AddWithValue("@SessionID", VoteReporter.Item(0).currentSessionID)
             cmd.CommandText = "sp_VRGetVoteMappings"
 
             Using da
@@ -351,9 +356,35 @@ Public Class RV_VoterStatistics_Optional
         Dim report As New XRVoterStatisticsOptional()
         report.DataSource = ds
 
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
 
-        report.lblSessionPeriod.Text = "Session: " & Session("SessionCode").ToString()
-        report.lblPrintedOn.Text = "Printed On " & Date.Now.ToString()
+        report.lblSessionPeriod.Text = VoteReporter.Item(0).currentSessionLegislature
+        report.lblPrintedOn.Text = Date.Now.ToString()
+
+
+        If Session("vstatStartDate") = String.Empty Then
+            report.lblStartDate.Text = "ALL"
+        Else
+            report.lblStartDate.Text = Session("vstatStartDate").ToString()
+        End If
+        If Session("vstatEndDate") = String.Empty Then
+            report.lblEndDate.Text = "ALL"
+        Else
+            report.lblEndDate.Text = Session("vstatEndDate").ToString()
+        End If
+
+        If Not _sSubjects = String.Empty Then
+            report.subjectlbl.Text = _sSubjects
+        Else
+            report.subjectlbl.Text = "ALL"
+        End If
+
+        If Session("vstatIsAll") = 1 Then
+            report.lblBills.Text = "ALL"
+        Else
+            report.lblBills.Text = _sBills
+        End If
 
 
         If _ShowMajorityStats = False Then
