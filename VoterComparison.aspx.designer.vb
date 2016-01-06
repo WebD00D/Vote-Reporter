@@ -14,6 +14,24 @@ Option Explicit On
 Partial Public Class VoterComparison
 
     '''<summary>
+    '''NETForm control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents NETForm As Global.System.Web.UI.HtmlControls.HtmlForm
+
+    '''<summary>
+    '''linkLogout control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents linkLogout As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''ckAll control.
     '''</summary>
     '''<remarks>
@@ -21,33 +39,6 @@ Partial Public Class VoterComparison
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ckAll As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''txtStartDate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtStartDate As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtEndDate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtEndDate As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtSearchSubject control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtSearchSubject As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''ddlVoter1 control.
@@ -75,6 +66,69 @@ Partial Public Class VoterComparison
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddlVoter3 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''ddlVoter4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlVoter4 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''ddlVoter5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlVoter5 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''ddlVoter6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlVoter6 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''ddlVoter7 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlVoter7 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''ddlBeginDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlBeginDate As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''ddlEndDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlEndDate As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''txtSearchSubject control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSearchSubject As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''ckRCSSort control.

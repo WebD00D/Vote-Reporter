@@ -545,18 +545,21 @@ Imports System.Data.SqlClient
 
     ' sets calendar items that will be used in html doc load.
     <WebMethod(EnableSession:=True)> _
-    Public Function SetVoterComparisonDetails(ByVal BillArr As String, ByVal IsAllBills As Boolean, ByVal Voter1ID As Integer, ByVal Voter2ID As Integer, ByVal Voter3ID As Integer, ByVal StartDate As String, ByVal EndDate As String, ByVal SortBy As String, ByVal MotionFilter As String) As String
+    Public Function SetVoterComparisonDetails(ByVal BillArr As String, ByVal IsAllBills As Boolean, ByVal Voter1ID As Integer, ByVal Voter2ID As Integer, ByVal Voter3ID As Integer, ByVal Voter4ID As Integer, ByVal Voter5ID As Integer, ByVal Voter6ID As Integer, ByVal Voter7ID As Integer, ByVal StartDate As String, ByVal EndDate As String, ByVal SortBy As String, ByVal MotionFilter As String) As String
         Dim result As String = CStr(BillArr)
         Session("IsAllBills") = IsAllBills
         Session("CalendarItems") = result
 
         Session("VoterComp_MotionFilter") = MotionFilter
-
         Session("Vcomp_SortBy") = SortBy
 
         Session("Voter1ID") = Voter1ID
         Session("Voter2ID") = Voter2ID
         Session("Voter3ID") = Voter3ID
+        Session("Voter4ID") = Voter4ID
+        Session("Voter5ID") = Voter5ID
+        Session("Voter6ID") = Voter6ID
+        Session("Voter7ID") = Voter7ID
 
         Session("VoteComp_StartDate") = StartDate
         Session("VoteComp_EndDate") = EndDate

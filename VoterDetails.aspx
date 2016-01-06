@@ -25,7 +25,7 @@
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
 </head>
-    <body style="background-color:#eeeeee">
+    <body style="background-color:white">
         <form id="NETForm" runat="server">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="container">
@@ -89,7 +89,7 @@
                 <asp:HiddenField ID="calitem" runat="server" />
                 <div class="row">
 
-                    <div class="col-lg-8 col-lg-offset-2" style="background-color: white; margin-top: 30px; border-radius: 7px">
+                    <div class="col-lg-8 col-lg-offset-2">
 
 
                         <div class="col-lg-6">
@@ -115,7 +115,7 @@
                     </div>
 
 
-                    <div class="col-lg-8 col-lg-offset-2" style="background-color: white; margin-top: 30px; border-radius: 7px">
+                    <div class="col-lg-8 col-lg-offset-2" >
 
                         <div class="col-lg-6">
                             <h4>Available Bills</h4>
@@ -141,7 +141,7 @@
 
                     </div>
 
-                    <div class="col-lg-8 col-lg-offset-2" style="background-color: white; margin-top: 30px; border-radius: 7px">
+                    <div class="col-lg-8 col-lg-offset-2">
 
                         <h4>Subject Search</h4>
                         <asp:TextBox runat="server" ID="txtSearchSubject" CssClass="form-control"></asp:TextBox>

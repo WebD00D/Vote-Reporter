@@ -9,6 +9,9 @@ Public Class RV_VoterComparison
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
 
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
+
         Dim CalendarItems As String = Session("CalendarItems")
         If Session("UseSubjectSearch") = True Then
             CalendarItems = Session("SearchedBillIDs")
@@ -50,8 +53,17 @@ Public Class RV_VoterComparison
         Dim Voter1ID As String = CStr(Session("Voter1ID"))
         Dim Voter2ID As String = CStr(Session("Voter2ID"))
         Dim Voter3ID As String = CStr(Session("Voter3ID"))
+        Dim Voter4ID As String = CStr(Session("Voter4ID"))
+        Dim Voter5ID As String = CStr(Session("Voter5ID"))
+        Dim Voter6ID As String = CStr(Session("Voter6ID"))
+        Dim Voter7ID As String = CStr(Session("Voter7ID"))
+
 
         If Voter3ID = "0" Then Voter3ID = String.Empty
+        If Voter4ID = "0" Then Voter4ID = String.Empty
+        If Voter5ID = "0" Then Voter5ID = String.Empty
+        If Voter6ID = "0" Then Voter6ID = String.Empty
+        If Voter7ID = "0" Then Voter7ID = String.Empty
 
 
         Dim dt As New DataTable
@@ -59,27 +71,14 @@ Public Class RV_VoterComparison
         Dim ds As New DataSet
 
 
-        'Get Vote Database Name 
-        Using cmd As New SqlCommand
-            cmd.Connection = con
-            cmd.Connection.Open()
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.CommandText = "sp_VRGetDatabaseName"
 
-            Using da As New SqlDataAdapter(cmd)
-                da.Fill(dt)
-            End Using
-
-            cmd.Connection.Close()
-        End Using
-
-        Dim VoteDB As String = dt.Rows(1).Item(0)
 
         ' Get Motion Column
         Using cmd As New SqlCommand
             cmd.Connection = con
             cmd.Connection.Open()
             cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.AddWithValue("@SessionID", VoteReporter.Item(0).currentSessionID)
             cmd.CommandText = "sp_VRGetReportConfigParams"
 
             Using da As New SqlDataAdapter(cmd)
@@ -131,19 +130,62 @@ Public Class RV_VoterComparison
         Dim AbsentName As String = NameDT.Rows(4).Item(0)
         Dim NVName As String = NameDT.Rows(5).Item(0)
 
-        Dim HasAll As Boolean = False
+        Dim MemberCount As Integer = 2
+
         ' Set Report Details
         Using cmd As New SqlCommand
             cmd.Connection = con
             cmd.Connection.Open()
             cmd.CommandType = CommandType.StoredProcedure
-            If Not Voter3ID = String.Empty Then
-                cmd.CommandText = "sp_Report_VoterComparison"
+
+
+            If Not Voter7ID = String.Empty Then
+
+                cmd.CommandText = "sp_Report_VoterComparison_7MBR"
                 cmd.Parameters.AddWithValue("@Member3", CStr(Voter3ID))
-                HasAll = True
+                cmd.Parameters.AddWithValue("@Member4", CStr(Voter4ID))
+                cmd.Parameters.AddWithValue("@Member5", CStr(Voter5ID))
+                cmd.Parameters.AddWithValue("@Member6", CStr(Voter6ID))
+                cmd.Parameters.AddWithValue("@Member7", CStr(Voter7ID))
+
+                MemberCount = 7
+
+            ElseIf Not Voter6ID = String.Empty Then
+
+                cmd.CommandText = "sp_Report_VoterComparison_6MBR"
+                cmd.Parameters.AddWithValue("@Member3", CStr(Voter3ID))
+                cmd.Parameters.AddWithValue("@Member4", CStr(Voter4ID))
+                cmd.Parameters.AddWithValue("@Member5", CStr(Voter5ID))
+                cmd.Parameters.AddWithValue("@Member6", CStr(Voter6ID))
+
+                MemberCount = 6
+
+            ElseIf Not Voter5ID = String.Empty Then
+
+                cmd.CommandText = "sp_Report_VoterComparison_5MBR"
+                cmd.Parameters.AddWithValue("@Member3", CStr(Voter3ID))
+                cmd.Parameters.AddWithValue("@Member4", CStr(Voter4ID))
+                cmd.Parameters.AddWithValue("@Member5", CStr(Voter5ID))
+
+                MemberCount = 5
+
+            ElseIf Not Voter4ID = String.Empty Then
+
+                cmd.CommandText = "sp_Report_VoterComparison_4MBR"
+                cmd.Parameters.AddWithValue("@Member3", CStr(Voter3ID))
+                cmd.Parameters.AddWithValue("@Member4", CStr(Voter4ID))
+
+                MemberCount = 4
+
+            ElseIf Not Voter3ID = String.Empty Then
+
+                cmd.CommandText = "sp_Report_VoterComparison_4MBR"
+                cmd.Parameters.AddWithValue("@Member3", CStr(Voter3ID))
+
+                MemberCount = 3
+
             Else
                 cmd.CommandText = "sp_Report_VoterComparison_2MBR"
-                HasAll = False
             End If
 
             cmd.Parameters.AddWithValue("@BillList", CalendarItems)
@@ -165,27 +207,22 @@ Public Class RV_VoterComparison
 
                 Dim SORTBY As String = Session("Vcomp_SortBy")
                 If Not SORTBY = String.Empty Then
-                    Dim FilterTable As New DataTable("sp_Report_VoterComparison")
+                    Dim FilterTable As New DataTable("sp_Report_VoterComparison_7MBR")
                     da.Fill(FilterTable)
-
                     Dim Filter As New DataView(FilterTable)
                     Filter.Sort = SORTBY
                     FilterTable = Filter.ToTable()
                     ds.Tables.Add(FilterTable)
-
                 Else
-                    da.Fill(ds, "sp_Report_VoterComparison")
+                    da.Fill(ds, "sp_Report_VoterComparison_7MBR")
                 End If
 
+                If ds.Tables("sp_Report_VoterComparison_7MBR").Rows.Count = 0 Then
+                    Dim drEmptyRow As DataRow = ds.Tables("sp_Report_VoterComparison_7MBR").NewRow
 
-                If ds.Tables("sp_Report_VoterComparison").Rows.Count = 0 Then
-                    Dim drEmptyRow As DataRow = ds.Tables("sp_Report_VoterComparison").NewRow
-
-                    ds.Tables("sp_Report_VoterComparison").Rows.InsertAt(drEmptyRow, 0)
-                    ds.Tables("sp_Report_VoterComparison").AcceptChanges()
+                    ds.Tables("sp_Report_VoterComparison_7MBR").Rows.InsertAt(drEmptyRow, 0)
+                    ds.Tables("sp_Report_VoterComparison_7MBR").AcceptChanges()
                 End If
-
-
 
             End Using
 
@@ -225,19 +262,22 @@ Public Class RV_VoterComparison
 
 
 
-        VoterComparisonViewer.Report = CreateReport(ds, HasAll)
+        VoterComparisonViewer.Report = CreateReport(ds, MemberCount)
         VoterComparisonViewer.DataBind()
 
 
     End Sub
 
 
-    Private Function CreateReport(ByVal ds As DataSet, ByVal has3 As Boolean) As XRVoterComparison
+    Private Function CreateReport(ByVal ds As DataSet, ByVal MemberCount As Integer) As XRVoterComparison
         Dim report As New XRVoterComparison()
         report.DataSource = ds
 
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
+
         report.BeginInit()
-        report.lblSession.Text = "Session: " & Session("SessionCode")
+        report.lblSession.Text = VoteReporter.Item(0).currentSessionLegislature
         report.lblPrintedOn.Text = Date.Now.ToString()
 
         If Not Session("VoteComp_StartDate") = String.Empty Then
@@ -270,10 +310,10 @@ Public Class RV_VoterComparison
 
 
 
-        If has3 = False Then
-            report.hMember3.Visible = False
-            report.Member3.Visible = False
-        End If
+        'If has3 = False Then
+        '    report.hMember3.Visible = False
+        '    report.Member3.Visible = False
+        'End If
         report.EndInit()
 
         report.CreateDocument()
