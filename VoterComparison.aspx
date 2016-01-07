@@ -153,7 +153,8 @@
                                  <h4>Motions</h4>
                         <select id="ddlMotions" class="form-control">
                          
-                        </select>
+                        </select>
+
 
 
 
@@ -191,7 +192,12 @@
         $(document).ready(function () {
 
             $("#lblAllBills").hide();
-            $("#lblSearchResults").text("");            $("#loadingBills").show();            $("#<%=ckAll.ClientID%>").attr("checked", "checked");            var isAll = 1;
+            $("#lblSearchResults").text("");
+            $("#loadingBills").show();
+
+            $("#<%=ckAll.ClientID%>").attr("checked", "checked");
+            var isAll = 1;
+
 
 
             // 1 ) Get Current Session
@@ -626,7 +632,8 @@
             $("#btnDoReport").click(function () {
 
                 var MotionFilterString;
-                MotionFilterString = $("#ddlMotions option:selected").text()
+                MotionFilterString = $("#ddlMotions option:selected").text()
+
 
                 var voter1ID = $('#<%=ddlVoter1.ClientID%> option:selected').val();
                 var voter2ID = $('#<%=ddlVoter2.ClientID%> option:selected').val();

@@ -574,7 +574,6 @@
                 isAllMembers = 0;
                 $(".mbritem").data("selected", 0);
                 $("#<%=ckAllMembers.ClientID%>").attr("checked", false);
-                
                 $("#lblAllMem").hide();
 
             })

@@ -1,13 +1,298 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" MasterPageFile="~/Content.Master" EnableEventValidation="false" CodeBehind="VoterAttendance.aspx.vb" Inherits="VoteReporterNEW.VoterAttendance" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false"  EnableEventValidation="false" CodeBehind="VoterAttendance.aspx.vb" Inherits="VoteReporterNEW.VoterAttendance" %>
 
-<asp:Content runat="server" ContentPlaceHolderID="PageTitle">Member Attendance</asp:Content>
-<asp:Content runat="server" ContentPlaceHolderID="PageSubTitle"></asp:Content>
+<!DOCTYPE html>
+<html lang="en">
 
-<asp:Content runat="server" ContentPlaceHolderID="MainContent">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="IRC's Vote Reporter Application">
+    <meta name="author" content="International Roll Call">
+    
+  
+    <title>IRC's Vote Reporter</title>
+    <link rel="icon" href="favicon.ico" />
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/landing-page.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+</head>
+    <body style="background-color:#eeeeee">
+        <form id="NETForm" runat="server">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container">
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a id="lnkSiteTitle" class="navbar-brand" href="default.aspx"></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="default.aspx"><i class="fa fa-home"></i>Home</a>
+                            </li>
+                            <li>
+                                <a id="lnk1" href="#"><span id="txtLink1"></span></a>
+                            </li>
+                            <li>
+                                <a id="lnk2" href="#"><span id="txtLink2"></span></a>
+                            </li>
+                            <li>
+                                <a id="lnk3" href="#"><span id="txtLink3"></span></a>
+                            </li>
+                            <li>
+                                <div class="navbar-form navbar-left" role="search">
+                                    <div class="input-group margin-bottom-sm">
+                                        <span class="input-group-addon">Current Session:</span>
+                                        <select id="ddlSessionSelect" class="form-control">
+                                        </select>
+                                    </div>
+                                    <asp:LinkButton CssClass="btn btn-primary" runat="server" ID="linkLogout" ForeColor="white">Sign out  <i class="fa fa-sign-out fa-1x"></i></asp:LinkButton>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container -->
+            </nav>
+
+            <div class="ContentArea">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="contentMessage" style="margin-top: 25px">
+                                <h1 style="color: #2c3e50">Voter History </h1>
+                                <h3 style="color: #2c3e50"><span id="lblsessioncode"></span> Session</h3>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+               
+            <div class="row">
+            <div class="col-lg-12">
+
+                <div class="col-lg-2"></div>
+
+                <div class="col-lg-4">
+                    <h3>Available Members</h3>
+                    <p style="color: #ff6a00" id="loadingMembers">Loading Members...</p>
+                    <ul class="list-unstyled">
+                        <li><asp:CheckBox runat="server" ID="ckAllMembers" CssClass="checkbox-inline" Text="Select All" /></li>
+                    </ul>
+                    <div id="MemberList" class="list-group" style="overflow-y: scroll; height: 250px"> </div>
+                    
+                </div>
+
+
+                <div class="col-lg-4">
+                    <h3>Members to Report <span id="lblAllMem" style="color:#1f7048">(All)</span></h3>
+                     <ul class="list-unstyled">
+                       
+                        <li><a href="#" class="label label-danger" id="clearAllMembers"> Clear Selection </a></li>
+                    </ul>
+                    <div id="selectedMemberList" class="list-group" style="overflow-y:scroll;height:250px">
+                       
+                    </div> 
+                </div>
+
+
+
+                <div class="col-lg-2"></div>
+
+                
+
+                <div class="col-lg-12">
+                    <div class="col-lg-4 col-lg-offset-2">
+
+                       <ul class="list-inline">
+                            <li><h4>Begin Date </h4>
+                                <asp:DropDownList CssClass="form-control" runat="server" ID="ddlBeginDate">
+                                     
+                                </asp:DropDownList>
+                            </li>
+                             <li><h4>End Date</h4>
+                                <asp:DropDownList CssClass="form-control" runat="server" ID="ddlEndDate"></asp:DropDownList>
+                            </li>
+
+
+                          
+                        </ul>
+                       
+                       
+
+
+
+
+                        <br />
+                        <br />
+
+                        <ul class="list-inline">
+                            <li><button id="btnDoReport" class="btn btn-sm btn-primary pull-left"><i class="fa fa-book"></i>  Generate Report</button></li>
+                              
+                             </ul>
+                         
+                    </div>
+                      
+                </div>
+
+    
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 text-center" style="padding:20px">
+               <h4 id="errorMsg" style="color:#c9302c"></h4>
+            </div>
+        </div>
+
+            </div>
+           
+
+
+
+        </form>
+        </body>
+    </html>
+
+
+
 
     <script src="js/jquery.js"></script>
     <script>
         $(document).ready(function () {
+
+            $("#<%=ckAllMembers.ClientID%>").attr("checked", "checked");
+            var isAllMembers = 1;
+            $("#loadingMembers").show();
+            // 1 ) Get Current Session
+            var _CurrentSession = getCurrentSesssion()
+
+            function getCurrentSesssion() {
+                // make a call to select the current set session.
+                // On success, call loadAllSession()
+                var result;
+                $.ajax({
+                    type: "POST",
+                    url: "Engine.asmx/getCurrentSession",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        _CurrentSession = data.d;
+                        loadAllSessions();
+                    }
+                })
+            }
+
+
+            function loadAllSessions() {
+
+                $.ajax({
+                    type: "POST",
+                    url: "Engine.asmx/LoadSessions",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        var result = data.d;
+                        $.each(result, function (index, item) {
+                            var optiontag = "<option id=" + item.sessionID + " value=" + item.sessionID + ">" + item.sessionCode + "</option>";
+                            $(optiontag).appendTo("#ddlSessionSelect");
+
+                        })
+                        setSessionDropDown();
+                    }
+                })
+            }
+
+
+            function setSessionDropDown() {
+                $("#ddlSessionSelect").val(_CurrentSession);
+                setPageLinks();
+
+            }
+
+
+            function setPageLinks() {
+                $.ajax({ //first call to set nav bar links and titles
+                    type: "POST",
+                    url: "Engine.asmx/GetBaseVoteReporterData",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        var result = data.d;
+                        $.each(result, function (index, item) {
+                            $("#lnkSiteTitle").text(item.siteTitle);
+                            $("#lnk1").attr("href", item.link1URL);
+                            $("#txtLink1").text(item.link1Name);
+                            $("#lnk2").attr("href", item.link2URL);
+                            $("#txtLink2").text(item.link2Name);
+                            $("#lnk3").attr("href", item.link3URL);
+                            $("#txtLink3").text(item.link3Name);
+
+                            setCurrentSessionName();
+
+                        })
+                    }
+                }) //end ajax call to set links
+            }
+
+            function setCurrentSessionName() {
+
+                $.ajax({
+                    type: "POST",
+                    url: "Engine.asmx/getCurrentSessionCode",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        var result = data.d;
+                        $("#lblsessioncode").text(result);
+                    }
+                })
+
+            }
+
+
+            $("#ddlSessionSelect").change(function () {
+                var session = $("#ddlSessionSelect option:selected").attr("value");
+
+                // when the drop down index changes, we need to make a call to update the base vote reporter class
+                // with all new session detail.
+                updateSession(session);
+            })
+
+            function updateSession(sessionID) {
+                $.ajax({
+                    type: "POST",
+                    url: "Engine.asmx/updateSession",
+                    data: "{SessionID:" + sessionID + "}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        var result = data.d;
+                        window.location.reload();
+
+                    }
+                })
+            }
+
 
 
             //Load Calendar Dates 
@@ -72,6 +357,11 @@
                         $(content).hide().appendTo("#MemberList").fadeIn();
                     })
 
+                    $("#loadingMembers").hide();
+                    $(".mbritem").addClass('active');
+                    $(".mbritem").data("selected", 1);
+                    $("#lblAllMem").show();
+
                 },
                 failure: function (msg) {
                     alert(msg);
@@ -84,6 +374,11 @@
             $("#MemberList").delegate(".mbritem", "click", function (e) {
 
                 e.preventDefault();
+
+                if (isAllMembers) {
+                    alert("To select individual members, please uncheck 'Select All'.");
+                    return;
+                }
 
                 if ($(this).data("selected") == 1) {
                     $(this).removeClass('active');
@@ -119,7 +414,7 @@
 
             })
 
-            var isAllMembers = 0;
+
 
             $("#clearAllMembers").click(function (e) {
                 e.preventDefault();
@@ -128,6 +423,7 @@
                 isAllMembers = 0;
                 $(".mbritem").data("selected", 0);
                 $("#<%=ckAllMembers.ClientID%>").attr("checked", false);
+                $("#lblAllMem").hide();
 
             })
 
@@ -211,85 +507,7 @@
 
         })
     </script>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-
-                <div class="col-lg-2"></div>
-
-                <div class="col-lg-4">
-                    <h3>Available Members</h3>
-                    <ul class="list-unstyled">
-                        <li><asp:CheckBox runat="server" ID="ckAllMembers" CssClass="checkbox-inline" Text="Select All" /></li>
-                    </ul>
-                    <div id="MemberList" class="list-group" style="overflow-y: scroll; height: 250px"> </div>
-                    
-                </div>
-
-
-                <div class="col-lg-4">
-                    <h3>Members to Report <span id="lblAllMem" style="color:#1f7048">(All)</span></h3>
-                     <ul class="list-unstyled">
-                       
-                        <li><a href="#" class="label label-danger" id="clearAllMembers"> Clear Selection </a></li>
-                    </ul>
-                    <div id="selectedMemberList" class="list-group" style="overflow-y:scroll;height:250px">
-                       
-                    </div> 
-                </div>
-
-
-
-                <div class="col-lg-2"></div>
-
-                
-
-                <div class="col-lg-12">
-                    <div class="col-lg-4 col-lg-offset-2">
-
-                       <ul class="list-inline">
-                            <li><h4>Begin Date </h4>
-                                <asp:DropDownList CssClass="form-control" runat="server" ID="ddlBeginDate">
-                                     
-                                </asp:DropDownList>
-                            </li>
-                             <li><h4>End Date</h4>
-                                <asp:DropDownList CssClass="form-control" runat="server" ID="ddlEndDate"></asp:DropDownList>
-                            </li>
-
-
-                          
-                        </ul>
-                       
-                       
-
-
-
-
-                        <br />
-                        <br />
-
-                        <ul class="list-inline">
-                            <li><button id="btnDoReport" class="btn btn-sm btn-primary pull-left"><i class="fa fa-book"></i>  Generate Report</button></li>
-                              
-                             </ul>
-                         
-                    </div>
-                      
-                </div>
-
     
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12 text-center" style="padding:20px">
-               <h4 id="errorMsg" style="color:#c9302c"></h4>
-            </div>
-        </div>
-
-    </div>
 
 
 
-</asp:Content>
