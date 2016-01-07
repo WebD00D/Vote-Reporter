@@ -45,6 +45,7 @@ Partial Public Class XRMemberAttendance
         Me.lblSession = New DevExpress.XtraReports.UI.XRLabel()
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.lblDateParam = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         CType(Me.MemberAttendanceDS1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -301,24 +302,35 @@ Partial Public Class XRMemberAttendance
         '
         'PageFooter
         '
-        Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.lblDateParam})
-        Me.PageFooter.HeightF = 47.22222!
+        Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1, Me.lblDateParam})
+        Me.PageFooter.HeightF = 25.34723!
         Me.PageFooter.Name = "PageFooter"
         '
         'lblDateParam
         '
         Me.lblDateParam.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.lblDateParam.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 14.22225!)
+        Me.lblDateParam.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
         Me.lblDateParam.Name = "lblDateParam"
         Me.lblDateParam.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
-        Me.lblDateParam.SizeF = New System.Drawing.SizeF(251.3889!, 22.99999!)
+        Me.lblDateParam.SizeF = New System.Drawing.SizeF(357.3076!, 22.99999!)
         Me.lblDateParam.StylePriority.UseFont = False
         Me.lblDateParam.Text = "lblSession"
+        '
+        'XrPageInfo1
+        '
+        Me.XrPageInfo1.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.XrPageInfo1.Format = "Page {0} of {1}"
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(549.9999!, 0.0!)
+        Me.XrPageInfo1.Name = "XrPageInfo1"
+        Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
+        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
+        Me.XrPageInfo1.StylePriority.UseFont = False
+        Me.XrPageInfo1.StylePriority.UseTextAlignment = False
+        Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
         'XRMemberAttendance
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.PageFooter})
-        Me.DataAdapter = Me.Sp_Report_VoterAttendanceTableAdapter
         Me.DataMember = "sp_Report_VoterAttendance"
         Me.DataSource = Me.MemberAttendanceDS1
         Me.Margins = New System.Drawing.Printing.Margins(100, 100, 50, 100)
@@ -354,4 +366,5 @@ Partial Public Class XRMemberAttendance
     Friend WithEvents lblDateParam As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLine2 As DevExpress.XtraReports.UI.XRLine
     Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
 End Class

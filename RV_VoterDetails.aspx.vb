@@ -242,12 +242,7 @@ Public Class RV_VoterDetails
                         da.Fill(ds, "sp_Report_VoterDetails")
                     End If
 
-
-
                 End If
-
-
-
 
                 If ds.Tables("sp_Report_VoterDetails").Rows.Count = 0 Then
                     Dim drEmptyRow As DataRow = ds.Tables("sp_Report_VoterDetails").NewRow

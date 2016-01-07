@@ -4,7 +4,10 @@ Public Class RV_MemberAttendance
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        Dim SessionCode As String = Session("SessionCode")
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
+
+        Dim SessionCode As String = VoteReporter.Item(0).currentSessionCode
         Dim Members As String = Session("AttendanceMembers")
         Dim StartDate As String = Session("atn_StartDate")
         Dim EndDate As String = Session("atn_EndDate")
@@ -46,6 +49,7 @@ Public Class RV_MemberAttendance
             cmd.Connection = con
             cmd.Connection.Open()
             cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.AddWithValue("@SessionID", VoteReporter.Item(0).currentSessionID)
             cmd.CommandText = "sp_VRGetReportConfigParams"
 
             Using da
@@ -107,11 +111,15 @@ Public Class RV_MemberAttendance
 
 
     Private Function CreateReport(ByVal ds As DataSet) As XRMemberAttendance
+
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
+
         Dim report As New XRMemberAttendance()
         report.DataSource = ds
 
         report.BeginInit()
-        report.lblSession.Text = "Session: " & Session("SessionCode")
+        report.lblSession.Text = VoteReporter.Item(0).currentSessionLegislature
 
         If Not Session("atn_StartDate") = String.Empty And Not Session("atn_EndDate") = String.Empty Then
             report.lblDateParam.Text = "Dates: " & Session("atn_StartDate") & " to " & Session("atn_EndDate")
