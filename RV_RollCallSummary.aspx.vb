@@ -27,6 +27,8 @@ Public Class RV_RollCallSummary
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
 
         Dim Bills As String = Session("RollCallSummary_Bills")
         Dim StartDate As String = Session("RollCallSummary_StartDate")
@@ -93,6 +95,7 @@ Public Class RV_RollCallSummary
             cmd.Connection = con
             cmd.Connection.Open()
             cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.AddWithValue("@SessionID", VoteReporter.Item(0).currentSessionID)
             cmd.CommandText = "sp_VRGetReportConfigParams"
 
             Using da As New SqlDataAdapter(cmd)
@@ -116,6 +119,7 @@ Public Class RV_RollCallSummary
             cmd.Connection = con
             cmd.Connection.Open()
             cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.AddWithValue("@SessionID", VoteReporter.Item(0).currentSessionID)
             cmd.CommandText = "sp_VRGetVoteMappings"
 
             Using da As New SqlDataAdapter(cmd)
@@ -170,7 +174,7 @@ Public Class RV_RollCallSummary
             cmd.CommandText = "sp_Report_RollCallSummary"
             cmd.Parameters.AddWithValue("@BillList", Bills)
             cmd.Parameters.AddWithValue("@MotionField", MotionData)
-            cmd.Parameters.AddWithValue("@SessionCode", Session("SessionCode"))
+            cmd.Parameters.AddWithValue("@SessionCode", VoteReporter.Item(0).currentSessionCode)
             cmd.Parameters.AddWithValue("@SubjectField1", SubField1)
             cmd.Parameters.AddWithValue("@SubjectField2", SubField2)
             cmd.Parameters.AddWithValue("@StartDate", strStartDate)
@@ -190,6 +194,8 @@ Public Class RV_RollCallSummary
             cmd.Parameters.AddWithValue("@uabs", CByte(_UseAbsent))
             cmd.Parameters.AddWithValue("@unv", CByte(_UseNV))
 
+            Dim motionFilter = Session("RCH_MotionFilter")
+
             Using da As New SqlDataAdapter(cmd)
 
                 Dim SORTBY As String = Session("RCSortBy")
@@ -198,18 +204,36 @@ Public Class RV_RollCallSummary
                     da.Fill(FilterTable)
 
                     Dim Filter As New DataView(FilterTable)
+                    'check for motion filter
+
+                    If Not Trim(motionFilter) = String.Empty Then
+                        Filter.RowFilter = "Motion = '" + motionFilter + "'"
+                    End If
+
                     Filter.Sort = SORTBY
                     FilterTable = Filter.ToTable()
                     ds.Tables.Add(FilterTable)
 
+                   
+
                 Else
-                    da.Fill(ds, "sp_Report_RollCallSummary")
+
+
+                    If Not Trim(motionFilter) = String.Empty Then
+                        Dim FilterTable As New DataTable("sp_Report_RollCallSummary")
+                        da.Fill(FilterTable)
+                        Dim Filter As New DataView(FilterTable)
+                        Filter.RowFilter = "Motion = '" + motionFilter + "'"
+                        FilterTable = Filter.ToTable()
+                        ds.Tables.Add(FilterTable)
+                    Else
+
+                        da.Fill(ds, "sp_Report_RollCallSummary")
+                    End If
+
+
+
                 End If
-
-
-
-
-
 
                 If ds.Tables("sp_Report_RollCallSummary").Rows.Count = 0 Then
                     Dim drEmptyRow As DataRow = ds.Tables("sp_Report_RollCallSummary").NewRow
@@ -285,13 +309,18 @@ Public Class RV_RollCallSummary
 
 
     Private Function CreateReport(ByVal ds As DataSet) As XRRollCallSummary
+
+
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
+
         Dim report As New XRRollCallSummary()
         report.DataSource = ds
 
         report.BeginInit()
-        report.lblSession.Text = "Session: " & Session("SessionCode")
+        report.lblSession.Text = VoteReporter.Item(0).currentSessionLegislature
         report.lblPrintDate.Text = Date.Now.ToString()
-       
+
 
         If Not Session("RCSortBy") = String.Empty Then
             If Session("RCSortBy") = "LegNbr ASC" Then
@@ -329,7 +358,34 @@ Public Class RV_RollCallSummary
         End If
 
 
-       
+        If Session("ShowPartyTotals") = False Then
+            report.Landscape = False
+            'hide party total columns
+            report.XrLabel11.Visible = False
+            report.XrLabel12.Visible = False
+            report.XrLabel13.Visible = False
+            report.XrLabel14.Visible = False
+            report.XrLabel28.Visible = False
+            report.XrLabel29.Visible = False
+            report.XrLabel30.Visible = False
+            report.XrLabel31.Visible = False
+            report.XrLabel32.Visible = False
+            report.XrLabel33.Visible = False
+            report.XrLabel34.Visible = False
+            report.XrLabel35.Visible = False
+            report.XrLine1.WidthF = 640
+            report.XrLine2.WidthF = 640
+        End If
+
+        If Session("RCHShowShortTitle") = True Then
+            report.XrLabel18.Visible = True
+        Else
+            report.XrLabel18.Visible = False
+        End If
+
+
+
+
 
         Dim votesUsed As New StringBuilder
 
@@ -362,7 +418,7 @@ Public Class RV_RollCallSummary
         If _UseYea = True And _OYea = 4 Then report.H4.Text = _YeaName
         If _UseYea = True And _OYea = 5 Then report.H5.Text = _YeaName
         If _UseYea = True And _OYea = 6 Then report.H6.Text = _YeaName
-      
+
         If _UseNay = True And _ONay = 1 Then report.H1.Text = _NayName
         If _UseNay = True And _ONay = 2 Then report.H2.Text = _NayName
         If _UseNay = True And _ONay = 3 Then report.H3.Text = _NayName
@@ -569,10 +625,10 @@ Public Class RV_RollCallSummary
             report.EndInit()
         End If
 
-            report.EndInit()
+        report.EndInit()
 
-            report.CreateDocument()
-            Return report
+        report.CreateDocument()
+        Return report
     End Function
 
 End Class

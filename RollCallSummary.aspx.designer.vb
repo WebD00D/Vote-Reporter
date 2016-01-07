@@ -41,15 +41,6 @@ Partial Public Class RollCallSummary
     Protected WithEvents ckAllBills As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''txtSearchSubject control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtSearchSubject As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''ckRCSSort control.
     '''</summary>
     '''<remarks>
@@ -176,6 +167,15 @@ Partial Public Class RollCallSummary
     Protected WithEvents ckNV2 As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
+    '''txtSearchSubject control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSearchSubject As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''ddlBeginDate control.
     '''</summary>
     '''<remarks>
@@ -192,6 +192,24 @@ Partial Public Class RollCallSummary
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddlEndDate As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''ckShowShortTitle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ckShowShortTitle As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''ckShowPartyTotals control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ckShowPartyTotals As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''btnDoReport control.

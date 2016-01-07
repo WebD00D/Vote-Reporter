@@ -136,6 +136,9 @@
                              </ul>
                          </div>
                          <br />
+                            <h4>Motion Filter</h4>
+                        <select id="ddlMotionfilter" class="form-control"></select>
+                         <br />
 
                           <h4>Subject Search</h4>
                         <asp:TextBox runat="server" ID="txtSearchSubject"  CssClass="form-control"></asp:TextBox>
@@ -153,7 +156,17 @@
                              </li>
                          </ul>
                          <br />
-                        
+                          <br />
+                         <h4>Extra Options</h4>
+                        <ul class="list-inline">
+                             <li>
+                                <asp:CheckBox runat="server" ID="ckShowShortTitle" />
+                                Show Short Title</li>
+                               <li>
+                                <asp:CheckBox runat="server" ID="ckShowPartyTotals" />
+                                Show Party Totals</li>
+                        </ul>
+                        <br />
                              <asp:Button runat="server" ID="btnDoReport" CssClass="btn btn-sm btn-primary" Text="Generate Report" />
                        
                            
@@ -214,7 +227,7 @@
             $("#lblAllBills").hide();
             $("#loadingBills").show();
             $("#lblSearchResults").text("");
-            var isAllBills = 0;
+            var isAllBills = 1;
 
             // 1 ) Get Current Session
             var _CurrentSession = getCurrentSesssion()
@@ -617,13 +630,23 @@
                     SortBy = "RCSNbr ASC"
                 }
 
+                var motionFilter = $("#ddlMotionfilter option:selected").text();
+                var showShort = false;
+                if ($("#<%=ckShowShortTitle.ClientID%>").is(':checked')) {
+                    showShort = true
+                }
+                var showParty = false;
+                if ($("#<%=ckShowPartyTotals.ClientID%>").is(':checked')) {
+                    showParty = true;
+                }
+   
 
                 //ajax call 
                 $.ajax({
 
                     type: "POST",
                     url: "WebServices/ReportService.asmx/SetRollCallSummaryDetails",
-                    data: "{Bills:'" + arrayman + "',StartDate:'" + startDate + "',EndDate:'" + endDate + "',SortBy:'" + SortBy + "',IsAll:'" + isAllBills + "',ckYea:'" + ckYES + "',ckNay:'" + ckNO + "',ckAbstain:'" + ckABSTAIN + "',ckExcused:'" + ckEXC + "',ckAbsent:'" + ckABSENT + "',ckNotVoting:'" + ckNV + "'}",
+                    data: "{Bills:'" + arrayman + "',StartDate:'" + startDate + "',EndDate:'" + endDate + "',SortBy:'" + SortBy + "',IsAll:'" + isAllBills + "',ckYea:'" + ckYES + "',ckNay:'" + ckNO + "',ckAbstain:'" + ckABSTAIN + "',ckExcused:'" + ckEXC + "',ckAbsent:'" + ckABSENT + "',ckNotVoting:'" + ckNV + "',ShowShort:'" + showShort + "',ShowPartyTotals:'" + showParty + "',MotionFilter:'"+ motionFilter +"'}",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {
