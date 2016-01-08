@@ -123,4 +123,66 @@
   <metadata name="Sp_Report_GetTypeDetailsTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 65</value>
   </metadata>
+  <data name="$this.ScriptsSource" xml:space="preserve">
+    <value>
+
+
+Private Sub R6_BeforePrint(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintEventArgs)
+	Dim total6 = GetCurrentColumnValue("TTL6")
+	if total6 = 0 then
+		e.cancel = true
+	end if
+End Sub
+
+
+Private Sub R5_BeforePrint(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintEventArgs)
+	Dim total5 = GetCurrentColumnValue("TTL5")
+	if total5 = 0 then
+		e.cancel = true
+	end if
+End Sub
+
+Private Sub R4_BeforePrint(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintEventArgs)
+	Dim total4 = GetCurrentColumnValue("TTL4")
+	if total4 = 0 then
+		e.cancel = true
+	end if
+End Sub
+
+Private Sub R3_BeforePrint(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintEventArgs)
+	Dim total4 = GetCurrentColumnValue("TTL3")
+	if total4 = 0 then
+		e.cancel = true
+	end if
+
+End Sub
+
+Private Sub R2_BeforePrint(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintEventArgs)
+	Dim total4 = GetCurrentColumnValue("TTL2")
+	if total4 = 0 then
+		e.cancel = true
+	end if
+End Sub
+
+Private Sub R1_BeforePrint(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintEventArgs)
+	Dim total4 = GetCurrentColumnValue("TTL1")
+	if total4 = 0 then
+		e.cancel = true
+	end if
+
+End Sub
+
+Private Sub Detail_BeforePrint(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintEventArgs)
+	Dim yesvotes as integer  = GetCurrentColumnValue("TTL1")
+	Dim novotes as integer = GetCurrentColumnValue("TTL2")
+	if yesvotes &gt; novotes then 
+		lblOutcome.text = "PASSED"
+	else
+		lblOutcome.text = "FAILED"
+	end if
+	
+
+End Sub
+</value>
+  </data>
 </root>

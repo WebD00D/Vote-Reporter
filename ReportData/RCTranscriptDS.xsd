@@ -2,10 +2,11 @@
 <xs:schema id="RCTranscriptDS" targetNamespace="http://tempuri.org/RCTranscriptDS.xsd" xmlns:mstns="http://tempuri.org/RCTranscriptDS.xsd" xmlns="http://tempuri.org/RCTranscriptDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="2" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="VoteReporterNEWConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="VoteReporterNEWConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.VoteReporterNEWConnectionString1.ConnectionString" Provider="System.Data.SqlClient" />
-          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="VoteReporterNEWConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="VoteReporterNEWConnectionString2 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.VoteReporterNEWConnectionString2.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="VoteReporterNEWConnectionString1" IsAppSettingsProperty="true" Modifier="Assembly" Name="VoteReporterNEWConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.VoteReporterNEWConnectionString1.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="VoteReporterNEWConnectionString2" IsAppSettingsProperty="true" Modifier="Assembly" Name="VoteReporterNEWConnectionString2 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.VoteReporterNEWConnectionString2.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="OHHVoteReporterConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="OHHVoteReporterConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.OHHVoteReporterConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sp_Report_GetTypeDetailsTableAdapter" GeneratorDataComponentClassName="sp_Report_GetTypeDetailsTableAdapter" Name="sp_Report_GetTypeDetails" UserDataComponentName="sp_Report_GetTypeDetailsTableAdapter">
@@ -148,7 +149,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sp_Report_RollCallTranscriptTableAdapter" GeneratorDataComponentClassName="sp_Report_RollCallTranscriptTableAdapter" Name="sp_Report_RollCallTranscript" UserDataComponentName="sp_Report_RollCallTranscriptTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="VoteReporterNEWConnectionString2 (Web.config)" DbObjectName="VoteReporterNEW.dbo.sp_Report_RollCallTranscript" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="OHHVoteReporterConnectionString (Web.config)" DbObjectName="OHHVoteReporter.dbo.sp_Report_RollCallTranscript" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sp_Report_RollCallTranscript</CommandText>
@@ -170,6 +171,7 @@
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@oabs" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@unv" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@onv" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@SessionID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
                   </DbCommand>
                 </SelectCommand>
@@ -179,6 +181,7 @@
               <Mapping SourceColumn="CalitemID" DataSetColumn="CalitemID" />
               <Mapping SourceColumn="CDate" DataSetColumn="CDate" />
               <Mapping SourceColumn="BillNbr" DataSetColumn="BillNbr" />
+              <Mapping SourceColumn="RCSNbr" DataSetColumn="RCSNbr" />
               <Mapping SourceColumn="Subjects" DataSetColumn="Subjects" />
               <Mapping SourceColumn="Motion" DataSetColumn="Motion" />
               <Mapping SourceColumn="LIST1" DataSetColumn="LIST1" />
@@ -194,6 +197,12 @@
               <Mapping SourceColumn="TTL5" DataSetColumn="TTL5" />
               <Mapping SourceColumn="TTL6" DataSetColumn="TTL6" />
               <Mapping SourceColumn="TotalVotes" DataSetColumn="TotalVotes" />
+              <Mapping SourceColumn="Header1" DataSetColumn="Header1" />
+              <Mapping SourceColumn="Header2" DataSetColumn="Header2" />
+              <Mapping SourceColumn="Header3" DataSetColumn="Header3" />
+              <Mapping SourceColumn="Header4" DataSetColumn="Header4" />
+              <Mapping SourceColumn="Header5" DataSetColumn="Header5" />
+              <Mapping SourceColumn="Header6" DataSetColumn="Header6" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -508,6 +517,13 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="RCSNbr" msprop:Generator_ColumnVarNameInTable="columnRCSNbr" msprop:Generator_ColumnPropNameInRow="RCSNbr" msprop:Generator_ColumnPropNameInTable="RCSNbrColumn" msprop:Generator_UserColumnName="RCSNbr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="Subjects" msprop:Generator_ColumnVarNameInTable="columnSubjects" msprop:Generator_ColumnPropNameInRow="Subjects" msprop:Generator_ColumnPropNameInTable="SubjectsColumn" msprop:Generator_UserColumnName="Subjects" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -571,6 +587,48 @@
               <xs:element name="TTL5" msprop:Generator_ColumnVarNameInTable="columnTTL5" msprop:Generator_ColumnPropNameInRow="TTL5" msprop:Generator_ColumnPropNameInTable="TTL5Column" msprop:Generator_UserColumnName="TTL5" type="xs:int" minOccurs="0" />
               <xs:element name="TTL6" msprop:Generator_ColumnVarNameInTable="columnTTL6" msprop:Generator_ColumnPropNameInRow="TTL6" msprop:Generator_ColumnPropNameInTable="TTL6Column" msprop:Generator_UserColumnName="TTL6" type="xs:int" minOccurs="0" />
               <xs:element name="TotalVotes" msprop:Generator_ColumnVarNameInTable="columnTotalVotes" msprop:Generator_ColumnPropNameInRow="TotalVotes" msprop:Generator_ColumnPropNameInTable="TotalVotesColumn" msprop:Generator_UserColumnName="TotalVotes" type="xs:int" minOccurs="0" />
+              <xs:element name="Header1" msprop:Generator_ColumnVarNameInTable="columnHeader1" msprop:Generator_ColumnPropNameInRow="Header1" msprop:Generator_ColumnPropNameInTable="Header1Column" msprop:Generator_UserColumnName="Header1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Header2" msprop:Generator_ColumnVarNameInTable="columnHeader2" msprop:Generator_ColumnPropNameInRow="Header2" msprop:Generator_ColumnPropNameInTable="Header2Column" msprop:Generator_UserColumnName="Header2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Header3" msprop:Generator_ColumnVarNameInTable="columnHeader3" msprop:Generator_ColumnPropNameInRow="Header3" msprop:Generator_ColumnPropNameInTable="Header3Column" msprop:Generator_UserColumnName="Header3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Header4" msprop:Generator_ColumnVarNameInTable="columnHeader4" msprop:Generator_ColumnPropNameInRow="Header4" msprop:Generator_ColumnPropNameInTable="Header4Column" msprop:Generator_UserColumnName="Header4" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Header5" msprop:Generator_ColumnVarNameInTable="columnHeader5" msprop:Generator_ColumnPropNameInRow="Header5" msprop:Generator_ColumnPropNameInTable="Header5Column" msprop:Generator_UserColumnName="Header5" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Header6" msprop:Generator_ColumnVarNameInTable="columnHeader6" msprop:Generator_ColumnPropNameInRow="Header6" msprop:Generator_ColumnPropNameInTable="Header6Column" msprop:Generator_UserColumnName="Header6" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -13,31 +13,23 @@ Public Class RV_RollCallTranscript
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
+
         Dim Bills As String = Session("CalendarItems")
         Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
         Dim da As New SqlDataAdapter
         Dim ds As New DataSet
         Dim dt As New DataTable
 
-        'Get Vote Database Name 
-        Using cmd As New SqlCommand
-            cmd.Connection = con
-            cmd.Connection.Open()
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.CommandText = "sp_VRGetDatabaseName"
-            Using da
-                da.SelectCommand = cmd
-                da.Fill(dt)
-            End Using
-            cmd.Connection.Close()
-        End Using
-        Dim VoteDB As String = dt.Rows(1).Item(0)
+       
 
         ' Get Report Configuration Details
         Using cmd As New SqlCommand
             cmd.Connection = con
             cmd.Connection.Open()
             cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.AddWithValue("@SessionID", VoteReporter.Item(0).currentSessionID)
             cmd.CommandText = "sp_VRGetReportConfigParams"
 
             Using da
@@ -62,6 +54,7 @@ Public Class RV_RollCallTranscript
             cmd.Connection = con
             cmd.Connection.Open()
             cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.AddWithValue("@SessionID", VoteReporter.Item(0).currentSessionID)
             cmd.CommandText = "sp_VRGetVoteMappings"
 
             Using da
@@ -109,10 +102,10 @@ Public Class RV_RollCallTranscript
         Dim AbsentHeader As String = ds.Tables(1).Rows(4).Item(3)
         Dim NotVotingHeader As String = ds.Tables(1).Rows(5).Item(3)
 
-     
+
         Dim VoteDate As Date = Nothing
 
-        
+
 
         Dim cmd2 As New SqlCommand
         With cmd2
@@ -137,8 +130,7 @@ Public Class RV_RollCallTranscript
             .Parameters.AddWithValue("@oabs", AbsentOrder)
             .Parameters.AddWithValue("@unv", UseNotVoting)
             .Parameters.AddWithValue("@onv", NotVotingOrder)
-
-
+            .Parameters.AddWithValue("@SessionID", VoteReporter.Item(0).currentSessionID)
 
             Using da
 
@@ -215,16 +207,20 @@ Public Class RV_RollCallTranscript
             cmd.Connection.Close()
         End Using
 
-        RCTranscriptViewer.Report = CreateReport(ds, UseYea, UseNay, UseAbsent, UseExcused, UseAbstain, UseNotVoting)
+        RCTranscriptViewer.Report = CreateReport(ds, UseYea, UseNay, UseAbstain, UseExcused, UseAbsent, UseNotVoting)
         RCTranscriptViewer.DataBind()
 
     End Sub
 
 
     Private Function CreateReport(ByVal ds As DataSet, ByVal useYEA As Integer, ByVal useNay As Integer, ByVal useAbstain As Integer, ByVal useExc As Integer, ByVal useAbsent As Integer, ByVal useNV As Integer) As XRRollCallTranscript
+
+        Dim VoteReporter As New List(Of Engine.clsVoteReporter)
+        VoteReporter = Session("clsVoteReporter")
+
         Dim report As New XRRollCallTranscript()
         report.DataSource = ds
-
+        report.lblSession.Text = VoteReporter.Item(0).currentSessionLegislature
         report.BeginInit()
 
         If useYEA = 0 Then

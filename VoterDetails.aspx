@@ -664,8 +664,6 @@
 
             $("#<%=ckAllBills.ClientID%>").change(function () {
 
-             
-
                 if (isAllBills == 0) {
                     $(".calitem").addClass('active');
                     $(".calitem").data("selected", 1);
@@ -684,10 +682,7 @@
 
                 e.preventDefault();
 
-                //if (typeof (me) === 'undefined') {
-                //    $("#errorMsg").text("Please select a member to continue.");
-                //    return;
-                //}
+              
 
                 var Mbritem = $('.mbritem');
                 var selectedMbrItemsArray = new Array();
