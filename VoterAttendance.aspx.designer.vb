@@ -14,6 +14,24 @@ Option Explicit On
 Partial Public Class VoterAttendance
 
     '''<summary>
+    '''NETForm control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents NETForm As Global.System.Web.UI.HtmlControls.HtmlForm
+
+    '''<summary>
+    '''linkLogout control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents linkLogout As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''ckAllMembers control.
     '''</summary>
     '''<remarks>
@@ -23,20 +41,20 @@ Partial Public Class VoterAttendance
     Protected WithEvents ckAllMembers As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''txtStartDate control.
+    '''ddlBeginDate control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtStartDate As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ddlBeginDate As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''txtEndDate control.
+    '''ddlEndDate control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtEndDate As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ddlEndDate As Global.System.Web.UI.WebControls.DropDownList
 End Class

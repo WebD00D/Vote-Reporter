@@ -639,6 +639,9 @@
                 if ($("#<%=ckShowPartyTotals.ClientID%>").is(':checked')) {
                     showParty = true;
                 }
+
+                var SessionEndedOn = $("#<%=ddlBeginDate.ClientID%> option:nth-child(2)").val();
+                var SessionStartedOn = $("#<%=ddlEndDate.ClientID%> option:nth-last-child(1)").val();
    
 
                 //ajax call 
@@ -646,7 +649,7 @@
 
                     type: "POST",
                     url: "WebServices/ReportService.asmx/SetRollCallSummaryDetails",
-                    data: "{Bills:'" + arrayman + "',StartDate:'" + startDate + "',EndDate:'" + endDate + "',SortBy:'" + SortBy + "',IsAll:'" + isAllBills + "',ckYea:'" + ckYES + "',ckNay:'" + ckNO + "',ckAbstain:'" + ckABSTAIN + "',ckExcused:'" + ckEXC + "',ckAbsent:'" + ckABSENT + "',ckNotVoting:'" + ckNV + "',ShowShort:'" + showShort + "',ShowPartyTotals:'" + showParty + "',MotionFilter:'"+ motionFilter +"'}",
+                    data: "{Bills:'" + arrayman + "',StartDate:'" + startDate + "',EndDate:'" + endDate + "',SortBy:'" + SortBy + "',IsAll:'" + isAllBills + "',ckYea:'" + ckYES + "',ckNay:'" + ckNO + "',ckAbstain:'" + ckABSTAIN + "',ckExcused:'" + ckEXC + "',ckAbsent:'" + ckABSENT + "',ckNotVoting:'" + ckNV + "',ShowShort:'" + showShort + "',ShowPartyTotals:'" + showParty + "',MotionFilter:'"+ motionFilter +"',SessionStarted:'"+ SessionStartedOn +"',SessionEnded:'"+ SessionEndedOn +"'}",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {

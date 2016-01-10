@@ -128,6 +128,7 @@
     <Content Include="RollCallSummary.aspx" />
     <Content Include="RollCallTranscripts.aspx" />
     <Content Include="RollCall_Transcripts.html" />
+    <Content Include="RVMemberAttendance_Optional.aspx" />
     <Content Include="RV_MemberAttendance.aspx" />
     <Content Include="RV_RollCallDetails.aspx" />
     <Content Include="RV_RollCallSummary.aspx" />
@@ -276,6 +277,12 @@
     <Compile Include="Reports\XRMemberAttendance.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\XRMemberAttendance_Optional.Designer.vb">
+      <DependentUpon>XRMemberAttendance_Optional.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\XRMemberAttendance_Optional.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\XRRollCallDetails.Designer.vb">
       <DependentUpon>XRRollCallDetails.vb</DependentUpon>
     </Compile>
@@ -338,6 +345,13 @@
     <Compile Include="RollCallTranscripts.aspx.vb">
       <DependentUpon>RollCallTranscripts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RVMemberAttendance_Optional.aspx.designer.vb">
+      <DependentUpon>RVMemberAttendance_Optional.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RVMemberAttendance_Optional.aspx.vb">
+      <DependentUpon>RVMemberAttendance_Optional.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="RV_MemberAttendance.aspx.designer.vb">
       <DependentUpon>RV_MemberAttendance.aspx</DependentUpon>
@@ -468,6 +482,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\XRMemberAttendance.resx">
       <DependentUpon>XRMemberAttendance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\XRMemberAttendance_Optional.resx">
+      <DependentUpon>XRMemberAttendance_Optional.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\XRRollCallDetails.resx">
       <DependentUpon>XRRollCallDetails.vb</DependentUpon>

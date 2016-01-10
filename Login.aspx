@@ -112,16 +112,10 @@
                 <div class="col-lg-12">
                     <ul class="list-inline">
                         <li>
-                            <a href="#home">IRC Home</a>
+                            <a href="http://www.roll-call.com">IRC Home</a>
                         </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="#about">About</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="#services">Contact</a>
-                        </li>
+                        
+                       
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
                             <a href="IRCLogin.aspx">Developers</a>

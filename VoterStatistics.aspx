@@ -161,8 +161,9 @@
                         </ul>
                         <br />
                         <ul class="list-inline">
-                            <li><button id="btnDoReport" class="btn btn-sm btn-danger pull-left"><i class="fa fa-book"></i>  Generate Report</button></li>
-                            <li><button id="btnOptionalReport" class="btn btn-sm btn-primary pull-left"><i class="fa fa-user"></i>  Optional Report</button></li>
+                             <li><button id="btnOptionalReport" class="btn btn-sm btn-primary pull-left"><i class="fa fa-user"></i>  Standard Report</button></li>
+                            <li><button id="btnDoReport" class="btn btn-sm btn-danger pull-left"><i class="fa fa-book"></i>  Optional Report</button></li>
+                   
                             <li><a data-toggle="modal" data-target="#myModal"  class="hidden btn btn-sm btn-info pull-left"><i class="fa fa-question"></i></a></li>
                              </ul>
                          
@@ -807,6 +808,9 @@
 
                 var StartDate = $("#<%=ddlBeginDate.ClientID%>").val();
                 var EndDate = $("#<%=ddlEndDate.ClientID%>").val();
+
+                var SessionEndedOn = $("#<%=ddlBeginDate.ClientID%> option:nth-child(2)").val();
+                var SessionStartedOn = $("#<%=ddlEndDate.ClientID%> option:nth-last-child(1)").val();
                
              //   alert(StatsArray);
 
@@ -814,7 +818,7 @@
 
                     type: "POST",
                     url: "WebServices/ReportService.asmx/SetVoterStatsData",
-                    data: "{IsAllBills:'" + isAllBills + "',Members:'" + MemberArray + "',Bills:'" + BillsArray + "',StartDate:'" + StartDate + "',EndDate:'" + EndDate + "'}",
+                    data: "{IsAllBills:'" + isAllBills + "',Members:'" + MemberArray + "',Bills:'" + BillsArray + "',StartDate:'" + StartDate + "',EndDate:'" + EndDate + "',SessionStarted:'" + SessionStartedOn + "',SessionEnded:'"+ SessionEndedOn +"'}",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {
@@ -840,8 +844,9 @@
 
             $("#btnOptionalReport").click(function (e) {
                
-                e.preventDefault();
+                
                 IsOptional = true;
+                
                 $("#btnDoReport").trigger("click");
 
             }) //end optional report click

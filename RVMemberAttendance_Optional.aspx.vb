@@ -1,9 +1,8 @@
 ﻿Imports System.Data.SqlClient
-Public Class RV_MemberAttendance
+Public Class RVMemberAttendance_Optional
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
         Dim VoteReporter As New List(Of Engine.clsVoteReporter)
         VoteReporter = Session("clsVoteReporter")
 
@@ -103,19 +102,16 @@ Public Class RV_MemberAttendance
             cmd.Connection.Close()
         End Using
 
-        MemberAttendanceViewer.Report = CreateReport(ds)
-        MemberAttendanceViewer.DataBind()
-
-
+        MemberAttendanceOptionalViewer.Report = CreateReport(ds)
+        MemberAttendanceOptionalViewer.DataBind()
     End Sub
 
-
-    Private Function CreateReport(ByVal ds As DataSet) As XRMemberAttendance
+    Private Function CreateReport(ByVal ds As DataSet) As XRMemberAttendance_Optional
 
         Dim VoteReporter As New List(Of Engine.clsVoteReporter)
         VoteReporter = Session("clsVoteReporter")
 
-        Dim report As New XRMemberAttendance()
+        Dim report As New XRMemberAttendance_Optional()
         report.DataSource = ds
 
         report.BeginInit()

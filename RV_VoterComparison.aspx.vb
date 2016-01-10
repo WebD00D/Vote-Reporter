@@ -283,14 +283,13 @@ Public Class RV_VoterComparison
         If Not Session("VoteComp_StartDate") = String.Empty Then
             report.lblStartDate.Text = Session("VoteComp_StartDate").ToString()
         Else
-            report.lblStartDate.Text = "ALL"
+            report.lblStartDate.Text = Session("SessionStarted").ToString()
         End If
         If Not Session("VoteComp_EndDate") = String.Empty Then
             report.lblEndDate.Text = Session("VoteComp_EndDate").ToString()
         Else
-            report.lblEndDate.Text = "ALL"
+            report.lblEndDate.Text = Session("SessionEnded").ToString()
         End If
-
 
         If Session("IsAllBills") = True Then
             report.lblBills.Text = "ALL"

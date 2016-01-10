@@ -725,11 +725,17 @@
                     SortBy = "RCSNbr ASC"
                 }
 
+
+
+                var SessionEndedOn = $("#<%=ddlBeginDate.ClientID%> option:nth-child(2)").val();
+                var SessionStartedOn = $("#<%=ddlEndDate.ClientID%> option:nth-last-child(1)").val();
+
+
                 $.ajax({
 
                     type: "POST",
                     url: "WebServices/ReportService.asmx/SetVoterComparisonDetails",
-                    data: "{BillArr:'" + arrayman + "',IsAllBills:'" + SelectAll + "',Voter1ID:'" + voter1ID + "',Voter2ID:'" + voter2ID + "',Voter3ID:'" + voter3ID + "',Voter4ID:'"+ voter4ID +"',Voter5ID:'"+ voter5ID +"',Voter6ID:'"+ voter6ID +"',Voter7ID:'"+ voter7ID +"',StartDate:'" + StartDate + "',EndDate:'" + EndDate + "',SortBy:'" + SortBy + "',MotionFilter:'"+ MotionFilterString +"'}",
+                    data: "{BillArr:'" + arrayman + "',IsAllBills:'" + SelectAll + "',Voter1ID:'" + voter1ID + "',Voter2ID:'" + voter2ID + "',Voter3ID:'" + voter3ID + "',Voter4ID:'"+ voter4ID +"',Voter5ID:'"+ voter5ID +"',Voter6ID:'"+ voter6ID +"',Voter7ID:'"+ voter7ID +"',StartDate:'" + StartDate + "',EndDate:'" + EndDate + "',SortBy:'" + SortBy + "',MotionFilter:'"+ MotionFilterString +"',SessionStarted:'"+ SessionStartedOn +"',SessionEnded:'"+ SessionEndedOn +"'}",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {

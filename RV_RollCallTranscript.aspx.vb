@@ -223,6 +223,8 @@ Public Class RV_RollCallTranscript
         report.lblSession.Text = VoteReporter.Item(0).currentSessionLegislature
         report.BeginInit()
 
+        report.lblPrintedOn.Text = Date.Now.ToString()
+
         If useYEA = 0 Then
             Select Case YeaOrder
                 Case 1

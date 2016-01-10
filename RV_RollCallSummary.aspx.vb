@@ -335,12 +335,13 @@ Public Class RV_RollCallSummary
         If Not Session("RollCallSummary_StartDate") = String.Empty Then
             report.lblBeginDate.Text = Session("RollCallSummary_StartDate").ToString()
         Else
-            report.lblBeginDate.Text = "ALL"
+            report.lblBeginDate.Text = Session("SessionStarted").ToString()
+
         End If
         If Not Session("RollCallSummary_EndDate") = String.Empty Then
             report.lblEndDate.Text = Session("RollCallSummary_EndDate").ToString()
         Else
-            report.lblEndDate.Text = "ALL"
+            report.lblEndDate.Text = Session("SessionEnded").ToString()
         End If
 
 
@@ -361,20 +362,29 @@ Public Class RV_RollCallSummary
         If Session("ShowPartyTotals") = False Then
             report.Landscape = False
             'hide party total columns
-            report.XrLabel11.Visible = False
-            report.XrLabel12.Visible = False
-            report.XrLabel13.Visible = False
-            report.XrLabel14.Visible = False
-            report.XrLabel28.Visible = False
-            report.XrLabel29.Visible = False
+
+            report.XrLabel3.Visible = False
+            report.XrLabel40.Visible = False
+
+            report.XrLabel36.Visible = False
+            report.XrLabel37.Visible = False
+            report.XrLabel41.Visible = False
+            report.XrLabel38.Visible = False
+            report.XrLabel42.Visible = False
+            report.XrLabel43.Visible = False
+
+
             report.XrLabel30.Visible = False
             report.XrLabel31.Visible = False
             report.XrLabel32.Visible = False
             report.XrLabel33.Visible = False
-            report.XrLabel34.Visible = False
-            report.XrLabel35.Visible = False
-            report.XrLine1.WidthF = 640
-            report.XrLine2.WidthF = 640
+
+            report.XrPageInfo1.WidthF = 664
+            report.XrLine1.WidthF = 664
+            report.XrLine2.WidthF = 664
+            report.XrLine3.Visible = False
+            report.XrLine6.Visible = False
+
         End If
 
         If Session("RCHShowShortTitle") = True Then

@@ -143,7 +143,7 @@
 
                         <ul class="list-inline">
                             <li><button id="btnDoReport" class="btn btn-sm btn-primary pull-left"><i class="fa fa-book"></i>  Generate Report</button></li>
-                              
+                                 <li><button id="btnDoOptionalReport" class="btn btn-sm btn-primary pull-left"><i class="fa fa-book"></i>  Optional Report</button></li>
                              </ul>
                          
                     </div>
@@ -446,6 +446,9 @@
                 }
             }) //end check all 
 
+
+
+            IsOptional = false;
             //End Member Handlers
             $("#btnDoReport").click(function (e) {
 
@@ -479,19 +482,27 @@
   
                 var StartDate = $("#<%=ddlBeginDate.ClientID%>").val();
                 var EndDate = $("#<%=ddlEndDate.ClientID%>").val();
+                var SessionEndedOn = $("#<%=ddlBeginDate.ClientID%> option:nth-child(2)").val();
+                var SessionStartedOn = $("#<%=ddlEndDate.ClientID%> option:nth-last-child(1)").val();
 
 
                 $.ajax({
 
                     type: "POST",
                     url: "WebServices/ReportService.asmx/SetAttendanceData",
-                    data: "{Members:'" + MemberArray + "',StartDate:'"+ StartDate +"',EndDate:'"+ EndDate +"'}",
+                    data: "{Members:'" + MemberArray + "',StartDate:'"+ StartDate +"',EndDate:'"+ EndDate +"',SessionStarted:'"+ SessionStartedOn +"',SessionEnded:'"+ SessionEndedOn +"'}",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {
 
 
-                        window.open("RV_MemberAttendance.aspx");
+                        if (IsOptional) {
+                            window.open("RVMemberAttendance_Optional.aspx");
+                        } else {
+                            window.open("RV_MemberAttendance.aspx");
+                        }
+
+                       
 
 
                     },
@@ -504,6 +515,15 @@
                 })
 
             }) //end do report click
+
+            $("#btnDoOptionalReport").click(function (e) {
+
+
+                IsOptional = true;
+
+                $("#btnDoReport").trigger("click");
+
+            }) //end optional report click
 
         })
     </script>

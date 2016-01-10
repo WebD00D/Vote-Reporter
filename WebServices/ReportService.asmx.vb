@@ -461,11 +461,14 @@ Imports System.Data.SqlClient
 
     'set voter attendance data 
     <WebMethod(True)> _
-    Public Function SetAttendanceData(ByVal Members As String, ByVal StartDate As String, ByVal EndDate As String)
+    Public Function SetAttendanceData(ByVal Members As String, ByVal StartDate As String, ByVal EndDate As String, ByVal SessionStarted As String, ByVal SessionEnded As String)
 
         Session("AttendanceMembers") = Members
         Session("atn_StartDate") = StartDate
         Session("atn_EndDate") = EndDate
+        Session("SessionStarted") = SessionStarted
+        Session("SessionEnded") = SessionEnded
+
 
         Return "success"
 
@@ -475,7 +478,7 @@ Imports System.Data.SqlClient
 
     'set session data for Voter Stats Report
     <WebMethod(EnableSession:=True)> _
-    Public Function SetVoterStatsData(ByVal IsAllBills As Integer, ByVal Members As String, ByVal Bills As String, ByVal StartDate As String, ByVal EndDate As String)
+    Public Function SetVoterStatsData(ByVal IsAllBills As Integer, ByVal Members As String, ByVal Bills As String, ByVal StartDate As String, ByVal EndDate As String, ByVal SessionStarted As String, ByVal SessionEnded As String)
 
         'Session("vsMotionFilter") = MotionFilter
         Session("vstatMember") = Members
@@ -483,6 +486,9 @@ Imports System.Data.SqlClient
         Session("vstatStartDate") = StartDate
         Session("vstatEndDate") = EndDate
         Session("vstatIsAll") = IsAllBills
+
+        Session("SessionStartedOn") = SessionStarted
+        Session("SessionEndedOn") = SessionEnded
 
         Return "success"
     End Function
@@ -547,13 +553,16 @@ Imports System.Data.SqlClient
 
     ' sets calendar items that will be used in html doc load.
     <WebMethod(EnableSession:=True)> _
-    Public Function SetVoterComparisonDetails(ByVal BillArr As String, ByVal IsAllBills As Boolean, ByVal Voter1ID As Integer, ByVal Voter2ID As Integer, ByVal Voter3ID As Integer, ByVal Voter4ID As Integer, ByVal Voter5ID As Integer, ByVal Voter6ID As Integer, ByVal Voter7ID As Integer, ByVal StartDate As String, ByVal EndDate As String, ByVal SortBy As String, ByVal MotionFilter As String) As String
+    Public Function SetVoterComparisonDetails(ByVal BillArr As String, ByVal IsAllBills As Boolean, ByVal Voter1ID As Integer, ByVal Voter2ID As Integer, ByVal Voter3ID As Integer, ByVal Voter4ID As Integer, ByVal Voter5ID As Integer, ByVal Voter6ID As Integer, ByVal Voter7ID As Integer, ByVal StartDate As String, ByVal EndDate As String, ByVal SortBy As String, ByVal MotionFilter As String, ByVal SessionStarted As String, ByVal SessionEnded As String) As String
         Dim result As String = CStr(BillArr)
         Session("IsAllBills") = IsAllBills
         Session("CalendarItems") = result
 
         Session("VoterComp_MotionFilter") = MotionFilter
         Session("Vcomp_SortBy") = SortBy
+
+        Session("SessionStarted") = SessionStarted
+        Session("SessionEnded") = SessionEnded
 
         Session("Voter1ID") = Voter1ID
         Session("Voter2ID") = Voter2ID
@@ -582,7 +591,7 @@ Imports System.Data.SqlClient
     End Function
 
     <WebMethod(True)> _
-    Public Function SetRollCallSummaryDetails(ByVal Bills As String, ByVal StartDate As String, ByVal EndDate As String, ByVal SortBy As String, ByVal IsAll As Integer, ByVal ckYea As Boolean, ByVal ckNay As Boolean, ByVal ckAbstain As Boolean, ByVal ckExcused As Boolean, ByVal ckAbsent As Boolean, ByVal ckNotVoting As Boolean, ByVal ShowShort As Boolean, ByVal ShowPartyTotals As Boolean, ByVal MotionFilter As String)
+    Public Function SetRollCallSummaryDetails(ByVal Bills As String, ByVal StartDate As String, ByVal EndDate As String, ByVal SortBy As String, ByVal IsAll As Integer, ByVal ckYea As Boolean, ByVal ckNay As Boolean, ByVal ckAbstain As Boolean, ByVal ckExcused As Boolean, ByVal ckAbsent As Boolean, ByVal ckNotVoting As Boolean, ByVal ShowShort As Boolean, ByVal ShowPartyTotals As Boolean, ByVal MotionFilter As String, ByVal SessionStarted As String, ByVal SessionEnded As String)
 
 
         Session("RCHYea") = False
@@ -593,6 +602,9 @@ Imports System.Data.SqlClient
         Session("RCHNotVoting") = False
         Session("RCHShowShortTitle") = False
         Session("ShowPartyTotals") = False
+
+        Session("SessionStarted") = SessionStarted
+        Session("SessionEnded") = SessionEnded
 
         Session("RCH_MotionFilter") = MotionFilter
 

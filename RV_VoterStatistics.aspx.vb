@@ -362,12 +362,12 @@ Public Class RV_VoterStatistics
         report.lblPrintedOn.Text = Date.Now.ToString()
 
         If Session("vstatStartDate") = String.Empty Then
-            report.lblStartDate.Text = "ALL"
+            report.lblStartDate.Text = Session("SessionStartedOn").ToString()
         Else
             report.lblStartDate.Text = Session("vstatStartDate").ToString()
         End If
         If Session("vstatEndDate") = String.Empty Then
-            report.lblEndDate.Text = "ALL"
+            report.lblEndDate.Text = Session("SessionEndedOn").ToString()
         Else
             report.lblEndDate.Text = Session("vstatEndDate").ToString()
         End If
