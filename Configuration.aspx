@@ -136,7 +136,7 @@
                             <div class="col-lg-12" style="margin-top:15px">
                                 <div class="col-lg-6">
                                       
-                                    <asp:Button runat="server" ID="btnSaveAccountParams" OnClick="btnSaveAccountParams_Click" CssClass="btn btn-sm btn-primary" Text="Save" />
+                                    <asp:Button runat="server" ID="btnSaveAccountParams" OnClick="btnSaveAccountParams_Click" CssClass="btn btn-sm btn-primary hidden" Text="Save" />
                                    </div>
                                    <div class="col-lg-6">
                                        <h4 id="AccountError"></h4>
@@ -155,17 +155,20 @@
                               <div class="col-lg-6"><h5>Link 3 Title</h5><input id="link3name" runat="server" class="form-control" /></div>
                               <div class="col-lg-6"><h5>Link 3 URL</h5><input id="link3url" runat="server" class="form-control" /></div>
 
-                            <div class="col-lg-6"><h5> Login Image</h5>
+
+                              <div class="col-lg-6"><h5>Legislative Seal Image</h5>
+                                <img src=""  id="imagePreview2" class="img img-responsive" />
+                                <asp:fileupload type="file" runat="server"  ID="imguploader2" CssClass="form-control" />
+
+                            </div>
+
+                            <div class="col-lg-6 hidden"><h5> Login Image</h5>
                                 <img src=""  id="imagePreview1" class="img img-responsive" />
                                 <asp:fileupload type="file" runat="server"  ID="imguploader1" CssClass="form-control" />
 
                             </div>
 
-                             <div class="col-lg-6"><h5>Legislative Seal Image</h5>
-                                <img src=""  id="imagePreview2" class="img img-responsive" />
-                                <asp:fileupload type="file" runat="server"  ID="imguploader2" CssClass="form-control" />
-
-                            </div>
+                           
                            
                             <script src="js/jquery.js"></script>
                             <script type="text/javascript">
@@ -214,7 +217,7 @@
 
 
                               <div class="col-lg-12" style="margin-top:15px">
-                                  <asp:Button runat="server" ID="btnSaveUIDetails" OnClick="btnSaveUIDetails_Click" CssClass="btn btn-sm btn-primary" Text="Save" />
+                                  <asp:Button runat="server" ID="btnSaveUIDetails" OnClick="btnSaveUIDetails_Click" CssClass="hidden btn btn-sm btn-primary" Text="Save" />
                                  </div>
 
                         </div>  <!-- End UI -->
@@ -368,7 +371,7 @@
                                <div class="col-lg-12" style="margin-top:15px">
                                    <div class="col-lg-6">
                                       
-                                       <asp:Button runat="server" OnClick="btnSaveReportData_Click" ID="btnSaveReportData" CssClass="btn btn-sm btn-primary" Text="Save" />
+                                       <asp:Button runat="server" OnClick="btnSaveReportData_Click" ID="btnSaveReportData" CssClass="hidden btn btn-sm btn-primary" Text="Save" />
                                    </div>
                                    <div class="col-lg-6">
                                        <h4 id="ReportError"></h4>
@@ -559,7 +562,7 @@
                    
 
                             <div class="col-lg-12" style="margin-top:15px">
-                                <asp:Button runat="server" ID="btnSaveDataConfig" OnClick="btnSaveDataConfig_Click" CssClass="btn btn-sm btn-primary" Text="Save" />
+                                <asp:Button runat="server" ID="btnSaveDataConfig" OnClick="btnSaveDataConfig_Click" CssClass="hidden btn btn-sm btn-primary" Text="Save" />
                             </div>
                             
                             <div class="col-lg-12" style="margin-top:15px"><h4 style="color:#26A65B" id="dataError"></h4></div>

@@ -1,9 +1,6 @@
 ﻿<%@ Page Language="vb"  EnableEventValidation="false" AutoEventWireup="false" CodeBehind="VoterDetails.aspx.vb" Inherits="VoteReporterNEW.VoterDetails" %>
 
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -682,7 +679,6 @@
 
                 e.preventDefault();
 
-              
 
                 var Mbritem = $('.mbritem');
                 var selectedMbrItemsArray = new Array();
@@ -762,6 +758,8 @@
                 var BillsArray = selectedCalItemsArray.join();
                 var MemberArray = selectedMbrItemsArray.join();
 
+                
+
                 //Order By Code
 
                 var RCSSort = false;
@@ -800,6 +798,9 @@
                 if ($("#<%=ckShowPartyTotals.ClientID%>").is(':checked')) {
                     showParty = true;
                 }
+
+                var SessionEndedOn = $("#<%=ddlBeginDate.ClientID%> option:nth-child(2)").val();
+                var SessionStartedOn = $("#<%=ddlEndDate.ClientID%> option:nth-last-child(1)").val();
                
 
                 $.ajax({
@@ -808,7 +809,7 @@
                     url: "WebServices/ReportService.asmx/SetVoterHistoryData",
                     data: "{Members:'" + MemberArray + "',Bills:'" + BillsArray + "',useYeas:'"+ ckYES +"',useNays:'"+ ckNO +"',useAbstain:'"+ ckABSTAIN
                            + "',useExcused:'" + ckEXC + "',useAbsent:'" + ckABSENT + "',useNV:'" + ckNV + "',BeginDate:'" + beginDate + "',EndDate:'" + endDate + "',SortBy:'" + SortBy + "',IsAll:'"+ isAllBills 
-                           +"',ShowShort:'"+ showShort +"',ShowPartyTotals:'"+ showParty +"', MotionFilter:'"+ motionFilter +"'}",
+                           +"',ShowShort:'"+ showShort +"',ShowPartyTotals:'"+ showParty +"', MotionFilter:'"+ motionFilter +"',SessionStart:'"+ SessionStartedOn +"',SessionEnd:'"+ SessionEndedOn +"'}",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {

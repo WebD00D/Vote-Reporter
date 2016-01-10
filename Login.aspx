@@ -84,8 +84,8 @@
                         <asp:textbox runat="server" TextMode="Password" ID="txtPassword" CssClass="form-control"></asp:textbox>
                        
                         <br />
-                        <asp:Button runat="server" ID="btnLogin" CssClass="btn btn-lg btn-danger btn-block" Text="Login" />
-                        <a href="#" id="btnLogin2" class="btn btn-lg btn-danger btn-block">Login 2</a>
+                        <asp:Button runat="server" ID="btnLogin" CssClass="btn btn-lg btn-danger btn-block hidden" Text="Login" />
+                        <a href="#" id="btnLogin2" class="btn btn-lg btn-danger btn-block">Login</a>
                           <br />
                             <asp:Label runat="server" ForeColor="#ff0000" ID="lblError"></asp:Label>
                         </div>

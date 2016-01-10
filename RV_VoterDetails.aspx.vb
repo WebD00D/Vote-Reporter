@@ -302,13 +302,13 @@ Public Class RV_VoterDetails
         report.lblPrintDate.Text = Date.Now.ToString()
 
         If Session("BeginDate").ToString = String.Empty Then
-            report.lblBeginDate.Text = "ALL"
+            report.lblBeginDate.Text = Session("SessionStartedOn").ToString()
         Else
             report.lblBeginDate.Text = Session("BeginDate")
         End If
 
         If Session("EndDate").ToString = String.Empty Then
-            report.lblEndDate.Text = "ALL"
+            report.lblEndDate.Text = Session("SessionEndedOn").ToString()
         Else
             report.lblEndDate.Text = Session("EndDate")
         End If
@@ -341,15 +341,27 @@ Public Class RV_VoterDetails
             report.XrLabel23.Visible = False
             report.XrLabel27.Visible = False
             report.XrLabel28.Visible = False
-            report.XrLabel29.Visible = False
+
             report.XrLabel30.Visible = False
             report.XrLabel31.Visible = False
             report.XrLabel32.Visible = False
             report.XrLabel33.Visible = False
-            report.XrLabel34.Visible = False
-            report.XrLabel35.Visible = False
-            report.XrLine1.WidthF = 640
-            report.XrLine2.WidthF = 640
+
+            report.XrLabel40.Visible = False
+            report.XrLabel41.Visible = False
+
+            report.XrLabel3.WidthF = 197
+            report.XrLabel20.WidthF = 197
+  
+            report.XrLine1.WidthF = 742
+            report.XrLine2.WidthF = 742
+
+            report.XrLine3.Visible = False
+            report.XrLine6.Visible = False
+
+
+            report.XrPageInfo1.WidthF = 742
+
         End If
 
         If Session("vhShowShort") = True Then

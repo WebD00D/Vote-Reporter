@@ -25,7 +25,6 @@ Imports System.Data.SqlClient
 
         Session("UseSubjectSearch") = False
         Session("SearchText") = String.Empty
-
         Return ""
 
     End Function
@@ -84,21 +83,14 @@ Imports System.Data.SqlClient
         Return returnString
     End Function
 
-
-
-
     <WebMethod()> _
     Public Function LoadReportTypes()
-
-
 
         Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
         Dim da As New SqlDataAdapter("SELECT * FROM ReportTypes", con)
         Dim ds As New DataSet("Users")
         da.Fill(ds, "Users")
-
         ReportList.Clear()
-
         For Each item As DataRow In ds.Tables(0).Rows()
             Dim u As New VRReports()
             u.ID = item("ID")

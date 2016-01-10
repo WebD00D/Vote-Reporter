@@ -161,8 +161,8 @@
                         </ul>
                         <br />
                         <ul class="list-inline">
-                            <li><button id="btnOptionalReport" class="btn btn-sm btn-danger pull-left"><i class="fa fa-book"></i>  Generate Report</button></li>
-                            <li><button id="btnDoReport" class="btn btn-sm btn-primary pull-left"><i class="fa fa-user"></i>  Optional Report</button></li>
+                            <li><button id="btnDoReport" class="btn btn-sm btn-danger pull-left"><i class="fa fa-book"></i>  Generate Report</button></li>
+                            <li><button id="btnOptionalReport" class="btn btn-sm btn-primary pull-left"><i class="fa fa-user"></i>  Optional Report</button></li>
                             <li><a data-toggle="modal" data-target="#myModal"  class="hidden btn btn-sm btn-info pull-left"><i class="fa fa-question"></i></a></li>
                              </ul>
                          

@@ -500,12 +500,13 @@ Imports System.Data.SqlClient
     <WebMethod(EnableSession:=True)> _
     Public Function SetVoterHistoryData(ByVal Members As String, ByVal Bills As String, ByVal useYeas As Boolean _
                                       , ByVal useNays As Boolean, ByVal useAbstain As Boolean, ByVal useExcused As Boolean _
-                                      , ByVal useAbsent As Boolean, ByVal useNV As Boolean, ByVal BeginDate As String, ByVal EndDate As String, ByVal SortBy As String, ByVal IsAll As Integer, ByVal ShowShort As Boolean, ByVal ShowPartyTotals As Boolean, ByVal MotionFilter As String)
+                                      , ByVal useAbsent As Boolean, ByVal useNV As Boolean, ByVal BeginDate As String, ByVal EndDate As String, ByVal SortBy As String, ByVal IsAll As Integer, ByVal ShowShort As Boolean, ByVal ShowPartyTotals As Boolean, ByVal MotionFilter As String, ByVal SessionStart As String, ByVal SessionEnd As String)
 
 
         Session("VDIsAllBills") = IsAll
 
-
+        Session("SessionStartedOn") = SessionStart
+        Session("SessionEndedOn") = SessionEnd
 
         Session("BeginDate") = BeginDate
         Session("EndDate") = EndDate
@@ -521,6 +522,7 @@ Imports System.Data.SqlClient
         Session("vhShowPartyTotals") = False
         Session("vhMotionFilter") = MotionFilter
         Session("vhShowShort") = ShowShort
+
 
         Session("vstatBills") = Bills
         If useYeas = True Then Session("vhYES") = True
