@@ -179,7 +179,7 @@ Public Class RV_VoterComparison
 
             ElseIf Not Voter3ID = String.Empty Then
 
-                cmd.CommandText = "sp_Report_VoterComparison_4MBR"
+                cmd.CommandText = "sp_Report_VoterComparison"
                 cmd.Parameters.AddWithValue("@Member3", CStr(Voter3ID))
 
                 MemberCount = 3

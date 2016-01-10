@@ -17,6 +17,7 @@
 
         End If
 
+        Dim Name As String = "Bill"
 
 
     End Sub
