@@ -119,16 +119,22 @@ Public Class RVMemberAttendance_Optional
 
         report.lblPrintDate.Text = Date.Now.ToString()
 
+      
         If Session("atn_StartDate").ToString = String.Empty Then
-            report.lblBeginDate.Text = Session("SessionStarted").ToString()
+            Dim StartDate As Date = CDate(Session("SessionStarted"))
+            report.lblBeginDate.Text = StartDate.ToString("d")
         Else
-            report.lblBeginDate.Text = Session("atn_StartDate")
+            Dim StartDate As Date = CDate(Session("atn_StartDate"))
+            report.lblBeginDate.Text = StartDate.ToString("d")
         End If
 
         If Session("atn_EndDate").ToString = String.Empty Then
-            report.lblEndDate.Text = Session("SessionEnded").ToString()
+
+            Dim EndDate As Date = CDate(Session("SessionEnded"))
+            report.lblEndDate.Text = EndDate.ToString("d")
         Else
-            report.lblEndDate.Text = Session("atn_EndDate")
+            Dim EndDate As Date = CDate(Session("atn_EndDate"))
+            report.lblEndDate.Text = EndDate.ToString("d")
         End If
 
         report.EndInit()

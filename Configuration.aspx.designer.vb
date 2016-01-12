@@ -140,15 +140,6 @@ Partial Public Class Configuration
     Protected WithEvents link3url As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
-    '''imguploader1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents imguploader1 As Global.System.Web.UI.WebControls.FileUpload
-
-    '''<summary>
     '''imguploader2 control.
     '''</summary>
     '''<remarks>
@@ -156,6 +147,15 @@ Partial Public Class Configuration
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents imguploader2 As Global.System.Web.UI.WebControls.FileUpload
+
+    '''<summary>
+    '''imguploader1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents imguploader1 As Global.System.Web.UI.WebControls.FileUpload
 
     '''<summary>
     '''btnSaveUIDetails control.

@@ -56,7 +56,8 @@
                                         <select id="ddlSessionSelect" class="form-control">
                                         </select>
                                     </div>
-                                    <asp:LinkButton CssClass="btn btn-primary" runat="server" ID="linkLogout" ForeColor="white">Sign out  <i class="fa fa-sign-out fa-1x"></i></asp:LinkButton>
+                                    <asp:LinkButton CssClass="btn btn-primary hidden" runat="server" ID="linkLogout" ForeColor="white">Sign out  <i class="fa fa-sign-out fa-1x"></i></asp:LinkButton>
+                                <a class="btn btn-primary" href="Login.aspx">Sign Out <i class="fa fa-sign-out fa-1x"></i></a>
                                 </div>
                             </li>
 
@@ -72,7 +73,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="contentMessage" style="margin-top: 25px">
-                                <h1 style="color: #2c3e50">Voter History </h1>
+                                <h1 style="color: #2c3e50">Member Attendance </h1>
                                 <h3 style="color: #2c3e50"><span id="lblsessioncode"></span> Session</h3>
 
                             </div>

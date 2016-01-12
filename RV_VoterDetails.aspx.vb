@@ -301,17 +301,27 @@ Public Class RV_VoterDetails
         report.lblSessionPeriod.Text = VoteReporter.Item(0).currentSessionLegislature
         report.lblPrintDate.Text = Date.Now.ToString()
 
+       
+
         If Session("BeginDate").ToString = String.Empty Then
-            report.lblBeginDate.Text = Session("SessionStartedOn").ToString()
+            Dim StartDate As Date = CDate(Session("SessionStartedOn"))
+            report.lblBeginDate.Text = StartDate.ToString("d")
         Else
-            report.lblBeginDate.Text = Session("BeginDate")
+            Dim StartDate As Date = CDate(Session("vstatStartDate"))
+            report.lblBeginDate.Text = StartDate.ToString("d")
         End If
 
         If Session("EndDate").ToString = String.Empty Then
-            report.lblEndDate.Text = Session("SessionEndedOn").ToString()
+
+            Dim EndDate As Date = CDate(Session("SessionEndedOn"))
+            report.lblEndDate.Text = EndDate.ToString("d")
         Else
-            report.lblEndDate.Text = Session("EndDate")
+            Dim EndDate As Date = CDate(Session("EndDate"))
+            report.lblEndDate.Text = EndDate.ToString("d")
         End If
+
+
+
 
         If Session("VDSort") = "LegNbr ASC" Then
             report.lblSortOrder.Text = "Document Number"

@@ -139,6 +139,8 @@
 
 
             $("#btnLogin2").click(function () {
+
+                $("#btnLogin2").text("Loading Settings...");
                 //check user, set base class data, and if successful direct to main screen.
                 $.ajax({
                     type: "POST",

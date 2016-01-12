@@ -165,7 +165,7 @@ Partial Public Class XRVoterStatistics
         '
         'XrTableCell14
         '
-        Me.XrTableCell14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_VoterStatisticsNEW.MemberVotePercentage")})
+        Me.XrTableCell14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_VoterStatisticsNEW.MemberVotePercentage", "{0}%")})
         Me.XrTableCell14.Name = "XrTableCell14"
         Me.XrTableCell14.Text = "XrTableCell14"
         Me.XrTableCell14.Weight = 1.5163414548767598R
@@ -205,7 +205,7 @@ Partial Public Class XRVoterStatistics
         'cMajority2
         '
         Me.cMajority2.CanShrink = True
-        Me.cMajority2.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_VoterStatisticsNEW.WithMajorityPercentage")})
+        Me.cMajority2.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_VoterStatisticsNEW.WithMajorityPercentage", "{0}%")})
         Me.cMajority2.Name = "cMajority2"
         Me.cMajority2.StylePriority.UseTextAlignment = False
         Me.cMajority2.Text = "cMajority2"
@@ -225,7 +225,7 @@ Partial Public Class XRVoterStatistics
         'cMajority4
         '
         Me.cMajority4.CanShrink = True
-        Me.cMajority4.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_VoterStatisticsNEW.AgaintsMajorityPercentage")})
+        Me.cMajority4.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_VoterStatisticsNEW.AgaintsMajorityPercentage", "{0}%")})
         Me.cMajority4.Name = "cMajority4"
         Me.cMajority4.StylePriority.UseTextAlignment = False
         Me.cMajority4.Text = "cMajority4"
@@ -245,7 +245,7 @@ Partial Public Class XRVoterStatistics
         'cParty2
         '
         Me.cParty2.CanShrink = True
-        Me.cParty2.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_VoterStatisticsNEW.WithPartyPercentage")})
+        Me.cParty2.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_VoterStatisticsNEW.WithPartyPercentage", "{0}%")})
         Me.cParty2.Name = "cParty2"
         Me.cParty2.StylePriority.UseTextAlignment = False
         Me.cParty2.Text = "cParty2"
@@ -265,7 +265,7 @@ Partial Public Class XRVoterStatistics
         'cParty4
         '
         Me.cParty4.CanShrink = True
-        Me.cParty4.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_VoterStatisticsNEW.AgaintsPartyPercentage")})
+        Me.cParty4.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_VoterStatisticsNEW.AgaintsPartyPercentage", "{0}%")})
         Me.cParty4.Name = "cParty4"
         Me.cParty4.StylePriority.UseTextAlignment = False
         Me.cParty4.Text = "cParty4"

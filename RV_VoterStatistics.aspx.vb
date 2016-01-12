@@ -361,16 +361,27 @@ Public Class RV_VoterStatistics
         report.lblSession.Text = VoteReporter.Item(0).currentSessionLegislature
         report.lblPrintedOn.Text = Date.Now.ToString()
 
-        If Session("vstatStartDate") = String.Empty Then
-            report.lblStartDate.Text = Session("SessionStartedOn").ToString()
+      
+
+        If Session("vstatStartDate").ToString = String.Empty Then
+            Dim StartDate As Date = CDate(Session("SessionStartedOn"))
+            report.lblStartDate.Text = StartDate.ToString("d")
         Else
-            report.lblStartDate.Text = Session("vstatStartDate").ToString()
+            Dim StartDate As Date = CDate(Session("vstatStartDate"))
+            report.lblStartDate.Text = StartDate.ToString("d")
         End If
-        If Session("vstatEndDate") = String.Empty Then
-            report.lblEndDate.Text = Session("SessionEndedOn").ToString()
+
+        If Session("vstatEndDate").ToString = String.Empty Then
+
+            Dim EndDate As Date = CDate(Session("SessionEndedOn"))
+            report.lblEndDate.Text = EndDate.ToString("d")
         Else
-            report.lblEndDate.Text = Session("vstatEndDate").ToString()
+            Dim EndDate As Date = CDate(Session("vstatEndDate"))
+            report.lblEndDate.Text = EndDate.ToString("d")
         End If
+
+
+
 
         If Not _sSubjects = String.Empty Then
             report.lblSubjects.Text = _sSubjects

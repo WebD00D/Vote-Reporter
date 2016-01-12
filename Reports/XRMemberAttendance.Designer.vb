@@ -44,14 +44,14 @@ Partial Public Class XRMemberAttendance
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.lblSession = New DevExpress.XtraReports.UI.XRLabel()
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
+        Me.lblPrintDate = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel26 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.lblBeginDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
         Me.lblEndDate = New DevExpress.XtraReports.UI.XRLabel()
-        Me.lblPrintDate = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel26 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.MemberAttendanceDS1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -104,7 +104,7 @@ Partial Public Class XRMemberAttendance
         '
         'XrLabel7
         '
-        Me.XrLabel7.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_VoterAttendance.MemberResponses")})
+        Me.XrLabel7.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_VoterAttendance.MemberResponses", "{0}%")})
         Me.XrLabel7.Font = New System.Drawing.Font("Arial", 8.0!)
         Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(440.3122!, 0.0!)
         Me.XrLabel7.Name = "XrLabel7"
@@ -312,6 +312,25 @@ Partial Public Class XRMemberAttendance
         Me.PageFooter.HeightF = 15.34723!
         Me.PageFooter.Name = "PageFooter"
         '
+        'lblPrintDate
+        '
+        Me.lblPrintDate.Font = New System.Drawing.Font("Arial", 7.0!)
+        Me.lblPrintDate.LocationFloat = New DevExpress.Utils.PointFloat(70.74839!, 0.0!)
+        Me.lblPrintDate.Name = "lblPrintDate"
+        Me.lblPrintDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
+        Me.lblPrintDate.SizeF = New System.Drawing.SizeF(100.0!, 12.58333!)
+        Me.lblPrintDate.StylePriority.UseFont = False
+        '
+        'XrLabel26
+        '
+        Me.XrLabel26.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
+        Me.XrLabel26.Name = "XrLabel26"
+        Me.XrLabel26.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
+        Me.XrLabel26.SizeF = New System.Drawing.SizeF(55.58035!, 12.58334!)
+        Me.XrLabel26.StylePriority.UseFont = False
+        Me.XrLabel26.Text = "Printed:"
+        '
         'XrPageInfo1
         '
         Me.XrPageInfo1.Font = New System.Drawing.Font("Arial", 8.0!)
@@ -368,25 +387,6 @@ Partial Public Class XRMemberAttendance
         Me.lblEndDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
         Me.lblEndDate.SizeF = New System.Drawing.SizeF(57.63898!, 12.58333!)
         Me.lblEndDate.StylePriority.UseFont = False
-        '
-        'lblPrintDate
-        '
-        Me.lblPrintDate.Font = New System.Drawing.Font("Arial", 7.0!)
-        Me.lblPrintDate.LocationFloat = New DevExpress.Utils.PointFloat(70.74839!, 0.0!)
-        Me.lblPrintDate.Name = "lblPrintDate"
-        Me.lblPrintDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
-        Me.lblPrintDate.SizeF = New System.Drawing.SizeF(100.0!, 12.58333!)
-        Me.lblPrintDate.StylePriority.UseFont = False
-        '
-        'XrLabel26
-        '
-        Me.XrLabel26.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
-        Me.XrLabel26.Name = "XrLabel26"
-        Me.XrLabel26.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
-        Me.XrLabel26.SizeF = New System.Drawing.SizeF(55.58035!, 12.58334!)
-        Me.XrLabel26.StylePriority.UseFont = False
-        Me.XrLabel26.Text = "Printed:"
         '
         'XRMemberAttendance
         '

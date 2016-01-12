@@ -280,16 +280,27 @@ Public Class RV_VoterComparison
         report.lblSession.Text = VoteReporter.Item(0).currentSessionLegislature
         report.lblPrintedOn.Text = Date.Now.ToString()
 
-        If Not Session("VoteComp_StartDate") = String.Empty Then
-            report.lblStartDate.Text = Session("VoteComp_StartDate").ToString()
+      
+
+        If Session("VoteComp_StartDate").ToString = String.Empty Then
+            Dim StartDate As Date = CDate(Session("SessionStarted"))
+            report.lblStartDate.Text = StartDate.ToString("d")
         Else
-            report.lblStartDate.Text = Session("SessionStarted").ToString()
+            Dim StartDate As Date = CDate(Session("VoteComp_StartDate"))
+            report.lblStartDate.Text = StartDate.ToString("d")
         End If
-        If Not Session("VoteComp_EndDate") = String.Empty Then
-            report.lblEndDate.Text = Session("VoteComp_EndDate").ToString()
+
+        If Session("VoteComp_EndDate").ToString = String.Empty Then
+
+            Dim EndDate As Date = CDate(Session("SessionEnded"))
+            report.lblEndDate.Text = EndDate.ToString("d")
         Else
-            report.lblEndDate.Text = Session("SessionEnded").ToString()
+            Dim EndDate As Date = CDate(Session("VoteComp_EndDate"))
+            report.lblEndDate.Text = EndDate.ToString("d")
         End If
+
+
+
 
         If Session("IsAllBills") = True Then
             report.lblBills.Text = "ALL"

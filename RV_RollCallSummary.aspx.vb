@@ -332,16 +332,24 @@ Public Class RV_RollCallSummary
             report.lblSortOrder.Text = "N/A"
         End If
 
-        If Not Session("RollCallSummary_StartDate") = String.Empty Then
-            report.lblBeginDate.Text = Session("RollCallSummary_StartDate").ToString()
-        Else
-            report.lblBeginDate.Text = Session("SessionStarted").ToString()
+       
 
-        End If
-        If Not Session("RollCallSummary_EndDate") = String.Empty Then
-            report.lblEndDate.Text = Session("RollCallSummary_EndDate").ToString()
+
+        If Session("RollCallSummary_StartDate").ToString = String.Empty Then
+            Dim StartDate As Date = CDate(Session("SessionStarted"))
+            report.lblBeginDate.Text = StartDate.ToString("d")
         Else
-            report.lblEndDate.Text = Session("SessionEnded").ToString()
+            Dim StartDate As Date = CDate(Session("RollCallSummary_StartDate"))
+            report.lblBeginDate.Text = StartDate.ToString("d")
+        End If
+
+        If Session("RollCallSummary_EndDate").ToString = String.Empty Then
+
+            Dim EndDate As Date = CDate(Session("SessionEnded"))
+            report.lblEndDate.Text = EndDate.ToString("d")
+        Else
+            Dim EndDate As Date = CDate(Session("RollCallSummary_EndDate"))
+            report.lblEndDate.Text = EndDate.ToString("d")
         End If
 
 
