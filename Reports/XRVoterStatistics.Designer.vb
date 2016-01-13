@@ -49,35 +49,6 @@ Partial Public Class XRVoterStatistics
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-        Me.XrLabel25 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel21 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel22 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel23 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel24 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
-        Me.XrLine2 = New DevExpress.XtraReports.UI.XRLine()
-        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
-        Me.lblSession = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrTable3 = New DevExpress.XtraReports.UI.XRTable()
-        Me.XrTableRow3 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.T3BASE = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.hMajority1 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.hMajority2 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.hMajority3 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.hMajority4 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.hParty1 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.hParty2 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.hParty3 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.hParty4 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.hOrder1 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.hOrder2 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.hOrder3 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.hOrder4 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.hOrder5 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.hOrder6 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.VoterStatisticsDS1 = New VoteReporterNEW.VoterStatisticsDS()
         Me.Sp_Report_GetTypeDetailsTableAdapter = New VoteReporterNEW.VoterStatisticsDSTableAdapters.sp_Report_GetTypeDetailsTableAdapter()
         Me.XrControlStyle1 = New DevExpress.XtraReports.UI.XRControlStyle()
@@ -98,10 +69,39 @@ Partial Public Class XRVoterStatistics
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrControlStyle3 = New DevExpress.XtraReports.UI.XRControlStyle()
+        Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.XrLabel25 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel21 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel22 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel23 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel24 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrTable3 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow3 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.T3BASE = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.hMajority1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.hMajority2 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.hMajority3 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.hMajority4 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.hParty1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.hParty2 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.hParty3 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.hParty4 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.hOrder1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.hOrder2 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.hOrder3 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.hOrder4 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.hOrder5 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.hOrder6 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.lblSession = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
+        Me.XrLine2 = New DevExpress.XtraReports.UI.XRLine()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VoterStatisticsDS1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -340,7 +340,7 @@ Partial Public Class XRVoterStatistics
         '
         'TopMargin
         '
-        Me.TopMargin.HeightF = 0.0!
+        Me.TopMargin.HeightF = 35.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -351,286 +351,6 @@ Partial Public Class XRVoterStatistics
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XrLabel25
-        '
-        Me.XrLabel25.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(271.5278!, 166.7219!)
-        Me.XrLabel25.Multiline = True
-        Me.XrLabel25.Name = "XrLabel25"
-        Me.XrLabel25.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
-        Me.XrLabel25.SizeF = New System.Drawing.SizeF(50.0!, 27.0!)
-        Me.XrLabel25.StylePriority.UseFont = False
-        Me.XrLabel25.Text = "Member " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Votes %"
-        '
-        'XrLabel20
-        '
-        Me.XrLabel20.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(9.995386!, 171.8332!)
-        Me.XrLabel20.Name = "XrLabel20"
-        Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
-        Me.XrLabel20.SizeF = New System.Drawing.SizeF(81.24998!, 21.88889!)
-        Me.XrLabel20.StylePriority.UseFont = False
-        Me.XrLabel20.StylePriority.UseTextAlignment = False
-        Me.XrLabel20.Text = "Member"
-        Me.XrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XrLabel1
-        '
-        Me.XrLabel1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_GetTypeDetails.CurrentName")})
-        Me.XrLabel1.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(137.8461!, 77.66666!)
-        Me.XrLabel1.Name = "XrLabel1"
-        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(731.526!, 29.94445!)
-        Me.XrLabel1.StylePriority.UseFont = False
-        Me.XrLabel1.StylePriority.UseTextAlignment = False
-        Me.XrLabel1.Text = "XrLabel1"
-        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XrLabel21
-        '
-        Me.XrLabel21.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel21.LocationFloat = New DevExpress.Utils.PointFloat(91.66627!, 171.8332!)
-        Me.XrLabel21.Name = "XrLabel21"
-        Me.XrLabel21.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
-        Me.XrLabel21.SizeF = New System.Drawing.SizeF(56.94447!, 21.88867!)
-        Me.XrLabel21.StylePriority.UseFont = False
-        Me.XrLabel21.StylePriority.UseTextAlignment = False
-        Me.XrLabel21.Text = "District"
-        Me.XrLabel21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XrLabel22
-        '
-        Me.XrLabel22.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel22.LocationFloat = New DevExpress.Utils.PointFloat(148.6113!, 166.7221!)
-        Me.XrLabel22.Multiline = True
-        Me.XrLabel22.Name = "XrLabel22"
-        Me.XrLabel22.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
-        Me.XrLabel22.SizeF = New System.Drawing.SizeF(37.5!, 27.0!)
-        Me.XrLabel22.StylePriority.UseFont = False
-        Me.XrLabel22.Text = "Total " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Votes"
-        '
-        'XrLabel23
-        '
-        Me.XrLabel23.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(186.1112!, 166.7221!)
-        Me.XrLabel23.Multiline = True
-        Me.XrLabel23.Name = "XrLabel23"
-        Me.XrLabel23.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
-        Me.XrLabel23.SizeF = New System.Drawing.SizeF(40.97!, 27.0!)
-        Me.XrLabel23.StylePriority.UseFont = False
-        Me.XrLabel23.Text = "Total" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Eligible"
-        '
-        'XrLabel24
-        '
-        Me.XrLabel24.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(227.0834!, 166.7219!)
-        Me.XrLabel24.Multiline = True
-        Me.XrLabel24.Name = "XrLabel24"
-        Me.XrLabel24.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
-        Me.XrLabel24.SizeF = New System.Drawing.SizeF(44.44!, 27.0!)
-        Me.XrLabel24.StylePriority.UseFont = False
-        Me.XrLabel24.Text = "Member " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Votes"
-        '
-        'XrLabel14
-        '
-        Me.XrLabel14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_VRGetReportConfigParams.Government_Name")})
-        Me.XrLabel14.Font = New System.Drawing.Font("Arial", 20.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(137.8461!, 36.69443!)
-        Me.XrLabel14.Name = "XrLabel14"
-        Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
-        Me.XrLabel14.SizeF = New System.Drawing.SizeF(731.526!, 40.97222!)
-        Me.XrLabel14.StylePriority.UseFont = False
-        Me.XrLabel14.StylePriority.UseTextAlignment = False
-        Me.XrLabel14.Text = "XrLabel14"
-        Me.XrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'ReportHeader
-        '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine2, Me.XrPictureBox1, Me.lblSession, Me.XrTable3, Me.XrLabel14, Me.XrLabel24, Me.XrLabel23, Me.XrLabel22, Me.XrLabel21, Me.XrLabel1, Me.XrLabel20, Me.XrLabel25})
-        Me.ReportHeader.HeightF = 202.5555!
-        Me.ReportHeader.Name = "ReportHeader"
-        '
-        'XrLine2
-        '
-        Me.XrLine2.LineWidth = 2
-        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(9.995365!, 193.7221!)
-        Me.XrLine2.Name = "XrLine2"
-        Me.XrLine2.SizeF = New System.Drawing.SizeF(903.1924!, 7.722214!)
-        '
-        'XrPictureBox1
-        '
-        Me.XrPictureBox1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Image", Nothing, "sp_VRGetReportConfigParams.imgMainBackground")})
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(10.41673!, 36.69443!)
-        Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(103.2873!, 93.91669!)
-        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
-        '
-        'lblSession
-        '
-        Me.lblSession.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.lblSession.LocationFloat = New DevExpress.Utils.PointFloat(137.8461!, 107.6111!)
-        Me.lblSession.Name = "lblSession"
-        Me.lblSession.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
-        Me.lblSession.SizeF = New System.Drawing.SizeF(436.1111!, 22.99999!)
-        Me.lblSession.StylePriority.UseFont = False
-        Me.lblSession.StylePriority.UseTextAlignment = False
-        Me.lblSession.Text = "lblSession"
-        Me.lblSession.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XrTable3
-        '
-        Me.XrTable3.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(321.5278!, 166.7221!)
-        Me.XrTable3.Name = "XrTable3"
-        Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow3})
-        Me.XrTable3.SizeF = New System.Drawing.SizeF(591.66!, 27.0!)
-        Me.XrTable3.StylePriority.UseFont = False
-        Me.XrTable3.StylePriority.UseTextAlignment = False
-        Me.XrTable3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XrTableRow3
-        '
-        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.T3BASE, Me.hMajority1, Me.hMajority2, Me.hMajority3, Me.hMajority4, Me.hParty1, Me.hParty2, Me.hParty3, Me.hParty4, Me.hOrder1, Me.hOrder2, Me.hOrder3, Me.hOrder4, Me.hOrder5, Me.hOrder6})
-        Me.XrTableRow3.Name = "XrTableRow3"
-        Me.XrTableRow3.Weight = 1.0R
-        '
-        'T3BASE
-        '
-        Me.T3BASE.Name = "T3BASE"
-        Me.T3BASE.StylePriority.UseTextAlignment = False
-        Me.T3BASE.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        Me.T3BASE.Weight = 0.11804957717531023R
-        '
-        'hMajority1
-        '
-        Me.hMajority1.CanShrink = True
-        Me.hMajority1.Multiline = True
-        Me.hMajority1.Name = "hMajority1"
-        Me.hMajority1.StylePriority.UseTextAlignment = False
-        Me.hMajority1.Text = "With" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Majority"
-        Me.hMajority1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        Me.hMajority1.Weight = 0.43055473327641913R
-        '
-        'hMajority2
-        '
-        Me.hMajority2.CanShrink = True
-        Me.hMajority2.Multiline = True
-        Me.hMajority2.Name = "hMajority2"
-        Me.hMajority2.StylePriority.UseTextAlignment = False
-        Me.hMajority2.Text = "With" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Majority %"
-        Me.hMajority2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        Me.hMajority2.Weight = 0.53471968674861181R
-        '
-        'hMajority3
-        '
-        Me.hMajority3.CanShrink = True
-        Me.hMajority3.Multiline = True
-        Me.hMajority3.Name = "hMajority3"
-        Me.hMajority3.StylePriority.UseTextAlignment = False
-        Me.hMajority3.Text = "Against" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Majority"
-        Me.hMajority3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        Me.hMajority3.Weight = 0.43749899888235139R
-        '
-        'hMajority4
-        '
-        Me.hMajority4.Multiline = True
-        Me.hMajority4.Name = "hMajority4"
-        Me.hMajority4.StylePriority.UseTextAlignment = False
-        Me.hMajority4.Text = "Against" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Majority %"
-        Me.hMajority4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        Me.hMajority4.Weight = 0.51388842222087172R
-        '
-        'hParty1
-        '
-        Me.hParty1.Multiline = True
-        Me.hParty1.Name = "hParty1"
-        Me.hParty1.StylePriority.UseTextAlignment = False
-        Me.hParty1.Text = "With" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Party"
-        Me.hParty1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        Me.hParty1.Weight = 0.29861195027430565R
-        '
-        'hParty2
-        '
-        Me.hParty2.Multiline = True
-        Me.hParty2.Name = "hParty2"
-        Me.hParty2.StylePriority.UseTextAlignment = False
-        Me.hParty2.Text = "With " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Party %"
-        Me.hParty2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        Me.hParty2.Weight = 0.40999993961572712R
-        '
-        'hParty3
-        '
-        Me.hParty3.Multiline = True
-        Me.hParty3.Name = "hParty3"
-        Me.hParty3.StylePriority.UseTextAlignment = False
-        Me.hParty3.Text = "Against" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Party"
-        Me.hParty3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        Me.hParty3.Weight = 0.36777694698905161R
-        '
-        'hParty4
-        '
-        Me.hParty4.Multiline = True
-        Me.hParty4.Name = "hParty4"
-        Me.hParty4.StylePriority.UseTextAlignment = False
-        Me.hParty4.Text = "Against " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Party %"
-        Me.hParty4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        Me.hParty4.Weight = 0.38888725436285448R
-        '
-        'hOrder1
-        '
-        Me.hOrder1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_VRGetVoteHeaderOrders.Header1")})
-        Me.hOrder1.Name = "hOrder1"
-        Me.hOrder1.StylePriority.UseTextAlignment = False
-        Me.hOrder1.Text = "hOrder1"
-        Me.hOrder1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        Me.hOrder1.Weight = 0.4027764120499252R
-        '
-        'hOrder2
-        '
-        Me.hOrder2.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_VRGetVoteHeaderOrders.Header2")})
-        Me.hOrder2.Name = "hOrder2"
-        Me.hOrder2.StylePriority.UseTextAlignment = False
-        Me.hOrder2.Text = "hOrder2"
-        Me.hOrder2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        Me.hOrder2.Weight = 0.3958300021520279R
-        '
-        'hOrder3
-        '
-        Me.hOrder3.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_VRGetVoteHeaderOrders.Header3")})
-        Me.hOrder3.Name = "hOrder3"
-        Me.hOrder3.StylePriority.UseTextAlignment = False
-        Me.hOrder3.Text = "hOrder3"
-        Me.hOrder3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        Me.hOrder3.Weight = 0.40278251556446509R
-        '
-        'hOrder4
-        '
-        Me.hOrder4.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_VRGetVoteHeaderOrders.Header4")})
-        Me.hOrder4.Name = "hOrder4"
-        Me.hOrder4.StylePriority.UseTextAlignment = False
-        Me.hOrder4.Text = "hOrder4"
-        Me.hOrder4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        Me.hOrder4.Weight = 0.38193596165332522R
-        '
-        'hOrder5
-        '
-        Me.hOrder5.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_VRGetVoteHeaderOrders.Header5")})
-        Me.hOrder5.Name = "hOrder5"
-        Me.hOrder5.StylePriority.UseTextAlignment = False
-        Me.hOrder5.Text = "hOrder5"
-        Me.hOrder5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        Me.hOrder5.Weight = 0.42360831752616923R
-        '
-        'hOrder6
-        '
-        Me.hOrder6.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_VRGetVoteHeaderOrders.Header6")})
-        Me.hOrder6.Name = "hOrder6"
-        Me.hOrder6.StylePriority.UseTextAlignment = False
-        Me.hOrder6.Text = "hOrder6"
-        Me.hOrder6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        Me.hOrder6.Weight = 0.40972617888081941R
         '
         'VoterStatisticsDS1
         '
@@ -802,13 +522,293 @@ Partial Public Class XRVoterStatistics
         Me.XrControlStyle3.Name = "XrControlStyle3"
         Me.XrControlStyle3.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         '
+        'PageHeader
+        '
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel25, Me.lblSession, Me.XrPictureBox1, Me.XrTable3, Me.XrLabel14, Me.XrLabel24, Me.XrLine2, Me.XrLabel22, Me.XrLabel21, Me.XrLabel20, Me.XrLabel1, Me.XrLabel23})
+        Me.PageHeader.HeightF = 199.0416!
+        Me.PageHeader.Name = "PageHeader"
+        '
+        'XrLabel25
+        '
+        Me.XrLabel25.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(274.3711!, 164.3192!)
+        Me.XrLabel25.Multiline = True
+        Me.XrLabel25.Name = "XrLabel25"
+        Me.XrLabel25.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
+        Me.XrLabel25.SizeF = New System.Drawing.SizeF(50.0!, 27.0!)
+        Me.XrLabel25.StylePriority.UseFont = False
+        Me.XrLabel25.Text = "Member " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Votes %"
+        '
+        'XrLabel20
+        '
+        Me.XrLabel20.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(12.83862!, 169.4305!)
+        Me.XrLabel20.Name = "XrLabel20"
+        Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
+        Me.XrLabel20.SizeF = New System.Drawing.SizeF(78.82782!, 21.88889!)
+        Me.XrLabel20.StylePriority.UseFont = False
+        Me.XrLabel20.StylePriority.UseTextAlignment = False
+        Me.XrLabel20.Text = "Member"
+        Me.XrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel1
+        '
+        Me.XrLabel1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_GetTypeDetails.CurrentName")})
+        Me.XrLabel1.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(140.6893!, 75.26395!)
+        Me.XrLabel1.Name = "XrLabel1"
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(731.526!, 29.94445!)
+        Me.XrLabel1.StylePriority.UseFont = False
+        Me.XrLabel1.StylePriority.UseTextAlignment = False
+        Me.XrLabel1.Text = "XrLabel1"
+        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel21
+        '
+        Me.XrLabel21.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel21.LocationFloat = New DevExpress.Utils.PointFloat(91.66644!, 169.4305!)
+        Me.XrLabel21.Name = "XrLabel21"
+        Me.XrLabel21.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
+        Me.XrLabel21.SizeF = New System.Drawing.SizeF(56.94447!, 21.88867!)
+        Me.XrLabel21.StylePriority.UseFont = False
+        Me.XrLabel21.StylePriority.UseTextAlignment = False
+        Me.XrLabel21.Text = "District"
+        Me.XrLabel21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel22
+        '
+        Me.XrLabel22.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel22.LocationFloat = New DevExpress.Utils.PointFloat(148.6107!, 164.3194!)
+        Me.XrLabel22.Multiline = True
+        Me.XrLabel22.Name = "XrLabel22"
+        Me.XrLabel22.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
+        Me.XrLabel22.SizeF = New System.Drawing.SizeF(37.5!, 27.0!)
+        Me.XrLabel22.StylePriority.UseFont = False
+        Me.XrLabel22.Text = "Total " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Votes"
+        '
+        'XrLabel23
+        '
+        Me.XrLabel23.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(188.9545!, 164.3194!)
+        Me.XrLabel23.Multiline = True
+        Me.XrLabel23.Name = "XrLabel23"
+        Me.XrLabel23.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
+        Me.XrLabel23.SizeF = New System.Drawing.SizeF(40.97!, 27.0!)
+        Me.XrLabel23.StylePriority.UseFont = False
+        Me.XrLabel23.Text = "Total" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Eligible"
+        '
+        'XrLabel24
+        '
+        Me.XrLabel24.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(229.9267!, 164.3192!)
+        Me.XrLabel24.Multiline = True
+        Me.XrLabel24.Name = "XrLabel24"
+        Me.XrLabel24.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
+        Me.XrLabel24.SizeF = New System.Drawing.SizeF(44.44!, 27.0!)
+        Me.XrLabel24.StylePriority.UseFont = False
+        Me.XrLabel24.Text = "Member " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Votes"
+        '
+        'XrLabel14
+        '
+        Me.XrLabel14.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_VRGetReportConfigParams.Government_Name")})
+        Me.XrLabel14.Font = New System.Drawing.Font("Arial", 20.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(140.6893!, 34.29171!)
+        Me.XrLabel14.Name = "XrLabel14"
+        Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
+        Me.XrLabel14.SizeF = New System.Drawing.SizeF(731.526!, 40.97222!)
+        Me.XrLabel14.StylePriority.UseFont = False
+        Me.XrLabel14.StylePriority.UseTextAlignment = False
+        Me.XrLabel14.Text = "XrLabel14"
+        Me.XrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrTable3
+        '
+        Me.XrTable3.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(324.3711!, 164.3194!)
+        Me.XrTable3.Name = "XrTable3"
+        Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow3})
+        Me.XrTable3.SizeF = New System.Drawing.SizeF(591.66!, 27.0!)
+        Me.XrTable3.StylePriority.UseFont = False
+        Me.XrTable3.StylePriority.UseTextAlignment = False
+        Me.XrTable3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrTableRow3
+        '
+        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.T3BASE, Me.hMajority1, Me.hMajority2, Me.hMajority3, Me.hMajority4, Me.hParty1, Me.hParty2, Me.hParty3, Me.hParty4, Me.hOrder1, Me.hOrder2, Me.hOrder3, Me.hOrder4, Me.hOrder5, Me.hOrder6})
+        Me.XrTableRow3.Name = "XrTableRow3"
+        Me.XrTableRow3.Weight = 1.0R
+        '
+        'T3BASE
+        '
+        Me.T3BASE.Name = "T3BASE"
+        Me.T3BASE.StylePriority.UseTextAlignment = False
+        Me.T3BASE.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        Me.T3BASE.Weight = 0.11804957717531023R
+        '
+        'hMajority1
+        '
+        Me.hMajority1.CanShrink = True
+        Me.hMajority1.Multiline = True
+        Me.hMajority1.Name = "hMajority1"
+        Me.hMajority1.StylePriority.UseTextAlignment = False
+        Me.hMajority1.Text = "With" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Majority"
+        Me.hMajority1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.hMajority1.Weight = 0.43055473327641913R
+        '
+        'hMajority2
+        '
+        Me.hMajority2.CanShrink = True
+        Me.hMajority2.Multiline = True
+        Me.hMajority2.Name = "hMajority2"
+        Me.hMajority2.StylePriority.UseTextAlignment = False
+        Me.hMajority2.Text = "With" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Majority %"
+        Me.hMajority2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.hMajority2.Weight = 0.53471968674861181R
+        '
+        'hMajority3
+        '
+        Me.hMajority3.CanShrink = True
+        Me.hMajority3.Multiline = True
+        Me.hMajority3.Name = "hMajority3"
+        Me.hMajority3.StylePriority.UseTextAlignment = False
+        Me.hMajority3.Text = "Against" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Majority"
+        Me.hMajority3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.hMajority3.Weight = 0.43749899888235139R
+        '
+        'hMajority4
+        '
+        Me.hMajority4.Multiline = True
+        Me.hMajority4.Name = "hMajority4"
+        Me.hMajority4.StylePriority.UseTextAlignment = False
+        Me.hMajority4.Text = "Against" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Majority %"
+        Me.hMajority4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.hMajority4.Weight = 0.51388842222087172R
+        '
+        'hParty1
+        '
+        Me.hParty1.Multiline = True
+        Me.hParty1.Name = "hParty1"
+        Me.hParty1.StylePriority.UseTextAlignment = False
+        Me.hParty1.Text = "With" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Party"
+        Me.hParty1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.hParty1.Weight = 0.29861195027430565R
+        '
+        'hParty2
+        '
+        Me.hParty2.Multiline = True
+        Me.hParty2.Name = "hParty2"
+        Me.hParty2.StylePriority.UseTextAlignment = False
+        Me.hParty2.Text = "With " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Party %"
+        Me.hParty2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.hParty2.Weight = 0.40999993961572712R
+        '
+        'hParty3
+        '
+        Me.hParty3.Multiline = True
+        Me.hParty3.Name = "hParty3"
+        Me.hParty3.StylePriority.UseTextAlignment = False
+        Me.hParty3.Text = "Against" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Party"
+        Me.hParty3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.hParty3.Weight = 0.36777694698905161R
+        '
+        'hParty4
+        '
+        Me.hParty4.Multiline = True
+        Me.hParty4.Name = "hParty4"
+        Me.hParty4.StylePriority.UseTextAlignment = False
+        Me.hParty4.Text = "Against " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Party %"
+        Me.hParty4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.hParty4.Weight = 0.38888725436285448R
+        '
+        'hOrder1
+        '
+        Me.hOrder1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_VRGetVoteHeaderOrders.Header1")})
+        Me.hOrder1.Name = "hOrder1"
+        Me.hOrder1.StylePriority.UseTextAlignment = False
+        Me.hOrder1.Text = "hOrder1"
+        Me.hOrder1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        Me.hOrder1.Weight = 0.4027764120499252R
+        '
+        'hOrder2
+        '
+        Me.hOrder2.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_VRGetVoteHeaderOrders.Header2")})
+        Me.hOrder2.Name = "hOrder2"
+        Me.hOrder2.StylePriority.UseTextAlignment = False
+        Me.hOrder2.Text = "hOrder2"
+        Me.hOrder2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        Me.hOrder2.Weight = 0.3958300021520279R
+        '
+        'hOrder3
+        '
+        Me.hOrder3.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_VRGetVoteHeaderOrders.Header3")})
+        Me.hOrder3.Name = "hOrder3"
+        Me.hOrder3.StylePriority.UseTextAlignment = False
+        Me.hOrder3.Text = "hOrder3"
+        Me.hOrder3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        Me.hOrder3.Weight = 0.40278251556446509R
+        '
+        'hOrder4
+        '
+        Me.hOrder4.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_VRGetVoteHeaderOrders.Header4")})
+        Me.hOrder4.Name = "hOrder4"
+        Me.hOrder4.StylePriority.UseTextAlignment = False
+        Me.hOrder4.Text = "hOrder4"
+        Me.hOrder4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        Me.hOrder4.Weight = 0.38193596165332522R
+        '
+        'hOrder5
+        '
+        Me.hOrder5.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_VRGetVoteHeaderOrders.Header5")})
+        Me.hOrder5.Name = "hOrder5"
+        Me.hOrder5.StylePriority.UseTextAlignment = False
+        Me.hOrder5.Text = "hOrder5"
+        Me.hOrder5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        Me.hOrder5.Weight = 0.42360831752616923R
+        '
+        'hOrder6
+        '
+        Me.hOrder6.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_VRGetVoteHeaderOrders.Header6")})
+        Me.hOrder6.Name = "hOrder6"
+        Me.hOrder6.StylePriority.UseTextAlignment = False
+        Me.hOrder6.Text = "hOrder6"
+        Me.hOrder6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        Me.hOrder6.Weight = 0.40972617888081941R
+        '
+        'lblSession
+        '
+        Me.lblSession.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.lblSession.LocationFloat = New DevExpress.Utils.PointFloat(140.6893!, 105.2084!)
+        Me.lblSession.Name = "lblSession"
+        Me.lblSession.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
+        Me.lblSession.SizeF = New System.Drawing.SizeF(436.1111!, 22.99999!)
+        Me.lblSession.StylePriority.UseFont = False
+        Me.lblSession.StylePriority.UseTextAlignment = False
+        Me.lblSession.Text = "lblSession"
+        Me.lblSession.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrPictureBox1
+        '
+        Me.XrPictureBox1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Image", Nothing, "sp_VRGetReportConfigParams.imgMainBackground")})
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(13.25995!, 34.29171!)
+        Me.XrPictureBox1.Name = "XrPictureBox1"
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(103.2873!, 93.91669!)
+        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
+        '
+        'XrLine2
+        '
+        Me.XrLine2.LineWidth = 2
+        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(12.83859!, 191.3194!)
+        Me.XrLine2.Name = "XrLine2"
+        Me.XrLine2.SizeF = New System.Drawing.SizeF(903.1924!, 7.722214!)
+        '
         'XRVoterStatistics
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter, Me.PageFooter})
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.PageFooter, Me.PageHeader})
         Me.DataMember = "sp_Report_VoterStatisticsNEW"
         Me.DataSource = Me.VoterStatisticsDS1
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(50, 50, 0, 50)
+        Me.Margins = New System.Drawing.Printing.Margins(50, 50, 35, 50)
         Me.PageHeight = 850
         Me.PageWidth = 1100
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
@@ -818,8 +818,8 @@ Partial Public Class XRVoterStatistics
         Me.Version = "14.2"
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VoterStatisticsDS1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -850,41 +850,12 @@ Partial Public Class XRVoterStatistics
     Friend WithEvents cOrder4 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents cOrder5 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents cOrder6 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrLabel25 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel20 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel21 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel22 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel23 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel24 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
-    Friend WithEvents XrTable3 As DevExpress.XtraReports.UI.XRTable
-    Friend WithEvents XrTableRow3 As DevExpress.XtraReports.UI.XRTableRow
-    Friend WithEvents hMajority1 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents hMajority2 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents hMajority3 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents hMajority4 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents hParty1 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents hParty2 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents hParty3 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents hParty4 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents hOrder1 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents hOrder2 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents hOrder3 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents hOrder4 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents hOrder5 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents hOrder6 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents VoterStatisticsDS1 As VoteReporterNEW.VoterStatisticsDS
     Friend WithEvents Sp_Report_GetTypeDetailsTableAdapter As VoteReporterNEW.VoterStatisticsDSTableAdapters.sp_Report_GetTypeDetailsTableAdapter
     Friend WithEvents XrControlStyle1 As DevExpress.XtraReports.UI.XRControlStyle
     Friend WithEvents XrControlStyle2 As DevExpress.XtraReports.UI.XRControlStyle
     Friend WithEvents T1BASE As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents T3BASE As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents lblSession As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
     Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
-    Friend WithEvents XrLine2 As DevExpress.XtraReports.UI.XRLine
     Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
@@ -901,4 +872,33 @@ Partial Public Class XRVoterStatistics
     Friend WithEvents PageFooter As DevExpress.XtraReports.UI.PageFooterBand
     Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
     Friend WithEvents XrControlStyle3 As DevExpress.XtraReports.UI.XRControlStyle
+    Friend WithEvents PageHeader As DevExpress.XtraReports.UI.PageHeaderBand
+    Friend WithEvents XrLabel25 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents lblSession As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents XrTable3 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow3 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents T3BASE As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents hMajority1 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents hMajority2 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents hMajority3 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents hMajority4 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents hParty1 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents hParty2 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents hParty3 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents hParty4 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents hOrder1 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents hOrder2 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents hOrder3 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents hOrder4 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents hOrder5 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents hOrder6 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel24 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLine2 As DevExpress.XtraReports.UI.XRLine
+    Friend WithEvents XrLabel22 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel21 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel20 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel23 As DevExpress.XtraReports.UI.XRLabel
 End Class

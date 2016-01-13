@@ -371,7 +371,7 @@ Public Class RV_RollCallSummary
             report.Landscape = False
             'hide party total columns
 
-            report.XrLabel3.Visible = False
+            ' report.XrLabel3.Visible = False
             report.XrLabel40.Visible = False
 
             report.XrLabel36.Visible = False
