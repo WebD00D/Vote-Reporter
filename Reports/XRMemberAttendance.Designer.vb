@@ -31,7 +31,6 @@ Partial Public Class XRMemberAttendance
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.MemberAttendanceDS1 = New VoteReporterNEW.MemberAttendanceDS()
         Me.Sp_Report_VoterAttendanceTableAdapter = New VoteReporterNEW.MemberAttendanceDSTableAdapters.sp_Report_VoterAttendanceTableAdapter()
-        Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrLine2 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
@@ -52,6 +51,7 @@ Partial Public Class XRMemberAttendance
         Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
         Me.lblEndDate = New DevExpress.XtraReports.UI.XRLabel()
+        Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
         CType(Me.MemberAttendanceDS1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -104,7 +104,7 @@ Partial Public Class XRMemberAttendance
         '
         'XrLabel7
         '
-        Me.XrLabel7.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_VoterAttendance.MemberResponses", "{0}%")})
+        Me.XrLabel7.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_VoterAttendance.MemberResponses", "{0}")})
         Me.XrLabel7.Font = New System.Drawing.Font("Arial", 8.0!)
         Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(440.3122!, 0.0!)
         Me.XrLabel7.Name = "XrLabel7"
@@ -169,12 +169,6 @@ Partial Public Class XRMemberAttendance
         'Sp_Report_VoterAttendanceTableAdapter
         '
         Me.Sp_Report_VoterAttendanceTableAdapter.ClearBeforeFill = True
-        '
-        'ReportHeader
-        '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox1, Me.XrLine2, Me.XrLabel12, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel5, Me.XrLabel3, Me.XrLabel1, Me.XrLabel2, Me.lblSession})
-        Me.ReportHeader.HeightF = 163.4133!
-        Me.ReportHeader.Name = "ReportHeader"
         '
         'XrPictureBox1
         '
@@ -388,9 +382,15 @@ Partial Public Class XRMemberAttendance
         Me.lblEndDate.SizeF = New System.Drawing.SizeF(57.63898!, 12.58333!)
         Me.lblEndDate.StylePriority.UseFont = False
         '
+        'PageHeader
+        '
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox1, Me.XrLabel2, Me.XrLabel1, Me.XrLabel3, Me.XrLabel5, Me.XrLabel9, Me.XrLabel10, Me.XrLabel11, Me.XrLabel12, Me.XrLine2, Me.lblSession})
+        Me.PageHeader.HeightF = 163.4133!
+        Me.PageHeader.Name = "PageHeader"
+        '
         'XRMemberAttendance
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.PageFooter, Me.ReportFooter})
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter, Me.ReportFooter, Me.PageHeader})
         Me.DataMember = "sp_Report_VoterAttendance"
         Me.DataSource = Me.MemberAttendanceDS1
         Me.Margins = New System.Drawing.Printing.Margins(50, 50, 50, 50)
@@ -412,7 +412,6 @@ Partial Public Class XRMemberAttendance
     Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
     Friend WithEvents MemberAttendanceDS1 As VoteReporterNEW.MemberAttendanceDS
     Friend WithEvents Sp_Report_VoterAttendanceTableAdapter As VoteReporterNEW.MemberAttendanceDSTableAdapters.sp_Report_VoterAttendanceTableAdapter
-    Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
     Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
@@ -433,4 +432,5 @@ Partial Public Class XRMemberAttendance
     Friend WithEvents lblEndDate As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents lblPrintDate As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel26 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents PageHeader As DevExpress.XtraReports.UI.PageHeaderBand
 End Class

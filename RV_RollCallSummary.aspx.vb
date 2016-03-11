@@ -165,6 +165,13 @@ Public Class RV_RollCallSummary
         _AbsentName = ds.Tables(1).Rows(4).Item(3)
         _NVName = ds.Tables(1).Rows(5).Item(3)
 
+        Dim YeaName As String = ds.Tables(1).Rows(0).Item("Named_As")
+        Dim NayName As String = ds.Tables(1).Rows(1).Item("Named_As")
+        Dim AbstainName As String = ds.Tables(1).Rows(2).Item("Named_As")
+        Dim ExcusedName As String = ds.Tables(1).Rows(3).Item("Named_As")
+        Dim AbsnetName As String = ds.Tables(1).Rows(4).Item("Named_As")
+        Dim NVName As String = ds.Tables(1).Rows(5).Item("Named_As")
+
 
         '4. Call Report Stored Procedure
 
@@ -195,45 +202,54 @@ Public Class RV_RollCallSummary
             cmd.Parameters.AddWithValue("@unv", CByte(_UseNV))
 
             Dim motionFilter = Session("RCH_MotionFilter")
+            Dim SORTBY As String = Session("RCSortBy")
 
             Using da As New SqlDataAdapter(cmd)
 
-                Dim SORTBY As String = Session("RCSortBy")
-                If Not SORTBY = String.Empty Then
-                    Dim FilterTable As New DataTable("sp_Report_RollCallSummary")
-                    da.Fill(FilterTable)
 
-                    Dim Filter As New DataView(FilterTable)
-                    'check for motion filter
+                ' .. Get Array Size.
+                Dim NamedAs As New List(Of String)
 
-                    If Not Trim(motionFilter) = String.Empty Then
-                        Filter.RowFilter = "Motion = '" + motionFilter + "'"
-                    End If
-
-                    Filter.Sort = SORTBY
-                    FilterTable = Filter.ToTable()
-                    ds.Tables.Add(FilterTable)
-
-                   
-
-                Else
-
-
-                    If Not Trim(motionFilter) = String.Empty Then
-                        Dim FilterTable As New DataTable("sp_Report_RollCallSummary")
-                        da.Fill(FilterTable)
-                        Dim Filter As New DataView(FilterTable)
-                        Filter.RowFilter = "Motion = '" + motionFilter + "'"
-                        FilterTable = Filter.ToTable()
-                        ds.Tables.Add(FilterTable)
-                    Else
-
-                        da.Fill(ds, "sp_Report_RollCallSummary")
-                    End If
-
-
-
+                If Session("RCHYea") = True Then
+                    NamedAs.Add("'" + YeaName + "'")
                 End If
+                If Session("RCHNay") = True Then
+                    NamedAs.Add("'" + NayName + "'")
+                End If
+                If Session("RCHAbstain") = True Then
+                    NamedAs.Add("'" + AbstainName + "'")
+                End If
+                If Session("RCHExcused") = True Then
+                    NamedAs.Add("'" + ExcusedName + "'")
+                End If
+                If Session("RCHAbsent") = True Then
+                    NamedAs.Add("'" + AbsnetName + "'")
+                End If
+                If Session("RCHNotVoting") = True Then
+                    NamedAs.Add("'" + NVName + "'")
+                End If
+
+                Dim NameList As String = String.Join(",", NamedAs.ToArray())
+
+                'If Not SORTBY = String.Empty Then
+
+                Dim FilterTable As New DataTable("sp_Report_RollCallSummary")
+                da.Fill(FilterTable)
+                Dim Filter As New DataView(FilterTable)
+
+                'check for motion filter
+
+                If Not Trim(motionFilter) = String.Empty Then
+                    Filter.RowFilter = "Motion = '" + motionFilter + "'"
+                End If
+
+                If Not SORTBY = String.Empty Then
+                    Filter.Sort = SORTBY
+                End If
+
+                FilterTable = Filter.ToTable()
+                ds.Tables.Add(FilterTable)
+
 
                 If ds.Tables("sp_Report_RollCallSummary").Rows.Count = 0 Then
                     Dim drEmptyRow As DataRow = ds.Tables("sp_Report_RollCallSummary").NewRow
@@ -244,6 +260,7 @@ Public Class RV_RollCallSummary
 
 
             End Using
+
 
         End Using
 

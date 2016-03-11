@@ -432,11 +432,14 @@
                     //take data and append as list item parameters to be selected by user
                     var result = data.d;
                     $("#BillList").empty();
+                    var count = 0
                     $.each(result, function (index, item) {
 
                         var content = "<a href='#' data-who='" + item.calendarItemID + "' id='" + item.calendarItemID + "' data-selected='0' class='list-group-item calitem'>" + item.billPrefix + " " + item.legislationNbr + " | " + item.Motion + "</a>";
                         $(content).hide().appendTo("#BillList").fadeIn();
+                        count++;
                     })
+                 
 
                     $("#loadingBills").hide();
 
@@ -446,10 +449,10 @@
 
                 },
                 failure: function (msg) {
-                    alert(msg);
+                  
                 },
                 error: function (err) {
-                    alert(err);
+                  
                 }
             }) //end ajax calendar item load
 
@@ -661,10 +664,10 @@
 
                     },
                     failure: function (msg) {
-                        alert(msg);
+                      
                     },
                     error: function (err) {
-                        alert(err);
+                      
                     }
                 }) //end ajax 
 
@@ -735,10 +738,10 @@
 
                         },
                         failure: function (msg) {
-                            alert(msg);
+                            
                         },
                         error: function (err) {
-                            alert(err);
+                          
                         }
                     }) //end ajax calendar item load
 

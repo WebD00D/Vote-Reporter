@@ -348,10 +348,12 @@ Imports System.Data.SqlClient
             RCT.legislationNbr = CStr(Item("LegislationNbr"))
             RCT.createDate = CStr(Item("CreatedDate"))
             RCT.Motion = Item("Motion")
+
+            RollCallTranscriptList.Add(RCT)
             ' use link for filtering 
-            If RollCallTranscriptList.Where(Function(t) t.billPrefix = RCT.billPrefix And t.legislationNbr = RCT.legislationNbr).Count = 0 Then
-                RollCallTranscriptList.Add(RCT)
-            End If
+            'If RollCallTranscriptList.Where(Function(t) t.billPrefix = RCT.billPrefix And t.legislationNbr = RCT.legislationNbr).Count = 0 Then
+            '    RollCallTranscriptList.Add(RCT)
+            'End If
         Next
 
         Return RollCallTranscriptList

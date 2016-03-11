@@ -105,7 +105,14 @@ Public Class RV_VoterDetails
         Dim AbsentOrder As Integer = ds.Tables(1).Rows(4).Item(9)
         Dim NotVotingOrder As Integer = ds.Tables(1).Rows(5).Item(9)
 
+        'Named As Values
 
+        Dim YeaName As String = ds.Tables(1).Rows(0).Item("Named_As")
+        Dim NayName As String = ds.Tables(1).Rows(1).Item("Named_As")
+        Dim AbstainName As String = ds.Tables(1).Rows(2).Item("Named_As")
+        Dim ExcusedName As String = ds.Tables(1).Rows(3).Item("Named_As")
+        Dim AbsnetName As String = ds.Tables(1).Rows(4).Item("Named_As")
+        Dim NVName As String = ds.Tables(1).Rows(5).Item("Named_As")
 
         nYea = ds.Tables(1).Rows(0).Item(3)
         nNay = ds.Tables(1).Rows(1).Item(3)
@@ -160,6 +167,14 @@ Public Class RV_VoterDetails
         _pBeginDate = strStartDate
         _pEndDate = strEndDate
 
+
+        'Session("vhYES") 
+        'Session("vhNAY") 
+        'Session("vhABSTAIN") 
+        'Session("vhEXC")
+        'Session("vhABSENT") 
+        'Session("vhNV")
+
         ' Get Report Content
         Using cmd
             cmd.Connection = con
@@ -202,47 +217,75 @@ Public Class RV_VoterDetails
             Using da
                 da.SelectCommand = cmd
 
+
+                ' .. Get Array Size.
+                Dim NamedAs As New List(Of String)
+
+                If Session("vhYes") = True Then
+                    NamedAs.Add("'" + YeaName + "'")
+                End If
+                If Session("vhNAY") = True Then
+                    NamedAs.Add("'" + NayName + "'")
+                End If
+                If Session("vhABSTAIN") = True Then
+                    NamedAs.Add("'" + AbstainName + "'")
+                End If
+                If Session("vhEXC") = True Then
+                    NamedAs.Add("'" + ExcusedName + "'")
+                End If
+                If Session("vhABSENT") = True Then
+                    NamedAs.Add("'" + AbsnetName + "'")
+                End If
+                If Session("vhNV") = True Then
+                    NamedAs.Add("'" + NVName + "'")
+                End If
+
+                Dim NameList As String = String.Join(",", NamedAs.ToArray())
+
                 Dim SORTBY As String = Session("VDSort")
                 Dim motionFilter As String = Session("vhMotionFilter")
-                If Not SORTBY = String.Empty Then
-                    Dim FilterTable As New DataTable("sp_Report_VoterDetails")
-                    da.Fill(FilterTable)
 
-                    Dim Filter As New DataView(FilterTable)
-                    'check for motion filter
 
-                    If Not Trim(motionFilter) = String.Empty Then
-                        Filter.RowFilter = "Motion = '" + motionFilter + "'"
-                    End If
+                'If Not SORTBY = String.Empty Then
 
-                    Filter.Sort = SORTBY
-                    FilterTable = Filter.ToTable()
-                    ds.Tables.Add(FilterTable)
+                Dim FilterTable As New DataTable("sp_Report_VoterDetails")
+                da.Fill(FilterTable)
+                Dim Filter As New DataView(FilterTable)
 
+                'check for motion filter
+
+                If Not Trim(motionFilter) = String.Empty Then
+                    Filter.RowFilter = "Motion = '" + motionFilter + "' AND MemberVote IN (" + NameList + ")"
                 Else
-
-                    'check for motion filter
-
-                    If Not Trim(motionFilter) = String.Empty Then
-                        Dim FilterTable As New DataTable("sp_Report_VoterDetails")
-                        da.Fill(FilterTable)
-                        Dim Filter As New DataView(FilterTable)
-                        Filter.RowFilter = "Motion = '" + motionFilter + "'"
-                        FilterTable = Filter.ToTable()
-                        ds.Tables.Add(FilterTable)
-                    Else
-                        'Dim FilterTable As New DataTable("sp_Report_VoterDetails")
-                        'da.Fill(FilterTable)
-                        'Dim Filter As New DataView(FilterTable)
-
-                        'Filter.RowFilter = "BillNbr <> '0'"
-                        'FilterTable = Filter.ToTable()
-                        'ds.Tables.Add(FilterTable)
-
-                        da.Fill(ds, "sp_Report_VoterDetails")
-                    End If
-
+                    Filter.RowFilter = "MemberVote IN (" + NameList + ")"
                 End If
+
+                If Not SORTBY = String.Empty Then
+                    Filter.Sort = SORTBY
+                End If
+
+                FilterTable = Filter.ToTable()
+                ds.Tables.Add(FilterTable)
+
+
+                'Else
+
+                '    check for motion filter
+                '    Dim FilterTable As New DataTable("sp_Report_VoterDetails")
+                '    da.Fill(FilterTable)
+                '    Dim Filter As New DataView(FilterTable)
+
+                '    If Not Trim(motionFilter) = String.Empty Then
+                '        Filter.RowFilter = "Motion = '" + motionFilter + "' AND MemberVote IN (" + NameList + ")"
+                '    Else
+                '        Filter.RowFilter = "MemberVote IN (" + NameList + ")"
+                '    End If
+
+                '    FilterTable = Filter.ToTable()
+                '    ds.Tables.Add(FilterTable)
+                '    da.Fill(ds, "sp_Report_VoterDetails")
+
+                'End If
 
                 If ds.Tables("sp_Report_VoterDetails").Rows.Count = 0 Then
                     Dim drEmptyRow As DataRow = ds.Tables("sp_Report_VoterDetails").NewRow

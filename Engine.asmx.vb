@@ -392,7 +392,7 @@ Public Class Engine
     Public Function getDefaultSession()
 
         Dim dt As New DataTable
-        dt = ReturnDataTable("SELECT s.SessionID,sd.SessionCode,sd.SessionName,sd.IsCurrent,s.Legislature Legislature FROM VRSession s INNER JOIN VRSessionDetail sd on s.SessionID = sd.SessionID WHERE IsCurrent = 1", CommandType.Text, Nothing)
+        dt = ReturnDataTable("SELECT TOP 1 s.SessionID,sd.SessionCode,sd.SessionName,sd.IsCurrent,s.Legislature Legislature FROM VRSession s INNER JOIN VRSessionDetail sd on s.SessionID = sd.SessionID ORDER BY sd.SessionCode DESC", CommandType.Text, Nothing)
 
         Return dt
 

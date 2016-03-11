@@ -33,6 +33,7 @@ Partial Public Class XRMemberAttendance_Optional
         Me.MemberAttendanceDS1 = New VoteReporterNEW.MemberAttendanceDS()
         Me.Sp_Report_VoterAttendanceTableAdapter = New VoteReporterNEW.MemberAttendanceDSTableAdapters.sp_Report_VoterAttendanceTableAdapter()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.lblSession = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
@@ -50,7 +51,6 @@ Partial Public Class XRMemberAttendance_Optional
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         CType(Me.MemberAttendanceDS1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -192,6 +192,12 @@ Partial Public Class XRMemberAttendance_Optional
         Me.PageHeader.HeightF = 124.0417!
         Me.PageHeader.Name = "PageHeader"
         '
+        'XrLine1
+        '
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 109.375!)
+        Me.XrLine1.Name = "XrLine1"
+        Me.XrLine1.SizeF = New System.Drawing.SizeF(750.0!, 12.99999!)
+        '
         'lblSession
         '
         Me.lblSession.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
@@ -332,7 +338,7 @@ Partial Public Class XRMemberAttendance_Optional
         Me.XrLabel10.SizeF = New System.Drawing.SizeF(343.9816!, 23.0!)
         Me.XrLabel10.StylePriority.UseFont = False
         Me.XrLabel10.StylePriority.UseTextAlignment = False
-        Me.XrLabel10.Text = "[VotingName] of [DistrictName]"
+        Me.XrLabel10.Text = "[VotingName]"
         Me.XrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'XrLabel4
@@ -372,12 +378,6 @@ Partial Public Class XRMemberAttendance_Optional
         Me.XrLabel16.StylePriority.UseTextAlignment = False
         Me.XrLabel16.Text = "[DistrictNbr]"
         Me.XrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XrLine1
-        '
-        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 109.375!)
-        Me.XrLine1.Name = "XrLine1"
-        Me.XrLine1.SizeF = New System.Drawing.SizeF(750.0!, 12.99999!)
         '
         'XRMemberAttendance_Optional
         '
