@@ -286,11 +286,13 @@
             
 
             // 1 ) Get Current Session
-            var _CurrentSession = getCurrentSesssion()
+            var _CurrentSession;
+            getCurrentSesssion();
            
             function getCurrentSesssion() {
                 // make a call to select the current set session.
                 // On success, call loadAllSession()
+                console.log("inside current session");
                 var result;
                 $.ajax({
                     type: "POST",
@@ -300,6 +302,8 @@
                     dataType: "json",
                     success: function (data) {
                         _CurrentSession = data.d;
+                        console.log(_CurrentSession);
+
                         loadAllSessions();
                     }
                 })
@@ -307,6 +311,8 @@
 
 
             function loadAllSessions() {
+
+                console.log("inside current session.")
 
                 $.ajax({
                     type: "POST",

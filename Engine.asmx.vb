@@ -207,7 +207,14 @@ Public Class Engine
                     VR.showVotingStats = CBool(dt.Rows(0).Item("ShowVotingStats"))
                     VR.showOptionalAttendance = CBool(dt.Rows(0).Item("ShowOptionalAttendance"))
                     VR.showOptionalStats = CBool(dt.Rows(0).Item("ShowOptionalStats"))
-                    VR.includeShortTitle = CBool(dt.Rows(0).Item("IncludeShortTitle"))
+
+
+                    If IsDBNull(dt.Rows(0).Item("IncludeShortTitle")) Then
+                        VR.includeShortTitle = False
+                    Else
+                        VR.includeShortTitle = CBool(dt.Rows(0).Item("IncludeShortTitle"))
+                    End If
+
                     VR.showOptionalPartyTotals = CBool(dt.Rows(0).Item("ShowOptionalPartyTotals"))
 
                     dt.Clear()
@@ -392,7 +399,7 @@ Public Class Engine
     Public Function getDefaultSession()
 
         Dim dt As New DataTable
-        dt = ReturnDataTable("SELECT TOP 1 s.SessionID,sd.SessionCode,sd.SessionName,sd.IsCurrent,s.Legislature Legislature FROM VRSession s INNER JOIN VRSessionDetail sd on s.SessionID = sd.SessionID ORDER BY sd.SessionCode DESC", CommandType.Text, Nothing)
+        dt = ReturnDataTable("SELECT TOP 1 s.SessionID,sd.SessionCode,sd.SessionName,sd.IsCurrent,s.Legislature Legislature FROM VRSession s INNER JOIN VRSessionDetail sd on s.SessionID = sd.SessionID WHERE sd.IsCurrent = 1 ORDER BY SessionCode DESC", CommandType.Text, Nothing)
 
         Return dt
 

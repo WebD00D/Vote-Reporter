@@ -252,6 +252,10 @@ Public Class RV_RollCallSummary
 
 
                 If ds.Tables("sp_Report_RollCallSummary").Rows.Count = 0 Then
+
+
+                    Context.Response.Redirect("NoRecordsFound.html", True)
+
                     Dim drEmptyRow As DataRow = ds.Tables("sp_Report_RollCallSummary").NewRow
 
                     ds.Tables("sp_Report_RollCallSummary").Rows.InsertAt(drEmptyRow, 0)

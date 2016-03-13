@@ -73,7 +73,7 @@
                         <form runat="server" id="NETForm">
                             <h3 class="text-center">Vote Reporter Database </h3>
                             <h4 style="color:#093d62">Name</h4>
-                             <asp:TextBox runat="server" ID="txtVRDBName" Enabled="false" Text="VoteReporterNEW" CssClass="form-control"></asp:TextBox>
+                             <asp:TextBox runat="server" ID="txtVRDBName"  CssClass="form-control"></asp:TextBox>
                             <h4 style="color:#093d62">Server</h4>
                             <asp:TextBox runat="server" ID="txtVRDBServer" CssClass="form-control"></asp:TextBox>
                              <h4 style="color:#093d62">User ID</h4>

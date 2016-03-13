@@ -288,6 +288,9 @@ Public Class RV_VoterDetails
                 'End If
 
                 If ds.Tables("sp_Report_VoterDetails").Rows.Count = 0 Then
+
+                    Context.Response.Redirect("NoRecordsFound.html", True)
+
                     Dim drEmptyRow As DataRow = ds.Tables("sp_Report_VoterDetails").NewRow
                     drEmptyRow.Item("VotingName") = "NO DATA TO SHOW"
                     ds.Tables("sp_Report_VoterDetails").Rows.InsertAt(drEmptyRow, 0)
