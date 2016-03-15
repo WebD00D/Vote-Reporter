@@ -75,6 +75,37 @@ Public Class RV_MemberAttendance
             cmd.Connection.Close()
         End Using
 
+
+        Dim VRList As New List(Of Engine.clsVoteReporter)
+        VRList = Session("clsVoteReporter")
+
+        Dim configDT As New DataTable
+
+        Using cmd As New SqlCommand
+            cmd.Connection = con
+            cmd.Connection.Open()
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.AddWithValue("@SessionID", VRList.Item(0).currentSessionID)
+            cmd.CommandText = "sp_VRGetVoteMappings"
+
+            Using da
+                da.SelectCommand = cmd
+                da.Fill(configDT)
+            End Using
+            cmd.Connection.Close()
+        End Using
+
+        Dim elgAbstain As Integer = 0
+        Dim elgExcused As Integer = 0
+        Dim elgAbsent As Integer = 0
+        Dim elgNotVoting As Integer = 0
+
+
+        If configDT.Rows(2).Item(5) = True Then elgAbstain = 1
+        If configDT.Rows(3).Item(5) = True Then elgExcused = 1
+        If configDT.Rows(4).Item(5) = True Then elgAbsent = 1
+        If configDT.Rows(5).Item(5) = True Then elgNotVoting = 1
+
         ' Get Attendance Data
         Using cmd As New SqlCommand
             cmd.Connection = con
@@ -85,6 +116,12 @@ Public Class RV_MemberAttendance
             cmd.Parameters.AddWithValue("@SessionCode", SessionCode)
             cmd.Parameters.AddWithValue("@StartDate", strStartDate)
             cmd.Parameters.AddWithValue("@EndDate", strEndDate)
+            cmd.Parameters.AddWithValue("@Abstain_eligible", elgAbstain)
+            cmd.Parameters.AddWithValue("@Excused_eligible", elgExcused)
+            cmd.Parameters.AddWithValue("@Absent_eligible", elgAbsent)
+            cmd.Parameters.AddWithValue("@NotVoting_eligible", elgNotVoting)
+
+
 
             Using da
                 da.SelectCommand = cmd
