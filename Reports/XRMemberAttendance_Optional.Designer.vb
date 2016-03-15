@@ -338,7 +338,7 @@ Partial Public Class XRMemberAttendance_Optional
         Me.XrLabel10.SizeF = New System.Drawing.SizeF(343.9816!, 23.0!)
         Me.XrLabel10.StylePriority.UseFont = False
         Me.XrLabel10.StylePriority.UseTextAlignment = False
-        Me.XrLabel10.Text = "[VotingName]"
+        Me.XrLabel10.Text = "[VotingName] ([MemberPartyCode])"
         Me.XrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'XrLabel4

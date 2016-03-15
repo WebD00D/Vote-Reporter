@@ -130,7 +130,6 @@ Partial Public Class XRMemberAttendance
         '
         'XrLabel13
         '
-        Me.XrLabel13.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_VoterAttendance.VotingName")})
         Me.XrLabel13.Font = New System.Drawing.Font("Arial", 8.0!)
         Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(116.5395!, 0.0!)
         Me.XrLabel13.Name = "XrLabel13"
@@ -138,7 +137,7 @@ Partial Public Class XRMemberAttendance
         Me.XrLabel13.SizeF = New System.Drawing.SizeF(97.67!, 16.97!)
         Me.XrLabel13.StylePriority.UseFont = False
         Me.XrLabel13.StylePriority.UseTextAlignment = False
-        Me.XrLabel13.Text = "lblSession"
+        Me.XrLabel13.Text = "[VotingName] ([MemberPartyCode])"
         Me.XrLabel13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLine1
