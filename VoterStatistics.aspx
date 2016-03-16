@@ -141,8 +141,8 @@
                 <div class="col-lg-12">
                     <div class="col-lg-4 col-lg-offset-2">
 
-                             <h4>Subject Search</h4>
-                        <asp:TextBox runat="server" ID="txtSearchSubject"  CssClass="form-control"></asp:TextBox>
+                             <h4 class="hidden">Subject Search</h4>
+                        <asp:TextBox runat="server" ID="txtSearchSubject"  CssClass="form-control hidden"></asp:TextBox>
                         
                         <label id="lblSearchResults"></label> 
 

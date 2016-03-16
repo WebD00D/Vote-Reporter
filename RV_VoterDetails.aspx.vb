@@ -243,7 +243,7 @@ Public Class RV_VoterDetails
                 Dim NameList As String = String.Join(",", NamedAs.ToArray())
 
                 Dim SORTBY As String = Session("VDSort")
-                Dim motionFilter As String = Session("vhMotionFilter")
+                Dim motionFilter As String = Session("VoterComp_MotionFilter")
 
 
                 'If Not SORTBY = String.Empty Then

@@ -498,9 +498,9 @@
 
 
                         if (IsOptional) {
-                            window.open("RVMemberAttendance_Optional.aspx");
-                        } else {
                             window.open("RV_MemberAttendance.aspx");
+                        } else {
+                            window.open("RVMemberAttendance_Optional.aspx");
                         }
 
                        

@@ -203,25 +203,55 @@ Public Class RV_VoterComparison
             cmd.Parameters.AddWithValue("@StartDate", strStartDate)
             cmd.Parameters.AddWithValue("@EndDate", strEndDate)
 
+
+
+
             Using da As New SqlDataAdapter(cmd)
 
+
+
+                Dim motionFilter As String = Session("VoterComp_MotionFilter")
                 Dim SORTBY As String = Session("Vcomp_SortBy")
-                If Not SORTBY = String.Empty Then
-                    Dim FilterTable As New DataTable("sp_Report_VoterComparison_7MBR")
-                    da.Fill(FilterTable)
-                    Dim Filter As New DataView(FilterTable)
-                    Filter.Sort = SORTBY
-                    FilterTable = Filter.ToTable()
-                    ds.Tables.Add(FilterTable)
-                Else
-                    da.Fill(ds, "sp_Report_VoterComparison_7MBR")
+
+                Dim FilterTable As New DataTable("sp_Report_VoterComparison_7MBR")
+                da.Fill(FilterTable)
+                Dim Filter As New DataView(FilterTable)
+
+                'new code starts
+
+                If Not Trim(motionFilter) = String.Empty Then
+                    Filter.RowFilter = "Motion = '" + motionFilter + "' "
                 End If
 
-                If ds.Tables("sp_Report_VoterComparison_7MBR").Rows.Count = 0 Then
-                    Dim drEmptyRow As DataRow = ds.Tables("sp_Report_VoterComparison_7MBR").NewRow
+                If Not SORTBY = String.Empty Then
+                    Filter.Sort = SORTBY
+                End If
 
-                    ds.Tables("sp_Report_VoterComparison_7MBR").Rows.InsertAt(drEmptyRow, 0)
-                    ds.Tables("sp_Report_VoterComparison_7MBR").AcceptChanges()
+                FilterTable = Filter.ToTable()
+                ds.Tables.Add(FilterTable)
+
+                'new code ends
+
+
+
+
+                'If Not SORTBY = String.Empty Then
+
+
+                '    Filter.Sort = SORTBY
+                '    FilterTable = Filter.ToTable()
+                '    ds.Tables.Add(FilterTable)
+                'Else
+                '    da.Fill(ds, "sp_Report_VoterComparison_7MBR")
+                'End If
+
+                If ds.Tables("sp_Report_VoterComparison_7MBR").Rows.Count = 0 Then
+
+                    Context.Response.Redirect("NoRecordsFound.html", True)
+
+                    'Dim drEmptyRow As DataRow = ds.Tables("sp_Report_VoterComparison_7MBR").NewRow
+                    'ds.Tables("sp_Report_VoterComparison_7MBR").Rows.InsertAt(drEmptyRow, 0)
+                    'ds.Tables("sp_Report_VoterComparison_7MBR").AcceptChanges()
                 End If
 
             End Using
