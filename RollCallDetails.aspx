@@ -35,7 +35,7 @@
                     alert(msg);
                 },
                 error: function (err) {
-                    alert(err);
+                    console.log(err);
                 }
             }) //end ajax calendar item load
 
@@ -88,7 +88,7 @@
                         alert(msg);
                     },
                     error: function (err) {
-                        alert(err);
+                        console.log(err);
                     }
                 }) //end ajax calendar item load
 

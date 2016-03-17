@@ -204,8 +204,6 @@ Public Class RV_VoterComparison
             cmd.Parameters.AddWithValue("@EndDate", strEndDate)
 
 
-
-
             Using da As New SqlDataAdapter(cmd)
 
 

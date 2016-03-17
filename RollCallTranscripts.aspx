@@ -77,8 +77,10 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="contentMessage" style="margin-top: 25px">
-                                <h1 style="color: #2c3e50">Roll Call Transcript </h1>
+                                   <h1 style="color: #2c3e50"><span id="reportName"></span> </h1>
+                                <hr style="border:none;height:2px;background-color:#2c3e50;margin-left:45%;margin-right:45%" />
                                 <h3 style="color: #2c3e50"><span id="lblsessioncode"></span> Session</h3>
+                                <h4 style="color: #2c3e50"><span id="txtCurrentLeg"></span></h4>
 
                             </div>
                         </div>
@@ -214,6 +216,26 @@
 
             }
 
+
+
+            getName();
+
+            function getName() {
+
+                $.ajax({
+                    type: "POST",
+                    url: "Engine.asmx/getReportNames",
+                    data: "{type:" + 1 + "}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        var result = data.d;
+                        $("#reportName").text(result);
+                    }
+                })
+            }
+
+
             //Load Motions
             $.ajax({
 
@@ -265,7 +287,7 @@
                             $("#txtLink2").text(item.link2Name);
                             $("#lnk3").attr("href", item.link3URL);
                             $("#txtLink3").text(item.link3Name);
-
+                            $("#txtCurrentLeg").text(item.currentSessionLegislature);
                             setCurrentSessionName();
 
                         })
@@ -343,10 +365,10 @@
 
                 },
                 failure: function (msg) {
-                    alert(msg);
+                
                 },
                 error: function (err) {
-                    alert(err);
+                    
                 }
             }) //end ajax date load
 
@@ -381,7 +403,7 @@
                     alert(msg);
                 },
                 error: function (err) {
-                    alert(err);
+                    console.log(err);
                 }
             }) //end ajax calendar item load
 
@@ -518,7 +540,7 @@
                         alert(msg);
                     },
                     error: function (err) {
-                        alert(err);
+                        console.log(err);
                     }
                 })
 

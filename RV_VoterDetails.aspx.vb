@@ -353,7 +353,7 @@ Public Class RV_VoterDetails
             Dim StartDate As Date = CDate(Session("SessionStartedOn"))
             report.lblBeginDate.Text = StartDate.ToString("d")
         Else
-            Dim StartDate As Date = CDate(Session("vstatStartDate"))
+            Dim StartDate As Date = CDate(Session("BeginDate"))
             report.lblBeginDate.Text = StartDate.ToString("d")
         End If
 

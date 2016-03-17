@@ -362,6 +362,27 @@ Public Class Engine
         Return VRList
     End Function
 
+
+    <WebMethod(True)> _
+    Public Function getReportNames(ByVal type As Integer)
+        Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
+        Dim dt As New DataTable
+        Using cmd As SqlCommand = con.CreateCommand
+            cmd.Connection = con
+            cmd.Connection.Open()
+            cmd.CommandType = CommandType.Text
+            cmd.CommandText = "SELECT CurrentName FROM ReportTypes WHERE ID = " & type
+            Using da As New SqlDataAdapter
+                da.SelectCommand = cmd
+                da.Fill(dt)
+            End Using
+            cmd.Connection.Close()
+        End Using
+
+        Return dt.Rows(0).Item(0)
+    End Function
+
+
     <WebMethod(True)> _
     Public Function LoadSessions()
         Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
@@ -622,7 +643,7 @@ Public Class Engine
             Return False
         End Try
 
-       
+
     End Function
 
 #End Region
