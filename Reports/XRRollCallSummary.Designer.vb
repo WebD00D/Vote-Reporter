@@ -106,7 +106,7 @@ Partial Public Class XRRollCallSummary
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel19, Me.XrLabel30, Me.XrLabel31, Me.XrLabel32, Me.XrLabel33, Me.lblPass, Me.XrLabel17, Me.XrLabel10, Me.XrLabel7, Me.XrLabel6, Me.XrLine1, Me.XrLabel18, Me.XrTable1, Me.XrLabel20})
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel19, Me.XrLabel30, Me.XrLabel31, Me.XrLabel32, Me.XrLabel33, Me.lblPass, Me.XrLabel17, Me.XrLabel10, Me.XrLabel7, Me.XrLabel6, Me.XrLine1, Me.XrTable1, Me.XrLabel20, Me.XrLabel18})
         Me.Detail.HeightF = 30.84723!
         Me.Detail.KeepTogether = True
         Me.Detail.Name = "Detail"
@@ -118,7 +118,7 @@ Partial Public Class XRRollCallSummary
         '
         Me.XrLabel19.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_RollCallSummary.CDate", "{0:h:mm tt}")})
         Me.XrLabel19.Font = New System.Drawing.Font("Arial", 7.0!)
-        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(290.305!, 0.0!)
+        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(290.305!, 12.13886!)
         Me.XrLabel19.Name = "XrLabel19"
         Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel19.SizeF = New System.Drawing.SizeF(56.80978!, 15.00001!)
@@ -129,7 +129,7 @@ Partial Public Class XRRollCallSummary
         '
         Me.XrLabel30.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_RollCallSummary.RepYays")})
         Me.XrLabel30.Font = New System.Drawing.Font("Arial", 7.0!)
-        Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(693.75!, 0.0!)
+        Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(693.75!, 9.277771!)
         Me.XrLabel30.Name = "XrLabel30"
         Me.XrLabel30.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel30.SizeF = New System.Drawing.SizeF(28.125!, 17.8611!)
@@ -142,7 +142,7 @@ Partial Public Class XRRollCallSummary
         '
         Me.XrLabel31.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_RollCallSummary.RepNays")})
         Me.XrLabel31.Font = New System.Drawing.Font("Arial", 7.0!)
-        Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(721.8751!, 0.0!)
+        Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(721.8751!, 9.277771!)
         Me.XrLabel31.Name = "XrLabel31"
         Me.XrLabel31.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel31.SizeF = New System.Drawing.SizeF(28.125!, 17.8611!)
@@ -155,7 +155,7 @@ Partial Public Class XRRollCallSummary
         '
         Me.XrLabel32.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_RollCallSummary.DemYays")})
         Me.XrLabel32.Font = New System.Drawing.Font("Arial", 7.0!)
-        Me.XrLabel32.LocationFloat = New DevExpress.Utils.PointFloat(762.5001!, 0.0!)
+        Me.XrLabel32.LocationFloat = New DevExpress.Utils.PointFloat(762.5001!, 9.277771!)
         Me.XrLabel32.Name = "XrLabel32"
         Me.XrLabel32.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel32.SizeF = New System.Drawing.SizeF(28.125!, 17.8611!)
@@ -168,7 +168,7 @@ Partial Public Class XRRollCallSummary
         '
         Me.XrLabel33.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_RollCallSummary.DemNays")})
         Me.XrLabel33.Font = New System.Drawing.Font("Arial", 7.0!)
-        Me.XrLabel33.LocationFloat = New DevExpress.Utils.PointFloat(790.6251!, 0.0!)
+        Me.XrLabel33.LocationFloat = New DevExpress.Utils.PointFloat(790.6251!, 9.277771!)
         Me.XrLabel33.Name = "XrLabel33"
         Me.XrLabel33.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel33.SizeF = New System.Drawing.SizeF(28.125!, 17.8611!)
@@ -181,7 +181,7 @@ Partial Public Class XRRollCallSummary
         '
         Me.lblPass.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_RollCallSummary.Results")})
         Me.lblPass.Font = New System.Drawing.Font("Arial", 7.0!)
-        Me.lblPass.LocationFloat = New DevExpress.Utils.PointFloat(610.0306!, 0.0!)
+        Me.lblPass.LocationFloat = New DevExpress.Utils.PointFloat(610.0306!, 12.13886!)
         Me.lblPass.Name = "lblPass"
         Me.lblPass.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.lblPass.SizeF = New System.Drawing.SizeF(54.30579!, 15.0!)
@@ -194,7 +194,7 @@ Partial Public Class XRRollCallSummary
         '
         Me.XrLabel17.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_RollCallSummary.TotalVotes")})
         Me.XrLabel17.Font = New System.Drawing.Font("Arial", 7.0!)
-        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(569.4039!, 0.0!)
+        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(569.4039!, 12.13886!)
         Me.XrLabel17.Name = "XrLabel17"
         Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel17.SizeF = New System.Drawing.SizeF(40.62671!, 15.0!)
@@ -210,7 +210,7 @@ Partial Public Class XRRollCallSummary
         Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(40.88796!, 0.0!)
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel10.SizeF = New System.Drawing.SizeF(60.76556!, 15.0!)
+        Me.XrLabel10.SizeF = New System.Drawing.SizeF(80.25334!, 15.0!)
         Me.XrLabel10.StylePriority.UseFont = False
         Me.XrLabel10.Text = "XrLabel10"
         '
@@ -229,10 +229,10 @@ Partial Public Class XRRollCallSummary
         '
         Me.XrLabel6.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_RollCallSummary.motion")})
         Me.XrLabel6.Font = New System.Drawing.Font("Arial", 7.0!)
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(101.6535!, 0.0!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(121.1413!, 12.13886!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(136.6606!, 15.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(117.1728!, 15.0!)
         Me.XrLabel6.StylePriority.UseFont = False
         Me.XrLabel6.Text = "XrLabel6"
         '
@@ -246,17 +246,17 @@ Partial Public Class XRRollCallSummary
         '
         Me.XrLabel18.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_RollCallSummary.Subjects")})
         Me.XrLabel18.Font = New System.Drawing.Font("Arial", 7.0!)
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(101.6535!, 15.0!)
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(121.1414!, 0.0!)
         Me.XrLabel18.Name = "XrLabel18"
         Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
-        Me.XrLabel18.SizeF = New System.Drawing.SizeF(562.6829!, 12.13887!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(543.195!, 12.13887!)
         Me.XrLabel18.StylePriority.UseFont = False
         Me.XrLabel18.Text = "XrLabel18"
         '
         'XrTable1
         '
         Me.XrTable1.Font = New System.Drawing.Font("Arial", 7.0!)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(347.1147!, 0.0!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(347.1147!, 12.13886!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
         Me.XrTable1.SizeF = New System.Drawing.SizeF(222.2891!, 15.0!)
@@ -321,7 +321,7 @@ Partial Public Class XRRollCallSummary
         '
         Me.XrLabel20.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_RollCallSummary.CDate", "{0:M/d/yy}")})
         Me.XrLabel20.Font = New System.Drawing.Font("Arial", 7.0!)
-        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(238.3141!, 0.0!)
+        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(238.3141!, 12.13886!)
         Me.XrLabel20.Name = "XrLabel20"
         Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel20.SizeF = New System.Drawing.SizeF(51.99088!, 15.00001!)
@@ -330,7 +330,7 @@ Partial Public Class XRRollCallSummary
         '
         'TopMargin
         '
-        Me.TopMargin.HeightF = 1.041667!
+        Me.TopMargin.HeightF = 50.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -827,7 +827,7 @@ Partial Public Class XRRollCallSummary
         '
         Me.XrLabel4.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_VRGetReportConfigParams.Motion")})
         Me.XrLabel4.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(101.6535!, 139.5835!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(121.1413!, 139.5835!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(76.48943!, 14.99998!)
@@ -842,7 +842,7 @@ Partial Public Class XRRollCallSummary
         Me.DataMember = "sp_Report_RollCallSummary"
         Me.DataSource = Me.RcSummaryDS1
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(50, 50, 1, 50)
+        Me.Margins = New System.Drawing.Printing.Margins(50, 50, 50, 50)
         Me.PageHeight = 850
         Me.PageWidth = 1100
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic

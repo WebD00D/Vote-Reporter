@@ -2,9 +2,10 @@
 <xs:schema id="VoterDetailsDS" targetNamespace="http://tempuri.org/VoterDetailsDS.xsd" xmlns:mstns="http://tempuri.org/VoterDetailsDS.xsd" xmlns="http://tempuri.org/VoterDetailsDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="VoteReporterNEWConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="VoteReporterNEWConnectionString2 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.VoteReporterNEWConnectionString2.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="VoteReporterNEWConnectionString2" IsAppSettingsProperty="true" Modifier="Assembly" Name="VoteReporterNEWConnectionString2 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.VoteReporterNEWConnectionString2.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="OHHVoteReporterConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="OHHVoteReporterConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.OHHVoteReporterConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sp_Report_GetTypeDetailsTableAdapter" GeneratorDataComponentClassName="sp_Report_GetTypeDetailsTableAdapter" Name="sp_Report_GetTypeDetails" UserDataComponentName="sp_Report_GetTypeDetailsTableAdapter">
@@ -106,7 +107,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sp_Report_VoterDetailsTableAdapter" GeneratorDataComponentClassName="sp_Report_VoterDetailsTableAdapter" Name="sp_Report_VoterDetails" UserDataComponentName="sp_Report_VoterDetailsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="VoteReporterNEWConnectionString2 (Web.config)" DbObjectName="VoteReporterNEW.dbo.sp_Report_VoterDetails" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="OHHVoteReporterConnectionString (Web.config)" DbObjectName="OHHVoteReporter.dbo.sp_Report_VoterDetails" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sp_Report_VoterDetails</CommandText>
@@ -153,6 +154,7 @@
               <Mapping SourceColumn="District" DataSetColumn="District" />
               <Mapping SourceColumn="DistrictHeader" DataSetColumn="DistrictHeader" />
               <Mapping SourceColumn="CalendarItemId" DataSetColumn="CalendarItemId" />
+              <Mapping SourceColumn="Results" DataSetColumn="Results" />
               <Mapping SourceColumn="BillNbr" DataSetColumn="BillNbr" />
               <Mapping SourceColumn="LegNbr" DataSetColumn="LegNbr" />
               <Mapping SourceColumn="Motion" DataSetColumn="Motion" />
@@ -167,6 +169,12 @@
               <Mapping SourceColumn="CreatedDate" DataSetColumn="CreatedDate" />
               <Mapping SourceColumn="RCSNbr" DataSetColumn="RCSNbr" />
               <Mapping SourceColumn="VoteTtls" DataSetColumn="VoteTtls" />
+              <Mapping SourceColumn="RepYays" DataSetColumn="RepYays" />
+              <Mapping SourceColumn="RepNays" DataSetColumn="RepNays" />
+              <Mapping SourceColumn="DemYays" DataSetColumn="DemYays" />
+              <Mapping SourceColumn="DemNays" DataSetColumn="DemNays" />
+              <Mapping SourceColumn="OtherYays" DataSetColumn="OtherYays" />
+              <Mapping SourceColumn="OtherNays" DataSetColumn="OtherNays" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -178,7 +186,7 @@
   <xs:element name="VoterDetailsDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="VoterDetailsDS" msprop:Generator_UserDSName="VoterDetailsDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="sp_Report_GetTypeDetails" msprop:Generator_TableClassName="sp_Report_GetTypeDetailsDataTable" msprop:Generator_TableVarName="tablesp_Report_GetTypeDetails" msprop:Generator_TablePropName="sp_Report_GetTypeDetails" msprop:Generator_RowDeletingName="sp_Report_GetTypeDetailsRowDeleting" msprop:Generator_RowChangingName="sp_Report_GetTypeDetailsRowChanging" msprop:Generator_RowEvHandlerName="sp_Report_GetTypeDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="sp_Report_GetTypeDetailsRowDeleted" msprop:Generator_UserTableName="sp_Report_GetTypeDetails" msprop:Generator_RowChangedName="sp_Report_GetTypeDetailsRowChanged" msprop:Generator_RowEvArgName="sp_Report_GetTypeDetailsRowChangeEvent" msprop:Generator_RowClassName="sp_Report_GetTypeDetailsRow">
+        <xs:element name="sp_Report_GetTypeDetails" msprop:Generator_TableClassName="sp_Report_GetTypeDetailsDataTable" msprop:Generator_TableVarName="tablesp_Report_GetTypeDetails" msprop:Generator_RowChangedName="sp_Report_GetTypeDetailsRowChanged" msprop:Generator_TablePropName="sp_Report_GetTypeDetails" msprop:Generator_RowDeletingName="sp_Report_GetTypeDetailsRowDeleting" msprop:Generator_RowChangingName="sp_Report_GetTypeDetailsRowChanging" msprop:Generator_RowEvHandlerName="sp_Report_GetTypeDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="sp_Report_GetTypeDetailsRowDeleted" msprop:Generator_RowClassName="sp_Report_GetTypeDetailsRow" msprop:Generator_UserTableName="sp_Report_GetTypeDetails" msprop:Generator_RowEvArgName="sp_Report_GetTypeDetailsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -200,7 +208,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="sp_VRGetVoteMappings" msprop:Generator_TableClassName="sp_VRGetVoteMappingsDataTable" msprop:Generator_TableVarName="tablesp_VRGetVoteMappings" msprop:Generator_TablePropName="sp_VRGetVoteMappings" msprop:Generator_RowDeletingName="sp_VRGetVoteMappingsRowDeleting" msprop:Generator_RowChangingName="sp_VRGetVoteMappingsRowChanging" msprop:Generator_RowEvHandlerName="sp_VRGetVoteMappingsRowChangeEventHandler" msprop:Generator_RowDeletedName="sp_VRGetVoteMappingsRowDeleted" msprop:Generator_UserTableName="sp_VRGetVoteMappings" msprop:Generator_RowChangedName="sp_VRGetVoteMappingsRowChanged" msprop:Generator_RowEvArgName="sp_VRGetVoteMappingsRowChangeEvent" msprop:Generator_RowClassName="sp_VRGetVoteMappingsRow">
+        <xs:element name="sp_VRGetVoteMappings" msprop:Generator_TableClassName="sp_VRGetVoteMappingsDataTable" msprop:Generator_TableVarName="tablesp_VRGetVoteMappings" msprop:Generator_RowChangedName="sp_VRGetVoteMappingsRowChanged" msprop:Generator_TablePropName="sp_VRGetVoteMappings" msprop:Generator_RowDeletingName="sp_VRGetVoteMappingsRowDeleting" msprop:Generator_RowChangingName="sp_VRGetVoteMappingsRowChanging" msprop:Generator_RowEvHandlerName="sp_VRGetVoteMappingsRowChangeEventHandler" msprop:Generator_RowDeletedName="sp_VRGetVoteMappingsRowDeleted" msprop:Generator_RowClassName="sp_VRGetVoteMappingsRow" msprop:Generator_UserTableName="sp_VRGetVoteMappings" msprop:Generator_RowEvArgName="sp_VRGetVoteMappingsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -228,7 +236,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="sp_VRGetReportConfigParams" msprop:Generator_TableClassName="sp_VRGetReportConfigParamsDataTable" msprop:Generator_TableVarName="tablesp_VRGetReportConfigParams" msprop:Generator_TablePropName="sp_VRGetReportConfigParams" msprop:Generator_RowDeletingName="sp_VRGetReportConfigParamsRowDeleting" msprop:Generator_RowChangingName="sp_VRGetReportConfigParamsRowChanging" msprop:Generator_RowEvHandlerName="sp_VRGetReportConfigParamsRowChangeEventHandler" msprop:Generator_RowDeletedName="sp_VRGetReportConfigParamsRowDeleted" msprop:Generator_UserTableName="sp_VRGetReportConfigParams" msprop:Generator_RowChangedName="sp_VRGetReportConfigParamsRowChanged" msprop:Generator_RowEvArgName="sp_VRGetReportConfigParamsRowChangeEvent" msprop:Generator_RowClassName="sp_VRGetReportConfigParamsRow">
+        <xs:element name="sp_VRGetReportConfigParams" msprop:Generator_TableClassName="sp_VRGetReportConfigParamsDataTable" msprop:Generator_TableVarName="tablesp_VRGetReportConfigParams" msprop:Generator_RowChangedName="sp_VRGetReportConfigParamsRowChanged" msprop:Generator_TablePropName="sp_VRGetReportConfigParams" msprop:Generator_RowDeletingName="sp_VRGetReportConfigParamsRowDeleting" msprop:Generator_RowChangingName="sp_VRGetReportConfigParamsRowChanging" msprop:Generator_RowEvHandlerName="sp_VRGetReportConfigParamsRowChangeEventHandler" msprop:Generator_RowDeletedName="sp_VRGetReportConfigParamsRowDeleted" msprop:Generator_RowClassName="sp_VRGetReportConfigParamsRow" msprop:Generator_UserTableName="sp_VRGetReportConfigParams" msprop:Generator_RowEvArgName="sp_VRGetReportConfigParamsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -461,6 +469,13 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="CalendarItemId" msprop:Generator_ColumnVarNameInTable="columnCalendarItemId" msprop:Generator_ColumnPropNameInRow="CalendarItemId" msprop:Generator_ColumnPropNameInTable="CalendarItemIdColumn" msprop:Generator_UserColumnName="CalendarItemId" type="xs:int" minOccurs="0" />
+              <xs:element name="Results" msprop:Generator_ColumnVarNameInTable="columnResults" msprop:Generator_ColumnPropNameInRow="Results" msprop:Generator_ColumnPropNameInTable="ResultsColumn" msprop:Generator_UserColumnName="Results" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="BillNbr" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBillNbr" msprop:Generator_ColumnPropNameInRow="BillNbr" msprop:Generator_ColumnPropNameInTable="BillNbrColumn" msprop:Generator_UserColumnName="BillNbr" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -499,6 +514,12 @@
               <xs:element name="CreatedDate" msprop:Generator_ColumnVarNameInTable="columnCreatedDate" msprop:Generator_ColumnPropNameInRow="CreatedDate" msprop:Generator_ColumnPropNameInTable="CreatedDateColumn" msprop:Generator_UserColumnName="CreatedDate" type="xs:dateTime" />
               <xs:element name="RCSNbr" msprop:Generator_ColumnVarNameInTable="columnRCSNbr" msprop:Generator_ColumnPropNameInRow="RCSNbr" msprop:Generator_ColumnPropNameInTable="RCSNbrColumn" msprop:Generator_UserColumnName="RCSNbr" type="xs:int" />
               <xs:element name="VoteTtls" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnVoteTtls" msprop:Generator_ColumnPropNameInRow="VoteTtls" msprop:Generator_ColumnPropNameInTable="VoteTtlsColumn" msprop:Generator_UserColumnName="VoteTtls" type="xs:int" minOccurs="0" />
+              <xs:element name="RepYays" msprop:Generator_ColumnVarNameInTable="columnRepYays" msprop:Generator_ColumnPropNameInRow="RepYays" msprop:Generator_ColumnPropNameInTable="RepYaysColumn" msprop:Generator_UserColumnName="RepYays" type="xs:int" minOccurs="0" />
+              <xs:element name="RepNays" msprop:Generator_ColumnVarNameInTable="columnRepNays" msprop:Generator_ColumnPropNameInRow="RepNays" msprop:Generator_ColumnPropNameInTable="RepNaysColumn" msprop:Generator_UserColumnName="RepNays" type="xs:int" minOccurs="0" />
+              <xs:element name="DemYays" msprop:Generator_ColumnVarNameInTable="columnDemYays" msprop:Generator_ColumnPropNameInRow="DemYays" msprop:Generator_ColumnPropNameInTable="DemYaysColumn" msprop:Generator_UserColumnName="DemYays" type="xs:int" minOccurs="0" />
+              <xs:element name="DemNays" msprop:Generator_ColumnVarNameInTable="columnDemNays" msprop:Generator_ColumnPropNameInRow="DemNays" msprop:Generator_ColumnPropNameInTable="DemNaysColumn" msprop:Generator_UserColumnName="DemNays" type="xs:int" minOccurs="0" />
+              <xs:element name="OtherYays" msprop:Generator_ColumnVarNameInTable="columnOtherYays" msprop:Generator_ColumnPropNameInRow="OtherYays" msprop:Generator_ColumnPropNameInTable="OtherYaysColumn" msprop:Generator_UserColumnName="OtherYays" type="xs:int" minOccurs="0" />
+              <xs:element name="OtherNays" msprop:Generator_ColumnVarNameInTable="columnOtherNays" msprop:Generator_ColumnPropNameInRow="OtherNays" msprop:Generator_ColumnPropNameInTable="OtherNaysColumn" msprop:Generator_UserColumnName="OtherNays" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

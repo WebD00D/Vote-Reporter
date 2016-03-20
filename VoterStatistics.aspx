@@ -846,7 +846,7 @@
                         if (IsOptional) {
                             window.open("RV_VoterStatistics_Optional.aspx");
                         } else {
-                            window.open("RV_VoterStatistics.aspx");
+                            window.open("RV_VoterStatisticsNEW.aspx");
                         }
                        
 

@@ -1,9 +1,8 @@
 ﻿Imports System
 Imports System.Data.SqlClient
 Imports DevExpress.XtraReports.UI
-Public Class RV_VoterStatistics
+Public Class RV_VoterStatisticsNEW
     Inherits System.Web.UI.Page
-
     Public _ShowMajorityStats As Boolean
     Public _ShowPartyStats As Boolean
     Public _ShowVoteStats As Boolean
@@ -25,7 +24,6 @@ Public Class RV_VoterStatistics
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-
         Dim Members As String = Session("vstatMember")
         Dim Bills As String = Session("vstatBills")
         Dim SessionCode As String = Session("SessionCode")
@@ -37,9 +35,7 @@ Public Class RV_VoterStatistics
 
         _ReportColumns = 0
 
-        'Dim iBills As List(Of Integer) = Bills.Split(","c).ToList().ConvertAll(Of Integer)(Function(s) Convert.ToInt32(s))
-        'Dim iMembers As List(Of Integer) = Members.Split(","c).ToList().ConvertAll(Of Integer)(Function(s) Convert.ToInt32(s))
-      
+
 
         Dim StartDate As String = Session("vstatStartDate")
         Dim EndDate As String = Session("vstatEndDate")
@@ -70,9 +66,6 @@ Public Class RV_VoterStatistics
         Else
             strEndDate = Today + " 23:59:59"
         End If
-
-
-
 
         Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
         Dim da As New SqlDataAdapter
@@ -345,15 +338,13 @@ Public Class RV_VoterStatistics
         Next
         _sBills = sBillList.ToString()
 
-
-
-        VoterStatsViewer.Report = CreateReport(ds, _ReportColumns)
-        VoterStatsViewer.DataBind()
+        VoterStatsViewNEW.Report = CreateReport(ds, _ReportColumns)
+        VoterStatsViewNEW.DataBind()
 
     End Sub
 
-    Private Function CreateReport(ByVal ds As DataSet, ByVal ColCount As Integer) As XRVoterStatistics
-        Dim report As New XRVoterStatistics()
+    Private Function CreateReport(ByVal ds As DataSet, ByVal ColCount As Integer) As VoterStatsNEW
+        Dim report As New VoterStatsNEW()
         report.DataSource = ds
 
         Dim VoteReporter As New List(Of Engine.clsVoteReporter)
@@ -361,8 +352,6 @@ Public Class RV_VoterStatistics
 
         report.lblSession.Text = VoteReporter.Item(0).currentSessionLegislature
         report.lblPrintedOn.Text = Date.Now.ToString()
-
-
 
         If Session("vstatStartDate").ToString = String.Empty Then
             Dim StartDate As Date = CDate(Session("SessionStartedOn"))

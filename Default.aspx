@@ -94,9 +94,14 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="contentMessage" style="margin-top: 25px">
-                            <h1 style="color:#2c3e50">Vote Reporter</h1>
-                            <h3 style="color:#2c3e50"><span id="lblsessioncode"></span> Session</h3>
-                         
+                       
+                     
+                                <h1 style="color: #2c3e50">Vote Reporter </h1>
+                                <hr style="border:none;height:2px;background-color:#2c3e50;margin-left:45%;margin-right:45%" />
+                                <h3 style="color:#2c3e50"><span id="lblsessioncode"></span> Session</h3>
+                                <h4 style="color: #2c3e50"><span id="txtCurrentLeg"></span></h4>
+
+
                         </div>
                     </div>
                 </div>
@@ -359,7 +364,7 @@
                             $("#txtLink2").text(item.link2Name);
                             $("#lnk3").attr("href", item.link3URL);
                             $("#txtLink3").text(item.link3Name);
-
+                            $("#txtCurrentLeg").text(item.currentSessionLegislature);
                             setCurrentSessionName();
                         
                         })

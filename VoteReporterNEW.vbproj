@@ -137,6 +137,7 @@
     <Content Include="RV_VoterComparison.aspx" />
     <Content Include="RV_VoterDetails.aspx" />
     <Content Include="RV_VoterStatistics.aspx" />
+    <Content Include="RV_VoterStatisticsNEW.aspx" />
     <Content Include="RV_VoterStatistics_Optional.aspx" />
     <Content Include="TesteUserControl.ascx" />
     <Content Include="UserManagementEditor.aspx" />
@@ -272,6 +273,12 @@
       <DependentUpon>ReportManagementEditor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Reports\VoterStatsNEW.Designer.vb">
+      <DependentUpon>VoterStatsNEW.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\VoterStatsNEW.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\XRMemberAttendance.Designer.vb">
       <DependentUpon>XRMemberAttendance.vb</DependentUpon>
     </Compile>
@@ -403,6 +410,13 @@
       <DependentUpon>RV_VoterStatistics.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="RV_VoterStatisticsNEW.aspx.designer.vb">
+      <DependentUpon>RV_VoterStatisticsNEW.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RV_VoterStatisticsNEW.aspx.vb">
+      <DependentUpon>RV_VoterStatisticsNEW.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="RV_VoterStatistics_Optional.aspx.designer.vb">
       <DependentUpon>RV_VoterStatistics_Optional.aspx</DependentUpon>
     </Compile>
@@ -480,6 +494,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\VoterStatsNEW.resx">
+      <DependentUpon>VoterStatsNEW.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\XRMemberAttendance.resx">
       <DependentUpon>XRMemberAttendance.vb</DependentUpon>

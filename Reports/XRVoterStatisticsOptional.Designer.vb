@@ -113,10 +113,10 @@ Partial Public Class XRVoterStatisticsOptional
         'XrLabel4
         '
         Me.XrLabel4.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0.08538818!, 24.73612!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0.08538564!, 24.73612!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(190.9722!, 23.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(180.7143!, 23.0!)
         Me.XrLabel4.StylePriority.UseFont = False
         Me.XrLabel4.StylePriority.UseTextAlignment = False
         Me.XrLabel4.Text = "Total Votes:"
@@ -125,10 +125,10 @@ Partial Public Class XRVoterStatisticsOptional
         'XrLabel5
         '
         Me.XrLabel5.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0.08532206!, 47.73612!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0.08532206!, 47.7361!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
-        Me.XrLabel5.SizeF = New System.Drawing.SizeF(190.9722!, 23.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(180.7144!, 23.0!)
         Me.XrLabel5.StylePriority.UseFont = False
         Me.XrLabel5.StylePriority.UseTextAlignment = False
         Me.XrLabel5.Text = "Total Eligible Votes:"
