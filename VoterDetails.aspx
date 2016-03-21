@@ -205,7 +205,7 @@
                         <br />
                         <ul class="list-inline">
                             <li>
-                                <button id="btnDoReport" class="btn btn-lg btn-danger pull-left"><i class="fa fa-book"></i> Run Report</button></li>
+                                <button id="btnDoReport" class="btn btn-primary pull-left"><i class="fa fa-book"></i> Generate Report</button></li>
                         </ul>
 
 

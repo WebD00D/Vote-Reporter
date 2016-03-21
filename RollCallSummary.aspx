@@ -170,8 +170,8 @@
                                 Show Party Totals</li>
                         </ul>
                         <br />
-                             <asp:Button runat="server" ID="btnDoReport" CssClass="btn btn-sm btn-primary" Text="Generate Report" />
-                       
+                       <%--      <asp:Button runat="server" ID="btnDoReport" CssClass="btn btn-sm btn-primary" Text="Generate Report" />--%>
+                        <a id="btnDoReport" class="btn btn-primary"><i class="fa fa-book"></i> Generate Report</a>
                            
                              
                         
@@ -554,7 +554,7 @@
 
             ////////////////////////
 
-            $("#<%=btnDoReport.ClientID%>").click(function (e) {
+            $("#btnDoReport").click(function (e) {
 
 
                 var ckYES = false;

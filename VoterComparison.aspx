@@ -166,7 +166,8 @@
                              <li><asp:CheckBox runat="server" ID="ckLegSort" />   Doc Number</li>
                         </ul>
                                   <br />
-                <input id="btnDoReport" type="button" class="btn btn-sm btn-primary pull-left" value="Generate Report" /> 
+                           <a href="#" id="btnDoReport" class="btn btn-primary pull-left"><i class="fa fa-book"></i> Generate Report</a>
+            <%--    <input id="btnDoReport" type="button" class="" value="Generate Report" /> --%>
                        
                   </div>
                 </div>

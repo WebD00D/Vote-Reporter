@@ -145,8 +145,8 @@
                         <br />
 
                         <ul class="list-inline">
-                            <li><button id="btnDoReport" class="btn btn-sm btn-primary pull-left"><i class="fa fa-book"></i>  Generate Report</button></li>
-                                 <li><button id="btnDoOptionalReport" class="btn btn-sm btn-primary pull-left"><i class="fa fa-book"></i>  Optional Report</button></li>
+                            <li><button id="btnDoReport" class="btn btn-primary pull-left"><i class="fa fa-user"></i>  Standard Report</button></li>
+                                 <li><button id="btnDoOptionalReport" class="btn btn-danger pull-left"><i class="fa fa-book"></i>  Optional Report</button></li>
                              </ul>
                          
                     </div>

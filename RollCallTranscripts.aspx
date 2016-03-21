@@ -120,7 +120,8 @@
                         <select id="ddlMotionfilter" class="form-control"></select>
                        <br />
                        <ul class="list-inline">
-                           <li> <input type="button" id="btnDoReport" class="btn btn-danger btn-sm btn-block" value="Generate Report" /></li>
+                          <%-- <li> <input type="button" id="btnDoReport" class="btn btn-danger btn-sm btn-block" value="Generate Report" /></li>--%>
+                           <li><a href="#" id="btnDoReport" class="btn btn-primary btn-block"><i class="fa fa-book"></i> Generate Report</a></li>
    
                        </ul>
                        

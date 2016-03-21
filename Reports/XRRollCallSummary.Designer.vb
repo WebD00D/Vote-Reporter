@@ -32,7 +32,6 @@ Partial Public Class XRRollCallSummary
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
-        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.BASE = New DevExpress.XtraReports.UI.XRTableCell()
@@ -43,6 +42,7 @@ Partial Public Class XRRollCallSummary
         Me.Tally5 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.Tally6 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.RcSummaryDS1 = New VoteReporterNEW.RCSummaryDS()
@@ -242,17 +242,6 @@ Partial Public Class XRRollCallSummary
         Me.XrLine1.Name = "XrLine1"
         Me.XrLine1.SizeF = New System.Drawing.SizeF(897.3321!, 3.708363!)
         '
-        'XrLabel18
-        '
-        Me.XrLabel18.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_RollCallSummary.Subjects")})
-        Me.XrLabel18.Font = New System.Drawing.Font("Arial", 7.0!)
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(121.1414!, 0.0!)
-        Me.XrLabel18.Name = "XrLabel18"
-        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
-        Me.XrLabel18.SizeF = New System.Drawing.SizeF(543.195!, 12.13887!)
-        Me.XrLabel18.StylePriority.UseFont = False
-        Me.XrLabel18.Text = "XrLabel18"
-        '
         'XrTable1
         '
         Me.XrTable1.Font = New System.Drawing.Font("Arial", 7.0!)
@@ -327,6 +316,17 @@ Partial Public Class XRRollCallSummary
         Me.XrLabel20.SizeF = New System.Drawing.SizeF(51.99088!, 15.00001!)
         Me.XrLabel20.StylePriority.UseFont = False
         Me.XrLabel20.Text = "XrLabel6"
+        '
+        'XrLabel18
+        '
+        Me.XrLabel18.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "sp_Report_RollCallSummary.Subjects")})
+        Me.XrLabel18.Font = New System.Drawing.Font("Arial", 7.0!)
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(121.1414!, 0.0!)
+        Me.XrLabel18.Name = "XrLabel18"
+        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100.0!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(543.195!, 12.13887!)
+        Me.XrLabel18.StylePriority.UseFont = False
+        Me.XrLabel18.Text = "XrLabel18"
         '
         'TopMargin
         '
@@ -517,7 +517,7 @@ Partial Public Class XRRollCallSummary
         'PageHeader
         '
         Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel15, Me.XrLabel40, Me.XrLine3, Me.XrLabel37, Me.XrLabel41, Me.XrLabel38, Me.XrLabel42, Me.XrLabel43, Me.XrLine4, Me.XrLabel39, Me.XrLine5, Me.XrLabel16, Me.XrLine6, Me.XrLabel36, Me.lblSession, Me.XrLabel9, Me.XrLabel8, Me.XrLabel1, Me.XrLabel2, Me.XrTable2, Me.XrPictureBox1, Me.XrLine2, Me.XrLabel3, Me.XrLabel5, Me.XrLabel4})
-        Me.PageHeader.HeightF = 171.875!
+        Me.PageHeader.HeightF = 166.6667!
         Me.PageHeader.Name = "PageHeader"
         '
         'XrLabel15
