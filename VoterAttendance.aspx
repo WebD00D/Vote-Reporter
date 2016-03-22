@@ -267,6 +267,13 @@
                             $("#lnk3").attr("href", item.link3URL);
                             $("#txtLink3").text(item.link3Name);
                             $("#txtCurrentLeg").text(item.currentSessionLegislature);
+
+                            if (item.showOptionalAttendance) {
+                                $("#btnDoOptionalReport").show();
+                            } else {
+                                $("#btnDoOptionalReport").hide();
+                            }
+
                             setCurrentSessionName();
 
                         })

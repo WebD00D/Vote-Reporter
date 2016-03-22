@@ -418,6 +418,9 @@ Public Class RV_VoterStatisticsNEW
             report.Landscape = True
         Else
             report.Landscape = False
+            report.XrLine1.WidthF = 650
+            report.XrLine2.WidthF = 650
+            report.XrPageInfo1.WidthF = 420
         End If
 
         Dim xMajority1 As XRTableCell = report.cMajority1

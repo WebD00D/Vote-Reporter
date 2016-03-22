@@ -2227,6 +2227,8 @@ Partial Public Class VoterStatisticsDS
 
         Private columnORDER6 As Global.System.Data.DataColumn
 
+        Private columnMemberPartyCode As Global.System.Data.DataColumn
+
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New()
@@ -2439,6 +2441,14 @@ Partial Public Class VoterStatisticsDS
         End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public ReadOnly Property MemberPartyCodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMemberPartyCode
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
          Global.System.ComponentModel.Browsable(False)> _
         Public ReadOnly Property Count() As Integer
@@ -2497,9 +2507,10 @@ Partial Public Class VoterStatisticsDS
                     ByVal ORDER3 As Integer, _
                     ByVal ORDER4 As Integer, _
                     ByVal ORDER5 As Integer, _
-                    ByVal ORDER6 As Integer) As sp_Report_VoterStatisticsNEWRow
+                    ByVal ORDER6 As Integer, _
+                    ByVal MemberPartyCode As String) As sp_Report_VoterStatisticsNEWRow
             Dim rowsp_Report_VoterStatisticsNEWRow As sp_Report_VoterStatisticsNEWRow = CType(Me.NewRow, sp_Report_VoterStatisticsNEWRow)
-            Dim columnValuesArray() As Object = New Object() {MemberID, VotingName, DistrictName, DistrictNbr, TotalVotes, TtlEligibleVotes, MemberVotes, MemberVotePercentage, WithMajority, WithMajorityPercentage, AgaintsMajority, AgaintsMajorityPercentage, WithParty, WithPartyPercentage, AgaintsParty, AgaintsPartyPercentage, ORDER1, ORDER2, ORDER3, ORDER4, ORDER5, ORDER6}
+            Dim columnValuesArray() As Object = New Object() {MemberID, VotingName, DistrictName, DistrictNbr, TotalVotes, TtlEligibleVotes, MemberVotes, MemberVotePercentage, WithMajority, WithMajorityPercentage, AgaintsMajority, AgaintsMajorityPercentage, WithParty, WithPartyPercentage, AgaintsParty, AgaintsPartyPercentage, ORDER1, ORDER2, ORDER3, ORDER4, ORDER5, ORDER6, MemberPartyCode}
             rowsp_Report_VoterStatisticsNEWRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowsp_Report_VoterStatisticsNEWRow)
             Return rowsp_Report_VoterStatisticsNEWRow
@@ -2544,6 +2555,7 @@ Partial Public Class VoterStatisticsDS
             Me.columnORDER4 = MyBase.Columns("ORDER4")
             Me.columnORDER5 = MyBase.Columns("ORDER5")
             Me.columnORDER6 = MyBase.Columns("ORDER6")
+            Me.columnMemberPartyCode = MyBase.Columns("MemberPartyCode")
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
@@ -2593,8 +2605,11 @@ Partial Public Class VoterStatisticsDS
             MyBase.Columns.Add(Me.columnORDER5)
             Me.columnORDER6 = New Global.System.Data.DataColumn("ORDER6", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnORDER6)
+            Me.columnMemberPartyCode = New Global.System.Data.DataColumn("MemberPartyCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMemberPartyCode)
             Me.columnVotingName.MaxLength = 100
             Me.columnDistrictName.MaxLength = 50
+            Me.columnMemberPartyCode.MaxLength = 10
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
@@ -4472,6 +4487,22 @@ Partial Public Class VoterStatisticsDS
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property MemberPartyCode() As String
+            Get
+                Try
+                    Return CType(Me(Me.tablesp_Report_VoterStatisticsNEW.MemberPartyCodeColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MemberPartyCode' in table 'sp_Report_VoterStatisticsNEW' is" & _
+                            " DBNull.", e)
+                End Try
+            End Get
+            Set(value As String)
+                Me(Me.tablesp_Report_VoterStatisticsNEW.MemberPartyCodeColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsMemberIDNull() As Boolean
             Return Me.IsNull(Me.tablesp_Report_VoterStatisticsNEW.MemberIDColumn)
         End Function
@@ -4732,6 +4763,18 @@ Partial Public Class VoterStatisticsDS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetORDER6Null()
             Me(Me.tablesp_Report_VoterStatisticsNEW.ORDER6Column) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsMemberPartyCodeNull() As Boolean
+            Return Me.IsNull(Me.tablesp_Report_VoterStatisticsNEW.MemberPartyCodeColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetMemberPartyCodeNull()
+            Me(Me.tablesp_Report_VoterStatisticsNEW.MemberPartyCodeColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
 
@@ -6060,6 +6103,7 @@ Namespace VoterStatisticsDSTableAdapters
             tableMapping.ColumnMappings.Add("ORDER4", "ORDER4")
             tableMapping.ColumnMappings.Add("ORDER5", "ORDER5")
             tableMapping.ColumnMappings.Add("ORDER6", "ORDER6")
+            tableMapping.ColumnMappings.Add("MemberPartyCode", "MemberPartyCode")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
 
@@ -6067,7 +6111,7 @@ Namespace VoterStatisticsDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.SqlClient.SqlConnection()
-            Me._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings("VoteReporterNEWConnectionString2").ConnectionString
+            Me._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings("OHHVoteReporterConnectionString").ConnectionString
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
@@ -6098,7 +6142,9 @@ Namespace VoterStatisticsDSTableAdapters
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@uAbsent", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 10, 0, Nothing, Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@uNV", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 10, 0, Nothing, Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@BillList", Global.System.Data.SqlDbType.VarChar, 2147483647, Global.System.Data.ParameterDirection.Input, 0, 0, Nothing, Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
-            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MemberList", Global.System.Data.SqlDbType.VarChar, 100, Global.System.Data.ParameterDirection.Input, 0, 0, Nothing, Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
+            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MemberList", Global.System.Data.SqlDbType.VarChar, 2147483647, Global.System.Data.ParameterDirection.Input, 0, 0, Nothing, Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
+            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@StartDate", Global.System.Data.SqlDbType.VarChar, 100, Global.System.Data.ParameterDirection.Input, 0, 0, Nothing, Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
+            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EndDate", Global.System.Data.SqlDbType.VarChar, 100, Global.System.Data.ParameterDirection.Input, 0, 0, Nothing, Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
@@ -6126,7 +6172,9 @@ Namespace VoterStatisticsDSTableAdapters
                     ByVal uAbsent As Global.System.Nullable(Of Integer), _
                     ByVal uNV As Global.System.Nullable(Of Integer), _
                     ByVal BillList As String, _
-                    ByVal MemberList As String) As Integer
+                    ByVal MemberList As String, _
+                    ByVal StartDate As String, _
+                    ByVal EndDate As String) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Yea_eligible.HasValue = True) Then
                 Me.Adapter.SelectCommand.Parameters(1).Value = CType(Yea_eligible.Value, Integer)
@@ -6227,6 +6275,16 @@ Namespace VoterStatisticsDSTableAdapters
                 Me.Adapter.SelectCommand.Parameters(20).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.SelectCommand.Parameters(20).Value = CType(MemberList, String)
+            End If
+            If (StartDate Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(21).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(21).Value = CType(StartDate, String)
+            End If
+            If (EndDate Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(22).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(22).Value = CType(EndDate, String)
             End If
             If (Me.ClearBeforeFill = True) Then
                 dataTable.Clear()
@@ -6259,7 +6317,9 @@ Namespace VoterStatisticsDSTableAdapters
                     ByVal uAbsent As Global.System.Nullable(Of Integer), _
                     ByVal uNV As Global.System.Nullable(Of Integer), _
                     ByVal BillList As String, _
-                    ByVal MemberList As String) As VoterStatisticsDS.sp_Report_VoterStatisticsNEWDataTable
+                    ByVal MemberList As String, _
+                    ByVal StartDate As String, _
+                    ByVal EndDate As String) As VoterStatisticsDS.sp_Report_VoterStatisticsNEWDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Yea_eligible.HasValue = True) Then
                 Me.Adapter.SelectCommand.Parameters(1).Value = CType(Yea_eligible.Value, Integer)
@@ -6360,6 +6420,16 @@ Namespace VoterStatisticsDSTableAdapters
                 Me.Adapter.SelectCommand.Parameters(20).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.SelectCommand.Parameters(20).Value = CType(MemberList, String)
+            End If
+            If (StartDate Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(21).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(21).Value = CType(StartDate, String)
+            End If
+            If (EndDate Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(22).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(22).Value = CType(EndDate, String)
             End If
             Dim dataTable As VoterStatisticsDS.sp_Report_VoterStatisticsNEWDataTable = New VoterStatisticsDS.sp_Report_VoterStatisticsNEWDataTable()
             Me.Adapter.Fill(dataTable)

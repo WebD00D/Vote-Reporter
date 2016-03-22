@@ -353,6 +353,14 @@
                             $("#txtLink3").text(item.link3Name);
                             $("#txtCurrentLeg").text(item.currentSessionLegislature);
 
+                            if (item.showOptionalStats) {
+                                $("#btnDoReport").show();
+                            } else {
+                                $("#btnDoReport").hide();
+                            }
+
+                          
+
                             setCurrentSessionName();
 
                         })

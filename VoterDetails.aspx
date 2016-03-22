@@ -197,7 +197,7 @@
                              <li>
                                 <asp:CheckBox runat="server" ID="ckShowShortTitle" />
                                 Show Short Title</li>
-                               <li>
+                               <li id="showpartytotals">
                                 <asp:CheckBox runat="server" ID="ckShowPartyTotals" />
                                 Show Party Totals</li>
                         </ul>
@@ -376,6 +376,14 @@
                             $("#lnk3").attr("href", item.link3URL);
                             $("#txtLink3").text(item.link3Name);
                             $("#txtCurrentLeg").text(item.currentSessionLegislature);
+
+                            
+
+                            if (item.showOptionalPartyTotals) {
+                                $("#showpartytotals").show();
+                            } else {
+                                $("#showpartytotals").hide();
+                            }
 
                             setCurrentSessionName();
 
