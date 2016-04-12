@@ -21,6 +21,7 @@ Public Class Engine
         Public defaultSessionID As Integer 'This is the session ID that is marked current in the database. 
         Public currentSessionID As Integer
         Public currentSessionCode As String
+        Public currentSessionPeriod As String
         Public currentSessionName As String
         Public currentSessionLegislature As String
         Public usersFirstName As String
@@ -131,6 +132,7 @@ Public Class Engine
         Public sessionName As String
         Public isCurrentSession As Boolean
         Public legislatureName As String
+        Public sessionPeriod As String
     End Class
 
 #Region "Vote Reporter Base"
@@ -162,15 +164,16 @@ Public Class Engine
                 VR.currentSessionCode = dt.Rows(0).Item("SessionCode")
                 VR.currentSessionName = dt.Rows(0).Item("SessionName")
                 VR.currentSessionLegislature = dt.Rows(0).Item("Legislature")
+                VR.currentSessionPeriod = dt.Rows(0).Item("SessionPeriod")
 
                 dt.Clear()
 
                 Dim oParmList As List(Of SqlParameter) = New List(Of SqlParameter)
                 oParmList.Add(New SqlParameter("@SessionID", VR.currentSessionID))
                 dt = ReturnDataTable("sp_VRGetReportConfigParams", CommandType.StoredProcedure, oParmList)
-
+                'ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), Guid.NewGuid().ToString(), "Alert('Session: '" & VR.currentSessionID & "');", True)
                 If dt.Rows.Count > 0 Then
-
+                    On Error Resume Next
                     VR.link1Name = dt.Rows(0).Item("Link1_Name")
                     VR.link1URL = dt.Rows(0).Item("Link1_URL")
                     VR.link2Name = dt.Rows(0).Item("Link2_Name")
@@ -209,7 +212,7 @@ Public Class Engine
                     VR.showOptionalStats = CBool(dt.Rows(0).Item("ShowOptionalStats"))
 
 
-                    If IsDBNull(dt.Rows(0).Item("IncludeShortTitle")) Then
+                    If Convert.IsDBNull(dt.Rows(0).Item("IncludeShortTitle")) Then
                         VR.includeShortTitle = False
                     Else
                         VR.includeShortTitle = CBool(dt.Rows(0).Item("IncludeShortTitle"))
@@ -258,7 +261,7 @@ Public Class Engine
                     VR.notVotingIsUsed = CBool(dt.Rows(5).Item("IsUsed"))
                     VR.notVotingIsEligible = CBool(dt.Rows(5).Item("isEligible"))
                     VR.notVotingHeaderOrder = dt.Rows(5).Item("Header_Order")
-
+                    On Error GoTo 0
                     VRList.Add(VR)
                     Session("clsVoteReporter") = VRList
 
@@ -390,8 +393,10 @@ Public Class Engine
         Using cmd As SqlCommand = con.CreateCommand
             cmd.Connection = con
             cmd.Connection.Open()
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.CommandText = "sp_VRGetAvailableSessions"
+            cmd.CommandType = CommandType.Text
+            'cmd.CommandText = "sp_VRGetAvailableSessions"
+            cmd.CommandText = "SELECT SessionID, SessionPeriod,Legislature FROM VRSession"
+
             Using da As New SqlDataAdapter
                 da.SelectCommand = cmd
                 da.Fill(dt)
@@ -405,8 +410,9 @@ Public Class Engine
             For Each Item As DataRow In dt.Rows()
                 Dim VRSession As New clsLegislativeSession
                 VRSession.sessionID = Item("SessionID")
-                VRSession.sessionCode = Item("SessionCode")
-                VRSession.sessionName = Item("SessionName")
+                VRSession.sessionCode = "SESSION CODE NOT SET"
+                'VRSession.sessionName = Item("SessionName")
+                VRSession.sessionPeriod = Item("SessionPeriod")
                 VRSession.legislatureName = Item("Legislature")
                 VRSessionList.Add(VRSession)
             Next
@@ -420,8 +426,7 @@ Public Class Engine
     Public Function getDefaultSession()
 
         Dim dt As New DataTable
-        dt = ReturnDataTable("SELECT TOP 1 s.SessionID,sd.SessionCode,sd.SessionName,sd.IsCurrent,s.Legislature Legislature FROM VRSession s INNER JOIN VRSessionDetail sd on s.SessionID = sd.SessionID WHERE sd.IsCurrent = 1 ORDER BY SessionCode DESC", CommandType.Text, Nothing)
-
+        dt = ReturnDataTable("SELECT TOP 1 s.SessionID,s.SessionPeriod,sd.SessionCode,sd.SessionName,sd.IsCurrent,s.Legislature Legislature FROM VRSession s INNER JOIN VRSessionDetail sd on s.SessionID = sd.SessionID WHERE sd.IsCurrent = 1 ORDER BY SessionCode DESC", CommandType.Text, Nothing)
         Return dt
 
     End Function
@@ -447,7 +452,7 @@ Public Class Engine
     <WebMethod(True)> _
     Public Function getCurrentSessionCode()
         Dim VRList As List(Of clsVoteReporter) = Session("clsVoteReporter")
-        Return VRList.Item(0).currentSessionCode
+        Return VRList.Item(0).currentSessionPeriod
     End Function
 
     <WebMethod(True)> _
@@ -660,7 +665,7 @@ Public Class Engine
             cmd.CommandType = cmdType
             cmd.CommandText = cmdtext
 
-            If Not IsNothing(oParm) Then cmd.Parameters.AddRange(oParm.ToArray())
+            If oParm IsNot Nothing Then cmd.Parameters.AddRange(oParm.ToArray())
 
             Using da As New SqlDataAdapter
                 da.SelectCommand = cmd

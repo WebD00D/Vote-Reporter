@@ -132,8 +132,8 @@
                         <div role="tabpanel" class="tab-pane active" id="account" style="color:#2c3e50">
 
                         
-                            <div class="col-lg-6"><h4>Government Name</h4><input id="txtGovName" runat="server" class="form-control" /></div>
-                            <div class="col-lg-6"><h4>Legislative Body</h4><input id="txtLegName" runat="server" class="form-control" /></div>
+                            <div class="col-lg-6"><h4>Government Name</h4><asp:TextBox id="txtGovName" runat="server" cssclass="form-control" /></div>
+                            <div class="col-lg-6"><h4>Legislative Body</h4><asp:TextBox id="txtLegName" runat="server" cssclass="form-control" /></div>
                             <div class="col-lg-12" style="margin-top:15px">
                                 <div class="col-lg-6">
                                       
@@ -500,17 +500,18 @@
                                      <tr>
                                          <td>Yea</td>
                                          <td class="text-center"><asp:CheckBox ID="ckYEA_Enabled" Checked="true" Enabled="false" runat="server" /></td>
-                                         <td><input class="form-control" runat="server" id="txtYEA_Name" /></td>
+                                         <td><asp:textbox cssclass="form-control" runat="server" id="txtYEA_Name" />
+                                         </td>
                                          <td class="text-center"><asp:CheckBox ID="ckYEA_IsUsed" Checked="true" Enabled="false" runat="server" /></td>
-                                           <td class="text-center"><input runat="server" type="number" id="txtYeaOrder" class="form-control" /></td>
+                                           <td class="text-center"><asp:TextBox runat="server" type="number" id="txtYeaOrder" cssclass="form-control" /></td>
                                          <td class="text-center"><asp:CheckBox ID="ckYEA_IsEligible" Checked="true" Enabled="false" runat="server" /></td>
                                      </tr>
                                      <tr class="info">
                                          <td>Nay</td>
                                            <td class="text-center"><asp:CheckBox ID="ckNAY_Enabled" Checked="true" Enabled="false" runat="server" /></td>
-                                         <td><input class="form-control" runat="server" id="txtNAY_Name" /></td>
+                                         <td><asp:TextBox cssclass="form-control" runat="server" id="txtNAY_Name" /></td>
                                          <td class="text-center"><asp:CheckBox ID="ckNAY_IsUsed" Checked="true" Enabled="false" runat="server" /></td>
-                                           <td class="text-center"><input runat="server" type="number" id="txtNayOrder" class="form-control" /></td>
+                                           <td class="text-center"><asp:TextBox runat="server" type="number" id="txtNayOrder" cssclass="form-control" /></td>
                                          <td class="text-center"><asp:CheckBox ID="ckNAY_IsEligible" Checked="true"  Enabled="false" runat="server" /></td>
                                      </tr>
                                      <tr >
@@ -519,7 +520,7 @@
                                          <td><input class="form-control" runat="server" id="txtABS_Name" /></td>
                                           
                                          <td class="text-center"><asp:CheckBox ID="ckABS_IsUsed" runat="server" /></td>
-                                           <td class="text-center"><input runat="server" id="txtAbstainOrder" type="number" class="form-control" /></td>
+                                           <td class="text-center"><asp:TextBox runat="server" id="txtAbstainOrder" type="number" cssclass="form-control" /></td>
                                          <td class="text-center"><asp:CheckBox ID="ckABS_IsEligible" runat="server" /></td>
                                      </tr>
                                       <tr class="info">
@@ -528,25 +529,25 @@
                                          <td><input class="form-control" runat="server" id="txtEXC_Name" /></td>
                                           
                                          <td class="text-center"><asp:CheckBox ID="ckEXC_IsUsed" runat="server" /></td>
-                                            <td class="text-center"><input runat="server" id="txtExcOrder" type="number" class="form-control" /></td>
+                                            <td class="text-center"><asp:TextBox runat="server" id="txtExcOrder" type="number" cssclass="form-control" /></td>
                                          <td class="text-center"><asp:CheckBox ID="ckEXC_IsEligible" runat="server" /></td>
                                      </tr>
                                       <tr>
                                          <td>Absent</td>
                                            <td class="text-center"><asp:CheckBox ID="ckABSENT_Enabled" runat="server" /></td>
-                                         <td><input class="form-control" runat="server" id="txtABSENT_Name" /></td>
+                                         <td><asp:textBox cssclass="form-control" runat="server" id="txtABSENT_Name" /></td>
                                           
                                          <td class="text-center"><asp:CheckBox ID="ckABSENT_IsUsed" runat="server" /></td>
-                                            <td class="text-center"><input runat="server" id="txtAbsentOrder" type="number" class="form-control" /></td>
+                                            <td class="text-center"><asp:TextBox runat="server" id="txtAbsentOrder" type="number" cssclass="form-control" /></td>
                                          <td class="text-center"><asp:CheckBox ID="ckABSENT_IsEligible" runat="server" /></td>
                                      </tr>
                                       <tr class="info">
                                          <td>Not Voting</td>
                                             <td class="text-center"><asp:CheckBox ID="ckNV_Enabled" runat="server" /></td>
-                                         <td><input class="form-control disabled" runat="server" id="txtNV_Name" /></td>
+                                         <td><asp:TextBox cssclass="form-control disabled" runat="server" id="txtNV_Name" /></td>
                                          
                                          <td class="text-center"><asp:CheckBox ID="ckNV_IsUsed" runat="server" /></td>
-                                          <td class="text-center"><input runat="server" id="txtNVOrder" type="number" class="form-control" /></td>
+                                          <td class="text-center"><asp:TextBox runat="server" id="txtNVOrder" type="number" cssclass="form-control" /></td>
                                          <td class="text-center"><asp:CheckBox ID="ckNV_IsEnabled" runat="server" /></td>
                                         
                                      </tr>
@@ -683,7 +684,7 @@
                  success: function (data) {
                      var result = data.d;
                      $.each(result, function (index, item) {
-                         var optiontag = "<option id=" + item.sessionID + " value=" + item.sessionID + ">" + item.sessionCode + "</option>";
+                         var optiontag = "<option id=" + item.sessionID + " value=" + item.sessionID + ">" + item.legislatureName + "</option>";
                          $(optiontag).appendTo("#ddlSessionSelect");
 
                      })

@@ -25,8 +25,6 @@ Public Class _Default
 
         'Get Settings for each page
 
-        
-
         Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
         Dim da As New SqlDataAdapter
         Dim dt As New DataTable

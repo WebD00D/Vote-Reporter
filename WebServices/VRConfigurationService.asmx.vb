@@ -21,10 +21,10 @@ Imports System.Data.SqlClient
             Using cmd As New SqlCommand
                 cmd.CommandType = CommandType.StoredProcedure
                 cmd.CommandText = "sp_VRSetVotingDataDetails"
-                cmd.Parameters.AddWithValue("@VoteDatabaseName", Trim(VoteDBName))
-                cmd.Parameters.AddWithValue("@VoteDatabaseConnection", Trim(VoteDBCon))
-                cmd.Parameters.AddWithValue("@VRDatabaseName", Trim(VRDBName))
-                cmd.Parameters.AddWithValue("@VRDatabaseConnection", Trim(VRDBCon))
+                cmd.Parameters.AddWithValue("@VoteDatabaseName", VoteDBName.Trim)
+                cmd.Parameters.AddWithValue("@VoteDatabaseConnection", VoteDBCon.Trim)
+                cmd.Parameters.AddWithValue("@VRDatabaseName", VRDBName.Trim)
+                cmd.Parameters.AddWithValue("@VRDatabaseConnection", VRDBCon.Trim)
                 cmd.Connection = con
                 cmd.Connection.Open()
                 cmd.ExecuteNonQuery()

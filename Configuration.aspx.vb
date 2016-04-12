@@ -230,7 +230,7 @@ Public Class Configuration
             cmd.CommandType = cmdType
             cmd.CommandText = cmdtext
 
-            If Not IsNothing(oParm) Then cmd.Parameters.AddRange(oParm.ToArray())
+            If oParm IsNot Nothing Then cmd.Parameters.AddRange(oParm.ToArray())
 
             Using da As New SqlDataAdapter
                 da.SelectCommand = cmd
@@ -378,21 +378,44 @@ Public Class Configuration
         Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
         Dim cmd As New SqlCommand
 
+
+        'Need to check if Session has been created first.. 
+
+        Dim CheckTable As New DataTable
+
+        Using cmd
+            cmd.Connection = con
+            cmd.Connection.Open()
+            cmd.CommandText = "SELECT * FROM VRConfiguration WHERE SessionID =" & VRList.Item(0).currentSessionID
+            Using da As New SqlDataAdapter
+                da.SelectCommand = cmd
+                da.Fill(CheckTable)
+            End Using
+            cmd.Connection.Close()
+        End Using
+
+        Dim NewInsert = True
+        If CheckTable.Rows.Count > 0 Then
+            NewInsert = False
+        End If
+
+
         Try  'Save site settings
             Using cmd
                 cmd.Connection = con
                 cmd.CommandType = CommandType.StoredProcedure
                 cmd.CommandText = "sp_VRSetAccountParams"
-                cmd.Parameters.AddWithValue("@GovName", txtGovName.Value)
-                cmd.Parameters.AddWithValue("@LegName", txtLegName.Value)
+                cmd.Parameters.AddWithValue("@GovName", txtGovName.Text)
+                cmd.Parameters.AddWithValue("@LegName", txtLegName.Text)
                 cmd.Parameters.AddWithValue("@SessionID", VRList.Item(0).currentSessionID)
+                cmd.Parameters.AddWithValue("@IsNew", CByte(NewInsert))
                 cmd.Connection.Open()
                 cmd.ExecuteNonQuery()
                 cmd.Connection.Close()
             End Using
 
-            VRList.Item(0).governmentName = txtGovName.Value
-            VRList.Item(0).legislatureName = txtLegName.Value
+            VRList.Item(0).governmentName = txtGovName.Text
+            VRList.Item(0).legislatureName = txtLegName.Text
             Session("clsVoteReporter") = VRList
 
         Catch ex As Exception
@@ -499,8 +522,8 @@ Public Class Configuration
                 cmd.CommandType = CommandType.StoredProcedure
                 cmd.CommandText = "sp_VRSetVoteTypeMappings"
                 cmd.Parameters.Clear()
-                cmd.Parameters.AddWithValue("@YEA_name", txtYEA_Name.Value)
-                cmd.Parameters.AddWithValue("@NAY_name", txtNAY_Name.Value)
+                cmd.Parameters.AddWithValue("@YEA_name", txtYEA_Name.Text)
+                cmd.Parameters.AddWithValue("@NAY_name", txtNAY_Name.Text)
 
                 cmd.Parameters.AddWithValue("@ABS_enabled", CByte(ckABS_Enabled.Checked))
                 cmd.Parameters.AddWithValue("@ABS_name", txtABS_Name.Value)
@@ -513,21 +536,21 @@ Public Class Configuration
                 cmd.Parameters.AddWithValue("@EXC_isEligible", CByte(ckEXC_IsEligible.Checked))
 
                 cmd.Parameters.AddWithValue("@ABSENT_enabled", CByte(ckABSENT_Enabled.Checked))
-                cmd.Parameters.AddWithValue("@ABSENT_name", txtABSENT_Name.Value)
+                cmd.Parameters.AddWithValue("@ABSENT_name", txtABSENT_Name.Text)
                 cmd.Parameters.AddWithValue("@ABSENT_isUsed", CByte(ckABSENT_IsUsed.Checked))
                 cmd.Parameters.AddWithValue("@ABSENT_isEligible", CByte(ckABSENT_IsEligible.Checked))
 
                 cmd.Parameters.AddWithValue("@NV_enabled", CByte(ckNV_Enabled.Checked))
-                cmd.Parameters.AddWithValue("@NV_name", txtNV_Name.Value)
+                cmd.Parameters.AddWithValue("@NV_name", txtNV_Name.Text)
                 cmd.Parameters.AddWithValue("@NV_isUsed", CByte(ckNV_IsUsed.Checked))
                 cmd.Parameters.AddWithValue("@NV_isEligible", CByte(ckNV_IsEnabled.Checked))
 
-                cmd.Parameters.AddWithValue("@YeaOrder", txtYeaOrder.Value)
-                cmd.Parameters.AddWithValue("@NayOrder", txtNayOrder.Value)
-                cmd.Parameters.AddWithValue("@AbstainOrder", txtAbstainOrder.Value)
-                cmd.Parameters.AddWithValue("@ExcusedOrder", txtExcOrder.Value)
-                cmd.Parameters.AddWithValue("@AbsentOrder", txtAbsentOrder.Value)
-                cmd.Parameters.AddWithValue("@NotVotingOrder", txtNVOrder.Value)
+                cmd.Parameters.AddWithValue("@YeaOrder", txtYeaOrder.Text)
+                cmd.Parameters.AddWithValue("@NayOrder", txtNayOrder.Text)
+                cmd.Parameters.AddWithValue("@AbstainOrder", txtAbstainOrder.Text)
+                cmd.Parameters.AddWithValue("@ExcusedOrder", txtExcOrder.Text)
+                cmd.Parameters.AddWithValue("@AbsentOrder", txtAbsentOrder.Text)
+                cmd.Parameters.AddWithValue("@NotVotingOrder", txtNVOrder.Text)
                 cmd.Parameters.AddWithValue("@SessionID", VRList.Item(0).currentSessionID)
                 cmd.Connection.Open()
                 cmd.ExecuteNonQuery()
@@ -541,7 +564,7 @@ Public Class Configuration
 
 
 
-      
+
 
 
     End Sub
@@ -549,8 +572,8 @@ Public Class Configuration
 
     Public Function validateAccountSettings()
         Dim hasErrors As Boolean = False
-        If checkifEmpty(txtGovName.Value) Then hasErrors = True
-        If checkifEmpty(txtLegName.Value) Then hasErrors = True
+        If checkifEmpty(txtGovName.Text) Then hasErrors = True
+        If checkifEmpty(txtLegName.Text) Then hasErrors = True
         Return hasErrors
     End Function
 
@@ -578,22 +601,22 @@ Public Class Configuration
 
         'check for empty fields
 
-        If Trim(txtYeaOrder.Value) = String.Empty Or Trim(txtNayOrder.Value) = String.Empty Or Trim(txtAbstainOrder.Value) = String.Empty Or Trim(txtExcOrder.Value) = String.Empty Or Trim(txtAbsentOrder.Value) = String.Empty Or Trim(txtNVOrder.Value) = String.Empty Then hasErrors = True
-        If Not IsNumeric(txtYeaOrder.Value) Or CInt(txtYeaOrder.Value) > 6 Or CInt(txtYeaOrder.Value) < 1 Then hasErrors = True
-        If Not IsNumeric(txtNayOrder.Value) Or CInt(txtNayOrder.Value) > 6 Or CInt(txtNayOrder.Value) < 1 Then hasErrors = True
-        If Not IsNumeric(txtAbstainOrder.Value) Or CInt(txtAbstainOrder.Value) > 6 Or CInt(txtAbstainOrder.Value) < 1 Then hasErrors = True
-        If Not IsNumeric(txtExcOrder.Value) Or CInt(txtExcOrder.Value) > 6 Or CInt(txtExcOrder.Value) < 1 Then hasErrors = True
-        If Not IsNumeric(txtAbsentOrder.Value) Or CInt(txtAbsentOrder.Value) > 6 Or CInt(txtAbsentOrder.Value) < 1 Then hasErrors = True
-        If Not IsNumeric(txtNVOrder.Value) Or CInt(txtNVOrder.Value) > 6 Or CInt(txtNVOrder.Value) < 1 Then hasErrors = True
+        If txtYeaOrder.Text.Trim = String.Empty Or txtNayOrder.Text.Trim = String.Empty Or txtAbstainOrder.Text.Trim = String.Empty Or txtExcOrder.Text.Trim = String.Empty Or txtAbsentOrder.Text.Trim = String.Empty Or txtNVOrder.Text.Trim = String.Empty Then hasErrors = True
+        If Not Integer.TryParse(txtYeaOrder.Text, 0) Or CInt(txtYeaOrder.Text) > 6 Or CInt(txtYeaOrder.Text) < 1 Then hasErrors = True
+        If Not Integer.TryParse(txtNayOrder.Text, 0) Or CInt(txtNayOrder.Text) > 6 Or CInt(txtNayOrder.Text) < 1 Then hasErrors = True
+        If Not Integer.TryParse(txtAbstainOrder.Text, 0) Or CInt(txtAbstainOrder.Text) > 6 Or CInt(txtAbstainOrder.Text) < 1 Then hasErrors = True
+        If Not Integer.TryParse(txtExcOrder.Text, 0) Or CInt(txtExcOrder.Text) > 6 Or CInt(txtExcOrder.Text) < 1 Then hasErrors = True
+        If Not Integer.TryParse(txtAbsentOrder.Text, 0) Or CInt(txtAbsentOrder.Text) > 6 Or CInt(txtAbsentOrder.Text) < 1 Then hasErrors = True
+        If Not Integer.TryParse(txtNVOrder.Text, 0) Or CInt(txtNVOrder.Text) > 6 Or CInt(txtNVOrder.Text) < 1 Then hasErrors = True
 
         'Check for duplicate sort order numbers
 
-        Dim YeaOrder As Integer = CInt(txtYeaOrder.Value)
-        Dim NayOrder As Integer = CInt(txtNayOrder.Value)
-        Dim AbstainOrder As Integer = CInt(txtAbstainOrder.Value)
-        Dim ExcusedOrder As Integer = CInt(txtExcOrder.Value)
-        Dim AbsentOrder As Integer = CInt(txtAbsentOrder.Value)
-        Dim NotVotingOrder As Integer = CInt(txtNVOrder.Value)
+        Dim YeaOrder As Integer = CInt(txtYeaOrder.Text)
+        Dim NayOrder As Integer = CInt(txtNayOrder.Text)
+        Dim AbstainOrder As Integer = CInt(txtAbstainOrder.Text)
+        Dim ExcusedOrder As Integer = CInt(txtExcOrder.Text)
+        Dim AbsentOrder As Integer = CInt(txtAbsentOrder.Text)
+        Dim NotVotingOrder As Integer = CInt(txtNVOrder.Text)
 
         Dim IsUsed(5) As Integer
         IsUsed(0) = YeaOrder
@@ -620,7 +643,7 @@ Public Class Configuration
 
     Public Function checkifEmpty(ByVal stringToCheck As String)
         Dim isEmpty As Boolean = False
-        If Trim(stringToCheck) = String.Empty Then isEmpty = True
+        If stringToCheck.Trim = String.Empty Then isEmpty = True
         Return isEmpty
     End Function
 
@@ -823,8 +846,8 @@ Public Class Configuration
 
 
         ' Update Vote Type Mappings 
-        Dim YEA_name As String = txtYEA_Name.Value
-        Dim NAY_name As String = txtNAY_Name.Value
+        Dim YEA_name As String = txtYEA_Name.Text
+        Dim NAY_name As String = txtNAY_Name.text
 
         Dim ABS_enabled As Boolean = False
         If ckABS_Enabled.Checked = True Then ABS_enabled = True
@@ -844,7 +867,7 @@ Public Class Configuration
 
         Dim ABSENT_enabled As Boolean = False
         If ckABSENT_Enabled.Checked = True Then ABSENT_enabled = True
-        Dim ABSENT_name As String = txtABSENT_Name.Value
+        Dim ABSENT_name As String = txtABSENT_Name.Text
         Dim ABSENT_isUsed As Boolean = False
         If ckABSENT_IsUsed.Checked = True Then ABSENT_isUsed = True
         Dim ABSENT_isEligible As Boolean = False
@@ -852,7 +875,7 @@ Public Class Configuration
 
         Dim NV_enabled As Boolean = False
         If ckNV_Enabled.Checked = True Then NV_enabled = True
-        Dim NV_name As String = txtNV_Name.Value
+        Dim NV_name As String = txtNV_Name.Text
         Dim NV_isUsed As Boolean = False
         If ckNV_IsUsed.Checked = True Then NV_isUsed = True
         Dim NV_isEligible As Boolean = False
@@ -860,7 +883,7 @@ Public Class Configuration
 
         'validate sort order entry
 
-        If Trim(txtYeaOrder.Value) = String.Empty Or Trim(txtNayOrder.Value) = String.Empty Or Trim(txtAbstainOrder.Value) = String.Empty Or Trim(txtExcOrder.Value) = String.Empty Or Trim(txtAbsentOrder.Value) = String.Empty Or Trim(txtNVOrder.Value) = String.Empty Then
+        If txtYeaOrder.Text.Trim = String.Empty Or txtNayOrder.Text.Trim = String.Empty Or txtAbstainOrder.Text.Trim = String.Empty Or txtExcOrder.Text.Trim = String.Empty Or txtAbsentOrder.Text.Trim = String.Empty Or txtNVOrder.Text.Trim = String.Empty Then
 
             GenericErrorLabel.InnerText = "Not all 'Sort Order' values in vote type mapping were filled out. Please correct, and re-save."
             Exit Sub
@@ -868,44 +891,44 @@ Public Class Configuration
         End If
 
 
-        If Not IsNumeric(txtYeaOrder.Value) Or CInt(txtYeaOrder.Value) > 6 Or CInt(txtYeaOrder.Value) < 1 Then
+        If Not Integer.TryParse(txtYeaOrder.Text, 0) Or CInt(txtYeaOrder.Text) > 6 Or CInt(txtYeaOrder.Text) < 1 Then
             GenericErrorLabel.InnerText = "Sort Order for 'Yea' vote type mapping is invalid. Value must be numeric and between 1 - 6."
             Exit Sub
         End If
 
-        If Not IsNumeric(txtNayOrder.Value) Or CInt(txtNayOrder.Value) > 6 Or CInt(txtNayOrder.Value) < 1 Then
+        If Not Integer.TryParse(txtNayOrder.Text, 0) Or CInt(txtNayOrder.Text) > 6 Or CInt(txtNayOrder.Text) < 1 Then
             GenericErrorLabel.InnerText = "Sort Order for 'Nay' vote type mapping is invalid. Value must be numeric and between 1 - 6."
             Exit Sub
         End If
 
-        If Not IsNumeric(txtAbstainOrder.Value) Or CInt(txtAbstainOrder.Value) > 6 Or CInt(txtAbstainOrder.Value) < 1 Then
+        If Not Integer.TryParse(txtAbstainOrder.Text, 0) Or CInt(txtAbstainOrder.Text) > 6 Or CInt(txtAbstainOrder.Text) < 1 Then
             GenericErrorLabel.InnerText = "Sort Order for 'Abstain' vote type mapping is invalid. Value must be numeric and between 1 - 6."
             Exit Sub
         End If
 
-        If Not IsNumeric(txtExcOrder.Value) Or CInt(txtExcOrder.Value) > 6 Or CInt(txtExcOrder.Value) < 1 Then
+        If Not Integer.TryParse(txtExcOrder.Text, 0) Or CInt(txtExcOrder.Text) > 6 Or CInt(txtExcOrder.Text) < 1 Then
             GenericErrorLabel.InnerText = "Sort Order for 'Excused' vote type mapping is invalid. Value must be numeric and between 1 - 6."
             Exit Sub
         End If
 
-        If Not IsNumeric(txtAbsentOrder.Value) Or CInt(txtAbsentOrder.Value) > 6 Or CInt(txtAbsentOrder.Value) < 1 Then
+        If Not Integer.TryParse(txtAbsentOrder.Text, 0) Or CInt(txtAbsentOrder.Text) > 6 Or CInt(txtAbsentOrder.Text) < 1 Then
             GenericErrorLabel.InnerText = "Sort Order for 'Absent' vote type mapping is invalid. Value must be numeric and between 1 - 6."
             Exit Sub
         End If
 
-        If Not IsNumeric(txtNVOrder.Value) Or CInt(txtNVOrder.Value) > 6 Or CInt(txtNVOrder.Value) < 1 Then
+        If Not Integer.TryParse(txtNVOrder.Text, 0) Or CInt(txtNVOrder.Text) > 6 Or CInt(txtNVOrder.Text) < 1 Then
             GenericErrorLabel.InnerText = "Sort Order for 'Not Voting' vote type mapping is invalid. Value must be numeric and between 1 - 6."
             Exit Sub
         End If
 
         'Check for duplicate sort order numbers
 
-        Dim YeaOrder As Integer = CInt(txtYeaOrder.Value)
-        Dim NayOrder As Integer = CInt(txtNayOrder.Value)
-        Dim AbstainOrder As Integer = CInt(txtAbstainOrder.Value)
-        Dim ExcusedOrder As Integer = CInt(txtExcOrder.Value)
-        Dim AbsentOrder As Integer = CInt(txtAbsentOrder.Value)
-        Dim NotVotingOrder As Integer = CInt(txtNVOrder.Value)
+        Dim YeaOrder As Integer = CInt(txtYeaOrder.Text)
+        Dim NayOrder As Integer = CInt(txtNayOrder.Text)
+        Dim AbstainOrder As Integer = CInt(txtAbstainOrder.Text)
+        Dim ExcusedOrder As Integer = CInt(txtExcOrder.Text)
+        Dim AbsentOrder As Integer = CInt(txtAbsentOrder.Text)
+        Dim NotVotingOrder As Integer = CInt(txtNVOrder.Text)
 
         Dim IsUsed(5) As Integer
         IsUsed(0) = YeaOrder
@@ -1089,8 +1112,8 @@ Public Class Configuration
                 cmd.Connection = con
                 cmd.CommandType = CommandType.StoredProcedure
                 cmd.CommandText = "sp_VRSetAccountParams"
-                cmd.Parameters.AddWithValue("@GovName", txtGovName.Value)
-                cmd.Parameters.AddWithValue("@LegName", txtLegName.Value)
+                cmd.Parameters.AddWithValue("@GovName", txtGovName.Text)
+                cmd.Parameters.AddWithValue("@LegName", txtLegName.Text)
                 cmd.Connection.Open()
                 cmd.ExecuteNonQuery()
                 cmd.Connection.Close()

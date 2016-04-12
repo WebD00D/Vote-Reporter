@@ -43,6 +43,7 @@
                         <li>
                             <a href="default.aspx"><i class="fa fa-home"></i> Home</a>
                         </li>
+                       
                         <li>
                             <a id="lnk1" href="#"><span id="txtLink1"></span></a>
                         </li>
@@ -63,15 +64,10 @@
 
 
 
-    <%--                                      <asp:DropDownList ID="ddlSession"  CssClass="form-control" runat="server">
-                              
-                                      </asp:DropDownList>--%>
-                                 <%--<span class="input-group-addon"><asp:LinkButton runat="server"><i class="fa fa-refresh"></i></asp:LinkButton></span>--%>
-
                                  </div>
-                               
+              
                                     <asp:LinkButton CssClass="btn btn-primary hidden" runat="server" ID="linkLogout" ForeColor="white">Sign out  <i class="fa fa-sign-out fa-1x"></i></asp:LinkButton>
-                                <a class="btn btn-primary" href="Login.aspx">Sign Out <i class="fa fa-sign-out fa-1x"></i></a>
+                                    <a class="btn btn-primary" href="Login.aspx">Sign Out <i class="fa fa-sign-out fa-1x"></i></a>
                              
                              
                             </div>
@@ -328,7 +324,7 @@
                     success: function (data) {
                         var result = data.d;
                         $.each(result, function (index, item) {
-                            var optiontag = "<option id=" + item.sessionID + " value="+ item.sessionID +">" + item.sessionCode + "</option>";
+                            var optiontag = "<option id=" + item.sessionID + " value=" + item.sessionID + ">" + item.legislatureName + "</option>";
                             $(optiontag).appendTo("#ddlSessionSelect");
 
                         })

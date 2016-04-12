@@ -39,7 +39,7 @@ Public Class RV_RollCallSummary
 
         If Not StartDate = String.Empty Then
             'Validate Dates
-            If IsDate(CDate(StartDate)) = True Then
+            If Date.TryParse(StartDate, Nothing) = True Then
                 StartDate = CDate(Session("RollCallSummary_StartDate"))
                 strStartDate = CStr(StartDate)
             Else
@@ -51,7 +51,7 @@ Public Class RV_RollCallSummary
         Dim Today As String = CStr(Date.Today)
         If Not EndDate = String.Empty Then
             'Validate Dates
-            If IsDate(CDate(EndDate)) = True Then
+            If Date.TryParse(EndDate, Nothing) = True Then
                 EndDate = CDate(Session("RollCallSummary_EndDate"))
                 strEndDate = CStr(EndDate + " 23:59:59")
             Else
@@ -239,7 +239,7 @@ Public Class RV_RollCallSummary
 
                 'check for motion filter
 
-                If Not Trim(motionFilter) = String.Empty Then
+                If Not motionFilter.trim = String.Empty Then
                     Filter.RowFilter = "Motion = '" + motionFilter + "'"
                 End If
 

@@ -65,7 +65,7 @@ Partial Public Class Configuration
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtGovName As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents txtGovName As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''txtLegName control.
@@ -74,7 +74,7 @@ Partial Public Class Configuration
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtLegName As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents txtLegName As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btnSaveAccountParams control.
@@ -515,7 +515,7 @@ Partial Public Class Configuration
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtYEA_Name As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents txtYEA_Name As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''ckYEA_IsUsed control.
@@ -533,7 +533,7 @@ Partial Public Class Configuration
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtYeaOrder As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    Protected WithEvents txtYeaOrder As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''ckYEA_IsEligible control.
@@ -560,7 +560,7 @@ Partial Public Class Configuration
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtNAY_Name As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents txtNAY_Name As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''ckNAY_IsUsed control.
@@ -578,7 +578,7 @@ Partial Public Class Configuration
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtNayOrder As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    Protected WithEvents txtNayOrder As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''ckNAY_IsEligible control.
@@ -623,7 +623,7 @@ Partial Public Class Configuration
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtAbstainOrder As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    Protected WithEvents txtAbstainOrder As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''ckABS_IsEligible control.
@@ -668,7 +668,7 @@ Partial Public Class Configuration
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtExcOrder As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    Protected WithEvents txtExcOrder As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''ckEXC_IsEligible control.
@@ -695,7 +695,7 @@ Partial Public Class Configuration
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtABSENT_Name As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents txtABSENT_Name As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''ckABSENT_IsUsed control.
@@ -713,7 +713,7 @@ Partial Public Class Configuration
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtAbsentOrder As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    Protected WithEvents txtAbsentOrder As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''ckABSENT_IsEligible control.
@@ -740,7 +740,7 @@ Partial Public Class Configuration
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtNV_Name As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents txtNV_Name As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''ckNV_IsUsed control.
@@ -758,7 +758,7 @@ Partial Public Class Configuration
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtNVOrder As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    Protected WithEvents txtNVOrder As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''ckNV_IsEnabled control.

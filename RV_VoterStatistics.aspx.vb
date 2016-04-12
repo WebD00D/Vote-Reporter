@@ -49,7 +49,7 @@ Public Class RV_VoterStatistics
 
         If Not StartDate = String.Empty Then
             'Validate Dates
-            If IsDate(CDate(StartDate)) = True Then
+            If Date.TryParse(StartDate, Nothing) = True Then
                 StartDate = CDate(Session("vstatStartDate"))
                 strStartDate = CStr(StartDate)
             Else
@@ -61,7 +61,7 @@ Public Class RV_VoterStatistics
         Dim Today As String = CStr(Date.Today)
         If Not EndDate = String.Empty Then
             'Validate Dates
-            If IsDate(CDate(EndDate)) = True Then
+            If Date.TryParse(EndDate, Nothing) = True Then
                 EndDate = CDate(Session("vstatEndDate"))
                 strEndDate = CStr(EndDate + " 23:59:59")
             Else

@@ -11,12 +11,12 @@ Public Class InitialSetup
     Protected Sub Unnamed5_Click(sender As Object, e As EventArgs) Handles btnFinish.Click
 
 
-        If Trim(txtVRDBName.Text) = String.Empty Or Trim(txtVRDBServer.Text) = String.Empty Or Trim(txtVRDBUser.Text) = String.Empty Or Trim(txtVRDBPassword.Text) = String.Empty Or Trim(txtVoteDBName.Text) = String.Empty Or Trim(txtVoteServer.Text) = String.Empty Or Trim(txtVoteUser.Text) = String.Empty Or Trim(txtVotePassword.Text) = String.Empty Then
+        If txtVRDBName.Text.Trim = String.Empty Or txtVRDBServer.Text.Trim = String.Empty Or txtVRDBUser.Text.Trim = String.Empty Or txtVRDBPassword.Text.Trim = String.Empty Or txtVoteDBName.Text.Trim = String.Empty Or txtVoteServer.Text.Trim = String.Empty Or txtVoteUser.Text.Trim = String.Empty Or txtVotePassword.Text.Trim = String.Empty Then
 
             lblError.Text = "Please make sure to fill in all fields."
             Exit Sub
         Else
-          
+
 
             Dim path As String = Server.MapPath("~/Web.Config")
             Dim doc As New XmlDocument()
