@@ -552,6 +552,7 @@ Public Class Configuration
                 cmd.Parameters.AddWithValue("@AbsentOrder", txtAbsentOrder.Text)
                 cmd.Parameters.AddWithValue("@NotVotingOrder", txtNVOrder.Text)
                 cmd.Parameters.AddWithValue("@SessionID", VRList.Item(0).currentSessionID)
+                cmd.Parameters.AddWithValue("@isNew", NewInsert)
                 cmd.Connection.Open()
                 cmd.ExecuteNonQuery()
                 cmd.Connection.Close()

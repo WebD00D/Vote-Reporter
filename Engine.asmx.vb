@@ -159,12 +159,23 @@ Public Class Engine
 
                 dt = getDefaultSession()
 
-                VR.defaultSessionID = dt.Rows(0).Item("SessionID")
-                VR.currentSessionID = dt.Rows(0).Item("SessionID")
-                VR.currentSessionCode = dt.Rows(0).Item("SessionCode")
-                VR.currentSessionName = dt.Rows(0).Item("SessionName")
-                VR.currentSessionLegislature = dt.Rows(0).Item("Legislature")
-                VR.currentSessionPeriod = dt.Rows(0).Item("SessionPeriod")
+                If dt.Rows.Count > 0 Then
+                    VR.defaultSessionID = dt.Rows(0).Item("SessionID")
+                    VR.currentSessionID = dt.Rows(0).Item("SessionID")
+                    VR.currentSessionCode = dt.Rows(0).Item("SessionCode")
+                    VR.currentSessionName = dt.Rows(0).Item("SessionName")
+                    VR.currentSessionLegislature = dt.Rows(0).Item("Legislature")
+                    VR.currentSessionPeriod = dt.Rows(0).Item("SessionPeriod")
+                Else
+                    VR.defaultSessionID = -999
+                    VR.currentSessionID = -999
+                    VR.currentSessionCode = "** ALL SESSIONS **"
+                    VR.currentSessionName = "** ALL SESSIONS **"
+                    VR.currentSessionLegislature = "** ALL SESSIONS **"
+                    VR.currentSessionPeriod = "** ALL SESSIONS **"
+                End If
+
+               
 
                 dt.Clear()
 
@@ -434,9 +445,18 @@ Public Class Engine
     <WebMethod(True)> _
     Public Function getSessionDetails(ByVal SessionID As Integer)
 
-        Dim dt As New DataTable
-        dt = ReturnDataTable("SELECT s.SessionID,sd.SessionCode,sd.SessionName,s.Legislature Legislature FROM VRSession s INNER JOIN VRSessionDetail sd on s.SessionID = sd.SessionID WHERE s.SessionID = " & SessionID, CommandType.Text, Nothing)
-        Return dt
+
+        If SessionID = -999 Then
+            'the user selected to query againts all sessions.
+            Dim allSessionsDT = getDefaultSession()
+            Return allSessionsDT
+        Else
+            Dim dt As New DataTable
+            dt = ReturnDataTable("SELECT s.SessionID,sd.SessionCode,sd.SessionName,s.SessionPeriod,s.Legislature Legislature FROM VRSession s INNER JOIN VRSessionDetail sd on s.SessionID = sd.SessionID WHERE s.SessionID = " & SessionID, CommandType.Text, Nothing)
+            Return dt
+        End If
+
+
 
     End Function
 
@@ -462,10 +482,23 @@ Public Class Engine
         Try
             Dim dt As DataTable = getSessionDetails(SessionID)
             Dim VRList As List(Of clsVoteReporter) = Session("clsVoteReporter")
+
             VRList.Item(0).currentSessionID = SessionID
-            VRList.Item(0).currentSessionCode = dt.Rows(0).Item("SessionCode")
-            VRList.Item(0).currentSessionName = dt.Rows(0).Item("SessionName")
-            VRList.Item(0).currentSessionLegislature = dt.Rows(0).Item("Legislature")
+
+            If SessionID = -999 Then
+                VRList.Item(0).currentSessionCode = "** VIEWING ALL SESSIONS **"
+                VRList.Item(0).currentSessionName = "** VIEWING ALL SESSIONS **"
+                VRList.Item(0).currentSessionLegislature = "** VIEWING ALL SESSIONS **"
+                VRList.Item(0).currentSessionPeriod = "  "
+            Else
+                VRList.Item(0).currentSessionCode = dt.Rows(0).Item("SessionCode")
+                VRList.Item(0).currentSessionName = dt.Rows(0).Item("SessionName")
+                VRList.Item(0).currentSessionLegislature = dt.Rows(0).Item("Legislature")
+                VRList.Item(0).currentSessionPeriod = dt.Rows(0).Item("SessionPeriod")
+
+            End If
+
+            SessionID = dt.Rows(0).Item("SessionID")
 
             dt.Clear()
 

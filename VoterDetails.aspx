@@ -76,7 +76,7 @@
                             <div class="contentMessage" style="margin-top: 25px">
                                 <h1 style="color: #2c3e50"><span id="reportName"></span> </h1>
                                 <hr style="border:none;height:2px;background-color:#2c3e50;margin-left:45%;margin-right:45%" />
-                                <h3 style="color: #2c3e50"><span id="lblsessioncode"></span> Session</h3>
+                                <h3 style="color: #2c3e50"><span id="lblsessioncode"></span></h3>
                                 <h4 style="color: #2c3e50"><span id="txtCurrentLeg"></span></h4>
                             </div>
                         </div>
@@ -285,10 +285,12 @@
                     success: function (data) {
                         var result = data.d;
                         $.each(result, function (index, item) {
-                            var optiontag = "<option id=" + item.sessionID + " value=" + item.sessionID + ">" + item.sessionCode + "</option>";
+                            var optiontag = "<option id=" + item.sessionID + " value=" + item.sessionID + ">" + item.legislatureName + "</option>";
                             $(optiontag).appendTo("#ddlSessionSelect");
 
                         })
+                        var allSessions = "<option id='-999' value='-999'>-- ALL SESSIONS --</option>";
+                        $(allSessions).appendTo("#ddlSessionSelect");
                         setSessionDropDown();
                     }
                 })

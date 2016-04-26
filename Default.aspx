@@ -94,7 +94,7 @@
                      
                                 <h1 style="color: #2c3e50">Vote Reporter </h1>
                                 <hr style="border:none;height:2px;background-color:#2c3e50;margin-left:45%;margin-right:45%" />
-                                <h3 style="color:#2c3e50"><span id="lblsessioncode"></span> Session</h3>
+                                <h3 style="color:#2c3e50"><span id="lblsessioncode"></span></h3>
                                 <h4 style="color: #2c3e50"><span id="txtCurrentLeg"></span></h4>
 
 
@@ -328,6 +328,10 @@
                             $(optiontag).appendTo("#ddlSessionSelect");
 
                         })
+
+                        var allSessions = "<option id='-999' value='-999'>-- ALL SESSIONS --</option>";
+                        $(allSessions).appendTo("#ddlSessionSelect");
+
                         setSessionDropDown();
                     }
                 })

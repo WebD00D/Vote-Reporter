@@ -94,10 +94,25 @@
                             <h1 style="color:#2c3e50"> Vote Reporter Configuration</h1>
                             <h3 style="color:#2c3e50"><span id="lblsessioncode"></span> Session</h3>
                             <br />
+                            <div class="col-lg-6 col-lg-offset-3" style="color:#2c3e50">
+
+                                Create a new session configuration by filling in the parameters below, or optionally selecting
+                                    a previously configured session from the dropdown list. 
+
+                                                                           <br /><br />
+                                       <asp:DropDownList runat="server" ID="dlCopyFromCurrentSession" CssClass="form-control">
+                                        <asp:ListItem>--  --</asp:ListItem>
+                                        <asp:ListItem>-- 131st General Assembly --</asp:ListItem>
+                                         </asp:DropDownList>
+
+                                 <br />
                             <asp:LinkButton ID="btnSaveAllConfigSettings" runat="server" CssClass="btn btn-lg btn-success"><i class="fa fa-save"></i> Save Settings</asp:LinkButton>
                             <br />
                             <br />
                             <asp:Label ID="lblConfigurationErrorMessage" runat="server" ForeColor="Red"></asp:Label>
+                            </div>
+                             
+                           
                         </div>
                     </div>
                 </div>
@@ -136,7 +151,7 @@
                             <div class="col-lg-6"><h4>Legislative Body</h4><asp:TextBox id="txtLegName" runat="server" cssclass="form-control" /></div>
                             <div class="col-lg-12" style="margin-top:15px">
                                 <div class="col-lg-6">
-                                      
+                                   
                                     <asp:Button runat="server" ID="btnSaveAccountParams" OnClick="btnSaveAccountParams_Click" CssClass="btn btn-sm btn-primary hidden" Text="Save" />
                                    </div>
                                    <div class="col-lg-6">
@@ -572,9 +587,11 @@
 
                         </div>  <!-- End Data -->
                     </div>
+
+                    
                 </div>
 
-               
+              
                 
             </div>
             <!-- End main col-lg-12-->
