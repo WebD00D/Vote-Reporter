@@ -32,6 +32,15 @@ Partial Public Class Configuration
     Protected WithEvents linkLogout As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''ddlConfiguredSession control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlConfiguredSession As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''btnSaveAllConfigSettings control.
     '''</summary>
     '''<remarks>
@@ -777,13 +786,4 @@ Partial Public Class Configuration
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSaveDataConfig As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''dlCopyFromCurrentSession control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dlCopyFromCurrentSession As Global.System.Web.UI.WebControls.DropDownList
 End Class

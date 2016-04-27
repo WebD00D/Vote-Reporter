@@ -6,7 +6,56 @@ Public Class Configuration
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        
+        Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
+        Dim dt As New DataTable
+        Using cmd As SqlCommand = con.CreateCommand
+            cmd.Connection = con
+            cmd.Connection.Open()
+            cmd.CommandType = CommandType.Text
+            'cmd.CommandText = "sp_VRGetAvailableSessions"
+            cmd.CommandText = "SELECT SessionID FROM VRConfiguration"
+
+            Using da As New SqlDataAdapter
+                da.SelectCommand = cmd
+                da.Fill(dt)
+            End Using
+            cmd.Connection.Close()
+        End Using
+
+
+        Dim configuredSessions As New List(Of Engine.clsConfiguredSessions)
+
+        If dt.Rows.Count > 0 Then
+            For Each row As DataRow In dt.Rows
+                Dim sessionid As Integer = row("SessionID")
+                Dim sessiontable As New DataTable()
+                Using cmd As SqlCommand = con.CreateCommand
+                    cmd.Connection = con
+                    cmd.Connection.Open()
+                    cmd.CommandType = CommandType.Text
+                    cmd.CommandText = "SELECT Legislature FROM VRSession WHERE SessionID = " & sessionid
+
+                    Using da As New SqlDataAdapter
+                        da.SelectCommand = cmd
+                        da.Fill(sessiontable)
+                    End Using
+                    cmd.Connection.Close()
+
+                    Dim configuredSession As New Engine.clsConfiguredSessions
+                    configuredSession.legislatureName = sessiontable.Rows(0).Item("Legislature")
+                    configuredSession.sessionId = sessionid
+                    configuredSessions.Add(configuredSession)
+                    ddlConfiguredSession.Items.Add(New ListItem(sessiontable.Rows(0).Item("Legislature"), sessionid))
+                End Using
+                sessiontable.Clear()
+            Next
+
+
+        End If
+
+        '  ddlConfiguredSession.Items.Add(New ListItem(" -- SELECT SESSION TO COPY --", -999))
+
+
 
         GenericErrorLabel.InnerText = String.Empty
 
@@ -343,30 +392,49 @@ Public Class Configuration
     
     End Sub
 
+    Public Sub CopySession(ByVal SessionID As Integer)
+
+    End Sub
+
 
     Protected Sub btnSaveAllConfigSettings_Click(sender As Object, e As EventArgs) Handles btnSaveAllConfigSettings.Click
 
-        If Not validateAccountSettings() Then
-            If Not validateReportParameters() Then
-                If validateVoteMappings() Then
-                    lblConfigurationErrorMessage.Text = "Please make sure all fields are completed, and a numerical sort order has been set in 'Vote Mapping'."
-                    Exit Sub
+
+
+
+
+        If ddlConfiguredSession.SelectedIndex > 0 Then
+            'User is wanting to copy session
+
+            Dim sessionIDtoCopy As String = ddlConfiguredSession.SelectedValue
+            CopySession(CInt(sessionIDtoCopy))
+
+
+        Else
+            If Not validateAccountSettings() Then
+                If Not validateReportParameters() Then
+                    If validateVoteMappings() Then
+                        lblConfigurationErrorMessage.Text = "Please make sure all fields are completed, and a numerical sort order has been set in 'Vote Mapping'."
+                        Exit Sub
+                    Else
+                        'everything has been validated so we should be good to save everything
+                        saveConfigurationSettings()
+                        'update session information
+                        UpdateSavedSessionDetails()
+                        Response.Redirect("Default.aspx")
+                        ' Context.ApplicationInstance.CompleteRequest()
+                    End If
                 Else
-                    'everything has been validated so we should be good to save everything
-                    saveConfigurationSettings()
-                    'update session information
-                    UpdateSavedSessionDetails()
-                    Response.Redirect("Default.aspx")
-                    ' Context.ApplicationInstance.CompleteRequest()
+                    lblConfigurationErrorMessage.Text = "Please make sure all fields are completed in 'Report Parameters'."
+                    Exit Sub
                 End If
             Else
-                lblConfigurationErrorMessage.Text = "Please make sure all fields are completed in 'Report Parameters'."
+                lblConfigurationErrorMessage.Text = "Please make sure all fields are completed in 'Account Settings'."
                 Exit Sub
             End If
-        Else
-            lblConfigurationErrorMessage.Text = "Please make sure all fields are completed in 'Account Settings'."
-            Exit Sub
         End If
+
+      
 
     End Sub
 

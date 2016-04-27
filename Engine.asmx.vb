@@ -16,6 +16,12 @@ Imports System.Data.SqlClient.SqlParameterCollection
 Public Class Engine
     Inherits System.Web.Services.WebService
 
+    Public Class clsConfiguredSessions
+        Public sessionId As Integer
+        Public legislatureName As String
+    End Class
+
+
     Public Class clsVoteReporter
 
         Public defaultSessionID As Integer 'This is the session ID that is marked current in the database. 
@@ -396,6 +402,57 @@ Public Class Engine
         Return dt.Rows(0).Item(0)
     End Function
 
+    <WebMethod(True)> _
+    Public Function GetConfiguredSessions2()
+        Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
+        Dim dt As New DataTable
+        Using cmd As SqlCommand = con.CreateCommand
+            cmd.Connection = con
+            cmd.Connection.Open()
+            cmd.CommandType = CommandType.Text
+            'cmd.CommandText = "sp_VRGetAvailableSessions"
+            cmd.CommandText = "SELECT SessionID FROM VRConfiguration"
+
+            Using da As New SqlDataAdapter
+                da.SelectCommand = cmd
+                da.Fill(dt)
+            End Using
+            cmd.Connection.Close()
+        End Using
+
+
+        Dim configuredSessions As New List(Of clsConfiguredSessions)
+
+        If dt.Rows.Count > 0 Then
+            For Each row As DataRow In dt.Rows
+                Dim sessionid As Integer = row("SessionID")
+                Dim sessiontable As New DataTable()
+                Using cmd As SqlCommand = con.CreateCommand
+                    cmd.Connection = con
+                    cmd.Connection.Open()
+                    cmd.CommandType = CommandType.Text
+                    cmd.CommandText = "SELECT Legislature FROM VRSession WHERE SessionID = " & sessionid
+
+                    Using da As New SqlDataAdapter
+                        da.SelectCommand = cmd
+                        da.Fill(sessiontable)
+                    End Using
+                    cmd.Connection.Close()
+
+                    Dim configuredSession As New clsConfiguredSessions
+                    configuredSession.legislatureName = sessiontable.Rows(0).Item("Legislature")
+                    configuredSession.sessionId = sessionid
+                    configuredSessions.Add(configuredSession)
+                End Using
+                sessiontable.Clear()
+            Next
+            Return configuredSessions
+        Else
+            Return " "
+        End If
+
+
+    End Function
 
     <WebMethod(True)> _
     Public Function LoadSessions()

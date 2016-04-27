@@ -100,10 +100,9 @@
                                     a previously configured session from the dropdown list. 
 
                                                                            <br /><br />
-                                       <asp:DropDownList runat="server" ID="dlCopyFromCurrentSession" CssClass="form-control">
-                                        <asp:ListItem>--  --</asp:ListItem>
-                                        <asp:ListItem>-- 131st General Assembly --</asp:ListItem>
-                                         </asp:DropDownList>
+                                      <asp:DropDownList runat="server" CssClass="form-control" ID="ddlConfiguredSession">
+                                          <asp:ListItem Value="-999">-- SELECT SESSION TO COPY --</asp:ListItem>
+                                      </asp:DropDownList>
 
                                  <br />
                             <asp:LinkButton ID="btnSaveAllConfigSettings" runat="server" CssClass="btn btn-lg btn-success"><i class="fa fa-save"></i> Save Settings</asp:LinkButton>
@@ -669,6 +668,7 @@
          // -----------------BASE PAGE FUNCTIONS START ------------------//
 
 
+
          // 1 ) Get Current Session
          var _CurrentSession = getCurrentSesssion()
 
@@ -785,7 +785,25 @@
              })
          }
 
+<%--         $.ajax({
+             type: "POST",
+             url: "Engine.asmx/GetConfiguredSessions",
+             data: "{}",
+             contentType: "application/json; charset=utf-8",
+             dataType: "json",
+             success: function (data) {
+                 var result = data.d;
+                 $.each(result, function (index, item) {
+                     var optiontag = "<asp:ListItem Value=" + item.sessionId + ">" + item.legislatureName + "</asp:ListItem>";
+                     $(optiontag).appendTo("#<%=ddlConfiguredSession.ClientID%>");
+                 })
+                 var optiontag2 = "<asp:ListItem Value='-999'> -- SELECT SESSION TO COPY --</asp:ListItem>";
+                 $(optiontag2).prependTo("#<%=ddlConfiguredSession.ClientID%>");
 
+             }
+         })--%>
+        
+         
 
          // -----------------BASE PAGE FUNCTIONS START ------------------//
 
