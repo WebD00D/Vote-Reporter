@@ -503,15 +503,11 @@ Public Class Engine
     Public Function getSessionDetails(ByVal SessionID As Integer)
 
 
-        If SessionID = -999 Then
-            'the user selected to query againts all sessions.
-            Dim allSessionsDT = getDefaultSession()
-            Return allSessionsDT
-        Else
+      
             Dim dt As New DataTable
             dt = ReturnDataTable("SELECT s.SessionID,sd.SessionCode,sd.SessionName,s.SessionPeriod,s.Legislature Legislature FROM VRSession s INNER JOIN VRSessionDetail sd on s.SessionID = sd.SessionID WHERE s.SessionID = " & SessionID, CommandType.Text, Nothing)
             Return dt
-        End If
+
 
 
 
@@ -552,10 +548,10 @@ Public Class Engine
                 VRList.Item(0).currentSessionName = dt.Rows(0).Item("SessionName")
                 VRList.Item(0).currentSessionLegislature = dt.Rows(0).Item("Legislature")
                 VRList.Item(0).currentSessionPeriod = dt.Rows(0).Item("SessionPeriod")
-
+                SessionID = dt.Rows(0).Item("SessionID")
             End If
 
-            SessionID = dt.Rows(0).Item("SessionID")
+
 
             dt.Clear()
 

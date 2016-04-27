@@ -705,6 +705,9 @@
                          $(optiontag).appendTo("#ddlSessionSelect");
 
                      })
+
+                     var allSessions = "<option id='-999' value='-999'>-- ALL SESSIONS --</option>";
+                     $(allSessions).appendTo("#ddlSessionSelect");
                      setSessionDropDown();
                  }
              })

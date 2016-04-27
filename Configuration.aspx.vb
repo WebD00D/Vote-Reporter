@@ -41,11 +41,16 @@ Public Class Configuration
                     End Using
                     cmd.Connection.Close()
 
-                    Dim configuredSession As New Engine.clsConfiguredSessions
-                    configuredSession.legislatureName = sessiontable.Rows(0).Item("Legislature")
-                    configuredSession.sessionId = sessionid
-                    configuredSessions.Add(configuredSession)
-                    ddlConfiguredSession.Items.Add(New ListItem(sessiontable.Rows(0).Item("Legislature"), sessionid))
+                   
+
+                    If Not sessionid = -999 Then
+                        Dim configuredSession As New Engine.clsConfiguredSessions
+                        configuredSession.legislatureName = sessiontable.Rows(0).Item("Legislature")
+                        configuredSession.sessionId = sessionid
+                        configuredSessions.Add(configuredSession)
+                        ddlConfiguredSession.Items.Add(New ListItem(sessiontable.Rows(0).Item("Legislature"), sessionid))
+                    End If
+
                 End Using
                 sessiontable.Clear()
             Next
@@ -53,211 +58,11 @@ Public Class Configuration
 
         End If
 
-        '  ddlConfiguredSession.Items.Add(New ListItem(" -- SELECT SESSION TO COPY --", -999))
-
-
 
         GenericErrorLabel.InnerText = String.Empty
 
         If Not Page.IsPostBack Then
-            'Try
-            '    Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
-
-
-            '    Dim cmd As New SqlCommand
-            '    With cmd
-            '        .CommandType = CommandType.Text
-            '        .CommandText = "sp_VRGetDataConnnections"
-            '        .Connection = con
-            '    End With
-            '    Dim da As New SqlDataAdapter(cmd)
-            '    Dim dt As New DataTable
-            '    da.Fill(dt)
-
-            '    txtVRDBServer.Value = dt.Rows(0).Item(2).ToString()
-            '    txtVRDBName.Value = dt.Rows(0).Item(3).ToString()
-            '    txtVRDBUser.Value = dt.Rows(0).Item(4).ToString()
-            '    txtVRDBPass.Value = dt.Rows(0).Item(5).ToString()
-            '    txtVoteDBServer.Value = dt.Rows(1).Item(2).ToString()
-            '    txtVoteDBName.Value = dt.Rows(1).Item(3).ToString()
-            '    txtVoteDBUser.Value = dt.Rows(1).Item(4).ToString()
-            '    txtVoteDBPass.Value = dt.Rows(1).Item(5).ToString()
-            'Catch ex As Exception
-            '    GenericErrorLabel.InnerText = "Error loading custom settings. Please contact support."
-            'End Try
-
-
-            'Try
-            '    Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
-            '    Dim cmd As New SqlCommand
-            '    With cmd
-            '        .CommandType = CommandType.Text
-            '        .CommandText = "sp_VRGetVoteMappings"
-            '        .Connection = con
-            '    End With
-            '    Dim da As New SqlDataAdapter(cmd)
-            '    Dim dt As New DataTable
-            '    da.Fill(dt)
-
-
-            '    Dim ckABSTAIN_enabled As Byte = dt.Rows(2).Item(2)
-            '    If CBool(ckABSTAIN_enabled) = True Then ckABS_Enabled.Checked = True Else ckABS_Enabled.Checked = False
-
-            '    Dim ckEXCUSED_enabled As Byte = dt.Rows(3).Item(2)
-            '    If CBool(ckEXCUSED_enabled) = True Then ckEXC_Enabled.Checked = True Else ckEXC_Enabled.Checked = False
-
-            '    Dim ckbABSENT_enabled As Byte = dt.Rows(4).Item(2)
-            '    If CBool(ckbABSENT_enabled) = True Then ckABSENT_Enabled.Checked = True Else ckABSENT_Enabled.Checked = False
-
-            '    Dim ckbNV_enabled As Byte = dt.Rows(5).Item(2)
-            '    If CBool(ckbNV_enabled) = True Then ckNV_Enabled.Checked = True Else ckNV_Enabled.Checked = False
-
-
-            '    txtYEA_Name.Value = dt.Rows(0).Item(3).ToString()
-            '    txtNAY_Name.Value = dt.Rows(1).Item(3).ToString()
-            '    txtABS_Name.Value = dt.Rows(2).Item(3).ToString()
-            '    txtEXC_Name.Value = dt.Rows(3).Item(3).ToString()
-            '    txtABSENT_Name.Value = dt.Rows(4).Item(3)
-            '    txtNV_Name.Value = dt.Rows(5).Item(3)
-
-
-            '    txtYeaOrder.Value = dt.Rows(0).Item(9).ToString()
-            '    txtNayOrder.Value = dt.Rows(1).Item(9).ToString()
-            '    txtAbstainOrder.Value = dt.Rows(2).Item(9).ToString()
-            '    txtExcOrder.Value = dt.Rows(3).Item(9).ToString()
-            '    txtAbsentOrder.Value = dt.Rows(4).Item(9).ToString()
-            '    txtNVOrder.Value = dt.Rows(5).Item(9).ToString()
-
-
-            '    Dim ckABSTAIN_isUsed As Byte = dt.Rows(2).Item(4)
-            '    If CBool(ckABSTAIN_isUsed) = True Then ckABS_IsUsed.Checked = True Else ckABS_IsUsed.Checked = False
-
-            '    Dim ckEXCUSED_isUsed As Byte = dt.Rows(3).Item(4)
-            '    If CBool(ckEXCUSED_isUsed) = True Then ckEXC_IsUsed.Checked = True Else ckEXC_IsUsed.Checked = False
-
-            '    Dim ckbABSENT_isUsed As Byte = dt.Rows(4).Item(4)
-            '    If CBool(ckbABSENT_isUsed) = True Then ckABSENT_IsUsed.Checked = True Else ckABSENT_IsUsed.Checked = False
-
-            '    Dim ckbNV_isUsed As Byte = dt.Rows(5).Item(4)
-            '    If CBool(ckbNV_isUsed) = True Then ckNV_IsUsed.Checked = True Else ckNV_IsUsed.Checked = False
-
-
-            '    Dim ckABSTAIN_isEligible As Byte = dt.Rows(2).Item(5)
-            '    If CBool(ckABSTAIN_isEligible) = True Then ckABS_IsEligible.Checked = True Else ckABS_IsEligible.Checked = False
-
-            '    Dim ckEXCUSED_isEligible As Byte = dt.Rows(3).Item(5)
-            '    If CBool(ckEXCUSED_isEligible) = True Then ckEXC_IsEligible.Checked = True Else ckEXC_IsEligible.Checked = False
-
-            '    Dim ckbABSENT_isEligible As Byte = dt.Rows(4).Item(5)
-            '    If CBool(ckbABSENT_isEligible) = True Then ckABSENT_IsEligible.Checked = True Else ckABSENT_IsEligible.Checked = False
-
-            '    Dim ckbNV_isEligible As Byte = dt.Rows(5).Item(5)
-            '    If CBool(ckbNV_isEligible) = True Then ckNV_IsEnabled.Checked = True Else ckNV_IsEnabled.Checked = False
-
-
-            '    ' Load Saved Report Parameters
-
-
-            '    Dim con2 As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
-            '    Dim cmd2 As New SqlCommand
-            '    With cmd2
-            '        .Connection = con2
-            '        .CommandType = CommandType.StoredProcedure
-            '        .CommandText = "sp_VRGetReportConfigParams"
-            '        .Connection.Open()
-            '        .ExecuteNonQuery()
-            '        .Connection.Close()
-            '    End With
-
-            '    Dim da2 As New SqlDataAdapter(cmd2)
-            '    Dim dt2 As New DataTable
-            '    da2.Fill(dt2)
-
-            '    txtGovName.Value = dt2.Rows(0).Item(1).ToString()
-            '    txtLegName.Value = dt2.Rows(0).Item(2).ToString()
-
-            '    link1name.Value = dt2.Rows(0).Item(3).ToString()
-            '    link1url.Value = dt2.Rows(0).Item(4).ToString()
-            '    link2name.Value = dt2.Rows(0).Item(5).ToString()
-            '    link2url.Value = dt2.Rows(0).Item(6).ToString()
-            '    link3name.Value = dt2.Rows(0).Item(7).ToString()
-            '    link3url.Value = dt2.Rows(0).Item(8).ToString()
-
-            '    txtRCS.Value = dt2.Rows(0).Item(9).ToString()
-            '    txtBillNbr.Value = dt2.Rows(0).Item(10).ToString()
-            '    txtMotion.Value = dt2.Rows(0).Item(11).ToString()
-            '    txtDateTime.Value = dt2.Rows(0).Item(12).ToString()
-            '    txtVoteTot.Value = dt2.Rows(0).Item(13).ToString()
-            '    txtResults.Value = dt2.Rows(0).Item(14).ToString()
-            '    txtOutcome.Value = dt2.Rows(0).Item(15).ToString()
-            '    txtPartyTotals.Value = dt2.Rows(0).Item(16).ToString()
-            '    txtMember.Value = dt2.Rows(0).Item(17).ToString()
-            '    txtDistrictName.Value = dt2.Rows(0).Item(18).ToString()
-            '    txtDistrictNbr.Value = dt2.Rows(0).Item(19).ToString()
-
-            '    txtPO1Name.Value = dt2.Rows(0).Item(20).ToString()
-            '    txtPO1Title.Value = dt2.Rows(0).Item(21).ToString()
-            '    txtPO2Name.Value = dt2.Rows(0).Item(22).ToString()
-            '    txtPO2title.Value = dt2.Rows(0).Item(23).ToString()
-            '    txtClerkName.Value = dt2.Rows(0).Item(24).ToString()
-            '    txtClerkTitle.Value = dt2.Rows(0).Item(25).ToString()
-
-            '    ddlMotion1.SelectedValue = dt2.Rows(0).Item(28)
-            '    ddlSubjects1.SelectedValue = dt2.Rows(0).Item(35)
-            '    If dt2.Rows(0).Item(36) = 0 Then
-            '        ddlSubjects2.SelectedValue = "Default"
-            '    Else
-            '        ddlSubjects2.SelectedValue = dt2.Rows(0).Item(36)
-            '    End If
-
-            '    Dim img1Byte As Byte() = DirectCast(dt2.Rows(0).Item(26), Byte())
-            '    Dim img2Byte As Byte() = DirectCast(dt2.Rows(0).Item(27), Byte())
-            '    Dim img1String As String = String.Empty
-            '    Dim img2String As String = String.Empty
-
-            '    If dt2.Rows(0).Item(29) = True Then 'Show district name
-
-            '        rbDName.Checked = True
-            '        rbDNbr.Checked = False
-
-            '    Else 'show district Number
-
-            '        rbDName.Checked = False
-            '        rbDNbr.Checked = True
-
-            '    End If
-
-            '    If dt2.Rows(0).Item(32) = True Then
-            '        ckShowMbrStat.Checked = True
-            '    End If
-            '    If dt2.Rows(0).Item(33) = True Then
-            '        ckShowPartyStat.Checked = True
-            '    End If
-            '    If dt2.Rows(0).Item(34) = True Then
-            '        ckShowVoteTtl.Checked = True
-            '    End If
-
-
-
-            'If img1Byte.Length = 0 Then
-            '    imagePreview1.Visible = False
-            'Else
-            '    img1String = Convert.ToBase64String(img1Byte, 0, img1Byte.Length)
-            '    imagePreview1.Src = "data:image/png;base64," & img1String
-            'End If
-
-            'If img2Byte.Length = 0 Then
-            '    imagePreview2.Visible = False
-            'Else
-            '    img2String = Convert.ToBase64String(img2Byte, 0, img2Byte.Length)
-            '    imagePreview2.Src = "data:image/png;base64," & img2String
-            'End If
-
-
-            'Catch ex As Exception
-            '    GenericErrorLabel.InnerText = "Error loading custom settings. Please contact support."
-            'End Try
-
+            
             Session("IsReload") = False
 
         End If
@@ -392,15 +197,245 @@ Public Class Configuration
     
     End Sub
 
-    Public Sub CopySession(ByVal SessionID As Integer)
+    Public Sub CopySession(ByVal SessionToCopy As Integer)
+
+        Dim SessionDetailsList As New List(Of Engine.clsVoteReporter)
+        SessionDetailsList = Session("clsVoteReporter")
+        Dim CurrentSessionID As Integer = SessionDetailsList.Item(0).currentSessionID
+
+        Dim con As New SqlConnection(ConfigurationManager.ConnectionStrings("VRDB").ConnectionString)
+        Dim cmd As New SqlCommand
+        Using cmd
+            cmd.Connection = con
+            cmd.Connection.Open()
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.CommandText = "sp_VRCopySessionConfiguration"
+            cmd.Parameters.AddWithValue("@SessionToCopy", SessionToCopy)
+            cmd.Parameters.AddWithValue("@SessionToSet", CurrentSessionID)
+            cmd.ExecuteNonQuery()
+            cmd.Connection.Close()
+        End Using
+
+        'now update the session information.
+        updateSession(CurrentSessionID)
+        Response.Redirect("Default.aspx", True)
 
     End Sub
 
+    Public Function getSessionDetails(ByVal SessionID As Integer)
+
+            Dim dt As New DataTable
+            dt = ReturnDataTable("SELECT s.SessionID,sd.SessionCode,sd.SessionName,s.SessionPeriod,s.Legislature Legislature FROM VRSession s INNER JOIN VRSessionDetail sd on s.SessionID = sd.SessionID WHERE s.SessionID = " & SessionID, CommandType.Text, Nothing)
+            Return dt
+
+    End Function
+
+    Public Function updateSession(ByVal SessionID As Integer)
+
+        'Get all data related to that session ID
+        Try
+            Dim dt As DataTable = getSessionDetails(SessionID)
+            Dim VRList As List(Of Engine.clsVoteReporter) = Session("clsVoteReporter")
+
+            VRList.Item(0).currentSessionID = SessionID
+
+            If SessionID = -999 Then
+
+            Else
+                VRList.Item(0).currentSessionCode = dt.Rows(0).Item("SessionCode")
+                VRList.Item(0).currentSessionName = dt.Rows(0).Item("SessionName")
+                VRList.Item(0).currentSessionLegislature = dt.Rows(0).Item("Legislature")
+                VRList.Item(0).currentSessionPeriod = dt.Rows(0).Item("SessionPeriod")
+                SessionID = dt.Rows(0).Item("SessionID")
+            End If
+
+
+            dt.Clear()
+
+            Dim oParmList As List(Of SqlParameter) = New List(Of SqlParameter)
+            oParmList.Add(New SqlParameter("@SessionID", SessionID))
+            dt = ReturnDataTable("sp_VRGetReportConfigParams", CommandType.StoredProcedure, oParmList)
+
+            If dt.Rows.Count > 0 Then
+                'session items have been created.
+                VRList.Item(0).link1Name = dt.Rows(0).Item("Link1_Name")
+                VRList.Item(0).link1URL = dt.Rows(0).Item("Link1_URL")
+                VRList.Item(0).link2Name = dt.Rows(0).Item("Link2_Name")
+                VRList.Item(0).link2URL = dt.Rows(0).Item("Link2_URL")
+                VRList.Item(0).link3Name = dt.Rows(0).Item("Link3_Name")
+                VRList.Item(0).link3URL = dt.Rows(0).Item("Link3_URL")
+                VRList.Item(0).siteTitle = dt.Rows(0).Item("Government_Name")
+                VRList.Item(0).governmentName = dt.Rows(0).Item("Government_Name")
+                VRList.Item(0).legislatureName = dt.Rows(0).Item("Legislature_Name")
+                VRList.Item(0).rcsNbrTitle = dt.Rows(0).Item("RSCNumber")
+                VRList.Item(0).billNbrTitle = dt.Rows(0).Item("BillNumber")
+                VRList.Item(0).motionTitle = dt.Rows(0).Item("Motion")
+                VRList.Item(0).motionDataField = dt.Rows(0).Item("MotionDataField")
+                VRList.Item(0).subjectDataField1 = dt.Rows(0).Item("SubjectField1")
+                VRList.Item(0).subjectDataField2 = dt.Rows(0).Item("SubjectField2")
+                VRList.Item(0).dateTimeTitle = dt.Rows(0).Item("DateTime")
+                VRList.Item(0).voteTotalTitle = dt.Rows(0).Item("VoteTotals")
+                VRList.Item(0).resultsTitle = dt.Rows(0).Item("Results")
+                VRList.Item(0).outcomeTitle = dt.Rows(0).Item("Outcome")
+                VRList.Item(0).partyTotalsTitle = dt.Rows(0).Item("PartyTotals")
+                VRList.Item(0).memberTitle = dt.Rows(0).Item("Member")
+                VRList.Item(0).districtNameTitle = dt.Rows(0).Item("DistrictName")
+                VRList.Item(0).districtNbrTitle = dt.Rows(0).Item("DistrictNumber")
+                VRList.Item(0).presidingOfficer1Name = dt.Rows(0).Item("Presiding_Name_1")
+                VRList.Item(0).presidingOfficer1Title = dt.Rows(0).Item("Presiding_Title_1")
+                VRList.Item(0).presidingOfficer2Name = dt.Rows(0).Item("Presiding_Name_2")
+                VRList.Item(0).presidingOfficer2Title = dt.Rows(0).Item("Presiding_Title_2")
+                VRList.Item(0).clerkSecretaryName = dt.Rows(0).Item("Clerk_Secretary_Name")
+                VRList.Item(0).clerkSecretaryTitle = dt.Rows(0).Item("Clerk_Secretary_Title")
+                VRList.Item(0).showDistrictName = CBool(dt.Rows(0).Item("showDistrictName"))
+                VRList.Item(0).showDistrictNbr = CBool(dt.Rows(0).Item("showDistrictNbr"))
+                VRList.Item(0).showMajorityStats = CBool(dt.Rows(0).Item("showMajorityStats"))
+                VRList.Item(0).showPartyStats = CBool(dt.Rows(0).Item("ShowPartyStats"))
+                VRList.Item(0).showVotingStats = CBool(dt.Rows(0).Item("ShowVotingStats"))
+                VRList.Item(0).showOptionalAttendance = CBool(dt.Rows(0).Item("ShowOptionalAttendance"))
+                VRList.Item(0).showOptionalStats = CBool(dt.Rows(0).Item("ShowOptionalStats"))
+                VRList.Item(0).includeShortTitle = CBool(dt.Rows(0).Item("IncludeShortTitle"))
+                VRList.Item(0).showOptionalPartyTotals = CBool(dt.Rows(0).Item("ShowOptionalPartyTotals"))
+
+
+                dt.Clear()
+
+                Dim oParmList2 As List(Of SqlParameter) = New List(Of SqlParameter)
+                oParmList2.Add(New SqlParameter("@SessionID", SessionID))
+                dt = ReturnDataTable("sp_VRGetVoteMappings", CommandType.StoredProcedure, oParmList2)
+
+                VRList.Item(0).yeaEnabled = CBool(dt.Rows(0).Item("Enabled"))
+                VRList.Item(0).yeaNamesAs = dt.Rows(0).Item("Named_As")
+                VRList.Item(0).yeaIsUsed = CBool(dt.Rows(0).Item("IsUsed"))
+                VRList.Item(0).yeaIsEligible = CBool(dt.Rows(0).Item("isEligible"))
+                VRList.Item(0).yeaHeaderOrder = dt.Rows(0).Item("Header_Order")
+
+                VRList.Item(0).nayEnabled = CBool(dt.Rows(1).Item("Enabled"))
+                VRList.Item(0).nayNamesAs = dt.Rows(1).Item("Named_As")
+                VRList.Item(0).nayIsUsed = CBool(dt.Rows(1).Item("IsUsed"))
+                VRList.Item(0).nayIsEligible = CBool(dt.Rows(1).Item("isEligible"))
+                VRList.Item(0).nayHeaderOrder = dt.Rows(1).Item("Header_Order")
+
+                VRList.Item(0).abstainEnabled = CBool(dt.Rows(2).Item("Enabled"))
+                VRList.Item(0).abstainNamesAs = dt.Rows(2).Item("Named_As")
+                VRList.Item(0).abstainIsUsed = CBool(dt.Rows(2).Item("IsUsed"))
+                VRList.Item(0).abstainIsEligible = CBool(dt.Rows(2).Item("isEligible"))
+                VRList.Item(0).abstainHeaderOrder = dt.Rows(2).Item("Header_Order")
+
+                VRList.Item(0).excusedEnabled = CBool(dt.Rows(3).Item("Enabled"))
+                VRList.Item(0).excusedNamesAs = dt.Rows(3).Item("Named_As")
+                VRList.Item(0).excusedIsUsed = CBool(dt.Rows(3).Item("IsUsed"))
+                VRList.Item(0).excusedIsEligible = CBool(dt.Rows(3).Item("isEligible"))
+                VRList.Item(0).excusedHeaderOrder = dt.Rows(3).Item("Header_Order")
+
+                VRList.Item(0).absentEnabled = CBool(dt.Rows(4).Item("Enabled"))
+                VRList.Item(0).absentNamesAs = dt.Rows(4).Item("Named_As")
+                VRList.Item(0).absentIsUsed = CBool(dt.Rows(4).Item("IsUsed"))
+                VRList.Item(0).absentIsEligible = CBool(dt.Rows(4).Item("isEligible"))
+                VRList.Item(0).absentHeaderOrder = dt.Rows(4).Item("Header_Order")
+
+                VRList.Item(0).notVotingEnabled = CBool(dt.Rows(5).Item("Enabled"))
+                VRList.Item(0).notVotingNamesAs = dt.Rows(5).Item("Named_As")
+                VRList.Item(0).notVotingIsUsed = CBool(dt.Rows(5).Item("IsUsed"))
+                VRList.Item(0).notVotingIsEligible = CBool(dt.Rows(5).Item("isEligible"))
+                VRList.Item(0).notVotingHeaderOrder = dt.Rows(5).Item("Header_Order")
+
+
+
+                Session("clsVoteReporter") = VRList
+                Return True
+            Else
+                ' This is the first time the app has been run. We need to set Vote Reporter 
+                ' properties to a default value.
+
+                VRList.Item(0).link1Name = "Link 1"
+                VRList.Item(0).link1URL = "http://www.roll-call.com"
+                VRList.Item(0).link2Name = "Link 2"
+                VRList.Item(0).link2URL = "http://www.roll-call.com"
+                VRList.Item(0).link3Name = "Link 3"
+                VRList.Item(0).link3URL = "http://www.roll-call.com"
+                VRList.Item(0).siteTitle = "{{Please Configure}}"
+                VRList.Item(0).governmentName = "{{Please Configure}}"
+                VRList.Item(0).legislatureName = "{{Please Configure}}"
+                VRList.Item(0).rcsNbrTitle = "{{Please Configure}}"
+                VRList.Item(0).billNbrTitle = "{{Please Configure}}"
+                VRList.Item(0).motionTitle = "{{Please Configure}}"
+                VRList.Item(0).motionDataField = 1
+                VRList.Item(0).subjectDataField1 = 2
+                VRList.Item(0).subjectDataField2 = 3
+                VRList.Item(0).dateTimeTitle = "{{Please Configure}}"
+                VRList.Item(0).voteTotalTitle = "{{Please Configure}}"
+                VRList.Item(0).resultsTitle = "{{Please Configure}}"
+                VRList.Item(0).outcomeTitle = "{{Please Configure}}"
+                VRList.Item(0).partyTotalsTitle = "{{Please Configure}}"
+                VRList.Item(0).memberTitle = "{{Please Configure}}"
+                VRList.Item(0).districtNameTitle = "{{Please Configure}}"
+                VRList.Item(0).districtNbrTitle = "{{Please Configure}}"
+                VRList.Item(0).presidingOfficer1Name = "{{Please Configure}}"
+                VRList.Item(0).presidingOfficer1Title = "{{Please Configure}}"
+                VRList.Item(0).presidingOfficer2Name = "{{Please Configure}}"
+                VRList.Item(0).presidingOfficer2Title = "{{Please Configure}}"
+                VRList.Item(0).clerkSecretaryName = "{{Please Configure}}"
+                VRList.Item(0).clerkSecretaryTitle = "{{Please Configure}}"
+                VRList.Item(0).showDistrictName = True
+                VRList.Item(0).showDistrictNbr = True
+                VRList.Item(0).showMajorityStats = True
+                VRList.Item(0).showPartyStats = True
+                VRList.Item(0).showVotingStats = True
+                VRList.Item(0).showOptionalAttendance = True
+                VRList.Item(0).showOptionalStats = True
+                VRList.Item(0).includeShortTitle = True
+                VRList.Item(0).showOptionalPartyTotals = True
+
+                VRList.Item(0).yeaEnabled = True
+                VRList.Item(0).yeaNamesAs = "{{Please Configure}}"
+                VRList.Item(0).yeaIsUsed = True
+                VRList.Item(0).yeaIsEligible = True
+                VRList.Item(0).yeaHeaderOrder = 1
+
+                VRList.Item(0).nayEnabled = True
+                VRList.Item(0).nayNamesAs = "{{Please Configure}}"
+                VRList.Item(0).nayIsUsed = True
+                VRList.Item(0).nayIsEligible = True
+                VRList.Item(0).nayHeaderOrder = 2
+
+                VRList.Item(0).abstainEnabled = True
+                VRList.Item(0).abstainNamesAs = "{{Please Configure}}"
+                VRList.Item(0).abstainIsUsed = True
+                VRList.Item(0).abstainIsEligible = True
+                VRList.Item(0).abstainHeaderOrder = 3
+
+                VRList.Item(0).excusedEnabled = True
+                VRList.Item(0).excusedNamesAs = "{{Please Configure}}"
+                VRList.Item(0).excusedIsUsed = True
+                VRList.Item(0).excusedIsEligible = True
+                VRList.Item(0).excusedHeaderOrder = 4
+
+                VRList.Item(0).absentEnabled = True
+                VRList.Item(0).absentNamesAs = "{{Please Configure}}"
+                VRList.Item(0).absentIsUsed = True
+                VRList.Item(0).absentIsEligible = True
+                VRList.Item(0).absentHeaderOrder = 5
+
+                VRList.Item(0).notVotingEnabled = True
+                VRList.Item(0).notVotingNamesAs = "{{Please Configure}}"
+                VRList.Item(0).notVotingIsUsed = True
+                VRList.Item(0).notVotingIsEligible = True
+                VRList.Item(0).notVotingHeaderOrder = 6
+
+                Session("clsVoteReporter") = VRList
+                Return True
+            End If
+
+        Catch ex As Exception
+            Return False
+        End Try
+
+
+    End Function
+
 
     Protected Sub btnSaveAllConfigSettings_Click(sender As Object, e As EventArgs) Handles btnSaveAllConfigSettings.Click
-
-
-
 
 
         If ddlConfiguredSession.SelectedIndex > 0 Then
